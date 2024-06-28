@@ -1,0 +1,33 @@
+@each $key, $val in $colors {
+    .text-#{$key} {
+        color: $val !important;
+    }
+    .border-#{$key} {
+        border-color: $val !important;
+    }
+    .bg-#{$key} {
+        background-color: $val !important;
+    }
+}
+@each $key, $val in $fonts {
+    .font-#{$key} {
+        font-size: $val !important;
+        line-height: $val !important;
+        font-family: 'Roboto' !important;
+    }
+}
+@each $key, $val in $line-height {
+    .lh-#{$key} {
+        line-height: $val !important;
+    }
+}
+@each $key, $val in $weight{
+    .weight-#{$key} {
+        font-weight: $val !important;
+    }  
+}
+// Function to get color by name
+@function color($color-name) {
+    @return map-get($colors, $color-name);
+}
+  

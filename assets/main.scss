@@ -1,0 +1,29 @@
+@import 'bootstrap/scss/bootstrap';
+
+@import 'colors';
+@import 'fonts';
+@import 'functions';
+
+:root {
+    --bs-tertiary-bg-rgb: 101, 127, 220;
+}
+body {
+  font-family: 'Roboto' !important;
+}
+// carousel indicators rounded
+.rounded-8 {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+}
+.carousel-indicators [data-bs-target] {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+}
+// search component
+.snow.btn:hover {
+  color: var(--bs-btn-hover-color);
+  background-color: color("snow") !important;
+  border-color: var(--bs-btn-hover-border-color);
+}

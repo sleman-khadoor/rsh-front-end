@@ -1,0 +1,149 @@
+{
+    "home": "Home",
+    "index": {
+        "checkoutLatestBooks": "Check out the latest books added by Rashm"
+    },
+    "aboutUs": {
+
+    },
+    "contactUs": {
+        "title": "Contact Us",
+        "subTitle": "Fill out the form and we will respond to you within a maximum of 24 hours"
+    },
+    "departments": {
+        "with": "With",
+        "requestBtn": "Request Service",
+        "translation":{
+            "overlayImg": {
+                "title": "Translation",
+                "text": "We provide high-quality translation departments to and from various languages. Our team of translators takes care of it Professionals with extensive experience ensure the accuracy, clarity and smoothness of the translation. We provide book translation departments Documents, reports, websites, marketing materials, etc."
+            },
+            "request": "Request a translation department now and enjoy the following benefits",
+            "departments": {
+                "department1": "Accurate, clear and smooth translations",
+                "department2": "A team of experienced professional translators",
+                "department3": "Translation departments for all types of materialss",
+                "department4": "We provide translation department at competitive prices"
+            },
+            "form": {
+                "title": "Contact",
+                "subTitle": "Translation Department"
+            }
+        },
+        "proofreading":{
+            "overlayImg": {
+                "title": "Linguistic proofreading",
+                "text": "We provide linguistic proofreading services to ensure that your writing is free of grammatical, spelling and stylistic errors. We ensure that your writing is clear, concise and effective."
+            },
+            "request": "Request a Linguistic proofreading service now and enjoy the following benefits",
+            "departments": {
+                "department1": "Writings free of grammatical and spelling errors",
+                "department2": "Clear, concise and effective writing",
+                "department3": "Improve the quality of your writing",
+                "department4": "Boost your credibility"
+            },
+            "form": {
+                "title": "Contact",
+                "subTitle": "Linguistic proofreading department"
+            }
+        },
+        "creativeEditing":{
+            "overlayImg": {
+                "title": "Creative editing",
+                "text": "We provide creative editing services to help you improve the quality of your creative writing, such as novels. We work closely with you to understand your vision and provide useful feedback to improve your work."
+            },
+            "request": "Request a Creative editing service now and enjoy the following benefits",
+            "departments": {
+                "department1": "Stronger and more influential creative writings",
+                "department2": "Improve your creative writing skills",
+                "department3": "Increase the chances of publishing work"
+            },
+            "form": {
+                "title": "Contact",
+                "subTitle": "Creative Editing department"
+            }
+        },
+        "literaryAgencyAuthors":{
+            "overlayImg": {
+                "title": "Literary agency for authors",
+                "text": "We offer literary agency services to help you publish your work. We work with you to develop an effective publishing strategy Submit your work to appropriate publishers."
+            },
+            "request": "Request a Literary agency service for authors now and enjoy the following benefits",
+            "departments": {
+                "department1": "Increase the chances of publishing work",
+                "department2": "Get representation in the publishing industry",
+                "department3": "Get the best publishing conditions"
+            },
+            "form": {
+                "title": "Contact",
+                "subTitle": "Literary agency service for authors"
+            }
+        },
+        "marketing":{
+            "overlayImg": {
+                "title": "Marketing",
+                "text": "We provide marketing services to help you promote your writing and increase its sales. We work with you to develop a campaign Effective marketing that reaches your target audience."
+            },
+            "request": "Request a Marketing service now and enjoy the following benefits",
+            "departments": {
+                "department1": "Increase awareness of your writing",
+                "department2": "Increase sales of writings"
+            },
+            "form": {
+                "title": "Contact",
+                "subTitle": "Marketing department"
+            }
+        },
+        "contentWriting":{
+            "overlayImg": {
+                "title": "Content writing",
+                "text": "We provide high-quality content writing services for a variety of platforms, including websites and blogs And social media and marketing materials. Our team of professional writers with extensive experience writes content Creative, engaging, and informative that grabs the attention of your target."
+            },
+            "request": "Request a Content Writing service now and enjoy the following benefits",
+            "departments": {
+                "department1": "Creative, engaging and informative content",
+                "department2": "Increase sales",
+                "department3": "Search engine optimization",
+                "department4": "Save your time"
+            },
+            "form": {
+                "title": "Contact",
+                "subTitle": "Content writer department"
+            }
+        },
+        "bookDelivery":{
+            "overlayImg": {
+                "title": "Book delivery",
+                "text": "We offer comprehensive book production services that meet all your needs, from typesetting and layout of texts to designing covers. Attractive that attracts readers."
+            },
+            "request": "Request a Book delivery service now and enjoy the following benefits",
+            "departments": {
+                "department1": "Professional typesetting of texts",
+                "department2": "Attractive designs",
+                "department3": "Commitment to appointments",
+                "department4": "Competitive prices"
+            },
+            "form": {
+                "title": "Contact",
+                "subTitle": "Content Book Delivery department"
+            }
+        },
+        "organizingEventsandConferences":{
+            "overlayImg": {
+                "title": "organizing events and conferences",
+                "text": "We are delighted to announce the launch of a new department within Rashm Cultural Foundation, dedicated to organizing events and conferences. This initiative aims to further enrich the literary community by facilitating meaningful engagements and fostering professional development."
+            },
+            "request": "Request a Book delivery service now and enjoy the following benefits",
+            "departments": {
+                "department1": "Professional typesetting of texts",
+                "department2": "Attractive designs",
+                "department3": "Commitment to appointments",
+                "department4": "Competitive prices"
+            },
+            "form": {
+                "title": "Contact",
+                "subTitle": "Organizing Events and Conferences department"
+            }
+        }
+    }
+}

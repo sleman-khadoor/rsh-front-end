@@ -1,0 +1,60 @@
+<template>
+     <div class="row bg-secondary m-0">
+        <div class="col-11 mx-auto my-5 text-center rounded-4">
+            <div class="mb-3">
+                <DepartmentsOverlayImg 
+                 :imgSrc="'department1'" 
+                 :btnColor="'bg-blue'"
+                 :text="$t('departments.translation.overlayImg.text')"
+                 :title="$t('departments.translation.overlayImg.title')"/>
+            </div>
+            <div class="mb-3">
+                <ColourfullDiv :text="$t('departments.translation.request')" :bgColor="'bg-blue'"/>
+            </div>
+            <div class="row mx-auto bg-primary text-center justify-content-around align-items-stretch rounded-4 p-5 mb-3">
+                <div v-for="(department,i) in departments" :key="i" class="col-lg-3 col-md-4 col-sm-6 text-dark-blue mb-4">
+                    <DepartmentsCard :title="department.title" :iconSrc="department.iconSrc"/>
+                </div>
+            </div>
+            <div id="contacts" class="mx-auto bg-primary text-center rounded-4 py-2">
+                <ContactUsForm 
+                :title="$t('departments.translation.form.title')" 
+                :subTitle="$t('departments.translation.form.subTitle')" 
+                :color="'bg-blue'" 
+                :circleSrc="'circle-blue'"
+                :steps="true" />
+            </div>
+        </div>
+        </div>
+</template>
+<script lang="ts">
+import { useI18n } from 'vue-i18n';
+
+export default defineComponent({
+    setup() {
+    const { t } = useI18n();
+    let departments = [
+        {
+            title: t('departments.translation.departments.department1'),
+            iconSrc: 'translation-s1'
+        },
+        {
+            title: t('departments.translation.departments.department2'),
+            iconSrc: 'translation-s2'
+        },
+        {
+            title: t('departments.translation.departments.department3'),
+            iconSrc: 'translation-s3'
+        },
+        {
+            title: t('departments.translation.departments.department4'),
+            iconSrc: 'translation-s4'
+        }
+    ];
+    return {
+         t,
+         departments
+    }
+    },
+});
+</script>
