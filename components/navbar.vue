@@ -32,7 +32,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink to="/blog" class="nav-link text-dark-blue weight-meduim font-meduim lh-24px">Blog</NuxtLink>
+                    <NuxtLink to="/blogs" class="nav-link text-dark-blue weight-meduim font-meduim lh-24px">Blog</NuxtLink>
                 </li>
                 <li class="nav-item">
                     <NuxtLink to="/Books" class="nav-link text-dark-blue weight-meduim font-meduim lh-24px">Books</NuxtLink>
