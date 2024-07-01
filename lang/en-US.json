@@ -1,10 +1,12 @@
 {
     "home": "Home",
     "index": {
-        "checkoutLatestBooks": "Check out the latest books added by Rashm"
-    },
-    "aboutUs": {
-
+        "checkoutLatestBooks": "Check out the latest books added by Rashm",
+        "history": {
+            "history1": "Rashm was founded in 2005 as a small company specializing in translation and creative editing services.",
+            "history2": "We strive to provide exceptional services that exceed our customers' expectations, focusing on creativity and quality in every detail of our work.",
+            "history3": "Commitment to quality, professionalism and innovation are our core values."
+        }
     },
     "contactUs": {
         "title": "Contact Us",
@@ -198,6 +200,25 @@
                 "title": "Personal approach",
                 "subTitle": "We offer each author a personal approach to suit their specific needs."
             }
+        }
+    },
+    "aboutUs": {
+        "overlayImg": {
+            "title": "About Rashm Publishing House",
+            "text": "Dar Rashm for Publishing and Distribution is a leading Saudi publishing house established in 2019 in the city of Arar, Kingdom of Saudi Arabia."
+        },
+        "aims": {
+            "aim1": "Enriching the Arab library with purposeful and diverse publications in various fields, with a focus on Arabic literature. All kinds of books scientific and intellectual books, children’s books, and human development books.",
+            "aim2": "Discovering new literary talents and supporting them by publishing their first works and offering them publishing opportunities.",
+            "aim3": "Contributing to spreading Arab culture by participating in Arab and international book fairs, and organizing cultural and literary events."
+        },
+        "publishingHouses": {
+            "publishingHouse1": "Commitment to the highest quality standards at all stages",
+            "publishingHouse2": "Selecting important topics and Modern problems",
+            "publishingHouse3": "Diversity of its publications to satisfy readers' needs",
+            "publishingHouse4": "Cooperation with an elite group of distinguished writers translators and editors",
+            "publishingHouse5": "Designing distinctive covers that attract readers",
+            "publishingHouse6": "Widely distribution of its books through various sales channels"
         }
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="row bg-secondary m-0">
         <div class="col-11 mx-auto my-5 bg-primary text-center rounded-4">
-            <div class="text-choco font-xx-large weight-meduim lh-25 pt-5 mb-3">
+            <div class="text-choco font-xx-large weight-meduim lh-25 pt-5 mb-5">
                 Our Partners
             </div>
             <div class="text-dark-blue font-large weight-regular lh-22 px-5">

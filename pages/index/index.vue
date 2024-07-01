@@ -30,7 +30,10 @@
             </div>
             <div class="row mb-4">
                 <div class="col-lg-8 col-md-6 col-sm-12">
-                    <IndexHistory/>
+                    <div class="rounded-3 bg-dark-blue text-primary px-5 pt-3 pb-3 mb-3">
+                        <div class="p-5 font-x-large weight-regular"> Explore <span class="text-choco">Rashm's</span> history and our vision of providing </div>
+                    </div>
+                    <IndexHistory :data="history" :bgColor="'bg-secondary'"/>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <img src="@/assets/img/printer.png" class="d-block w-100" alt="..." height="400" width="400">
@@ -52,9 +55,11 @@
 </template>
 <script>
 import { defineComponent } from '@vue/composition-api'
+import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
     setup() {
+        const { t } = useI18n();
         let books = [
         {
             iconSrc: 'book'
@@ -87,8 +92,20 @@ export default defineComponent({
             iconSrc: 'book'
         }
         ];
+        let history = [
+            {
+                text: t('index.history.history1')
+            },
+            {
+                text: t('index.history.history2')
+            },
+            {
+                text: t('index.history.history3')
+            }
+        ]
         return{
-            books
+            books,
+            history
         }
     },
 })
