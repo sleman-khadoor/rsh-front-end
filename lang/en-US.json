@@ -145,5 +145,59 @@
                 "subTitle": "Organizing Events and Conferences department"
             }
         }
+    },
+    "publishWithUs": {
+        "overlayImg": {
+                "title": "Publish with us",
+                "text": "From manuscript to library, an easy journey with our publishing services."
+        },
+        "services": {
+            "service1": {
+                "title": "Free evaluation of your manuscript",
+                "subTitle": "A team of experts will evaluate your manuscript and provide constructive feedback to help you improve your manuscript Improve it."
+            },
+            "service2": {
+                "title": "Professional editing and proofreading",
+                "subTitle": " We guarantee that your book is free of linguistic and grammatical errors to ensure an enjoyable reading experience."
+            },
+            "service3": {
+                "title": "Distinctive cover design",
+                "subTitle": "We provide attractive cover design services that attract the attention of readers and highlight the content of your book in a unique way."
+            },
+            "service4": {
+                "title": "High-quality printing",
+                "subTitle": "We use the latest printing technologies to ensure that you get a high-quality book."
+            },
+            "service5": {
+                "title": "Wide Distribution",
+                "subTitle": " We distribute your book widely through various sales channels, including bookstores And electronic stores."
+            },
+            "service6": {
+                "title": "Marketing and Publicity",
+                "subTitle": " We help you market and promote your book through targeted advertising campaigns."
+            },
+            "service7": {
+                "title": "Support for authors",
+                "subTitle": "We provide you with support and guidance throughout the publishing journey, from manuscript preparation to book publication."
+            }
+        },
+        "whyRashm": {
+            "cause1": {
+                "title": "Extensive experience",
+                "subTitle": "We have extensive experience in the publishing field and help you with every step of your publishing journey"
+            },
+            "cause2": {
+                "title": "Commitment to quality",
+                "subTitle": "We are committed to providing high quality services at reasonable prices."
+            },
+            "cause3": {
+                "title": "Passion for books",
+                "subTitle": "We are passionate about books and love working with authors to help them realize their dreams."
+            },
+            "cause4": {
+                "title": "Personal approach",
+                "subTitle": "We offer each author a personal approach to suit their specific needs."
+            }
+        }
     }
 }

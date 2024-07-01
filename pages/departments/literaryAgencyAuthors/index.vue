@@ -5,6 +5,7 @@
                 <DepartmentsOverlayImg 
                  :imgSrc="'department4'" 
                  :btnColor="'bg-choco'"
+                 :btn="true"
                  :text="$t('departments.literaryAgencyAuthors.overlayImg.text')"
                  :title="$t('departments.literaryAgencyAuthors.overlayImg.title')"/>
             </div>

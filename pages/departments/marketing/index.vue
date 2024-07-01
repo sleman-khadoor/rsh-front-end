@@ -4,6 +4,7 @@
             <div class="mb-3">
                 <DepartmentsOverlayImg 
                  :imgSrc="'department5'" 
+                 :btn="true"
                  :btnColor="'bg-green'"
                  :text="$t('departments.marketing.overlayImg.text')"
                  :title="$t('departments.marketing.overlayImg.title')"/>

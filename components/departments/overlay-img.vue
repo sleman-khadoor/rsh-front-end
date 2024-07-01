@@ -5,12 +5,12 @@
         :class="!props.gallery ? 'd-block w-100 object-fit-cover rounded-4' : 'd-block w-100 object-fit-cover'" 
         style="height: 55vh !important;min-height: 300px !important" alt="...">
         <div :class="dynamicOverlayClass">
-            <div :class="!props.gallery ? 'my-md-1' : 'bottom-0 position-absolute'">
+            <div :class="!props.gallery ? 'my-md-1 mx-auto' : 'bottom-0 position-absolute'">
                 <h5 :class="dynamicTitleClass">{{ props.title }}</h5>
                 <p :class="dynamicSubTitleClass">
                     {{props.text}}
                 </p>
-                <button v-if="!props.gallery" type="button" :class="dynamicClass">
+                <button v-if="(!props.gallery) && props.btn" type="button" :class="dynamicClass">
                   <div class="p-lg-1">
                     {{$t('departments.requestBtn')}}
                     <a href="#contacts">
@@ -29,6 +29,7 @@ const props = defineProps<{
   title: string;
   text: string;
   gallery: boolean;
+  btn: boolean;
   btnColor: string;
 }>();
 // computed dynamic class
@@ -38,7 +39,7 @@ const dynamicClass = computed(() => {
 // computed dynamic class
 const dynamicOverlayClass = computed(() => {
   return props.gallery ? 'card-img-overlay bg-black bg-opacity-50 text-primary h-100' 
-  : 'd-flex align-items-center card-img-overlay bg-black bg-opacity-25 text-primary h-100 p-lg-5 p-md-3 rounded-4';
+  : 'd-flex align-items-center card-img-overlay bg-black bg-opacity-50 text-primary h-100 p-lg-5 p-md-3 rounded-4';
 });
 // computed dynamic title class
 const dynamicTitleClass = computed(() => {
