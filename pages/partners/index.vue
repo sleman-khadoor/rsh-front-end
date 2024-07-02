@@ -1,5 +1,7 @@
 <template>
     <div class="row bg-secondary m-0">
+        <Title>Rashm Partners</Title>
+        <Meta name="description" content="Rasham Partners" />
         <div class="col-11 mx-auto my-5 bg-primary text-center rounded-4">
             <div class="text-choco font-xx-large weight-meduim lh-25 pt-5 mb-5">
                 Our Partners

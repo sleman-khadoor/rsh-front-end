@@ -1,5 +1,7 @@
 <template>
     <div id="home" class="bg-secondary">
+        <Title>Rashm</Title>
+        <Meta name="description" content="Rasham" />
             <div class="row mb-4">
                 <div class="col-lg-5 col-md-5 col-sm-12 py-2">
                     <IndexCarousel/>

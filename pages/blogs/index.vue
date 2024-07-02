@@ -1,5 +1,7 @@
 <template>
     <div>
+        <Title>Blogs with Rashm</Title>
+        <Meta name="description" content="Blogs with Rashm" />
         <div class="row bg-dark-blue pb-3">
             <div class="col-lg-7 h-25 mx-auto">
                 <Search/>

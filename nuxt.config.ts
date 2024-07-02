@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: true,
   css: ['bootstrap/dist/css/bootstrap.min.css','~/assets/main.scss'],
   devtools: { enabled: true },
   // buildModules: ['@nuxt/typescript-build'],

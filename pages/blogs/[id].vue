@@ -1,5 +1,7 @@
 <template>
     <div class="row bg-secondary m-0">
+        <Title>Blog name with Rashm</Title>
+        <Meta name="description" content="Blog Name with Rashm" />
         <div class="col-12 mx-auto text-start rounded-4 py-5 px-lg-5 px-md-5 px-sm-4 text-dark-blue">
             <img src="@/assets/img/blog-img.jpg" class="d-block w-100 object-fit-cover mb-3" alt="..." height="310">
             <div class="d-flex flex-wrap mb-3">

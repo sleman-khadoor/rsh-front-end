@@ -1,5 +1,7 @@
 <template>
      <div class="row bg-secondary m-0">
+        <Title>Proofreading With Rashm</Title>
+        <Meta name="description" content="Proofreading with Rashm" />
         <div class="col-11 mx-auto my-5 text-center rounded-4">
             <div class="mb-3">
                 <DepartmentsOverlayImg 

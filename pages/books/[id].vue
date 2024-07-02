@@ -1,5 +1,7 @@
 <template>
     <div class="row bg-secondary m-0">
+        <Title>Book name With Rashm</Title>
+        <Meta name="description" content="Book name with Rashm" />
         <div class="col-11 mx-auto my-5 bg-primary text-start rounded-4 pt-5 px-lg-5 px-md-5 px-sm-4 text-dark-blue">
             <div class="row">
                 <div class="col col-auto px-0 mx-auto justify-content-center font-meduim lh-25 mb-5">
