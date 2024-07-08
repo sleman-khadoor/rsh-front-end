@@ -1,5 +1,19 @@
 @import 'bootstrap/scss/bootstrap';
-
+@font-face {
+  font-family: "RobotoBold";
+  src: local("RobotoBold"),
+  url(assets/fonts/Roboto-Bold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "RobotoMedium";
+  src: local("RobotoMedium"),
+  url(assets/fonts/Roboto-Medium.ttf) format("truetype");
+}
+@font-face {
+  font-family: "RobotoRegular";
+  src: local("RobotoRegular"),
+  url(assets/fonts/Roboto-Regular.ttf) format("truetype");
+}
 @import 'colors';
 @import 'fonts';
 @import 'functions';

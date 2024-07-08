@@ -17,6 +17,6 @@ const props = defineProps<{
 }>();
 // computed dynamic class
 const dynamicClass = computed(() => {
-  return `p-4 text-center text-primary font-x-large weight-regular rounded-3 ${props.bgColor}`;
+  return `p-4 text-center text-primary font-x-large ff-regular rounded-3 ${props.bgColor}`;
 });
 </script>

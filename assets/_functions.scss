@@ -22,8 +22,8 @@
     }
 }
 @each $key, $val in $weight{
-    .weight-#{$key} {
-        font-weight: $val !important;
+    .ff-#{$key} {
+        font-family: $val !important;
     }  
 }
 // Function to get color by name

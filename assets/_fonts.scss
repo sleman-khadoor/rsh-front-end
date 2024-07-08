@@ -8,11 +8,17 @@ $fonts : (
     "xx-small": 0.75rem, // 12px
 );
 $weight : (
-    "bold": 700, // 40px
-    "semiBold": 600, // 40px
-    "meduim": 500, // 25px
-    "regular": 400, // 22 px
+    "bold": "RobotoBold", // 40px
+    "semiBold": "RobotoBold", // 40px
+    "meduim": "RobotoMedium", // 25px
+    "regular": "RobotoRegular", // 22 px
 );
+// $weight : (
+//     "bold": 700, // 40px
+//     "semiBold": 600, // 40px
+//     "meduim": 500, // 25px
+//     "regular": 400, // 22 px
+// );
 $line-height : (
     "40": 40px,
     "25": 25px,

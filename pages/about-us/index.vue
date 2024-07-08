@@ -10,12 +10,12 @@
                  :title="$t('aboutUs.overlayImg.title')"/>
             </div>
             <div class="mb-4 bg-white rounded-3 py-5 px-lg-5 px-md-3 px-sm-2">
-                <div class="font-x-large weight-meduim text-dark-blue mb-5 text-center px-4">Rashm aims to</div>
+                <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center px-4">Rashm aims to</div>
                 <IndexHistory class="text-start" :data="aims" :bgColor="'bg-secondary'"/>
             </div>
             <div class="mb-4 bg-white rounded-3 py-5 px-lg-4 px-md-2 px-sm-1">
-                <div class="font-x-large weight-meduim text-dark-blue mb-5 text-center px-4">Achievements Of Rashm Publishing House</div>
-                <div v-for="(achievment, i) in achievements" class="row m-3 mt-0 mb-3 align-content-center align-content-stretch align-items-stretch font-meduim weight-regular">
+                <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center px-4">Achievements Of Rashm Publishing House</div>
+                <div v-for="(achievment, i) in achievements" class="row m-3 mt-0 mb-3 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
                     <div class="col-lg-1 col-md-2 col-sm-2 col-auto justify-content-center text-center">
                         <img :src="`/_nuxt/assets/icon/circle-choco.svg`" alt="rashm" height="25" width="25">
                         <div v-if="i !== (achievements.length-1)" class="hr bg-light-choco h-100 mx-auto" style="width:2px;"></div>
@@ -24,7 +24,7 @@
                 </div>
             </div>
              <div class="mb-4 bg-white rounded-3 py-5 px-lg-5 px-md-3 px-sm-2">
-                <div class="font-x-large weight-meduim text-dark-blue mb-5 text-center px-4">Rasham Publishing House is distinguished by the following</div>
+                <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center px-4">Rasham Publishing House is distinguished by the following</div>
                 <IndexHistory class="row m-0 text-start" :col="`col-lg-6 col-md-6 col-sm-12`" :data="publishingHouses" :bgColor="'bg-light-choco'"/>
             </div>
         </div>

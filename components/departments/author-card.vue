@@ -2,8 +2,8 @@
     <div class="pt-5">
         <div class="author-card shadow-sm rounded-4 bg-bg-secondary">
             <img src="@/assets/img/new.png" alt="Author Image">
-            <h5 class="mt-2 font-meduim weight-meduim">Author Name</h5>
-            <p class="m-0 font-x-small weight-regular">
+            <h5 class="mt-2 font-meduim ff-meduim">Author Name</h5>
+            <p class="m-0 font-x-small ff-regular">
                 Here And In This Place Is Written The Description Of The Author
                 For Whom We Are Agents Here
                 And In This Place Is Written The Description Of The Author

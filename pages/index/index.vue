@@ -10,8 +10,8 @@
                 <div class="col-lg-7 col-md-7 col-sm-12 py-2 p-0  ">
                     <div class="d-flex mb-auto text-center h-100 rounded-4  bg-img">
                         <div class="p-3">
-                            <div class="text-choco font-xx-large weight-bold pb-2 pt-3">Rashm</div>
-                            <div class="text-dark-blue font-large weight-regular py-2 px-lg-5 px-md-4 px-sm-3">
+                            <div class="text-choco font-xx-large ff-bold pb-2 pt-3">Rashm</div>
+                            <div class="text-dark-blue font-large ff-regular py-2 px-lg-5 px-md-4 px-sm-3">
                                 With Rashm Cultural, we combine creative translation
                                 with careful editing, give life to your texts through
                                 linguistic proofreading, and pave the way for authors
@@ -33,7 +33,7 @@
             <div class="row mb-4">
                 <div class="col-lg-8 col-md-6 col-sm-12">
                     <div class="rounded-3 bg-dark-blue text-primary px-5 pt-3 pb-3 mb-3">
-                        <div class="p-5 font-x-large weight-regular"> Explore <span class="text-choco">Rashm's</span> history and our vision of providing </div>
+                        <div class="p-5 font-x-large ff-regular"> Explore <span class="text-choco">Rashm's</span> history and our vision of providing </div>
                     </div>
                     <IndexHistory :data="history" :bgColor="'bg-secondary'"/>
                 </div>

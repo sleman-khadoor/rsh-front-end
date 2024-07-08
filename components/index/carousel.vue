@@ -10,8 +10,8 @@
             <div class="carousel-item active">
             <img src="@/assets/img/new.png" class="d-block w-100" alt="..." height="410" width="400">
             <div class="carousel-caption d-block  text-start">
-                <span class="font-large weight-meduim">First slide label</span>
-                <p class="font-small weight-regular">Some representative placeholder content for the first slide.</p>
+                <span class="font-large ff-meduim">First slide label</span>
+                <p class="font-small ff-regular">Some representative placeholder content for the first slide.</p>
             </div>
             </div>
             <div class="carousel-item">

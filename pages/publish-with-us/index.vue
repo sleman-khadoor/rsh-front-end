@@ -10,20 +10,20 @@
                  :title="$t('publishWithUs.overlayImg.title')"/>
             </div>
             <div class="mb-3 bg-white rounded-3 py-5 px-lg-5 px-md-3 px-sm-2">
-                <div class="font-x-large weight-meduim text-dark-blue mb-3">We are here to help you achieve your dream!</div>
-                <div class="font-large weight-meduim text-choco mb-5">With our services, you will get</div>
+                <div class="font-x-large ff-meduim text-dark-blue mb-3">We are here to help you achieve your dream!</div>
+                <div class="font-large ff-meduim text-choco mb-5">With our services, you will get</div>
                 <div class="px-5 text-dark-blue">
                     <div v-for="(service, i) in services" :key="i" class="d-flex justify-content-start mb-3 lh-25 text-start">
                         <img src="@/assets/icon/circle-choco.svg" class="col-auto mt-1 mx-2" width="20" height="20"/>
                         <div>
-                            <span class="font-meduim weight-semiBold">{{service.title}}: </span>
-                            <span class="font-meduim weight-regular"> {{service.subTitle}}</span>
+                            <span class="font-meduim ff-semiBold">{{service.title}}: </span>
+                            <span class="font-meduim ff-regular"> {{service.subTitle}}</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="mb-3 bg-white rounded-3 p-5">
-                <div class="font-x-large weight-meduim text-dark-blue mb-3">
+                <div class="font-x-large ff-meduim text-dark-blue mb-3">
                     Why To Publish With Rashm?
                 </div>
                 <div class="row mx-auto bg-primary text-center justify-content-around rounded-4 mb-3">
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="mb-3 bg-white rounded-3 p-5">
-                <div class="font-x-large weight-meduim text-dark-blue mb-5">
+                <div class="font-x-large ff-meduim text-dark-blue mb-5">
                     To publish with us You Should Meet These requirements
                 </div>
                 <div class="row">
@@ -52,10 +52,10 @@
             </div>
              <div class="mb-3 bg-white justify-content-center rounded-3 p-5">
                 <div class="row justify-content-center">
-                    <span class="font-x-large weight-meduim mb-2">Are you ready to turn your manuscript into a book?</span>
-                    <span class="font-meduim weight-meduim lh-22 mb-2">Contact us today for a quote or more information</span>
-                    <span class="font-meduim weight-regular lh-22 mb-2">Contact us at the following email</span>
-                    <div class="d-flex align-items-center w-auto mx-auto text-choco font-meduim weight-regular mb-2">
+                    <span class="font-x-large ff-meduim mb-2">Are you ready to turn your manuscript into a book?</span>
+                    <span class="font-meduim ff-meduim lh-22 mb-2">Contact us today for a quote or more information</span>
+                    <span class="font-meduim ff-regular lh-22 mb-2">Contact us at the following email</span>
+                    <div class="d-flex align-items-center w-auto mx-auto text-choco font-meduim ff-regular mb-2">
                         <img src="@/assets/icon/email-fill.svg" class="d-block my-auto mx-1" alt="..." width="20" height="20">
                         rasham@gmail.com
                     </div>

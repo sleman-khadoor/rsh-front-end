@@ -8,11 +8,11 @@
         <div class="vr bg-choco opacity-1" style="width: 3px;margin-top: 10px;min-height: 1.7em !important;"></div>
       </div>
       <div class="input-group-append">
-        <button class="snow btn btn-outline-secondary dropdown-toggle text-choco bg-snow font-small weight-regular" 
+        <button class="snow btn btn-outline-secondary dropdown-toggle text-choco bg-snow font-small ff-regular" 
         style="height:50px !important;" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         Book Name
         </button>
-        <div class="dropdown-menu dropdown-menu-right bg-snow font-x-small weight-regular">
+        <div class="dropdown-menu dropdown-menu-right bg-snow font-x-small ff-regular">
           <div class="d-flex text-center p-lg-1">
             <img src="@/assets/icon/book-name.svg" class="d-block my-auto mx-1" alt="..." width="20" height="20">
             <a class="dropdown-item text-choco px-1" href="#">Book Name</a>

@@ -4,7 +4,7 @@
             <div class="font-xx-large fw-semibold mb-3">
                 {{props.title}}
             </div>
-            <div class="font-large weight-meduim mb-4">
+            <div class="font-large ff-meduim mb-4">
                 {{props.subTitle}}
             </div>
             <div class="d-flex justify-content-start text-meduim mb-4">
@@ -30,10 +30,10 @@
             <div class="d-flex text-large">
                 <span class="font-xx-large fw-semibold">
                     {{props.title}}
-                </span><span class="mx-2 font-large weight-meduim mt-auto">{{$t('departments.with')}}</span>
+                </span><span class="mx-2 font-large ff-meduim mt-auto">{{$t('departments.with')}}</span>
             </div>                        
-            <div class="mb-3 font-large weight-meduim mb-5">{{props.subTitle}}</div>
-            <div class="row mt-0 mb-4 align-content-center align-content-stretch align-items-stretch font-meduim weight-regular">
+            <div class="mb-3 font-large ff-meduim mb-5">{{props.subTitle}}</div>
+            <div class="row mt-0 mb-4 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
                 <div class="col-2 justify-content-center text-center">
                     <img :src="`/_nuxt/assets/icon/${props.circleSrc}.svg`" alt="rashm" height="22" width="22">
                     <div class="hr bg-grey h-100 mx-auto" style="width:3px;"></div>
@@ -44,7 +44,7 @@
                     to translate
                 </div>
             </div>
-            <div class="row mt-0 mb-4 align-content-center align-content-stretch align-items-stretch font-meduim weight-regular">
+            <div class="row mt-0 mb-4 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
                 <div class="col-2 justify-content-center text-center">
                     <img :src="`/_nuxt/assets/icon/${props.circleSrc}.svg`" alt="rashm" height="22" width="22">
                     <div class="hr bg-grey h-100 mx-auto" style="width:3px;"></div>
@@ -54,7 +54,7 @@
                     our services and prices
                 </div>
             </div>
-            <div class="row mt-0 mb-4 align-content-center align-content-stretch align-items-stretch font-meduim weight-regular">
+            <div class="row mt-0 mb-4 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
                 <div class="col-2 justify-content-center text-center">
                     <img :src="`/_nuxt/assets/icon/${props.circleSrc}.svg`" alt="rashm" height="22" width="22">
                 </div>
@@ -124,7 +124,7 @@ export default defineComponent({
         })
 
         const dynamicClass = computed(() => {
-        return `btn btn-primary p-2 border-0 font-x-large weight-regular ${props.color}`;
+        return `btn btn-primary p-2 border-0 font-x-large ff-regular ${props.color}`;
         });
         watch(flag,(newV, oldV) => {
             console.log('flaggg', newV);

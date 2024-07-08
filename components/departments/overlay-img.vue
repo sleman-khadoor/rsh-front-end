@@ -34,7 +34,7 @@ const props = defineProps<{
 }>();
 // computed dynamic class
 const dynamicClass = computed(() => {
-  return `btn text-primary px-lg-3 py-lg-2 font-meduim weight-regular rounded-5 ${props.btnColor}`;
+  return `btn text-primary px-lg-3 py-lg-2 font-meduim ff-regular rounded-5 ${props.btnColor}`;
 });
 // computed dynamic class
 const dynamicOverlayClass = computed(() => {
@@ -43,13 +43,13 @@ const dynamicOverlayClass = computed(() => {
 });
 // computed dynamic title class
 const dynamicTitleClass = computed(() => {
-  return props.gallery ? 'font-x-large weight-meduim mb-2' 
-  : 'font-xx-large weight-bold mb-2';
+  return props.gallery ? 'font-x-large ff-meduim mb-2' 
+  : 'font-xx-large ff-bold mb-2';
 });
 // computed dynamic subtitle class
 const dynamicSubTitleClass = computed(() => {
-  return props.gallery ? 'font-small weight-regular mb-4' 
-  : 'font-large weight-regular mb-4';
+  return props.gallery ? 'font-small ff-regular mb-4' 
+  : 'font-large ff-regular mb-4';
 });
 // computed dynamic Img
 const dynamicImg = computed(() => {
