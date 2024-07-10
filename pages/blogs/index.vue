@@ -1,5 +1,6 @@
 <template>
     <div>
+        <NuxtLoadingIndicator/>
         <Title>Blogs with Rashm</Title>
         <Meta name="description" content="Blogs with Rashm" />
         <div class="row bg-dark-blue pb-3">

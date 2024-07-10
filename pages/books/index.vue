@@ -23,10 +23,11 @@
 <script lang="ts">
 import categoriesCarousel from "~/components/categories-carousel.vue";
 import Pagination from "~/components/pagination.vue";
-
+// import { useBooksStore } from './store'
 export default defineComponent({
   components: { categoriesCarousel, Pagination },
     setup() {
+    // const store = useBooksStore()
     let books = [
         {
             id: 1,
@@ -87,6 +88,9 @@ export default defineComponent({
             name: 'Category name'
         }
     ];
+    // onMounted(() => {
+    //      store.fetchBooks()
+    // })
     return {
          books,
          categories

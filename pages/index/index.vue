@@ -3,11 +3,11 @@
         <Title>Rashm</Title>
         <Meta name="description" content="Rasham" />
             <div class="row mb-4">
-                <div class="col-lg-5 col-md-5 col-sm-12 py-2">
+                <div class="col-lg-6 col-md-6 col-sm-12 py-2">
                     <IndexCarousel/>
                 </div>
             
-                <div class="col-lg-7 col-md-7 col-sm-12 py-2 p-0  ">
+                <div class="col-lg-6 col-md-6 col-sm-12 py-2 p-0">
                     <div class="d-flex mb-auto text-center h-100 rounded-4  bg-img">
                         <div class="p-3">
                             <div class="text-choco font-xx-large ff-bold pb-2 pt-3">Rashm</div>
@@ -125,9 +125,9 @@ export default defineComponent({
     display: flex;
     width: 70px;
     height: 70px;
-    margin-top: -71px !important;
-    margin-left: 38.5% !important;
-    margin-right: 60% !important;
+    margin-top: -93px !important;
+    margin-left: 46.5% !important;
+    /* margin-right: 60% !important; */
 }
 .bg-img{
     background-image: url( '/assets/svg/Square.svg' );

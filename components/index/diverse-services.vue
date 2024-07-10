@@ -63,7 +63,7 @@ export default defineComponent({
                 text: t('departments.bookDelivery.overlayImg.text'),
             },
             {
-                icon: 'organizingEventsandConferences',
+                icon: 'events',
                 title: t('departments.organizingEventsandConferences.overlayImg.title'),
                 text: t('departments.organizingEventsandConferences.overlayImg.text'),
             },

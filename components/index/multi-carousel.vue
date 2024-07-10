@@ -1,10 +1,10 @@
 <template>
-    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner w-75 m-auto" ref="carouselInner">
+    <div id="carouselExample" class="carousel slide book-slider" data-bs-ride="carousel">
+    <div class="carousel-inner w-90 m-auto" ref="carouselInner">
         <div v-for="(chunk, index) in chunks" :key="index" :class="['carousel-item', { active: index === 0 }]">
         <div class="d-flex justify-content-center">
             <div v-for="(image, subIndex) in chunk" :key="subIndex" class="carousel-image col-lg-3 col-md-4 col-md-6">
-            <img :src="`/_nuxt/assets/img/${image.iconSrc}.jpg`" width="150" height="200" class="d-block" alt="...">
+            <img :src="`/_nuxt/assets/img/${image.iconSrc}.jpg`" width="194" height="252" class="d-block mx-auto" alt="...">
             </div>
         </div>
         </div>
@@ -75,5 +75,8 @@ export default defineComponent({
       /* width: 100%; */
       /* height: auto; */
       border-radius: 5px; /* Optional: Add border-radius to images */
+    }
+    .book-slider .carousel-control-prev, .carousel-control-next{
+      width: 4% !important;
     }
 </style>

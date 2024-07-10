@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
   ssr: true,
   css: ['bootstrap/dist/css/bootstrap.min.css','~/assets/main.scss'],
+  // plugins: [
+  //   { src: '@/plugins/global' },
+  // ],
   devtools: { enabled: true },
   // buildModules: ['@nuxt/typescript-build'],
   devServer: {
@@ -13,7 +16,10 @@ export default defineNuxtConfig({
       scrollBehaviorType: 'smooth'
     }
   },
-  modules: ["@nuxtjs/i18n", "@nuxt/image"],
+  modules: ["@nuxtjs/i18n", "@nuxt/image", "@pinia/nuxt"],
+  pinia: {
+    storesDirs: ['./stores/**', './custom-folder/stores/**'],
+  },
   i18n: {
     /* module options */
     lazy: true,
