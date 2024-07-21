@@ -5,94 +5,77 @@
         <Meta name="description" content="Blogs with Rashm" />
         <div class="row bg-dark-blue pb-3">
             <div class="col-lg-7 h-25 mx-auto">
-                <Search/>
+                <Search @search="updateSearch($event)"/>
             </div>
         </div>
         <div class="row bg-secondary p-1">
-            <CategoriesCarousel :categories="categories"/>
+            <CategoriesCarousel v-if="!categoriesPending" :categories="categories" @updateCategory="updateCategory($event)"/>
         </div>
         <div class="row bg-secondary px-5 pb-5 pt-2 justify-content-center">
-            <div v-for="(blog,i) in blogs" :key="i" class="col-lg-3 col-md-4 col-sm-6">
+            <div v-for="(blog,i) in blogs?.data" :key="i" class="col-lg-3 col-md-4 col-sm-6">
                 <BlogsCard :blog="blog"/>
             </div>
         </div>
         <div class="row bg-secondary justify-content-center pb-5">
-            <Pagination/>
+            <Pagination v-if="!blogsPending" :meta="blogs?.meta" @updatePage="updatePagination($event)"/>
         </div>
     </div>
 </template>
-<script lang="ts">
-import categoriesCarousel from "~/components/categories-carousel.vue";
-import Pagination from "~/components/pagination.vue";
-
-export default defineComponent({
-    components: { categoriesCarousel, Pagination },
-    setup() {
-    let blogs = [
-        {
-            id: 1
+<script setup>
+    const runTimeConfig = useRuntimeConfig();
+    const page = ref(1);
+    const category = ref(1);
+    const title = ref('');
+    const author = ref('');
+    //get categories
+    const { data: categories, pending: categoriesPending, refresh: categoriesRefresh} = await useFetch(`${runTimeConfig.public.API_URL}/blog-categories`, {
+        transform: (_categories) => _categories.data,
+        headers: API_HEADER(),
+        onResponse({ request, response, options }) {
+            // Process the response data
+            category.value = response._data.data[0].id;
         },
-        {
-            id: 2
+        onRequestError({ request, options, error }) {
+            // Handle the request errors
+            console.log('request error', response)
         },
-        {
-            id: 3
-        },
-        {
-            id: 4
-        },
-        {
-            id: 5
-        },
-        {
-            id: 6
-        },
-        {
-            id: 7
+        onResponseError({ request, response, options }) {
+            console.log('response error', response)
         }
-    ];
-    let categories = [
-        {
-            id: 1,
-            name: 'Category name'
+    });
+    //get blogs
+    const { data: blogs, pending: blogsPending, refresh: blogsRefresh} = await useFetch(`${runTimeConfig.public.API_URL}/blogs`, {
+        headers: API_HEADER(),
+        query: { page, 'filter[blog_category][0]': category, 'filter[title]': title, 'filter[author]': author},
+        onResponse({ request, response, options }) {
+            // Process the response data
+            console.log('request', response)
         },
-        {
-            id: 2,
-            name: 'Category name'
+        onRequestError({ request, options, error }) {
+            // Handle the request errors
+            console.log('request error', response)
         },
-        {
-            id: 3,
-            name: 'Category name'
-        },
-        {
-            id: 4,
-            name: 'Category name'
-        },
-        {
-            id: 5,
-            name: 'Category name'
-        },
-        {
-            id: 6,
-            name: 'Category name'
-        },
-        {
-            id: 7,
-            name: 'Category name'
-        },
-        {
-            id: 8,
-            name: 'Category name'
-        },
-        {
-            id: 9,
-            name: 'Category name'
+        onResponseError({ request, response, options }) {
+            console.log('response error', response)
         }
-    ];
-    return {
-         blogs,
-         categories
-    }
-    },
-});
+    });
+    function updatePagination(newPage) {
+        page.value = newPage;
+        blogsRefresh();
+    };
+    function updateCategory(newCat) {
+        category.value = newCat.id;
+        blogsRefresh();
+    };
+    function updateSearch(newVal) {
+        if(newVal.key === 'title') {
+            title.value = newVal.value;
+            author.value = null;
+        }
+        if(newVal.key === 'author') {
+            author.value = newVal.value;
+            title.value = null;
+        }
+        blogsRefresh();
+    };
 </script>

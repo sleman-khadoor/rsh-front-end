@@ -49,3 +49,46 @@ p {
 .w-90 {
   width: 90% !important;
 }
+// This CSS will run for mobile meduim screen
+@media only screen and (max-width: 900px) {
+  .font-xx-large {
+    font-size: 2.375rem !important;
+  }
+  .font-x-large {
+    font-size: 1.48485rem !important;
+  }
+  .font-large {
+    font-size: 1.306rem !important;
+  }
+}
+// This CSS will run for small screen
+@media only screen and (max-width: 700px) {
+  .font-xx-large {
+    font-size: 2.25rem !important;
+  }
+  .font-x-large {
+    font-size: 1.4067rem !important;
+  }
+  .font-large {
+    font-size: 1.2375rem !important;
+  }
+}
+// This CSS will run for mobile devices
+@media only screen and (max-width: 430px) {
+  .font-xx-large {
+    font-size: 2rem !important;
+  }
+  .font-x-large {
+    font-size: 1.25rem !important;
+  }
+  .font-large {
+    font-size: 1.1rem !important;
+  }
+}
+// "xx-large": 2.5rem, // 40px
+//     "x-large": 1.563rem, // 25px
+//     "large": 1.375rem, // 22 px
+//     "meduim": 1.125rem, // 18px
+//     "small": 1rem, // 16px
+//     "x-small": 0.875rem, // 14px
+//     "xx-small": 0.75rem, // 12px

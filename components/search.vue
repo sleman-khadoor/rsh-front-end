@@ -1,8 +1,8 @@
 <template>
-    <div class="container mt-3 px-lg-5 px-md-3 px-sm-1">
+    <div class="container mt-3 px-lg-5 px-md-3 px-sm-1" dir="ltr">
     <div class="input-group px-lg-5 px-md-3 px-sm-1">
       <label class="form-control bg-snow p-0 border-0">
-      <input type="text" class="form-control bg-snow" style="height:50px !important;" placeholder="Search for a book" aria-label="Search for a book">
+      <input type="text" v-model="search.value" @change="emit('search', {key: search.key, value: search.value})" class="form-control bg-snow" style="height:50px !important;" placeholder="Search for a book" aria-label="Search for a book">
       </label>
       <div class="bg-snow">
         <div class="vr bg-choco opacity-1" style="width: 3px;margin-top: 10px;min-height: 1.7em !important;"></div>
@@ -10,24 +10,52 @@
       <div class="input-group-append">
         <button class="snow btn btn-outline-secondary dropdown-toggle text-choco bg-snow font-small ff-regular" 
         style="height:50px !important;" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Book Name
+        {{search.name}}
         </button>
         <div class="dropdown-menu dropdown-menu-right bg-snow font-x-small ff-regular">
-          <div class="d-flex text-center p-lg-1">
-            <img src="@/assets/icon/book-name.svg" class="d-block my-auto mx-1" alt="..." width="20" height="20">
-            <a class="dropdown-item text-choco px-1" href="#">Book Name</a>
+          <div v-for="(item,index) in searchBy">
+          <div class="d-flex text-center p-lg-1 my-1" @click="selectSearchType(item)">
+            <img :src="`/_nuxt/assets/icon/${item.icon}.svg`" class="d-block my-auto mx-1" alt="..." width="20" height="20">
+            <a class="dropdown-item text-choco px-1" href="#">{{item.name}}</a>
           </div>
-          <div class="hr bg-choco opacity-1" style="height: 1px;"></div>
-          <div class="d-flex text-center p-lg-1">
-            <img src="@/assets/icon/author-name.svg" class="d-block my-auto mx-1" alt="..." width="20" height="20">
-            <a class="dropdown-item text-choco px-1" href="#">Author Name</a>
-          </div>
-          
+          <div v-if="index !== searchBy.length-1" class="hr bg-choco opacity-1" style="height: 1px;"></div>
+          </div>          
         </div>
       </div>
     </div>
   </div>
 </template>
+<script setup>
+const emit = defineEmits()
+const route = useRoute().fullPath
+console.log('my route', route);
+const searchBy = [
+  {
+    name: 'Book Name',
+    icon: 'book-name',
+    key: 'title'
+  },
+  {
+    name: 'Author Name',
+    icon: 'author-name',
+    key: 'author'
+  }
+];
+if(route === '/en' || route === '/') {
+searchBy.pop()
+}
+const search = reactive({
+  name: 'Book Name',
+  key: 'title',
+  value: ''
+});
+function selectSearchType(item) {
+  search.key = item.key;
+  search.name = item.name;
+  emit('search', {key: search.key, value: search.value})
+}
+</script>
+
 <style lang="scss" scoped>
 .input-group .dropdown-toggle {
   border-top-left-radius: 0;

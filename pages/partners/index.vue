@@ -11,8 +11,8 @@
                 To communicate please fill out the form below
             </div>
             <div class="d-flex flex-wrap p-5 justify-content-center align-items-center">
-            <div v-for="i in 15" :key="i" class="col">
-                <PartnersCard/>
+            <div v-for="(partner,i) in partners" :key="i" class="col">
+                <PartnersCard :partner="partner"/>
             </div>
             </div>
             <div class="row justify-content-center pb-5">
@@ -27,3 +27,22 @@
         </div>
     </div>
 </template>
+<script setup>
+    const runTimeConfig = useRuntimeConfig();
+    //get categories
+    const { data: partners, pending, refresh} = await useFetch(`${runTimeConfig.public.API_URL}/partners`, {
+        transform: (_partners) => _partners.data,
+        headers: API_HEADER(),
+        onResponse({ request, response, options }) {
+            // Process the response data
+            console.log('request responsed', response)
+        },
+        onRequestError({ request, options, error }) {
+            // Handle the request errors
+            console.log('request error', response)
+        },
+        onResponseError({ request, response, options }) {
+            console.log('response error', response)
+        }
+    });
+</script>

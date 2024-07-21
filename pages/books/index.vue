@@ -4,97 +4,83 @@
         <Meta name="description" content="Books with Rashm" />
         <div class="row bg-dark-blue pb-3">
             <div class="col-lg-7 h-25 mx-auto">
-                <Search/>
+                <Search @search="updateSearch($event)"/>
             </div>
         </div>
         <div class="row bg-secondary p-1">
-            <CategoriesCarousel :categories="categories"/>
+            <CategoriesCarousel v-if="!categoriesPending" :categories="categories" @updateCategory="updateCategory($event)"/>
         </div>
-        <div class="row bg-secondary px-5 pb-5 pt-2 justify-content-center">
-            <div v-for="(book,i) in books" :key="i" class="col-lg-2 col-md-4 col-sm-6">
+        <div class="row bg-secondary px-5 pb-5 pt-2 justify-content-around">
+            <div v-for="(book,i) in books?.data" :key="i" class="col mx-1">
                 <BooksCard :book="book"/>
             </div>
         </div>
         <div class="row bg-secondary justify-content-center pb-5">
-            <Pagination/>
+            <Pagination v-if="!booksPending" :meta="books?.meta" @updatePage="updatePagination($event)"/>
         </div>
     </div>
 </template>
-<script lang="ts">
-import categoriesCarousel from "~/components/categories-carousel.vue";
-import Pagination from "~/components/pagination.vue";
-// import { useBooksStore } from './store'
-export default defineComponent({
-  components: { categoriesCarousel, Pagination },
-    setup() {
-    // const store = useBooksStore()
-    let books = [
-        {
-            id: 1,
-            iconSrc: 'bookDelivery-s1'
+<script setup>
+    const runTimeConfig = useRuntimeConfig();
+    const page = ref(1);
+    const category = ref(1);
+    const title = ref('');
+    const author = ref('');
+    //get categories
+    const { data: categories, pending: categoriesPending, refresh: categoriesRefresh} = await useFetch(`${runTimeConfig.public.API_URL}/book-categories`, {
+        transform: (_categories) => _categories.data,
+        headers: API_HEADER(),
+        onResponse({ request, response, options }) {
+            // Process the response data
+            category.value = response._data.data[0].id;
         },
-        {
-            id: 2,
-            iconSrc: 'bookDelivery-s2'
+        onRequestError({ request, options, error }) {
+            // Handle the request errors
+            console.log('request error', response)
         },
-        {
-            id: 3,
-            iconSrc: 'bookDelivery-s3'
-        },
-        {
-            id: 4,
-            iconSrc: 'bookDelivery-s4'
-        },
-        {
-            id: 5,
-            iconSrc: 'bookDelivery-s2'
-        },
-        {
-            id: 6,
-            iconSrc: 'bookDelivery-s3'
-        },
-        {
-            id: 7,
-            iconSrc: 'bookDelivery-s4'
+        onResponseError({ request, response, options }) {
+            console.log('response error', response)
         }
-    ];
-    let categories = [
-        {
-            id: 1,
-            name: 'Category name'
+    });
+    //get books
+    const { data: books, pending: booksPending, refresh: booksRefresh} = await useFetch(`${runTimeConfig.public.API_URL}/books`, {
+        headers: API_HEADER(),
+        query: { 
+            page,
+            include: ['author'],
+            'filter[book_category][0]': category,
+            'filter[title]': title,
+            'filter[author]': author
         },
-        {
-            id: 2,
-            name: 'Category name'
+        onResponse({ request, response, options }) {
+            // Process the response data
+            console.log('request', response)
         },
-        {
-            id: 3,
-            name: 'Category name'
+        onRequestError({ request, options, error }) {
+            // Handle the request errors
+            console.log('request error', response)
         },
-        {
-            id: 4,
-            name: 'Category name'
-        },
-        {
-            id: 5,
-            name: 'Category name'
-        },
-        {
-            id: 6,
-            name: 'Category name'
-        },
-        {
-            id: 7,
-            name: 'Category name'
+        onResponseError({ request, response, options }) {
+            console.log('response error', response)
         }
-    ];
-    // onMounted(() => {
-    //      store.fetchBooks()
-    // })
-    return {
-         books,
-         categories
-    }
-    },
-});
+    });
+    function updatePagination(newPage) {
+        page.value = newPage;
+        booksRefresh();
+    };
+    function updateCategory(newCat) {
+        category.value = newCat.id;
+        booksRefresh();
+    };
+    function updateSearch(newVal) {
+        if(newVal.key === 'title') {
+            title.value = newVal.value;
+            author.value = null;
+        }
+        if(newVal.key === 'author') {
+            author.value = newVal.value;
+            title.value = null;
+        }
+        booksRefresh();
+    };
 </script>

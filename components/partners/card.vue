@@ -1,9 +1,15 @@
 <template>
     <div class="text-center mx-auto my-3 px-3">
-        <img src="@/assets/img/partner.jpg" class="d-block mx-auto mb-2" alt="..." height="150" width="150">
+       <a :href="props.partner.website_link" target="_blank">
+        <img :src="props.partner.avatar" class="d-block mx-auto mb-2 rounded-4" alt="..." height="150" width="150">
+       </a>
         <div class="text-dark-blue font-small ff-regular lh-16">
-            Here write the name
-            of the book
+            {{props.partner?.name}}
         </div>
     </div>
 </template>
+<script setup lang="ts">
+const props = defineProps<{
+  partner: object;
+}>();
+</script>

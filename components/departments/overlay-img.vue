@@ -8,7 +8,7 @@
                     {{props.text}}
                 </p>
                 <button v-if="(!props.gallery) && props.btn" type="button" :class="dynamicClass">
-                  <div class="p-lg-1">
+                  <div class="p-lg-1 font-meduim ff-regular">
                     {{$t('departments.requestBtn')}}
                     <a href="#contacts">
                       <img src="@/assets/icon/arrow-circle-right.svg">
@@ -36,7 +36,7 @@ const dynamicClass = computed(() => {
 // computed dynamic class
 const dynamicOverlayClass = computed(() => {
   return props.gallery ? 'overlay bg-black bg-opacity-50 text-primary h-100' 
-  : 'd-flex align-items-center overlay bg-black bg-opacity-25 text-primary h-100 p-lg-3 p-md-3';
+  : 'd-flex align-items-center overlay bg-opacity-25 text-primary h-100 p-lg-3 p-md-3';
 });
 // computed dynamic title class
 const dynamicTitleClass = computed(() => {
@@ -61,12 +61,13 @@ const dynamicImg = computed(() => {
     height: fit-content;
     width: 100%;
     background-size: cover !important;
+    background-position: center !important;
     overflow: hidden;
 }
 .overlay {
     height: inherit;
     min-height: inherit;
-    /* background-color: rgb(179 42 42 / 65%); */
+    background-color: rgba(5, 5, 5, 0.46);
     margin-left: auto;
     margin-right: auto;
     width: 100%;

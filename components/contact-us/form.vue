@@ -65,20 +65,30 @@
             </div>
         </div>
         <div class="col-lg-8 px-5">
-            <form>
+            <form class="needs-validation" novalidate  @submit.prevent="checkValidate()">
                  <div class="mb-4 d-flex justify-content-between">
-                    <input type="text" class="form-control bg-snow" id="name" placeholder="full name">&nbsp;&nbsp;
-                    <input type="number" class="form-control bg-snow" id="mobile" placeholder="mobile number">
+                    <input type="text" class="form-control bg-snow form-control" value="form.name" id="name" placeholder="full name" required>&nbsp;&nbsp;
+                    <input type="number" class="form-control bg-snow form-control" id="mobile" placeholder="mobile number" required>
                 </div>
                 <div class="mb-4">
-                    <input type="email" class="form-control bg-snow" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email address">
+                    <input type="email" class="form-control bg-snow" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="e-mail" required>
+                    <div class="invalid-feedback text-start">
+                         Please provide a valid e-mail.
+                    </div>
                 </div>
-               
                 <div class="mb-4">
-                    <textarea class="form-control bg-snow" id="exampleFormControlTextarea1" rows="5" placeholder="description"></textarea>
+                    <textarea class="form-control bg-snow" id="exampleFormControlTextarea1" rows="5" placeholder="description" required></textarea>
+                    <div class="invalid-feedback text-start">
+                         Please provide a valid description.
+                    </div>
                 </div>
                 <div v-if="steps" class="mb-4">
-                    <input type="file" class="form-control bg-snow" id="file" @change="handleFileUpload" multiple v-bind:disabled="flag">
+                    <div class="file-upload-container">
+                        <input type="file" id="file-input" class="file-input" multiple @change="handleFileUpload" v-bind:disabled="flag">
+                        <label for="file-input" class="file-label bg-snow text-light-grey">
+                            <img src="@/assets/icon/link.svg" alt="Upload Icon" class="upload-icon"> <span class="label-text">upload an attachment</span>
+                        </label>
+                    </div>
                     <div v-if="flag" class="text-danger text-start">you can upload just 5 files</div>
                 </div>
                 <div v-if="steps" class="uploaded-files d-flex justify-content-start py-2 mb-4">
@@ -100,7 +110,11 @@ export default defineComponent({
     props: ['title', 'subTitle', 'color', 'circleSrc', 'steps'],
     setup(props) {
         const files = ref([])
-
+        const form = reactive({
+            name: '',
+            phone: '',
+            mail: '',
+        })
         const handleFileUpload = (event) => {
             if(event?.target?.files?.length < 6) {
                 const uploadedFiles = event.target.files
@@ -126,6 +140,47 @@ export default defineComponent({
         const dynamicClass = computed(() => {
         return `btn btn-primary p-2 border-0 font-x-large ff-regular ${props.color}`;
         });
+        const filehandler = () => {
+            const fileInput = document.getElementById('file-input');
+            const label = document.querySelector('.file-label .label-text');
+
+            fileInput.addEventListener('change', function () {
+                const fileList = fileInput.files;
+                if (fileList.length > 0) {
+                    const fileNames = [];
+                    for (let i = 0; i < fileList.length; i++) {
+                        fileNames.push(fileList[i].name);
+                    }
+                    label.textContent = fileNames.join(', ');
+                } else {
+                    label.textContent = 'Upload an attachment';
+                }
+            });
+        };
+        function checkValidate() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+                }, false)
+            })
+        };
+         onMounted(() => {
+            filehandler()
+            window.addEventListener('resize', filehandler)
+        });
+        onUpdated(() => {
+            filehandler()
+            window.addEventListener('resize', filehandler)
+        });
         watch(flag,(newV, oldV) => {
             console.log('flaggg', newV);
         }, { deep: true });
@@ -135,7 +190,8 @@ export default defineComponent({
             flag,
             props,
             handleFileUpload,
-            removeFile
+            removeFile,
+            checkValidate
         }
     }
 })
@@ -146,7 +202,7 @@ export default defineComponent({
 </script>
 <style scoped>
 .file-upload-container {
-  width: 100%;
+  width: 100% !important;
 }
 
 .uploaded-files {
@@ -164,5 +220,53 @@ export default defineComponent({
 .btn-close{
     background-image: url('@/assets/icon/close-circle.svg');
     background-size: auto;
+}
+::file-selector-button {
+  display: none;
+}
+input[type="file"]
+{
+  display: none;
+}
+/* .fileUpload input.upload 
+{
+    display: inline-block;
+} */
+
+.file-upload-container {
+    position: relative;
+    width: fit-content;
+}
+
+.file-input {
+    display: none; /* Hide the default file input */
+}
+
+.file-label {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.file-label:hover {
+    background-color: #e9e9e9;
+    border-color: #bbb;
+}
+
+.upload-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+::placeholder {
+  color: #B9B9B9 !important;
+  opacity: 1; /* Firefox */
+}
+::-ms-input-placeholder { /* Edge 12 -18 */
+  color: #B9B9B9;
 }
 </style>

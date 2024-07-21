@@ -6,12 +6,15 @@
             <div class="mb-4">
                 <DepartmentsOverlayImg 
                  :imgSrc="'about-us'" 
+                 :gallery="false"
+                 :btn="false"
+                 :btnColor="''"
                  :text="$t('aboutUs.overlayImg.text')"
                  :title="$t('aboutUs.overlayImg.title')"/>
             </div>
             <div class="mb-4 bg-white rounded-3 py-5 px-lg-5 px-md-3 px-sm-2">
                 <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center px-4">Rashm aims to</div>
-                <IndexHistory class="text-start" :data="aims" :bgColor="'bg-secondary'"/>
+                <IndexHistory class="text-start" :data="aims" :col="'col-12'" :bgColor="'bg-secondary'"/>
             </div>
             <div class="mb-4 bg-white rounded-3 py-5 px-lg-4 px-md-2 px-sm-1">
                 <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center px-4">Achievements Of Rashm Publishing House</div>
@@ -20,7 +23,7 @@
                         <img :src="`/_nuxt/assets/icon/circle-choco.svg`" alt="rashm" height="25" width="25">
                         <div v-if="i !== (achievements.length-1)" class="hr bg-light-choco h-100 mx-auto" style="width:2px;"></div>
                     </div>
-                    <div class="col-lg-11 col-md-10 col-sm-10 col mb-4 font-meduim text-start">{{achievment.text}}</div>
+                    <div class="col-lg-11 col-md-10 col-sm-10 col mb-4 text-dark-blue font-meduim ff-regular text-start">{{achievment.content}}</div>
                 </div>
             </div>
              <div class="mb-4 bg-white rounded-3 py-5 px-lg-5 px-md-3 px-sm-2">
@@ -30,13 +33,27 @@
         </div>
     </div>
 </template>
-<script>
+<script setup>
 import { defineComponent } from '@vue/composition-api'
 import { useI18n } from 'vue-i18n';
 
-export default defineComponent({
-    setup() {
         const { t } = useI18n();
+        const runTimeConfig = useRuntimeConfig();
+        //get achievements
+        const { data: achievements, pending: achievementsPending, refresh: achievementsRefresh} = await useFetch(`${runTimeConfig.public.API_URL}/achievements`, {
+            transform: (_achievements) => _achievements.data,
+            headers: API_HEADER(),
+            onResponse({ request, response, options }) {
+                // Process the response data
+            },
+            onRequestError({ request, options, error }) {
+                // Handle the request errors
+                console.log('request error', response)
+            },
+            onResponseError({ request, response, options }) {
+                console.log('response error', response)
+            }
+        });
         let aims = [
             {
                 text: t('aboutUs.aims.aim1')
@@ -46,17 +63,6 @@ export default defineComponent({
             },
             {
                 text: t('aboutUs.aims.aim3')
-            }
-        ]
-        let achievements = [
-            {
-                text: "The novel “The Exile of the Wanderer” by Omani novelist Zahran Al Qasimi won the International Prize for Arabic Fiction for the year 20"
-            },
-            {
-                text: "The novel “Bread on Uncle Milad’s Table” won for the year 2022"
-            },
-            {
-                text: "The novel “A Hole to the Sky” was included in the long list for the year 2021 AD by the writer, Mr. Abdullah Al Ayyaf."
             }
         ]
         let publishingHouses = [
@@ -79,11 +85,4 @@ export default defineComponent({
                 text: t('aboutUs.publishingHouses.publishingHouse6')
             }
         ]
-        return{
-            aims,
-            publishingHouses,
-            achievements
-        }
-    },
-})
 </script>

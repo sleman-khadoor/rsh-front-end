@@ -6,6 +6,9 @@
             <div class="mb-3">
                 <DepartmentsOverlayImg 
                  :imgSrc="'publish'" 
+                 :gallery="false"
+                 :btn="false"
+                 :btnColor="''"
                  :text="$t('publishWithUs.overlayImg.text')"
                  :title="$t('publishWithUs.overlayImg.title')"/>
             </div>

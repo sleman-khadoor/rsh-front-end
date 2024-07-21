@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div :dir="$dir()">
+        <NuxtLoadingIndicator :color="false" class="bg-choco"/>
         <Navbar/>
         <!---- output the page content ---->
         <div>

@@ -1,12 +1,12 @@
 <template>
-    <div id="carouselExample" class="carousel slide p-3" data-bs-ride="carousel">
+    <div id="carouselExample" class="carousel slide p-3">
     <div class="carousel-inner w-100 m-auto btn-group" ref="carouselInner" role="group" aria-label="d-flex radio toggle button group">
         <div v-for="(chunk, index) in chunks" :key="index" :class="['carousel-item', { active: index === 0 }]">
         <div class="d-flex justify-content-center">
             <!-- <div > -->
-            <div v-for="(category, subIndex) in chunk" :key="subIndex" class="carousel-category col-lg-3 col-md-4 col-md-6">
-                 <input type="radio" class="btn-check" @input="selectCategory(category)" name="vbtn-radio" :id="`vbtn-radio${index}_${subIndex + 1}`" autocomplete="off" :checked="subIndex === 0">
-                 <label class="btn btn-outline-choco" :for="`vbtn-radio${index}_${subIndex + 1}`">{{category.name}}</label>
+            <div v-for="(category, subIndex) in chunk" :key="subIndex" class="carousel-category">
+                 <input type="radio" class="btn-check" @input="$emit('updateCategory',category)" name="vbtn-radio" :id="`vbtn-radio${index}_${subIndex + 1}`" autocomplete="off" :checked="(index === 0 && subIndex === 0)">
+                 <label class="btn btn-outline-choco" :for="`vbtn-radio${index}_${subIndex + 1}`" style="min-width:20vh;">{{category.title}}</label>
             </div>
             <!-- </div> -->
         </div>
@@ -40,11 +40,8 @@ export default defineComponent({
           imagesPerSlide = 3
         }
         chunks.value = []
-        for (let i = 0; i < categories.value.length; i += imagesPerSlide) {
-          console.log('test carousel : ', categories.value);
-          console.log('test carousel 2 : ', categories.value.slice(i, i + imagesPerSlide));
-          chunks.value.push(categories.value.slice(i, i + imagesPerSlide));
-          console.log('test carousel 3 : ', chunks);
+        for (let i = 0; i < categories?.value?.length; i += imagesPerSlide) {
+          chunks.value.push(categories?.value?.slice(i, i + imagesPerSlide));
         }
       };
       function selectCategory(category) {

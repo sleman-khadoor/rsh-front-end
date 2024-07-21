@@ -1,6 +1,6 @@
 <template>
     <div id="carouselExample" class="carousel slide book-slider" data-bs-ride="carousel">
-    <div class="carousel-inner w-90 m-auto" ref="carouselInner">
+    <div class="carousel-inner w-100 m-auto" ref="carouselInner">
         <div v-for="(chunk, index) in chunks" :key="index" :class="['carousel-item', { active: index === 0 }]">
         <div class="d-flex justify-content-center">
             <div v-for="(image, subIndex) in chunk" :key="subIndex" class="carousel-image col-lg-3 col-md-4 col-md-6">
@@ -29,8 +29,10 @@ export default defineComponent({
         const width = window.innerWidth
         let imagesPerSlide
 
-        if (width >= 992) {
+        if (width >= 1120) {
           imagesPerSlide = 5
+        } else if (width >= 992) {
+          imagesPerSlide = 4
         } else if (width >= 768) {
           imagesPerSlide = 3
         } else {
@@ -48,6 +50,10 @@ export default defineComponent({
         createChunks()
         window.addEventListener('resize', createChunks)
       });
+      onUpdated(() => {
+        createChunks()
+        window.addEventListener('resize', createChunks)
+      });
 
       watch(images, createChunks);
       return {
@@ -58,6 +64,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
+#carouselExample{
+  direction: ltr;
+}
 .carousel-inner {
       display: flex;
     }

@@ -11,8 +11,8 @@
                  :text="$t('departments.literaryAgencyAuthors.overlayImg.text')"
                  :title="$t('departments.literaryAgencyAuthors.overlayImg.title')"/>
             </div>
-            <div class="row mx-auto bg-primary justify-content-around rounded-4 p-5 mb-3">
-                    <DepartmentsAuthorCard :authers="authers"/>
+            <div class="row mx-auto bg-primary justify-content-around rounded-4 py-5 mb-3">
+                <DepartmentsAuthorCard :authors="authors"/>
             </div>
             <div class="mb-3">
                 <ColourfullDiv :text="$t('departments.literaryAgencyAuthors.request')" :bgColor="'bg-choco'"/>
@@ -37,7 +37,7 @@
 import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
-    setup() {
+    async setup() {
     const { t } = useI18n();
     let departments = [
         {
@@ -85,10 +85,28 @@ export default defineComponent({
             class: 'col-lg-6 my-1 px-1',
         },
     ]
+    const runTimeConfig = useRuntimeConfig();
+    //get categories
+    const { data: authors, pending, refresh} = await useFetch(`${runTimeConfig.public.API_URL}/represented-authors`, {
+        transform: (_authors) => _authors.data,
+        headers: API_HEADER(),
+        onResponse({ request, response, options }) {
+            // Process the response data
+            console.log('request responsed', response)
+        },
+        onRequestError({ request, options, error }) {
+            // Handle the request errors
+            console.log('request error', response)
+        },
+        onResponseError({ request, response, options }) {
+            console.log('response error', response)
+        }
+    });
     return {
          t,
          departments,
-         contents
+         contents,
+         authors
     }
     },
 });
