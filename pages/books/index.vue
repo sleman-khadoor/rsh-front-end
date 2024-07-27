@@ -11,76 +11,109 @@
             <CategoriesCarousel v-if="!categoriesPending" :categories="categories" @updateCategory="updateCategory($event)"/>
         </div>
         <div class="row bg-secondary px-5 pb-5 pt-2 justify-content-around">
-            <div v-for="(book,i) in books?.data" :key="i" class="col mx-1">
+            <div v-for="(book,i) in books" :key="i" class="col mx-1">
                 <BooksCard :book="book"/>
             </div>
         </div>
         <div class="row bg-secondary justify-content-center pb-5">
-            <Pagination v-if="!booksPending" :meta="books?.meta" @updatePage="updatePagination($event)"/>
+            <ClientOnly>
+                <slot name="loading">
+                    <Pagination v-if="!booksPending" :meta="booksMeta" @updatePage="updatePagination($event)"/>
+                </slot>
+            </ClientOnly>
         </div>
     </div>
 </template>
 <script setup>
+    import { ref, onMounted } from 'vue';
+    
     const runTimeConfig = useRuntimeConfig();
+    const headers = ref({});
     const page = ref(1);
     const category = ref(1);
     const title = ref('');
     const author = ref('');
-    //get categories
-    const { data: categories, pending: categoriesPending, refresh: categoriesRefresh} = await useFetch(`${runTimeConfig.public.API_URL}/book-categories`, {
-        transform: (_categories) => _categories.data,
-        headers: API_HEADER(),
-        onResponse({ request, response, options }) {
-            // Process the response data
-            category.value = response._data.data[0].id;
-        },
-        onRequestError({ request, options, error }) {
-            // Handle the request errors
-            console.log('request error', response)
-        },
-        onResponseError({ request, response, options }) {
-            console.log('response error', response)
+    
+    // State to manage fetch pending and errors
+    const categories = ref([]);
+    const categoriesPending = ref(true);
+    const categoriesError = ref(null);
+    const books = ref([]);
+    const booksMeta = ref({});
+    const booksPending = ref(true);
+    const booksError = ref(null);
+
+    // Function to fetch categories
+    async function fetchCategories() {
+        try {
+            const response = await $fetch(`${runTimeConfig.public.API_URL}/book-categories`, {
+                headers: headers.value,
+            });
+            categories.value = response.data;
+            category.value = response.data[0].id;
+
+            // Fetch books after categories are loaded
+            fetchBooks();
+        } catch (error) {
+            categoriesError.value = error;
+            console.error('Error fetching categories:', error);
+        } finally {
+            categoriesPending.value = false;
         }
-    });
-    //get books
-    const { data: books, pending: booksPending, refresh: booksRefresh} = await useFetch(`${runTimeConfig.public.API_URL}/books`, {
-        headers: API_HEADER(),
-        query: { 
-            page,
-            include: ['author'],
-            'filter[book_category][0]': category,
-            'filter[title]': title,
-            'filter[author]': author
-        },
-        onResponse({ request, response, options }) {
-            // Process the response data
-            console.log('request', response)
-        },
-        onRequestError({ request, options, error }) {
-            // Handle the request errors
-            console.log('request error', response)
-        },
-        onResponseError({ request, response, options }) {
-            console.log('response error', response)
+    }
+
+    // Function to fetch books
+    async function fetchBooks() {
+        try {
+            const response = await $fetch(`${runTimeConfig.public.API_URL}/books`, {
+                headers: headers.value,
+                query: { 
+                    page: page.value,
+                    include: ['author'],
+                    'filter[book_category][0]': category.value,
+                    'filter[title]': title.value,
+                    'filter[author]': author.value
+                }
+            });
+            books.value = response.data;
+            booksMeta.value = response.meta;
+        } catch (error) {
+            booksError.value = error;
+            console.error('Error fetching books:', error);
+        } finally {
+            booksPending.value = false;
         }
-    });
+    }
+
+    // Update functions
     function updatePagination(newPage) {
         page.value = newPage;
-        booksRefresh();
-    };
+        fetchBooks();
+    }
+
     function updateCategory(newCat) {
         category.value = newCat.id;
-        booksRefresh();
-    };
+        fetchBooks();
+    }
+
     function updateSearch(newVal) {
-        if(newVal.key === 'title') {
+        if (newVal.key === 'title') {
             title.value = newVal.value;
-            author.value = null;
-        }
-        if(newVal.key === 'author') {
+            author.value = ''; // Use empty string instead of null
+        } else if (newVal.key === 'author') {
             author.value = newVal.value;
-            title.value = null;
+            title.value = ''; // Use empty string instead of null
         }
-        booksRefresh();
-    };
+        fetchBooks();
+    }
+
+    // Fetch categories and books when the component is mounted
+    onMounted(async () => {
+        headers.value = API_HEADER(); // Set headers in the setup context
+        try {
+            await fetchCategories();
+        } catch (error) {
+            console.error('Error during onMounted fetch:', error);
+        }
+    });
 </script>

@@ -8,6 +8,7 @@
                  :imgSrc="'department4'" 
                  :btnColor="'bg-choco'"
                  :btn="true"
+                 :gallery="false"
                  :text="$t('departments.literaryAgencyAuthors.overlayImg.text')"
                  :title="$t('departments.literaryAgencyAuthors.overlayImg.title')"/>
             </div>
@@ -19,7 +20,7 @@
             </div>
             <div class="row mx-auto bg-primary text-center justify-content-around rounded-4 p-5 mb-3">
                 <div v-for="(department,i) in departments" :key="i" class="col-lg-3 col-md-4 col-sm-6 text-dark-blue mb-4">
-                    <DepartmentsCard :title="department.title" :iconSrc="department.iconSrc"/>
+                    <DepartmentsCard :title="department.title" :iconSrc="department.iconSrc" :subTitle="''"/>
                 </div>
             </div>
             <div id="contacts" class="mx-auto bg-primary text-center rounded-4 py-2">

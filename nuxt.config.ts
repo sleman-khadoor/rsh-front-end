@@ -10,6 +10,9 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
+      htmlAttrs: {
+        lang: 'ar',
+      },
     }
   },
   ssr: true,
@@ -51,14 +54,14 @@ export default defineNuxtConfig({
     defaultLocale: 'ar',
     strategy: 'prefix_except_default', // or 'prefix', depending on your needs
     detectBrowserLanguage: {
-      fallbackLocale: 'ar',
+      fallbackLocale: 'en',
     },
     lazy: true,
     langDir: 'lang/',
   },
   plugins: [
     '~/plugins/i18n-plugin.ts',
-    '~/plugins/ltr-rtl.js',
+    '~/plugins/ltr-rtl.js'
   ],
 
   compatibilityDate: "2024-07-14"

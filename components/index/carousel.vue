@@ -1,62 +1,49 @@
 <template>
     <div class="h-100">
-        <div id="carouselExampleCaptions" class="carousel slide p-0 h-100"  data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" class="active" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" class="rounded-8" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" class="rounded-8" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner rounded-4 h-100">
-            <div class="carousel-item h-100 active" :style="`background: url(${dynamicImg});background-size: cover !important;min-height:440px !important;min-width:100%`">
-            <!-- <img src="@/assets/img/new.png" class="d-block w-100" alt="..." width="400" height="448"> -->
-            <div class="carousel-caption d-block  text-start">
-                <span class="font-large ff-meduim">First slide label</span>
-                <p class="font-small ff-regular">Some representative placeholder content for the first slide.</p>
+        <div id="carouselExampleAutoplaying" class="carousel slide p-0 h-100" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" v-for="(item, i) in props.news" :key="i" :class="i === 0 ? 'active' : ''" data-bs-target="#carouselExampleAutoplaying" :data-bs-slide-to="i" :aria-current="i === 0 ? 'true' : 'false'" :aria-label="`Slide ${i}`"></button>
             </div>
+            
+            <div class="carousel-inner rounded-4 h-100">
+                <div v-for="(item, i) in props.news" :key="i" :class="i === 0 ? 'carousel-item active' : 'carousel-item'" :style="`background: url(${item.cover_image}); background-size: cover; min-height: 440px;`">
+                    <div class="carousel-caption d-block m-4" style="text-align: unset">
+                        <span class="font-large ff-medium">{{ item.title }}</span>
+                        <p class="font-small ff-regular">{{ item.content }}</p>
+                    </div>
+                </div>
             </div>
-            <div class="carousel-item h-100" :style="`background: url(${dynamicImg});background-size: cover !important;min-height:440px !important;min-width:100%`">
-            <!-- <img src="@/assets/img/new.png" class="d-block w-100" alt="..." width="400" height="448"> -->
-            <div class="carousel-caption d-block  text-start">
-                <span class="font-large ff-meduim">Second slide label</span>
-                <p>Some representative placeholder content for the second slide.</p>
-            </div>
-            </div>
-            <div class="carousel-item h-100" :style="`background: url(${dynamicImg});background-size: cover !important;min-height:440px !important;min-width:100%`">
-            <!-- <img src="@/assets/img/new.png" class="d-block w-100" alt="..." width="400" height="448"> -->
-            <div class="carousel-caption d-block  text-start">
-                <span class="font-large ff-meduim">Third slide label</span>
-                <p class="font-small ff-regular">Some representative placeholder content for the third slide.</p>
-            </div>
-            </div>
-        </div>
         </div>
     </div>
 </template>
-<script setup>
-const dynamicImg = computed(() => {
-  return `/_nuxt/assets/img/new.png`;
-});
+
+<script setup lang="ts">
+const props = defineProps<{
+  news: { cover_image: string; title: string; content: string }[];
+}>();
 </script>
 
 <style scoped>
 .carousel-item {
-      position: relative;
+    position: relative;
+    height: 100%; /* Ensures carousel items fill the height of the container */
+    min-height: 440px; /* Set a minimum height to avoid layout shifts */
 }
-.carousel-item::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Black with 0.75 opacity */
+
+.carousel-inner {
+    height: 100%; /* Ensures the carousel container fills the height */
 }
+
+.carousel-caption {
+    position: absolute; /* Ensure captions are positioned correctly */
+    bottom: 20px; /* Adjust as needed */
+    left: 20px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+}
+
 .carousel-item img {
     width: 100%;
-    /* height: auto; */
+    height: auto; /* Ensures the image covers the area */
     object-fit: cover; /* Ensures the image covers the entire area */
-}
-.carousel-inner {
-    position: relative; /* Ensure the overlay covers the entire carousel */
 }
 </style>

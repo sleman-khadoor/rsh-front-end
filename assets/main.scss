@@ -2,17 +2,17 @@
 @font-face {
   font-family: "RobotoBold";
   src: local("RobotoBold"),
-  url(assets/fonts/Roboto-Bold.ttf) format("truetype");
+  url(/fonts/Roboto-Bold.ttf) format("truetype");
 }
 @font-face {
   font-family: "RobotoMedium";
   src: local("RobotoMedium"),
-  url(assets/fonts/Roboto-Medium.ttf) format("truetype");
+  url(/fonts/Roboto-Medium.ttf) format("truetype");
 }
 @font-face {
   font-family: "RobotoRegular";
   src: local("RobotoRegular"),
-  url(assets/fonts/Roboto-Regular.ttf) format("truetype");
+  url(/fonts/Roboto-Regular.ttf) format("truetype");
 }
 @import 'colors';
 @import 'fonts';
@@ -85,10 +85,3 @@ p {
     font-size: 1.1rem !important;
   }
 }
-// "xx-large": 2.5rem, // 40px
-//     "x-large": 1.563rem, // 25px
-//     "large": 1.375rem, // 22 px
-//     "meduim": 1.125rem, // 18px
-//     "small": 1rem, // 16px
-//     "x-small": 0.875rem, // 14px
-//     "xx-small": 0.75rem, // 12px

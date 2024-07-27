@@ -16,6 +16,6 @@ const props = defineProps<{
 }>();
 // computed dynamic Icon
 const dynamicIcon = computed(() => {
-  return `/_nuxt/assets/icon/${props.iconSrc}.svg`;
+  return `/icon/${props.iconSrc}.svg`;
 });
 </script>

@@ -6,7 +6,7 @@
         </Head>
             <div class="row mt-2 px-2">
                 <div class="col-lg-6 col-md-6 col-sm-12 mb-4" style="padding-right: 0.4%;padding-left: 0.4%;">
-                    <IndexCarousel/>
+                    <IndexCarousel :news="news"/>
                 </div>
             
                 <div class="col-lg-6 col-md-6 col-sm-12 mb-4" style="padding-left: 0.4%;padding-right: 0.4%;">
@@ -38,10 +38,10 @@
                     <div class="rounded-3 bg-dark-blue text-primary px-lg-5 px-md-2 px-sm-1 pt-3 pb-3 mb-3">
                         <div class="p-5 font-x-large ff-regular"> Explore <span class="text-choco">Rashm's</span> history and our vision of providing </div>
                     </div>
-                    <IndexHistory :data="history" :bgColor="'bg-secondary'"/>
+                    <IndexHistory :data="history" :bgColor="'bg-secondary'" :withTitle="false" :col="'col-12'"/>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12">
-                    <img src="@/assets/img/printer.png" class="d-block w-100" alt="..." height="400" width="400">
+                    <img src="/img/printer.webp" class="d-block w-100" alt="..." height="400" width="400">
                 </div>
             </div>
             <div class="row mb-4">
@@ -50,84 +50,73 @@
             <div class="row mb-4 pb-4 m-0" id="latestBooks">
                 <ColourfullDiv :text="$t('index.checkoutLatestBooks')" :bgColor="'bg-choco'"/>
             </div>
-            <div class="row mb-4 m-0">
+            <div v-if="!booksPending" class="row mb-4 m-0">
                 <IndexMultiCarousel :books="books"/>
             </div>
-            <!-- <div class="row mb-4 m-0">
-                <IndexTest/>
-            </div> -->
-            <div class="row mb-4">
+            <div v-if="blogsPending">Loading...</div>
+            <div v-else-if="blogsError">Error loading blogs: {{ blogsError.message }}</div>
+            <div v-else class="row mb-4">
                 <IndexBlogs :blogs="blogs"/>
             </div>
         </div>
 </template>
 <script setup>
-import { defineComponent } from '@vue/composition-api'
+import { ref, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { API_HEADER } from '@/utils/global';
+
+// Get runtime configuration
 const runTimeConfig = useRuntimeConfig();
 const { t } = useI18n();
-useSeoMeta({htmlAttrs: { lang: 'en'}});
-let books = [
-        {
-            iconSrc: 'book'
-        },
-        {
-            iconSrc: 'book'
-        },
-        {
-            iconSrc: 'book'
-        },
-        {
-            iconSrc: 'book'
-        },
-        {
-            iconSrc: 'book'
-        },
-        {
-            iconSrc: 'book'
-        },
-        {
-            iconSrc: 'book'
-        },
-        {
-            iconSrc: 'book'
-        },
-        {
-            iconSrc: 'book'
-        },
-        {
-            iconSrc: 'book'
-        }
-];
-let history = [
-            {
-                text: t('index.history.history1')
-            },
-            {
-                text: t('index.history.history2')
-            },
-            {
-                text: t('index.history.history3')
-            }
-]
-//get blogs
-const { data: blogs, pending: blogsPending, refresh: blogsRefresh} = await useFetch(`${runTimeConfig.public.API_URL}/blogs`, {
-            headers: API_HEADER(),
-            transform: (_blogs) => _blogs.data,
-            onResponse({ request, response, options }) {
-                // Process the response data
-                console.log('request', response)
-            },
-            onRequestError({ request, options, error }) {
-                // Handle the request errors
-                console.log('request error', response)
-            },
-            onResponseError({ request, response, options }) {
-                console.log('response error', response)
-            }
-        });
-</script>
 
+const history = ref([
+  { text: t('index.history.history1') },
+  { text: t('index.history.history2') },
+  { text: t('index.history.history3') },
+]);
+
+const blogs = ref([]);
+const blogsPending = ref(false);
+const blogsError = ref(null);
+const news = ref([]);
+const newsPending = ref(false);
+const newsError = ref(null);
+const books = ref([]);
+const booksPending = ref(false);
+const booksError = ref(null);
+
+const headers = ref({});
+
+// Fetch data function
+const fetchData = async (url, dataRef, pendingRef, errorRef) => {
+  pendingRef.value = true;
+  errorRef.value = null;
+
+  try {
+    const response = await $fetch(`${runTimeConfig.public.API_URL}/${url}`, {
+      headers: headers.value,
+    });
+    dataRef.value = response.data;
+  } catch (error) {
+    errorRef.value = error;
+    console.error(`Error fetching ${url}:`, error);
+  } finally {
+    pendingRef.value = false;
+  }
+};
+
+// Fetch data on component mount
+onMounted(async () => {
+  headers.value = API_HEADER(); // Set headers in the setup context
+  try {
+    await fetchData('news', news, newsPending, newsError);
+    await fetchData('books', books, booksPending, booksError);
+    await fetchData('blogs', blogs, blogsPending, blogsError);
+  } catch (error) {
+    console.error('Error during onMounted fetch:', error);
+  }
+});
+</script>
 <style scoped>
 #home {
     padding-left: 5%;
@@ -143,13 +132,13 @@ const { data: blogs, pending: blogsPending, refresh: blogsRefresh} = await useFe
     margin-top: -93px !important;
 }
 .bg-img{
-    background-image: url( '/assets/svg/Square.svg' );
+    background-image: url( '/svg/Square.svg' );
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
 }
 .bg-btn-img{
-    background-image: url( '/assets/svg/Button.svg' );
+    background-image: url( '/svg/Button.svg' );
     background-repeat: no-repeat;
     background-size: cover;
 }

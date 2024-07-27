@@ -7,7 +7,7 @@
                     <div class="card bg-secondary border-0 h-100">
                     <div class="card-body my-3">
                         <div class="d-flex justify-content-start mb-3">
-                                <img :src="`_nuxt/assets/icon/${department.icon}.svg`" alt="rashm" height="35" width="35">
+                                <img :src="`/icon/${department.icon}.svg`" alt="rashm" height="35" width="35"/>
                              <span class="text-dark-blue font-large ff-meduim px-1 my-auto">{{department.title}}</span>
                         </div>
                         

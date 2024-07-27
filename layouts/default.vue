@@ -9,3 +9,10 @@
         <Footer/>
     </div>
 </template>
+<script setup lang="ts">
+useHead({
+  htmlAttrs: {
+    lang: getCurrentLocale(),
+  },
+})
+</script>

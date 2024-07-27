@@ -8,6 +8,7 @@
                  :imgSrc="'department8'" 
                  :btnColor="'bg-gold'"
                  :btn="true"
+                 :gallery="false"
                  :text="$t('departments.organizingEventsandConferences.overlayImg.text')"
                  :title="$t('departments.organizingEventsandConferences.overlayImg.title')"/>
             </div>

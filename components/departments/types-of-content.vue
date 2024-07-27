@@ -21,6 +21,6 @@ const dynamicClass = computed(() => {
 });
 // computed dynamic Img
 const dynamicImg = computed(() => {
-  return `/_nuxt/assets/img/${props.imgSrc}.jpg`;
+  return `/img/${props.imgSrc}.jpg`;
 });
 </script>

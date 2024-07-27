@@ -19,7 +19,7 @@
                 <span class="font-large ff-meduim mb-2">To Request A service</span>
                 <span class="font-meduim ff-regular lh-22 mb-2">Contact us at the following email</span>
                 <div class="d-flex align-items-center w-auto mx-auto text-choco font-meduim ff-regular mb-2">
-                    <img src="@/assets/icon/email-fill.svg" class="d-block my-auto mx-1" alt="..." width="20" height="20">
+                    <img src="/icon/email-fill.svg" class="d-block my-auto mx-1" alt="..." width="20" height="20">
                     rasham@gmail.com
                 </div>
 
@@ -28,21 +28,35 @@
     </div>
 </template>
 <script setup>
-    const runTimeConfig = useRuntimeConfig();
-    //get categories
-    const { data: partners, pending, refresh} = await useFetch(`${runTimeConfig.public.API_URL}/partners`, {
-        transform: (_partners) => _partners.data,
-        headers: API_HEADER(),
-        onResponse({ request, response, options }) {
-            // Process the response data
-            console.log('request responsed', response)
-        },
-        onRequestError({ request, options, error }) {
-            // Handle the request errors
-            console.log('request error', response)
-        },
-        onResponseError({ request, response, options }) {
-            console.log('response error', response)
-        }
+const runTimeConfig = useRuntimeConfig();
+
+const partners = ref([]);
+const partnersPending = ref(false);
+const partnersError = ref(null);
+
+// Fetch data function
+const fetchData = async (url, dataRef, pendingRef, errorRef) => {
+  pendingRef.value = true;
+  errorRef.value = null;
+
+  try {
+    const response = await $fetch(`${runTimeConfig.public.API_URL}/${url}`, {
+      headers: API_HEADER(),
     });
+    dataRef.value = response.data;
+  } catch (error) {
+    errorRef.value = error;
+    console.error(`Error fetching ${url}:`, error);
+  } finally {
+    pendingRef.value = false;
+  }
+};
+// Fetch data on component mount
+onMounted(async () => {
+  try {
+    await fetchData('partners', partners, partnersPending, partnersError);
+  } catch (error) {
+    console.error('Error during onMounted fetch:', error);
+  }
+});
 </script>

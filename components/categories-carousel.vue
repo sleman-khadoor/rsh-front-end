@@ -13,11 +13,11 @@
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <img src="@/assets/icon/carousel-prev.svg" class="d-block" alt="..." width="32" height="32">
+        <img src="/icon/carousel-prev.svg" class="d-block" alt="..." width="32" height="32">
         <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <img src="@/assets/icon/carousel-next.svg" class="d-block" alt="..." width="32" height="32">
+        <img src="/icon/carousel-next.svg" class="d-block" alt="..." width="32" height="32">
         <span class="visually-hidden">Next</span>
     </button>
     </div>
@@ -86,6 +86,7 @@ export default defineComponent({
     }
 .btn-outline-choco {
     --bs-btn-color: #82704A;
+    --bs-btn-bg: #F9F9F9;
     --bs-btn-border-color: #82704A;
     --bs-btn-hover-color: #fff;
     --bs-btn-hover-bg: #82704A;

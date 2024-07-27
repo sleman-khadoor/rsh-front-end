@@ -17,7 +17,7 @@
                 <div class="font-large ff-meduim text-choco mb-5">With our services, you will get</div>
                 <div class="px-5 text-dark-blue">
                     <div v-for="(service, i) in services" :key="i" class="d-flex justify-content-start mb-3 lh-25 text-start">
-                        <img src="@/assets/icon/circle-choco.svg" class="col-auto mt-1 mx-2" width="20" height="20"/>
+                        <img src="/icon/circle-choco.svg" class="col-auto mt-1 mx-2" width="20" :alt="service.title" height="20"/>
                         <div>
                             <span class="font-meduim ff-semiBold">{{service.title}}: </span>
                             <span class="font-meduim ff-regular"> {{service.subTitle}}</span>
@@ -59,7 +59,7 @@
                     <span class="font-meduim ff-meduim lh-22 mb-2">Contact us today for a quote or more information</span>
                     <span class="font-meduim ff-regular lh-22 mb-2">Contact us at the following email</span>
                     <div class="d-flex align-items-center w-auto mx-auto text-choco font-meduim ff-regular mb-2">
-                        <img src="@/assets/icon/email-fill.svg" class="d-block my-auto mx-1" alt="..." width="20" height="20">
+                        <img src="/icon/email-fill.svg" class="d-block my-auto mx-1" alt="..." width="20" height="20">
                         rasham@gmail.com
                     </div>
                 </div>
@@ -73,7 +73,7 @@ import { useI18n } from 'vue-i18n';
 export default defineComponent({
     setup() {
     const { t } = useI18n();
-    let whyRashm = [
+    const whyRashm = ref([
         {
             title: t('publishWithUs.whyRashm.cause1.title'),
             subTitle: t('publishWithUs.whyRashm.cause1.subTitle'),
@@ -94,8 +94,8 @@ export default defineComponent({
             subTitle: t('publishWithUs.whyRashm.cause4.subTitle'),
             iconSrc: 'user-edit'
         }
-    ]
-    let services = [
+    ])
+    const services = ref([
         {
             title: t('publishWithUs.services.service1.title'),
             subTitle: t('publishWithUs.services.service1.subTitle')
@@ -124,7 +124,7 @@ export default defineComponent({
             title: t('publishWithUs.services.service7.title'),
             subTitle: t('publishWithUs.services.service7.subTitle')
         },
-    ]
+    ])
     return {
         whyRashm,
         services

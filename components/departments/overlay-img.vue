@@ -1,20 +1,20 @@
 <template>
 <div class="section">
-  <div :class="'card d-flex align-items-stretch bg-img' + (props.gallery ? ' rounded-0' : ' rounded-4')" :style="`background: url(${dynamicImg})`">
+  <div :class="'card d-flex align-items-stretch bg-img' + (props.gallery ? ' rounded-0' : ' rounded-4')" :style="`background: url(${dynamicImg});`">
         <div :class="dynamicOverlayClass">
             <div :class="!props.gallery ? 'my-md-1 mx-auto' : 'px-3 bottom-0 position-absolute'">
                 <h5 :class="dynamicTitleClass">{{ props.title }}</h5>
                 <p :class="dynamicSubTitleClass">
                     {{props.text}}
                 </p>
+                <a href="#contacts">
                 <button v-if="(!props.gallery) && props.btn" type="button" :class="dynamicClass">
                   <div class="p-lg-1 font-meduim ff-regular">
                     {{$t('departments.requestBtn')}}
-                    <a href="#contacts">
-                      <img src="@/assets/icon/arrow-circle-right.svg">
-                    </a>
+                      <img src="/icon/arrow-circle-right.svg" :alt="props.title">
                   </div>
                   </button>
+                  </a>
             </div>            
         </div>
   </div>
@@ -50,7 +50,7 @@ const dynamicSubTitleClass = computed(() => {
 });
 // computed dynamic Img
 const dynamicImg = computed(() => {
-  return `/_nuxt/assets/img/${props.imgSrc}.jpg`;
+  return `/img/${props.imgSrc}.webp`;
 });
 </script>
 <style scoped>

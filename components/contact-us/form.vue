@@ -9,19 +9,19 @@
             </div>
             <div class="d-flex justify-content-start text-meduim mb-4">
                  <div class="d-flex justify-content-center rounded-1 w-auto col-auto">
-                    <img src="@/assets/icon/phone.svg" alt="rashm" height="20" width="20">
+                    <img src="/icon/phone.svg" alt="rashm" height="20" width="20">
                 </div>
                 <span class="text-dark-blue px-1 my-auto">+971 9854 2631 7852</span>
             </div>
             <div class="d-flex justify-content-start text-meduim mb-4">
                  <div class="d-flex justify-content-center rounded-1 w-auto col-auto">
-                    <img src="@/assets/icon/email.svg" alt="rashm" height="20" width="20">
+                    <img src="/icon/email.svg" alt="rashm" height="20" width="20">
                 </div>
                 <span class="text-dark-blue px-1 my-auto">rasham@gmail.com</span>
             </div>
             <div class="d-flex justify-content-start text-meduim mb-4">
                  <div class="d-flex justify-content-center rounded-1 w-auto col-auto">
-                    <img src="@/assets/icon/location.svg" alt="rashm" height="20" width="20">
+                    <img src="/icon/location.svg" alt="rashm" height="20" width="20">
                 </div>
                 <span class="text-dark-blue px-1 my-auto">Riyadh</span>
             </div>
@@ -35,7 +35,7 @@
             <div class="mb-3 font-large ff-meduim mb-5">{{props.subTitle}}</div>
             <div class="row mt-0 mb-4 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
                 <div class="col-2 justify-content-center text-center">
-                    <img :src="`/_nuxt/assets/icon/${props.circleSrc}.svg`" alt="rashm" height="22" width="22">
+                    <img :src="`/icon/${props.circleSrc}.svg`" alt="rashm" height="22" width="22">
                     <div class="hr bg-grey h-100 mx-auto" style="width:3px;"></div>
                 </div>
                 <div class="col-10 mb-4">
@@ -46,7 +46,7 @@
             </div>
             <div class="row mt-0 mb-4 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
                 <div class="col-2 justify-content-center text-center">
-                    <img :src="`/_nuxt/assets/icon/${props.circleSrc}.svg`" alt="rashm" height="22" width="22">
+                    <img :src="`/icon/${props.circleSrc}.svg`" alt="rashm" height="22" width="22">
                     <div class="hr bg-grey h-100 mx-auto" style="width:3px;"></div>
                 </div>
                 <div class="col-10 mb-4">
@@ -56,7 +56,7 @@
             </div>
             <div class="row mt-0 mb-4 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
                 <div class="col-2 justify-content-center text-center">
-                    <img :src="`/_nuxt/assets/icon/${props.circleSrc}.svg`" alt="rashm" height="22" width="22">
+                    <img :src="`/icon/${props.circleSrc}.svg`" alt="rashm" height="22" width="22">
                 </div>
                 <div class="col-10 mb-4">
                     We will deliver the translation to you within
@@ -65,19 +65,19 @@
             </div>
         </div>
         <div class="col-lg-8 px-5">
-            <form class="needs-validation" novalidate  @submit.prevent="checkValidate()">
+            <form class="needs-validation" novalidate>
                  <div class="mb-4 d-flex justify-content-between">
-                    <input type="text" class="form-control bg-snow form-control" value="form.name" id="name" placeholder="full name" required>&nbsp;&nbsp;
-                    <input type="number" class="form-control bg-snow form-control" id="mobile" placeholder="mobile number" required>
+                    <input type="text" class="form-control bg-snow form-control" v-model="contactUsForm.name" id="name" placeholder="full name" required>&nbsp;&nbsp;
+                    <input type="number" class="form-control bg-snow form-control" v-model="contactUsForm.phone" id="mobile" placeholder="mobile number" required>
                 </div>
                 <div class="mb-4">
-                    <input type="email" class="form-control bg-snow" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="e-mail" required>
+                    <input type="email" class="form-control bg-snow" v-model="contactUsForm.mail" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="e-mail" required>
                     <div class="invalid-feedback text-start">
                          Please provide a valid e-mail.
                     </div>
                 </div>
                 <div class="mb-4">
-                    <textarea class="form-control bg-snow" id="exampleFormControlTextarea1" rows="5" placeholder="description" required></textarea>
+                    <textarea class="form-control bg-snow" v-model="contactUsForm.description" id="exampleFormControlTextarea1" rows="5" placeholder="description" required></textarea>
                     <div class="invalid-feedback text-start">
                          Please provide a valid description.
                     </div>
@@ -86,34 +86,42 @@
                     <div class="file-upload-container">
                         <input type="file" id="file-input" class="file-input" multiple @change="handleFileUpload" v-bind:disabled="flag">
                         <label for="file-input" class="file-label bg-snow text-light-grey">
-                            <img src="@/assets/icon/link.svg" alt="Upload Icon" class="upload-icon"> <span class="label-text">upload an attachment</span>
+                            <img src="/icon/link.svg" alt="Upload Icon" class="upload-icon"> <span class="label-text">upload an attachment</span>
                         </label>
                     </div>
                     <div v-if="flag" class="text-danger text-start">you can upload just 5 files</div>
                 </div>
-                <div v-if="steps" class="uploaded-files d-flex justify-content-start py-2 mb-4">
+                <div v-if="steps" class="uploaded-files d-flex justify-content-start py-2 mb-4 flex flex-wrap">
                     <div v-for="(file, index) in files" :key="index" class="uploaded-file position-relative">
                         <img :src="file.url" class="img-thumbnail" alt="uploaded file">
                         <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" @click="removeFile(index)" aria-label="Close"></button>
                     </div>
                 </div>
                 <div class="d-grid gap-2">
-                    <button type="submit" :class="dynamicClass">Send</button>
+                    <button type="submit" :disabled="disabledBtn" @click="checkValidate()" :class="dynamicClass">Send</button>
                 </div>
             </form>
         </div>
     </div>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 import { ref } from 'vue'
-export default defineComponent({
-    props: ['title', 'subTitle', 'color', 'circleSrc', 'steps'],
-    setup(props) {
+import { createEmitter } from '~/node_modules/@intlify/shared/dist/shared';
+// export default defineComponent({
+const props = defineProps<{
+  title: string;
+  subTitle: string;
+  color: string;
+  circleSrc: string;
+  steps: boolean;
+}>();
         const files = ref([])
-        const form = reactive({
+        const emit = defineEmits() ;
+        const contactUsForm = reactive({
             name: '',
             phone: '',
             mail: '',
+            description: '',
         })
         const handleFileUpload = (event) => {
             if(event?.target?.files?.length < 6) {
@@ -134,7 +142,10 @@ export default defineComponent({
             files.value.splice(index, 1)
         }
         const flag = computed(() => {
-            return files?.value?.length === 5 ? true : false
+            return files?.value?.length > 4 ? true : false
+        })
+        const disabledBtn = computed(() => {
+            return files?.value?.length > 5 ? true : false
         })
 
         const dynamicClass = computed(() => {
@@ -167,37 +178,21 @@ export default defineComponent({
                 if (!form.checkValidity()) {
                     event.preventDefault()
                     event.stopPropagation()
+                } else {
+                    console.log('form', contactUsForm);
+                    emit('submitForm', {
+                        name: contactUsForm.name,
+                        phone: contactUsForm.phone, 
+                        mail: contactUsForm.mail, 
+                        description: contactUsForm.description
+                        }
+                    )
                 }
 
                 form.classList.add('was-validated')
                 }, false)
             })
         };
-         onMounted(() => {
-            filehandler()
-            window.addEventListener('resize', filehandler)
-        });
-        onUpdated(() => {
-            filehandler()
-            window.addEventListener('resize', filehandler)
-        });
-        watch(flag,(newV, oldV) => {
-            console.log('flaggg', newV);
-        }, { deep: true });
-        return {
-            dynamicClass,
-            files,
-            flag,
-            props,
-            handleFileUpload,
-            removeFile,
-            checkValidate
-        }
-    }
-})
-
-// watchEffect((flag) =>console.log(flag));
-// computed dynamic class
 
 </script>
 <style scoped>
@@ -218,7 +213,7 @@ export default defineComponent({
   width: auto;
 }
 .btn-close{
-    background-image: url('@/assets/icon/close-circle.svg');
+    background-image: url('/icon/close-circle.svg');
     background-size: auto;
 }
 ::file-selector-button {

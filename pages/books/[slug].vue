@@ -5,7 +5,7 @@
         <div class="col-11 mx-auto my-5 bg-primary text-start rounded-4 pt-5 px-lg-5 px-md-5 px-sm-4 text-dark-blue">
             <div class="row">
                 <div class="col col-auto px-0 mx-auto justify-content-center font-meduim lh-25 mb-5">
-                    <img :src="book.cover_image" class="d-block mx-auto mb-2" alt="..." height="340" width="280">
+                    <img :src="book.cover_image" class="d-block mx-auto mb-2" :alt="book.title" height="340" width="280">
                     <div class="d-flex flex-wrap align-items-center ff-meduim mb-1"  style="width: 280px;">
                         Categories :
                         <span v-for="category in book.book_categories" class="badge text-dark-blue bg-secondary font-small ff-regular m-1">{{category.title}}</span>
@@ -27,14 +27,14 @@
                 <div class="col px-4">
                     <div class="font-x-large ff-meduim mb-3">{{book.title}}</div>
                     <div class="d-flex mb-3">
-                        <img src="@/assets/icon/author-name.svg" class="d-block my-auto" alt="..." width="20" height="20">
+                        <img src="/icon/author-name.svg" class="d-block my-auto" alt="..." width="20" height="20">
                         <span class="font-meduim ff-regular text-choco mx-1">{{book.author?.name}}</span>
                     </div>
                     <div class="font-small ff-regular lh-25 mb-4">
                         {{book.abstract}}
                     </div>
                     <div class="d-flex align-items-center mb-3">
-                        <img src="@/assets/icon/star.svg" class="d-block my-auto" alt="..." width="30" height="30">
+                        <img src="/icon/star.svg" class="d-block my-auto" alt="..." width="30" height="30">
                         <span class="font-large ff-regular text-choco mx-1">Reviews</span>
                     </div>
                     <div v-for="review in book.book_reviews">
@@ -46,7 +46,7 @@
                     </div>
                     </div>
                     <div class="d-flex align-items-center mb-3 pt-2">
-                        <img src="@/assets/icon/medal-star.svg" class="d-block my-auto" alt="..." width="25" height="25">
+                        <img src="/icon/medal-star.svg" class="d-block my-auto" alt="..." width="25" height="25">
                         <span class="font-large ff-regular text-choco mx-1">Awards</span>
                     </div>
                     <div>

@@ -7,6 +7,7 @@
                 <DepartmentsOverlayImg 
                  :imgSrc="'department1'" 
                  :btnColor="'bg-blue'"
+                 :gallery="false"
                  :btn="true"
                  :text="$t('departments.translation.overlayImg.text')"
                  :title="$t('departments.translation.overlayImg.title')"/>
@@ -16,7 +17,7 @@
             </div>
             <div class="row mx-auto bg-primary text-center justify-content-around align-items-stretch rounded-4 p-5 mb-3">
                 <div v-for="(department,i) in departments" :key="i" class="col-lg-3 col-md-4 col-sm-6 text-dark-blue mb-4">
-                    <DepartmentsCard :title="department.title" :iconSrc="department.iconSrc"/>
+                    <DepartmentsCard :title="department.title" :subTitle="''" :iconSrc="department.iconSrc"/>
                 </div>
             </div>
             <div id="contacts" class="mx-auto bg-primary text-center rounded-4 py-2">

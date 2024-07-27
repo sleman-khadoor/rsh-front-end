@@ -3,16 +3,16 @@
         <nav aria-label="...">
             <ul class="pagination">
                 <li class="page-item mx-1">
-                    <a class="page-link rounded-2">
-                        <img src="@/assets/icon/prev-pag.svg"/>
+                    <a class="page-link rounded-2" href="#">
+                        <img src="/icon/prev-pag.svg" alt="blog"/>
                     </a>
                 </li>
                 <li @click="$emit('updatePage', index)" :class="'page-item mx-1' + ((props.meta?.current_page === index) ? ' active' : '')"  v-for="index in props.meta?.last_page">
-                    <a class="page-link rounded-2">{{ index }}</a>
+                    <a class="page-link rounded-2" href="#">{{ index }}</a>
                 </li>
                 <li class="page-item mx-1">
                     <a class="page-link rounded-2" href="#">
-                        <img src="@/assets/icon/next-pag.svg"/>
+                        <img src="/icon/next-pag.svg" alt="blog"/>
                     </a>
                 </li>
             </ul>

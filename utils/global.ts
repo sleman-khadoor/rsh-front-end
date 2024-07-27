@@ -27,3 +27,7 @@ export function API_HEADER() {
     console.error('Error getting locale:', error)
   }
 }  
+export function buildUrl(url: string, params: any) {
+  const query = new URLSearchParams(params);
+  return `${url}?${query.toString()}`;
+}

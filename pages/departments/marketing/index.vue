@@ -7,6 +7,7 @@
                 <DepartmentsOverlayImg 
                  :imgSrc="'department5'" 
                  :btn="true"
+                 :gallery="false"
                  :btnColor="'bg-green'"
                  :text="$t('departments.marketing.overlayImg.text')"
                  :title="$t('departments.marketing.overlayImg.title')"/>
@@ -16,7 +17,7 @@
             </div>
             <div class="row mx-auto bg-primary text-center justify-content-around rounded-4 p-5 mb-3">
                 <div v-for="(department,i) in departments" :key="i" class="col-lg-3 col-md-4 col-sm-6 text-dark-blue mb-4">
-                    <DepartmentsCard :title="department.title" :iconSrc="department.iconSrc"/>
+                    <DepartmentsCard :title="department.title" :iconSrc="department.iconSrc" :subTitle="''"/>
                 </div>
             </div>
             <div id="contacts" class="mx-auto bg-primary text-center rounded-4 py-2">
@@ -25,7 +26,8 @@
                 :subTitle="$t('departments.marketing.form.subTitle')" 
                 :color="'bg-green'"
                 :circleSrc="'circle-green'" 
-                :steps="true" />
+                :steps="true"
+                @submitForm="submitContactHandler($event)" />
             </div>
         </div>
         </div>
@@ -36,6 +38,7 @@ import { useI18n } from 'vue-i18n';
 export default defineComponent({
     setup() {
     const { t } = useI18n();
+    const runTimeConfig = useRuntimeConfig();
     let departments = [
         {
             title: t('departments.marketing.departments.department1'),
@@ -46,8 +49,25 @@ export default defineComponent({
             iconSrc: 'marketing-s2'
         }
     ]
+    async function submitContactHandler(value) {
+        console.log('form 3', value);
+        console.log('form 3', value.value);
+        const { data: responseData } = await useFetch(`${runTimeConfig.public.API_URL}/contact-requests`, {
+            headers: API_HEADER(),
+            method: 'post',
+            body: { 
+                fullname: value.name,
+                email: value.mail,
+                mobile: value.phone, 
+                message: value.description, 
+            }
+    })
+
+    console.log(responseData.value)
+    }
     return {
          t,
+         submitContactHandler,
          departments
     }
     },

@@ -4,7 +4,7 @@
       <div class="carousel-item" :class="{ active: index === 0 }" v-for="(chunk, index) in chunkedImages" :key="index">
         <div class="row">
           <div class="col" v-for="image in chunk" :key="image.src">
-            <img :src="`/_nuxt/assets/img/${image.src}.jpg`" width="194" height="252" class="d-block w-100" :alt="image.alt">
+            <img :src="`/img/${image.src}.jpg`" width="194" height="252" class="d-block w-100" :alt="image.alt">
           </div>
         </div>
       </div>

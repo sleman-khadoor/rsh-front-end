@@ -9,7 +9,7 @@
                                 <span class="text-dark-blue font-x-small col text-end">{{blog.date}}</span>
                             </div>
                             <div class="d-flex flex-wrap text-start">
-                                <img src="@/assets/icon/blog-book.svg" class="mx-1" alt="..." width="15" height="15">
+                                <img src="/icon/blog-book.svg" class="mx-1" alt="..." width="15" height="15">
                                 <p class="text-dark-blue font-x-small">{{blog.title}}</p>
                             </div>
                         </div>

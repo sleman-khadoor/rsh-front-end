@@ -1,17 +1,17 @@
 <template>
     <div>
         <div class="row bg-dark-blue p-5 text-primary m-0">
+            {{contacts}}
             <div class="col-lg-5 col-md-5 col-sm-12 mb-1 row">
                 <div class="text-meduim ff-bold lh-22">
-                    <img src="@/assets/icon/logo-white.svg" alt="rashm" height="59" width="36" class="mx-2">
+                    <img src="/icon/logo-white.svg" alt="rashm" height="59" width="36" class="mx-2">
                     Rashm
                 </div>
                 <div class="text-small ff-regular text-white-gray">Rashm was founded in 2005 as a small company specializing in translation and creative editing services.</div>
                 <div class="d-flex my-3">
-                    <img src="@/assets/icon/facebook.svg" alt="rashm" height="21" width="21" class="mx-2">
-                    <img src="@/assets/icon/X.svg" alt="rashm" height="21" width="21" class="mx-2">
-                    <img src="@/assets/icon/linkedin.svg" alt="rashm" height="21" width="21" class="mx-2">
-                    <img src="@/assets/icon/instagram.svg" alt="rashm" height="21" width="21" class="mx-2">
+                    <a v-for="contact in contacts" :key="contact">
+                        <img  :src="`/icon/${contact.type}.svg`" :alt="`rashm ${contact.type}`" height="21" width="21" class="mx-2">
+                    </a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 d-flex flex-wrap justify-content-between">
@@ -46,11 +46,11 @@
                 <ul class="p-0">
                     <li class="font-small lh-30 ff-bold">Contact</li>
                     <li class="font-xx-small lh-25 ff-regular text-white-gray">
-                        <img src="@/assets/icon/phone-mini.svg" alt="rashm" height="20" width="20">
+                        <img src="/icon/phone-mini.svg" alt="rashm" height="20" width="20">
                         +971 9854 2631 7852
                     </li>
                     <li class="font-xx-small lh-25 ff-regular text-white-gray">
-                        <img src="@/assets/icon/email-mini.svg" alt="rashm" height="20" width="20">
+                        <img src="/icon/email-mini.svg" alt="rashm" height="20" width="20">
                         rasham@gmail.com
                     </li>
                 </ul>
@@ -58,6 +58,45 @@
         </div>
     </div>
 </template>
+<script setup>
+import { API_HEADER } from '@/utils/global';
+
+// Get runtime configuration
+const runTimeConfig = useRuntimeConfig();
+
+const contacts = ref([]);
+const contactsPending = ref(false);
+const contactsError = ref(null);
+
+const headers = ref({});
+// Fetch data function
+const fetchData = async (url, dataRef, pendingRef, errorRef) => {
+  pendingRef.value = true;
+  errorRef.value = null;
+
+  try {
+    const response = await $fetch(`${runTimeConfig.public.API_URL}/${url}`, {
+      headers: headers.value,
+    });
+    dataRef.value = response.data;
+  } catch (error) {
+    errorRef.value = error;
+    console.error(`Error fetching ${url}:`, error);
+  } finally {
+    pendingRef.value = false;
+  }
+};
+
+// Fetch data on component mount
+onMounted(async () => {
+  headers.value = API_HEADER(); // Set headers in the setup context
+  try {
+    await fetchData('contacts', contacts, contactsPending, contactsError);
+  } catch (error) {
+    console.error('Error during onMounted fetch:', error);
+  }
+});
+</script>
 <style scoped>
 ul {
   list-style-type: none;

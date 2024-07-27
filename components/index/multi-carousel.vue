@@ -4,17 +4,17 @@
         <div v-for="(chunk, index) in chunks" :key="index" :class="['carousel-item', { active: index === 0 }]">
         <div class="d-flex justify-content-center">
             <div v-for="(image, subIndex) in chunk" :key="subIndex" class="carousel-image col-lg-3 col-md-4 col-md-6">
-            <img :src="`/_nuxt/assets/img/${image.iconSrc}.jpg`" width="194" height="252" class="d-block mx-auto" alt="...">
+            <img :src="image.cover_image" width="194" height="252" class="d-block mx-auto" :alt="image.title">
             </div>
         </div>
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <img src="@/assets/icon/carousel-prev.svg" class="d-block" alt="..." width="32" height="32">
+        <img src="/icon/carousel-prev.svg" class="d-block" alt="..." width="32" height="32">
         <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <img src="@/assets/icon/carousel-next.svg" class="d-block" alt="..." width="32" height="32">
+        <img src="/icon/carousel-next.svg" class="d-block" alt="..." width="32" height="32">
         <span class="visually-hidden">Next</span>
     </button>
     </div>
@@ -40,20 +40,17 @@ export default defineComponent({
         }
         chunks.value = []
         for (let i = 0; i < images.value.length; i += imagesPerSlide) {
-          console.log('test carousel : ', images.value);
-          console.log('test carousel 2 : ', images.value.slice(i, i + imagesPerSlide));
           chunks.value.push(images.value.slice(i, i + imagesPerSlide));
-          console.log('test carousel 3 : ', chunks);
         }
       };
       onMounted(() => {
         createChunks()
         window.addEventListener('resize', createChunks)
       });
-      onUpdated(() => {
-        createChunks()
-        window.addEventListener('resize', createChunks)
-      });
+      // onUnmounted(() => {
+      //   createChunks()
+      //   window.addEventListener('resize', createChunks)
+      // });
 
       watch(images, createChunks);
       return {

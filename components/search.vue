@@ -15,7 +15,7 @@
         <div class="dropdown-menu dropdown-menu-right bg-snow font-x-small ff-regular">
           <div v-for="(item,index) in searchBy">
           <div class="d-flex text-center p-lg-1 my-1" @click="selectSearchType(item)">
-            <img :src="`/_nuxt/assets/icon/${item.icon}.svg`" class="d-block my-auto mx-1" alt="..." width="20" height="20">
+            <img :src="`/icon/${item.icon}.svg`" class="d-block my-auto mx-1" alt="..." width="20" height="20">
             <a class="dropdown-item text-choco px-1" href="#">{{item.name}}</a>
           </div>
           <div v-if="index !== searchBy.length-1" class="hr bg-choco opacity-1" style="height: 1px;"></div>
@@ -28,7 +28,6 @@
 <script setup>
 const emit = defineEmits()
 const route = useRoute().fullPath
-console.log('my route', route);
 const searchBy = [
   {
     name: 'Book Name',
@@ -42,7 +41,7 @@ const searchBy = [
   }
 ];
 if(route === '/en' || route === '/') {
-searchBy.pop()
+  searchBy.pop()
 }
 const search = reactive({
   name: 'Book Name',
@@ -86,7 +85,7 @@ label:before {
   top: 0;
   bottom: 0;
   width: 20px;
-  background: url("@/assets/icon/search-normal.svg") center / contain no-repeat;
+  background: url("/icon/search-normal.svg") center / contain no-repeat;
 }
 
 input {
