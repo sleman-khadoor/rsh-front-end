@@ -22,7 +22,7 @@
                                 unique content.
                             </div>
                             <div class="mx-auto pt-2 pb-lg-3 pb-md-3 pb-sm-7">
-                                <Search/>
+                                <Search @search="updateSearch($event)"/>
                             </div>                            
                         </div>
                     </div>
@@ -33,26 +33,29 @@
                     <button class="bg-btn-img m-1 rounded-5 border-0 float my-auto"></button>
                 </a>
             </div>
-            <div class="row mb-4">
+            <div class="row">
                 <div class="col-lg-8 col-md-6 col-sm-12">
-                    <div class="rounded-3 bg-dark-blue text-primary px-lg-5 px-md-2 px-sm-1 pt-3 pb-3 mb-3">
-                        <div class="p-5 font-x-large ff-regular"> Explore <span class="text-choco">Rashm's</span> history and our vision of providing </div>
+                    <div class="rounded-3 bg-dark-blue text-primary px-lg-5 px-md-2 px-sm-1 py-2 mb-4">
+                        <div class="p-4 font-x-large ff-regular lh-40"> Explore <span class="text-choco">Rashm's</span> history and our vision of providing Exceptional Services</div>
                     </div>
                     <IndexHistory :data="history" :bgColor="'bg-secondary'" :withTitle="false" :col="'col-12'"/>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-1">
                     <img src="/img/printer.webp" class="d-block w-100" alt="..." height="400" width="400">
                 </div>
             </div>
-            <div class="row mb-4">
+            <div class="row mb-2">
                 <IndexDiverseServices/>
             </div>
-            <div class="row mb-4 pb-4 m-0" id="latestBooks">
+            <div class="row mb-2 pb-1 m-0" id="latestBooks">
                 <ColourfullDiv :text="$t('index.checkoutLatestBooks')" :bgColor="'bg-choco'"/>
             </div>
             <div v-if="!booksPending" class="row mb-4 m-0">
                 <IndexMultiCarousel :books="books"/>
             </div>
+            <!-- <div v-if="!booksPending" class="row mb-2 m-0">
+                <IndexTest :books="books"/>
+            </div> -->
             <div v-if="blogsPending">Loading...</div>
             <div v-else-if="blogsError">Error loading blogs: {{ blogsError.message }}</div>
             <div v-else class="row mb-4">
@@ -84,17 +87,21 @@ const newsError = ref(null);
 const books = ref([]);
 const booksPending = ref(false);
 const booksError = ref(null);
+const title = ref('');
 
 const headers = ref({});
 
 // Fetch data function
-const fetchData = async (url, dataRef, pendingRef, errorRef) => {
+const fetchData = async (url, dataRef, pendingRef, errorRef, queryParams) => {
   pendingRef.value = true;
   errorRef.value = null;
 
   try {
     const response = await $fetch(`${runTimeConfig.public.API_URL}/${url}`, {
       headers: headers.value,
+      query: {
+        ...queryParams
+      }
     });
     dataRef.value = response.data;
   } catch (error) {
@@ -104,14 +111,26 @@ const fetchData = async (url, dataRef, pendingRef, errorRef) => {
     pendingRef.value = false;
   }
 };
-
+function updateSearch(newVal) {
+    title.value = newVal.value;
+    fetchData('books', books, booksPending, booksError, {
+        perPage: 15,
+        'filter[title]': title.value,
+    });
+}
 // Fetch data on component mount
 onMounted(async () => {
   headers.value = API_HEADER(); // Set headers in the setup context
   try {
-    await fetchData('news', news, newsPending, newsError);
-    await fetchData('books', books, booksPending, booksError);
-    await fetchData('blogs', blogs, blogsPending, blogsError);
+    await fetchData('news', news, newsPending, newsError, {
+        perPage: 5,
+    });
+    await fetchData('books', books, booksPending, booksError, {
+        perPage: 15,
+    });
+    await fetchData('blogs', blogs, blogsPending, blogsError, {
+        perPage: 6,
+    });
   } catch (error) {
     console.error('Error during onMounted fetch:', error);
   }
@@ -127,6 +146,7 @@ onMounted(async () => {
 .float{
 	position: relative;
     display: flex;
+    z-index: 2;
     width: 70px;
     height: 70px;
     margin-top: -93px !important;

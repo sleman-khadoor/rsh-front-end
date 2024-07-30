@@ -49,6 +49,10 @@ p {
 .w-90 {
   width: 90% !important;
 }
+.w-fc {
+  width: fit-content !important;
+  max-width: fit-content !important;
+}
 // This CSS will run for mobile meduim screen
 @media only screen and (max-width: 900px) {
   .font-xx-large {

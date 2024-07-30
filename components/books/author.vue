@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="d-flex author-description p-0">
-            <img :src="props.author?.avatar" class="p-0 mb-2" alt="Author Image">
+            <img :src="props.author?.avatar" class="p-0 mb-2 img-border" alt="Author Image">
             <span class="font-meduim ff-meduim my-auto px-2">{{props.author?.name}}</span>
         </div>
         <div class="row font-small ff-regular m-0 p-0 lh-25">
@@ -23,4 +23,7 @@ const props = defineProps<{
             object-fit: cover;
             position: relative;
         }
+    .img-border {
+      border: 2px solid #82704A;
+    }
 </style>

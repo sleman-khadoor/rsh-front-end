@@ -13,12 +13,13 @@
                  :title="$t('departments.literaryAgencyAuthors.overlayImg.title')"/>
             </div>
             <div class="row mx-auto bg-primary justify-content-around rounded-4 py-5 mb-3">
+                <div class="font-x-large ff-meduim text-dark-blue text-center mb-3">Authors Represented By <span class="text-choco">Rashm</span></div>
                 <DepartmentsAuthorCard :authors="authors"/>
             </div>
             <div class="mb-3">
                 <ColourfullDiv :text="$t('departments.literaryAgencyAuthors.request')" :bgColor="'bg-choco'"/>
             </div>
-            <div class="row mx-auto bg-primary text-center justify-content-around rounded-4 p-5 mb-3">
+            <div class="row mx-auto bg-primary text-center justify-content-around rounded-4 pt-2 pb-3 px-4 mb-3">
                 <div v-for="(department,i) in departments" :key="i" class="col-lg-3 col-md-4 col-sm-6 text-dark-blue mb-4">
                     <DepartmentsCard :title="department.title" :iconSrc="department.iconSrc" :subTitle="''"/>
                 </div>

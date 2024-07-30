@@ -31,3 +31,12 @@ export function buildUrl(url: string, params: any) {
   const query = new URLSearchParams(params);
   return `${url}?${query.toString()}`;
 }
+export function dateTimeFormatter(timeStamp: any) {
+	return timeStamp && timeStamp.substring(0, timeStamp.lastIndexOf(' ')).split('T').join(' ');
+}
+export function dateDayFormatter(timeStamp: any) {
+  const d = new Date(timeStamp);
+  const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  let day = d.getDay();
+	return weekday[day];
+}

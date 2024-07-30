@@ -9,8 +9,8 @@
             <div v-for="(author, subIndex) in chunk" :key="subIndex" style="height: inherit !important" class="carousel-image rounded-4 col-lg-3 col-md-4 col-md-6">
                <NuxtLink :to="localePath(`/departments/literaryAgencyAuthors/${getSlugByLang(author?.slug)}`)" style="text-decoration: unset">
                 <div class="author-card shadow-sm bg-bg-secondary h-100">
-                     <img :src="author.avatar" alt="Author Image" height="100" width="100">
-                     <h5 class="mt-2 font-meduim ff-meduim">{{author.name}}</h5>
+                     <img :src="author.avatar" class="img-border" alt="Author Image" height="100" width="100">
+                     <h5 class="mt-2 text-dark-blue font-meduim ff-meduim">{{author.name}}</h5>
                      <p class="m-0 font-x-small ff-regular">
                          {{author.about}}
                      </p>
@@ -119,5 +119,8 @@ export default defineComponent({
     }
     .carousel-indicators [data-bs-target]{
         background-color: #0B294A;
+    }
+    .img-border {
+      border: 2px solid #82704A;
     }
 </style>

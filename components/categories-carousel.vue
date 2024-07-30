@@ -13,11 +13,11 @@
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <img src="/icon/carousel-prev.svg" class="d-block" alt="..." width="32" height="32">
+        <img src="/icon/cat-prev.svg" class="d-block" alt="Rashm Categories" width="32" height="32" style=" transform: rotate(180deg); ">
         <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <img src="/icon/carousel-next.svg" class="d-block" alt="..." width="32" height="32">
+        <img src="/icon/cat-next.svg" class="d-block" alt="Rashm Categories" width="32" height="32">
         <span class="visually-hidden">Next</span>
     </button>
     </div>

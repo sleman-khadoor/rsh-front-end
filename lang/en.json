@@ -1,5 +1,16 @@
 {
     "home": "Home",
+    "navbar": {
+        "home": "Home",
+        "aboutUs": "About Us",
+        "departments": "Departments",
+        "blogs": "Blogs",
+        "books": "Books",
+        "ourPartners": "Our Partners",
+        "publishWithUs": "Publish With Us",
+        "contactUs": "Contact Us",
+        "language": "Arabic"
+    },
     "index": {
         "checkoutLatestBooks": "Check out the latest books added by Rashm",
         "history": {
@@ -132,7 +143,7 @@
         },
         "organizingEventsandConferences":{
             "overlayImg": {
-                "title": "organizing events and conferences",
+                "title": "organizing events & conferences",
                 "text": "We are delighted to announce the launch of a new department within Rashm Cultural Foundation, dedicated to organizing events and conferences. This initiative aims to further enrich the literary community by facilitating meaningful engagements and fostering professional development."
             },
             "request": "Request a Book delivery service now and enjoy the following benefits",

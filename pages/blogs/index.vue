@@ -3,16 +3,16 @@
         <NuxtLoadingIndicator/>
         <Title>Blogs with Rashm</Title>
         <Meta name="description" content="Blogs with Rashm" />
-        <div class="row bg-dark-blue pb-3">
+        <!-- <div class="row bg-dark-blue pb-3">
             <div class="col-lg-7 h-25 mx-auto">
                 <Search @search="updateSearch($event)"/>
             </div>
-        </div>
+        </div> -->
         <div class="row bg-secondary p-1">
             <CategoriesCarousel v-if="!categoriesPending" :categories="categories" @updateCategory="updateCategory($event)"/>
         </div>
         <div class="row bg-secondary px-5 pb-5 pt-2 justify-content-center">
-            <div v-for="(blog,i) in blogs" :key="i" class="col-lg-3 col-md-4 col-sm-6">
+            <div v-for="(blog,i) in blogs" :key="i" class="col-lg-3 col-md-4 col-sm-6 w-fc">
                 <BlogsCard :blog="blog"/>
             </div>
         </div>

@@ -3,7 +3,7 @@
         <Title>Rashm Partners</Title>
         <Meta name="description" content="Rasham Partners" />
         <div class="col-11 mx-auto my-5 bg-primary text-center rounded-4">
-            <div class="text-choco font-xx-large ff-meduim lh-25 pt-5 mb-5">
+            <div class="text-choco font-xx-large ff-meduim lh-25 pt-5 mb-4">
                 Our Partners
             </div>
             <div class="text-dark-blue font-large ff-regular lh-22 px-5">
@@ -11,7 +11,7 @@
                 To communicate please fill out the form below
             </div>
             <div class="d-flex flex-wrap p-5 justify-content-center align-items-center">
-            <div v-for="(partner,i) in partners" :key="i" class="col">
+            <div v-for="(partner,i) in partners" :key="i" class="col w-fc">
                 <PartnersCard :partner="partner"/>
             </div>
             </div>

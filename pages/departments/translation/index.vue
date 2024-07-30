@@ -15,7 +15,7 @@
             <div class="mb-3">
                 <ColourfullDiv :text="$t('departments.translation.request')" :bgColor="'bg-blue'"/>
             </div>
-            <div class="row mx-auto bg-primary text-center justify-content-around align-items-stretch rounded-4 p-5 mb-3">
+            <div class="row mx-auto bg-primary text-center justify-content-around align-items-stretch rounded-4 pt-2 pb-3 px-4 mb-3">
                 <div v-for="(department,i) in departments" :key="i" class="col-lg-3 col-md-4 col-sm-6 text-dark-blue mb-4">
                     <DepartmentsCard :title="department.title" :subTitle="''" :iconSrc="department.iconSrc"/>
                 </div>

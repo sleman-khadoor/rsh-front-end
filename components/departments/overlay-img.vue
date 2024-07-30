@@ -46,7 +46,7 @@ const dynamicTitleClass = computed(() => {
 // computed dynamic subtitle class
 const dynamicSubTitleClass = computed(() => {
   return props.gallery ? 'font-small ff-regular mb-4' 
-  : 'font-large ff-regular mb-4 rsp-font';
+  : 'font-large ff-regular mb-4 px-3 rsp-font';
 });
 // computed dynamic Img
 const dynamicImg = computed(() => {

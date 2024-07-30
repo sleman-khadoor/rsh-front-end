@@ -3,14 +3,14 @@
         <Title>Blog name with Rashm</Title>
         <Meta name="description" content="Blog Name with Rashm" />
         <div class="col-12 mx-auto text-start rounded-4 py-5 px-lg-5 px-md-5 px-sm-4 text-dark-blue">
-            <img :src="blog.cover_image" class="d-block w-100 object-fit-cover mb-3" :alt="blog.title" height="310">
+            <img :src="blog.cover_image" class="d-block w-100 object-fit-cover mb-3" :alt="blog.title" height="375">
             <div class="d-flex flex-wrap mb-3">
                 <span v-for="cat in blog.blog_categories" class="badge text-choco bg-dark-snow font-small ff-regular m-1">{{cat.title}}</span>
             </div>
             <div class="mb-3">
                 <div class="d-flex justify-content-between mb-2">
                     <span class="font-large ff-meduim">{{blog.title}}</span>
-                    <span class="font-small ff-regular">Monady At {{blog.date}}</span>
+                    <span class="font-small ff-regular">{{dateDayFormatter(blog.date)}}&nbsp;&nbsp;{{dateTimeFormatter(blog.date)}}</span>
                 </div>
                 <div class="mb-1">
                     <span class="font-meduim ff-regular text-choco">{{blog.writer}}</span>

@@ -1,3 +1,13 @@
 {
-    "home": "الرئيسية"
+    "navbar": {
+        "home": "الرئيسية",
+        "aboutUs": "عن رشم",
+        "departments": "الأقسام",
+        "blogs": "Blogs",
+        "books": "الكتب",
+        "ourPartners": "شركائنا",
+        "publishWithUs": "انشر معنا",
+        "contactUs": "تواصل معنا",
+        "language": "الانكليزية"
+    }
 }

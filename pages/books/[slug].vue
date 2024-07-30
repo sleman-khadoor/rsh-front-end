@@ -7,25 +7,30 @@
                 <div class="col col-auto px-0 mx-auto justify-content-center font-meduim lh-25 mb-5">
                     <img :src="book.cover_image" class="d-block mx-auto mb-2" :alt="book.title" height="340" width="280">
                     <div class="d-flex flex-wrap align-items-center ff-meduim mb-1"  style="width: 280px;">
-                        Categories :
-                        <span v-for="category in book.book_categories" class="badge text-dark-blue bg-secondary font-small ff-regular m-1">{{category.title}}</span>
+                        <img src="/icon/categories.svg" class="d-block my-auto mr-2" alt="..." width="20" height="20">&nbsp;
+                        Categories: &nbsp;
+                        <span v-for="category in book.book_categories" class="badge text-dark-blue bg-secondary font-small ff-regular m-1"> {{category.title}}</span>
                     </div>
                     <div class="d-flex flex-wrap align-items-center ff-meduim mb-1"  style="width: 280px;">
-                        Printing year :<span class="font-small ff-regular">{{book.printing_year}}</span>
+                        <img src="/icon/calendar.svg" class="d-block my-auto" alt="..." width="20" height="20">&nbsp;
+                        Printing year: &nbsp;<span class="font-small ff-regular"> {{book.printing_year}}</span>
                     </div>
                     <div class="d-flex flex-wrap align-items-center ff-meduim mb-1"  style="width: 280px;">
-                        Format :
-                        <span class="badge text-dark-blue bg-secondary font-small ff-regular mx-1">Paperback</span>
+                        <img src="/icon/format.svg" class="d-block my-auto" alt="..." width="20" height="20">&nbsp;
+                        Format: &nbsp;
+                        <span class="badge text-dark-blue bg-secondary font-small ff-regular mx-1"> Paperback</span>
                     </div>
                     <div class="d-flex flex-wrap align-items-center ff-meduim mb-1"  style="width: 280px;">
-                        ISBN : <span class="font-small ff-regular">{{book.ISBN}}</span>
+                        <img src="/icon/code.svg" class="d-block my-auto" alt="..." width="20" height="20">&nbsp;
+                        ISBN: &nbsp; <span class="font-small ff-regular"> {{book.ISBN}}</span>
                     </div>
                     <div class="d-flex flex-wrap align-items-center ff-meduim mb-1"  style="width: 280px;">
-                        EISBN : <span class="font-small ff-regular" >{{book.EISBN}}</span>
+                        <img src="/icon/code.svg" class="d-block my-auto" alt="..." width="20" height="20">&nbsp;
+                        EISBN: &nbsp; <span class="font-small ff-regular" > {{book.EISBN}}</span>
                     </div>
                 </div>
                 <div class="col px-4">
-                    <div class="font-x-large ff-meduim mb-3">{{book.title}}</div>
+                    <div class="font-x-large ff-meduim mb-3 mt-3">{{book.title}}</div>
                     <div class="d-flex mb-3">
                         <img src="/icon/author-name.svg" class="d-block my-auto" alt="..." width="20" height="20">
                         <span class="font-meduim ff-regular text-choco mx-1">{{book.author?.name}}</span>
@@ -56,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row p-0 pb-5 px-4">
+            <div class="row p-0 pb-5">
                 <BooksAuthor :author="book.author"/>
             </div>
         </div>

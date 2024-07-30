@@ -10,8 +10,8 @@
         <div class="row bg-secondary p-1">
             <CategoriesCarousel v-if="!categoriesPending" :categories="categories" @updateCategory="updateCategory($event)"/>
         </div>
-        <div class="row bg-secondary px-5 pb-5 pt-2 justify-content-around">
-            <div v-for="(book,i) in books" :key="i" class="col mx-1">
+        <div class="row bg-secondary px-5 pb-5 pt-2 justify-content-center">
+            <div v-for="(book,i) in books" :key="i" class="col mx-1 w-fc">
                 <BooksCard :book="book"/>
             </div>
         </div>
