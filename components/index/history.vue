@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div v-for="(row, i) in props.data" :key="i" :class="`${props.col} d-flex justify-content-start rounded-3 text-dark-blue bg-primary p-2 mb-3`">
+        <div v-for="(row, i) in props.data" :key="i" :class=" i !== (props.data.length - 1) ? `${props.col} d-flex justify-content-start rounded-3 text-dark-blue bg-primary p-2 mb-3` : `${props.col} d-flex justify-content-start rounded-3 text-dark-blue bg-primary p-2`">
                <div :class="`${props.bgColor} rounded-3 w-auto square col-auto  ff-meduim`"> <div class="center"> 0{{i+1}} </div> </div>                     
                     <p v-if="withTitle" class="font-meduim px-2 ff-semiBold">{{row.title}}: 
-                      <span class="font-meduim ff-regular"> {{row.text}}</span>
+                      <span class="font-meduim ff-regular lh-25"> {{row.text}}</span>
                     </p>
-                <p v-else class="font-meduim px-2 ff-regular"> {{row.text}}</p>
+                    <p v-else class="font-meduim px-2 ff-regular lh-25"> {{row.text}}</p>
         </div>
     </div>
 </template>

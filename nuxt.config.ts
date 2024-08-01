@@ -13,6 +13,9 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'ar',
       },
+      // script: [
+      //   {src: 'https://www.google.com/recaptcha/api.js?render=6LcrNxsqAAAAAEc4693eTJKT7ANdpSHAAO-70jeV'}
+      // ]
     }
   },
   ssr: true,

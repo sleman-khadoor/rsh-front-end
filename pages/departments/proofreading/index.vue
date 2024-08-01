@@ -2,8 +2,8 @@
      <div class="row bg-secondary m-0">
         <Title>Proofreading With Rashm</Title>
         <Meta name="description" content="Proofreading with Rashm" />
-        <div class="col-11 mx-auto my-5 text-center rounded-4">
-            <div class="mb-3">
+        <div class="col-11 mx-auto my-5 rounded-4">
+            <div class="mb-3 text-center">
                 <DepartmentsOverlayImg 
                  :imgSrc="'department2'" 
                  :btnColor="'bg-yellow'"
@@ -20,7 +20,7 @@
                     <DepartmentsCard :title="department.title" :iconSrc="department.iconSrc" :subTitle="''"/>
                 </div>
             </div>
-            <div id="contacts" class="mx-auto bg-primary text-center rounded-4 py-2">
+            <div id="contacts" class="mx-auto bg-primary rounded-4 py-2">
                 <ContactUsForm 
                 :title="$t('departments.proofreading.form.title')"
                 :subTitle="$t('departments.proofreading.form.subTitle')" 

@@ -22,7 +22,12 @@
     }
 }
 @each $key, $val in $weight{
-    .ff-#{$key} {
+    [dir="ltr"] .ff-#{$key} {
+        font-family: $val !important;
+    }  
+}
+@each $key, $val in $weight-ar{
+    [dir="rtl"] .ff-#{$key} {
         font-family: $val !important;
     }  
 }

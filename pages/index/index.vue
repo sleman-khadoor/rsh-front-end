@@ -12,17 +12,12 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 mb-4" style="padding-left: 0.4%;padding-right: 0.4%;">
                     <div class="d-flex mb-auto text-center h-100 rounded-4  bg-img">
                         <div class="p-3">
-                            <div class="text-choco font-xx-large ff-bold pb-2 pt-3">Rashm</div>
-                            <div class="text-dark-blue font-large ff-regular py-2 px-lg-5 px-md-4 px-sm-3">
-                                With Rashm Cultural, we combine creative translation
-                                with careful editing, give life to your texts through
-                                linguistic proofreading, and pave the way for authors
-                                with literary agency and professional marketing, to
-                                connect you to your audience by writing
-                                unique content.
+                            <div class="text-choco font-xx-large ff-bold pb-3 pt-3">{{t('index.title')}}</div>
+                            <div class="text-dark-blue font-large ff-regular py-2 px-lg-5 px-md-4 px-sm-3 lh-30">
+                                {{t('index.introduction')}}
                             </div>
                             <div class="mx-auto pt-2 pb-lg-3 pb-md-3 pb-sm-7">
-                                <Search @search="updateSearch($event)"/>
+                                <Search :dropdown="false"/>
                             </div>                            
                         </div>
                     </div>
@@ -33,15 +28,15 @@
                     <button class="bg-btn-img m-1 rounded-5 border-0 float my-auto"></button>
                 </a>
             </div>
-            <div class="row">
-                <div class="col-lg-8 col-md-6 col-sm-12">
+            <div class="row align-items-stretch">
+                <div ref="relativeCol" class="col-lg-8 col-md-6 col-sm-12 mb-3" style="height: fit-content;">
                     <div class="rounded-3 bg-dark-blue text-primary px-lg-5 px-md-2 px-sm-1 py-2 mb-4">
-                        <div class="p-4 font-x-large ff-regular lh-40"> Explore <span class="text-choco">Rashm's</span> history and our vision of providing Exceptional Services</div>
+                        <div class="p-4 font-x-large ff-regular lh-40"> {{t('index.rashmHistory1')}}<span class="text-choco">{{t('index.rashmHistory2')}}</span>{{t('index.rashmHistory3')}}</div>
                     </div>
                     <IndexHistory :data="history" :bgColor="'bg-secondary'" :withTitle="false" :col="'col-12'"/>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-1">
-                    <img src="/img/printer.webp" class="d-block w-100" alt="..." height="400" width="400">
+                    <img src="/img/printer.webp" class="d-block w-100" alt="rashm printer" :height="imgHeight" width="400">
                 </div>
             </div>
             <div class="row mb-2">
@@ -50,15 +45,13 @@
             <div class="row mb-2 pb-1 m-0" id="latestBooks">
                 <ColourfullDiv :text="$t('index.checkoutLatestBooks')" :bgColor="'bg-choco'"/>
             </div>
-            <div v-if="!booksPending" class="row mb-4 m-0">
+            <!-- <div v-if="!booksPending" class="row mb-4 m-0">
                 <IndexMultiCarousel :books="books"/>
-            </div>
-            <!-- <div v-if="!booksPending" class="row mb-2 m-0">
-                <IndexTest :books="books"/>
             </div> -->
-            <div v-if="blogsPending">Loading...</div>
-            <div v-else-if="blogsError">Error loading blogs: {{ blogsError.message }}</div>
-            <div v-else class="row mb-4">
+            <div v-if="!booksPending" class="row mb-2 m-0">
+                <IndexTest :books="books"/>
+            </div>
+            <div v-if="!blogsPending && !blogsError" class="row mb-4">
                 <IndexBlogs :blogs="blogs"/>
             </div>
         </div>
@@ -88,6 +81,8 @@ const books = ref([]);
 const booksPending = ref(false);
 const booksError = ref(null);
 const title = ref('');
+const relativeCol = ref(null);
+const imgHeight = ref(200);
 
 const headers = ref({});
 
@@ -111,13 +106,9 @@ const fetchData = async (url, dataRef, pendingRef, errorRef, queryParams) => {
     pendingRef.value = false;
   }
 };
-function updateSearch(newVal) {
-    title.value = newVal.value;
-    fetchData('books', books, booksPending, booksError, {
-        perPage: 15,
-        'filter[title]': title.value,
-    });
-}
+const updateImgValue = () => {
+    imgHeight.value =  relativeCol.value?.offsetHeight
+};
 // Fetch data on component mount
 onMounted(async () => {
   headers.value = API_HEADER(); // Set headers in the setup context
@@ -125,8 +116,9 @@ onMounted(async () => {
     await fetchData('news', news, newsPending, newsError, {
         perPage: 5,
     });
+    updateImgValue();
     await fetchData('books', books, booksPending, booksError, {
-        perPage: 15,
+        perPage: 9,
     });
     await fetchData('blogs', blogs, blogsPending, blogsError, {
         perPage: 6,
@@ -134,6 +126,7 @@ onMounted(async () => {
   } catch (error) {
     console.error('Error during onMounted fetch:', error);
   }
+  window.addEventListener('resize', updateImgValue)
 });
 </script>
 <style scoped>
@@ -151,8 +144,14 @@ onMounted(async () => {
     height: 70px;
     margin-top: -93px !important;
 }
-.bg-img{
+[dir="ltr"] .bg-img{
     background-image: url( '/svg/Square.svg' );
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+[dir="rtl"] .bg-img{
+    background-image: url( '/svg/Square-ar.svg' );
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;

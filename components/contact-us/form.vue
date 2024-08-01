@@ -1,17 +1,17 @@
 <template>
     <div class="row py-5">
-        <div v-if="!steps"  class="col-lg-5 px-5 text-dark-blue text-start">
+        <div v-if="!steps"  class="col-lg-5 px-5 text-dark-blue justify-content-start">
             <div class="font-xx-large fw-semibold mb-3">
                 {{props.title}}
             </div>
-            <div class="font-large ff-meduim mb-4">
+            <div class="font-large ff-meduim mb-4 lh-30">
                 {{props.subTitle}}
             </div>
             <div class="d-flex justify-content-start text-meduim mb-4">
                  <div class="d-flex justify-content-center rounded-1 w-auto col-auto">
                     <img src="/icon/phone.svg" alt="rashm" height="20" width="20">
                 </div>
-                <span class="text-dark-blue px-1 my-auto">+971 9854 2631 7852</span>
+                <span class="text-dark-blue px-1 my-auto" dir="ltr">+971 9854 2631 7852</span>
             </div>
             <div class="d-flex justify-content-start text-meduim mb-4">
                  <div class="d-flex justify-content-center rounded-1 w-auto col-auto">
@@ -26,7 +26,7 @@
                 <span class="text-dark-blue px-1 my-auto">Riyadh</span>
             </div>
         </div>
-        <div v-else class="col-lg-5 px-5 text-dark-blue text-start">
+        <div v-else class="col-lg-5 px-5 text-dark-blue">
             <div class="d-flex text-large">
                 <span class="font-xx-large fw-semibold">
                     {{props.title}}
@@ -38,10 +38,8 @@
                     <img :src="`/icon/${props.circleSrc}.svg`" alt="rashm" height="22" width="22">
                     <div class="hr bg-grey h-100 mx-auto" style="width:3px;"></div>
                 </div>
-                <div class="col-11 mb-4">
-                    Fill out the form with the required information
-                    and provide us with the material you want
-                    to translate
+                <div class="col-11 mb-4 lh-25">
+                    {{t('contactUs.steps.step1')}}
                 </div>
             </div>
             <div class="row mt-0 mb-4 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
@@ -49,47 +47,45 @@
                     <img :src="`/icon/${props.circleSrc}.svg`" alt="rashm" height="22" width="22">
                     <div class="hr bg-grey h-100 mx-auto" style="width:3px;"></div>
                 </div>
-                <div class="col-11 mb-4">
-                    We will provide you with information about
-                    our services and prices
+                <div class="col-11 mb-4 lh-25">
+                    {{t('contactUs.steps.step2')}}
                 </div>
             </div>
             <div class="row mt-0 mb-4 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
                 <div class="col-1 p-0 justify-content-center text-center">
                     <img :src="`/icon/${props.circleSrc}.svg`" alt="rashm" height="22" width="22">
                 </div>
-                <div class="col-11 mb-4">
-                    We will deliver the translation to you within
-                    the agreed upon time
+                <div class="col-11 mb-4 lh-25">
+                    {{t('contactUs.steps.step3')}}
                 </div>
             </div>
         </div>
         <div class="col-lg-7 px-5">
-            <form class="needs-validation"  @submit.prevent="checkValidate()" novalidate>
+            <form class="needs-validation"  @submit.prevent="checkValidate($event)" novalidate>
                  <div class="mb-4 d-flex justify-content-between">
-                    <input type="text" class="form-control bg-snow form-control h-50px" v-model="contactUsForm.name" id="name" placeholder="full name" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" class="form-control bg-snow form-control h-50px" v-model="contactUsForm.phone" id="mobile" placeholder="mobile number" required>
+                    <input type="text" class="form-control bg-snow form-control h-50px" v-model="contactUsForm.name" id="name" :placeholder="$t('contactUs.form.fullName')" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" class="form-control bg-snow form-control h-50px" v-model="contactUsForm.mobile" id="mobile" :placeholder="$t('contactUs.form.mobile')" required>
                 </div>
                 <div class="mb-4">
-                    <input type="email" class="form-control bg-snow h-50px" v-model="contactUsForm.mail" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="e-mail" required>
-                    <div class="invalid-feedback text-start">
-                         Please provide a valid e-mail.
+                    <input type="email" class="form-control bg-snow h-50px" v-model="contactUsForm.email" id="exampleInputEmail1" aria-describedby="emailHelp" :placeholder="t('contactUs.form.email')" required>
+                    <div class="invalid-feedback">
+                         {{$t('contactUs.form.emailValidation')}}
                     </div>
                 </div>
                 <div class="mb-4">
-                    <textarea class="form-control bg-snow" v-model="contactUsForm.description" id="exampleFormControlTextarea1" rows="5" placeholder="description" required></textarea>
-                    <div class="invalid-feedback text-start">
-                         Please provide a valid description.
+                    <textarea class="form-control bg-snow" v-model="contactUsForm.description" id="exampleFormControlTextarea1" rows="5" :placeholder="t('contactUs.form.description')" required></textarea>
+                    <div class="invalid-feedback">
+                         {{$t('contactUs.form.descriptionValidation')}}
                     </div>
                 </div>
                 <div v-if="steps" class="mb-2">
                     <div class="file-upload-container">
                         <input type="file" id="file-input" class="file-input" multiple @change="handleFileUpload" v-bind:disabled="flag">
                         <label for="file-input" class="file-label bg-snow text-light-grey h-50px">
-                            <img src="/icon/link.svg" alt="Upload Icon" class="upload-icon"> <span class="label-text">upload an attachment</span>
+                            <img src="/icon/link.svg" alt="Upload Icon" class="upload-icon"> <span class="label-text">&nbsp;{{t('contactUs.form.attachment')}}&nbsp;</span>
                         </label>
                     </div>
-                    <div v-if="flag" class="text-danger text-start mt-2">you can upload just 5 files</div>
+                    <div v-if="flag" class="text-danger mt-2">{{t('contactUs.form.attachmentValidation')}}</div>
                 </div>
                 <div v-if="steps" class="uploaded-files d-flex justify-content-start py-2 mb-2 flex flex-wrap">
                     <div v-for="(file, index) in files" :key="index" class="uploaded-file position-relative">
@@ -97,33 +93,53 @@
                         <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" @click="removeFile(index)" aria-label="Close"></button>
                     </div>
                 </div>
+                <!-- 6LcrNxsqAAAAAIjAUgca8kLJT8-e4vlHbV7Emwvg -->
+                <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="6LcrNxsqAAAAAEc4693eTJKT7ANdpSHAAO-70jeV" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
+                            <input class="form-control d-none" data-recaptcha="true" required data-error="Please complete the Captcha">
+                            <div class="help-block with-errors"></div>
+                </div>
                 <div class="d-grid gap-2">
-                    <button type="submit" :disabled="disabledBtn" :class="dynamicClass">Send</button>
+                    <button type="submit" :disabled="disabledBtn" :class="dynamicClass">{{$t('contactUs.form.send')}}</button>
                 </div>
             </form>
         </div>
     </div>
 </template>
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import { createEmitter } from '~/node_modules/@intlify/shared/dist/shared';
 // export default defineComponent({
-const props = defineProps<{
-  title: string;
-  serviceName: string;
-  subTitle: string;
-  color: string;
-  circleSrc: string;
-  steps: boolean;
-}>();
+const props = defineProps({
+  title: {
+    type: String
+  },
+  serviceName: {
+    type: String
+  },
+  subTitle: {
+    type: String
+  },
+  color: {
+    type: String
+  },
+  circleSrc: {
+    type: String
+  },
+  steps: {
+    type: Boolean
+  },
+});
+const {t} = useI18n()
 const runTimeConfig = useRuntimeConfig();
+const headers = ref({})
 const files = ref([])
 const uploadedFilesTosend = ref([])
 const emit = defineEmits() ;
 const contactUsForm = reactive({
             name: '',
-            phone: '',
-            mail: '',
+            mobile: '',
+            email: '',
             description: '',
             documents: null,
 })
@@ -174,37 +190,44 @@ const filehandler = () => {
             });
 };
 async function addRequest () {
-    const { data: responseData } = await useFetch(`${runTimeConfig.public.API_URL}/service-requests`, {
-        headers: {...API_HEADER(), 'Content-Type': 'multipart/form-data',"cache-control": "no-cache"},
+    console.log('testttttttttttt', uploadedFilesTosend.value);
+    let documents = [];
+    let i = 0;
+    for(i; i < uploadedFilesTosend.value.length; i++) {
+        documents.push(uploadedFilesTosend.value[i])
+    };
+    console.log('documeeeents', documents);
+    console.log('documeeeents', documents.toArray());
+    console.log('documeeeents', typeof documents);
+    const { data: responseData } = await $fetch(`${runTimeConfig.public.API_URL}/service-requests`, {
+        headers: {...headers.value, 'Content-Type': 'application/x-www-form-urlencoded', },
         method: 'post',
-        body: { 
-            service_name: props.serviceName,
-            fullname: value.name,
-            email: value.mail,
-            mobile: value.phone, 
-            description: value.description, 
-            documents: uploadedFilesTosend
-        }
+        body: new URLSearchParams({
+            'service_name': props.serviceName,
+            'fullname': contactUsForm.name,
+            'email': contactUsForm.email,
+            'mobile': contactUsForm.mobile,
+            'description': contactUsForm.description,
+            'documents': documents,
+        })
     })
 };
-async function checkValidate() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+async function checkValidate(event) {
             const forms = document.querySelectorAll('.needs-validation')
-            console.log('contuct us form', files.value);
-            // Loop over them and prevent submission
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                } else {
-                    console.log('form', uploadedFilesTosend.value);
-                }
-
-                form.classList.add('was-validated')
-                }, false)
-            })
+            console.log('contuct us form', Array.from(forms));
+            const form = Array.from(forms)[0]
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            } else {
+                addRequest()
+            }
+            form.classList.add('was-validated')
 };
+
+onMounted(()=> {
+    headers.value = API_HEADER()
+})
 
 </script>
 <style scoped>

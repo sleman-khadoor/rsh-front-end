@@ -3,16 +3,49 @@
   font-family: "RobotoBold";
   src: local("RobotoBold"),
   url(/fonts/Roboto-Bold.ttf) format("truetype");
+  unicode-range: U+000-5FF;
 }
 @font-face {
   font-family: "RobotoMedium";
   src: local("RobotoMedium"),
   url(/fonts/Roboto-Medium.ttf) format("truetype");
+  unicode-range: U+000-5FF;
 }
 @font-face {
   font-family: "RobotoRegular";
   src: local("RobotoRegular"),
   url(/fonts/Roboto-Regular.ttf) format("truetype");
+  unicode-range: U+000-5FF;
+}
+// @font-face {
+//   font-family: "CairoBold";
+//   src: local("CairoBold"),
+//   url(/fonts/Cairo-Bold.ttf) format("truetype");
+// }
+// @font-face {
+//   font-family: "CairoMedium";
+//   src: local("CairoMedium"),
+//   url(/fonts/Cairo-Medium.ttf) format("truetype");
+// }
+// @font-face {
+//   font-family: "CairoRegular";
+//   src: local("CairoRegular"),
+//   url(/fonts/Cairo-Regular.ttf) format("truetype");
+// }
+@font-face {
+  font-family: "NotoKufiArabicBold";
+  src: local("NotoKufiArabicBold"),
+  url(/fonts/NotoKufiArabic-Bold.ttf) format("truetype");
+}
+@font-face {
+  font-family: "NotoKufiArabicMedium";
+  src: local("NotoKufiArabicMedium"),
+  url(/fonts/NotoKufiArabic-Medium.ttf) format("truetype");
+}
+@font-face {
+  font-family: "NotoKufiArabicRegular";
+  src: local("NotoKufiArabicRegular"),
+  url(/fonts/NotoKufiArabic-Regular.ttf) format("truetype");
 }
 @import 'colors';
 @import 'fonts';
@@ -53,7 +86,27 @@ p {
   width: fit-content !important;
   max-width: fit-content !important;
 }
-// This CSS will run for mobile meduim screen
+.w-mc {
+  width: max-content !important;
+  max-width: max-content !important;
+}
+// This CSS will run for large screen
+@media only screen and (max-width: 1150px) {
+  .font-meduim {
+    font-size: 1.1rem !important;
+  }
+}
+@media only screen and (max-width: 1100px) {
+  .font-meduim {
+    font-size: 1.06875rem !important;
+  }
+}
+@media only screen and (max-width: 1064px) {
+  .font-meduim {
+    font-size: 0.99rem !important;
+  }
+}
+// This CSS will run for meduim screen
 @media only screen and (max-width: 900px) {
   .font-xx-large {
     font-size: 2.375rem !important;
@@ -63,6 +116,9 @@ p {
   }
   .font-large {
     font-size: 1.306rem !important;
+  }
+  .font-meduim {
+    font-size: 0.99rem !important;
   }
 }
 // This CSS will run for small screen
@@ -76,6 +132,9 @@ p {
   .font-large {
     font-size: 1.2375rem !important;
   }
+  .font-meduim {
+    font-size: 0.99rem !important;
+  }
 }
 // This CSS will run for mobile devices
 @media only screen and (max-width: 430px) {
@@ -87,5 +146,8 @@ p {
   }
   .font-large {
     font-size: 1.1rem !important;
+  }
+  .font-meduim {
+    font-size: 0.9rem !important;
   }
 }

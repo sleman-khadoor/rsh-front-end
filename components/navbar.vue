@@ -1,75 +1,99 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-lg bg-primary">
-            <div class="container-fluid px-5">
+        <nav class="navbar navbar-expand-lg bg-primary py-0">
+            <div class="container-fluid px-5 align-items-stretch">
             <a class="navbar-brand m-0" href="#">
                 <img src="/svg/logo.svg" class="d-block w-100" alt="rashm" height="70" width="70">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler h-40 my-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse w-100" id="navbarNavDropdown">
-                <ul class="navbar-nav w-100 justify-content-evenly nav-underline">
-                <li v-for="page in pages" :class="page.title === 'Departments' ? 'nav-item dropdown' : 'nav-item'">
-                    <NuxtLink v-if="!page.dropdown" :to="localePath(page.link)" class="nav-link text-dark-blue ff-regular font-small lh-24px" aria-current="page">{{ t(`navbar.${page.title}`) }}</NuxtLink>
-                    <div v-else class="nav-link dropdown-toggle text-dark-blue ff-regular font-small lh-24px" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                         {{t(`navbar.${page.title}`)}}
-                    </div>
-                    <ul class="dropdown-menu p-0 bg-snow border-0">
-                        <div class="d-flex flex-column flex-md-row">
-                            <div class="pl-2">
-                                <li class="p-2 d-flex">
-                                    <img src="/icon/translate-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                    <NuxtLink :to="localePath('/departments/translation')"class="dropdown-item px-1 py-0 text-choco">Translation</NuxtLink>
-                                </li>
-                                <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
-                                <li class="p-2 d-flex">
-                                    <img src="/icon/history-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                    <NuxtLink :to="localePath('/departments/creativeEditing')"class="dropdown-item px-1 py-0 text-choco">Creative editing</NuxtLink>
-                                </li>
-                                <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
-                                <li class="p-2 d-flex">
-                                    <img src="/icon/marketing-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                    <NuxtLink :to="localePath('/departments/marketing')"class="dropdown-item px-1 py-0 text-choco">Marketing service</NuxtLink>
-                                </li>
-                                <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
-                                <li class="p-2 d-flex">
-                                    <img src="/icon/literary-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                    <NuxtLink :to="localePath('/departments/literaryAgencyAuthors')"class="dropdown-item px-1 py-0 text-choco">Literary agency authors</NuxtLink>
-                                </li>
-                            </div>
-                            <div class="hr bg-dark-snow opacity-1 dynamic-divider"></div>
-                            <div class="pr-2">
-                                <li class="p-2 d-flex">
-                                    <img src="/icon/prof-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                    <NuxtLink :to="localePath('/departments/proofreading')" class="dropdown-item px-1 py-0 text-choco">Proofreading</NuxtLink>
-                                </li>
-                                <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
-                                <li class="p-2 d-flex">
-                                    <img src="/icon/book-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                    <NuxtLink :to="localePath('/departments/bookDelivery')" class="dropdown-item px-1 py-0 text-choco">Book delivery service</NuxtLink>
-                                </li>
-                                <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
-                                <li class="p-2 d-flex">
-                                    <img src="/icon/editing-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                    <NuxtLink :to="localePath('/departments/contentWriting')" class="dropdown-item px-1 py-0 text-choco">Content writing</NuxtLink>
-                                </li>
-                                <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
-                                <li class="p-2 d-flex">
-                                    <img src="/icon/event-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                    <NuxtLink :to="localePath('/departments/organizingEventsAndConferences')" class="dropdown-item px-1 py-0 text-choco">Organizing events and conferences</NuxtLink>
-                                </li>                    
-                            </div>
-                        </div>
-                    </ul>
+                <ul class="navbar-nav w-100 justify-content-evenly nav-underline h-100">
+                <li class="nav-item">
+                    <NuxtLink :to="localePath('/')" class="nav-link text-choco ff-regular h-100 align-content-center font-meduim lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.home`) }}</span></NuxtLink>
                 </li>
-                <li>
-                    <NuxtLink class="nav-link text-dark-blue ff-regular font-small lh-24px line-h"
+                <li class="nav-item">
+                    <NuxtLink :to="localePath('/about-us')" class="nav-link text-choco ff-regular h-100 align-content-center font-meduim lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.aboutUs`) }}</span></NuxtLink>
+                </li>
+                <li class="nav-item h-100 dropdown align-content-center">
+                    <div class="dropdown-toggle text-choco ff-regular font-meduim lh-24px" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none !important;">
+                            <span class="text-dark-blue">{{t(`navbar.departments`)}}</span>&nbsp;
+                        </div>
+                        <ul class="dropdown-menu p-0 bg-snow border-0">
+                            <div class="d-flex flex-column flex-md-row">
+                                <div class="pl-2">
+                                    <li class="p-2 d-flex">
+                                        <img src="/icon/translate-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/translation')"class="dropdown-item px-1 py-0 text-choco">Translation</NuxtLink>
+                                    </li>
+                                    <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
+                                    <li class="p-2 d-flex">
+                                        <img src="/icon/history-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/creativeEditing')"class="dropdown-item px-1 py-0 text-choco">Creative editing</NuxtLink>
+                                    </li>
+                                    <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
+                                    <li class="p-2 d-flex">
+                                        <img src="/icon/marketing-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/marketing')"class="dropdown-item px-1 py-0 text-choco">Marketing service</NuxtLink>
+                                    </li>
+                                    <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
+                                    <li class="p-2 d-flex">
+                                        <img src="/icon/literary-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/literaryAgencyAuthors')"class="dropdown-item px-1 py-0 text-choco">Literary agency authors</NuxtLink>
+                                    </li>
+                                </div>
+                                <div class="hr bg-dark-snow opacity-1 dynamic-divider"></div>
+                                <div class="pr-2">
+                                    <li class="p-2 d-flex">
+                                        <img src="/icon/prof-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/proofreading')" class="dropdown-item px-1 py-0 text-choco">Proofreading</NuxtLink>
+                                    </li>
+                                    <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
+                                    <li class="p-2 d-flex">
+                                        <img src="/icon/book-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/bookDelivery')" class="dropdown-item px-1 py-0 text-choco">Book delivery service</NuxtLink>
+                                    </li>
+                                    <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
+                                    <li class="p-2 d-flex">
+                                        <img src="/icon/editing-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/contentWriting')" class="dropdown-item px-1 py-0 text-choco">Content writing</NuxtLink>
+                                    </li>
+                                    <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
+                                    <li class="p-2 d-flex">
+                                        <img src="/icon/event-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/organizingEventsAndConferences')" class="dropdown-item px-1 py-0 text-choco">Organizing events and conferences</NuxtLink>
+                                    </li>                    
+                                </div>
+                            </div>
+                        </ul>
+                </li>
+                <li class="nav-item">
+                    <NuxtLink :to="localePath('/blogs')" class="nav-link text-choco ff-regular h-100 align-content-center font-meduim lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.blogs`) }}</span></NuxtLink>
+                </li>
+                <li class="nav-item">
+                    <NuxtLink :to="localePath('/books')" class="nav-link text-choco ff-regular h-100 align-content-center font-meduim lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.books`) }}</span></NuxtLink>
+                </li>
+                <li class="nav-item">
+                    <NuxtLink :to="localePath('/partners')" class="nav-link text-choco ff-regular h-100 align-content-center font-meduim lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.ourPartners`) }}</span></NuxtLink>
+                </li>
+                <li class="nav-item">
+                    <NuxtLink :to="localePath('/publish-with-us')" class="nav-link text-choco ff-regular h-100 align-content-center font-meduim lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.publishWithUs`) }}</span></NuxtLink>
+                </li>
+                <li class="nav-item">
+                    <NuxtLink :to="localePath('/contact-us')" class="nav-link text-choco ff-regular h-100 align-content-center font-meduim lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.contactUs`) }}</span></NuxtLink>
+                </li>
+                <li class="justify-content-center">
+                    <NuxtLink class="nav-link text-choco h-100 align-content-center ff-regular font-meduim lh-24px line-h d-flex flex-wrap align-items-center w-mc"
                     v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">
-                        {{ t('navbar.language') }}
+                        <!-- <div> -->
+                            <img src="/icon/global.svg" class="d-block w-fc mx-1" alt="lang" height="20" width="20">
+                            <span class="text-dark-blue w-fc">{{ t('navbar.language') }}</span>
+                        <!-- </div> -->
                     </NuxtLink>
                 </li>
                 </ul>
+                
             </div>
             </div>
         </nav>

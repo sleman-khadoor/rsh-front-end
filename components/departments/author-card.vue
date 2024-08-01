@@ -11,7 +11,7 @@
                 <div class="author-card shadow-sm bg-bg-secondary h-100">
                      <img :src="author.avatar" class="img-border" alt="Author Image" height="100" width="100">
                      <h5 class="mt-2 text-dark-blue font-meduim ff-meduim">{{author.name}}</h5>
-                     <p class="m-0 font-x-small ff-regular">
+                     <p class="m-0 font-x-small ff-regular lh-22">
                          {{author.about}}
                      </p>
                  </div>

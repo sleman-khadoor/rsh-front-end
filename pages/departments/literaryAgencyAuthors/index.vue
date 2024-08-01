@@ -2,8 +2,8 @@
      <div class="row bg-secondary m-0">
         <Title>literary Agency Authors with Rashm</Title>
         <Meta name="description" content="literary Agency Authors with Rashm" />
-        <div class="col-11 mx-auto my-5 text-center rounded-4">
-            <div class="mb-3">
+        <div class="col-11 mx-auto my-5 rounded-4">
+            <div class="mb-3 text-center">
                 <DepartmentsOverlayImg 
                  :imgSrc="'department4'" 
                  :btnColor="'bg-choco'"
@@ -13,7 +13,7 @@
                  :title="$t('departments.literaryAgencyAuthors.overlayImg.title')"/>
             </div>
             <div class="row mx-auto bg-primary justify-content-around rounded-4 py-5 mb-3">
-                <div class="font-x-large ff-meduim text-dark-blue text-center mb-3">Authors Represented By <span class="text-choco">Rashm</span></div>
+                <div class="font-x-large ff-meduim text-dark-blue text-center mb-3">{{t('departments.literaryAgencyAuthors.representedAuthor')}} <span class="text-choco">{{t('footer.title')}}</span></div>
                 <DepartmentsAuthorCard :authors="authors"/>
             </div>
             <div class="mb-3">
@@ -24,7 +24,7 @@
                     <DepartmentsCard :title="department.title" :iconSrc="department.iconSrc" :subTitle="''"/>
                 </div>
             </div>
-            <div id="contacts" class="mx-auto bg-primary text-center rounded-4 py-2">
+            <div id="contacts" class="mx-auto bg-primary rounded-4 py-2">
                 <ContactUsForm 
                 :title="$t('departments.literaryAgencyAuthors.form.title')" 
                 :subTitle="$t('departments.literaryAgencyAuthors.form.subTitle')" 

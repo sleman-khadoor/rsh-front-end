@@ -2,8 +2,8 @@
      <div class="row bg-secondary m-0">
         <Title>Organizing Events And Conferences with Rashm</Title>
         <Meta name="description" content="Organizing Events And Conferences with Rashm" />
-        <div class="col-11 mx-auto my-5 text-center rounded-4">
-            <div class="mb-3">
+        <div class="col-11 mx-auto my-5 rounded-4">
+            <div class="mb-3 text-center">
                 <DepartmentsOverlayImg 
                  :imgSrc="'department8'" 
                  :btnColor="'bg-gold'"
@@ -13,19 +13,19 @@
                  :title="$t('departments.organizingEventsandConferences.overlayImg.title')"/>
             </div>
             <div class="mb-4 bg-white rounded-3 pb-5 px-lg-5 px-md-3 px-sm-2">
-                <div class="w-75 mx-auto rounded-rectang bg-dark-blue text-white justify-content-center">
-                    <p class="font-large">Services of the Events & Conferences Department</p>
+                <div class="w-75 mx-auto rounded-rectang bg-dark-blue text-white justify-content-center text-center">
+                    <p class="font-large">{{t('departments.organizingEventsandConferences.title')}}</p>
                 </div>
-                <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">Organizing Literary Events</div>
+                <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">{{t('departments.organizingEventsandConferences.eventTitle')}}</div>
                 <IndexHistory class="row m-0 text-start" :col="`col-lg-12 col-md-12 col-sm-12`" :data="organaizingEvents" :bgColor="'bg-light-choco'" :withTitle="true"/>
-                <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">Organizing Conferences and Workshops</div>
+                <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">{{t('departments.organizingEventsandConferences.workshopTitle')}}</div>
                 <IndexHistory class="row m-0 text-start" :col="`col-lg-12 col-md-12 col-sm-12`" :data="organaizingWorkShop" :bgColor="'bg-light-choco'" :withTitle="true"/>
-                <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">Networking and Professional Development</div>
+                <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">{{t('departments.organizingEventsandConferences.networkingTitle')}}</div>
                 <IndexHistory class="row m-0 text-start" :col="`col-lg-12 col-md-12 col-sm-12`" :data="networking" :bgColor="'bg-light-choco'" :withTitle="true"/>
-                <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">Cultural Exchange Initiatives</div>
+                <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">{{t('departments.organizingEventsandConferences.culturalTitle')}}</div>
                 <IndexHistory class="row m-0 text-start" :col="`col-lg-12 col-md-12 col-sm-12`" :data="cultur" :bgColor="'bg-light-choco'" :withTitle="true"/>
             </div>
-            <div id="contacts" class="mx-auto bg-primary text-center rounded-4 py-2">
+            <div id="contacts" class="mx-auto bg-primary rounded-4 py-2">
                 <ContactUsForm 
                 :title="$t('departments.organizingEventsandConferences.form.title')" 
                 :subTitle="$t('departments.organizingEventsandConferences.form.subTitle')" 

@@ -11,7 +11,7 @@
                 <button v-if="(!props.gallery) && props.btn" type="button" :class="dynamicClass">
                   <div class="p-lg-1 font-meduim ff-regular">
                     {{$t('departments.requestBtn')}}
-                      <img src="/icon/arrow-circle-right.svg" :alt="props.title">
+                      <img src="/icon/arrow-circle-right.svg" class="rotate-ar" :alt="props.title">
                   </div>
                   </button>
                   </a>
@@ -45,8 +45,8 @@ const dynamicTitleClass = computed(() => {
 });
 // computed dynamic subtitle class
 const dynamicSubTitleClass = computed(() => {
-  return props.gallery ? 'font-small ff-regular mb-4' 
-  : 'font-large ff-regular mb-4 px-3 rsp-font';
+  return props.gallery ? 'font-small ff-regular mb-4 lh-22' 
+  : 'font-large ff-regular mb-4 px-3 rsp-font lh-30';
 });
 // computed dynamic Img
 const dynamicImg = computed(() => {
@@ -77,5 +77,8 @@ const dynamicImg = computed(() => {
   width: 100%;
   height: auto;
   min-height: auto;
+}
+[dir="rtl"] .rotate-ar{
+  transform: rotate(180deg);
 }
 </style>

@@ -2,20 +2,20 @@
     <div>
         <Title>Books with Rashm</Title>
         <Meta name="description" content="Books with Rashm" />
-        <div class="row bg-dark-blue pb-3">
+        <div class="row m-0 bg-dark-blue pb-3">
             <div class="col-lg-7 h-25 mx-auto">
-                <Search @search="updateSearch($event)"/>
+                <Search :dropdown="true" @search="updateSearch($event)"/>
             </div>
         </div>
-        <div class="row bg-secondary p-1">
+        <div class="row m-0 bg-secondary p-1">
             <CategoriesCarousel v-if="!categoriesPending" :categories="categories" @updateCategory="updateCategory($event)"/>
         </div>
-        <div class="row bg-secondary px-5 pb-5 pt-2 justify-content-center">
+        <div class="row m-0 bg-secondary px-5 pb-5 pt-2 justify-content-center">
             <div v-for="(book,i) in books" :key="i" class="col mx-1 w-fc">
                 <BooksCard :book="book"/>
             </div>
         </div>
-        <div class="row bg-secondary justify-content-center pb-5">
+        <div class="row m-0 bg-secondary justify-content-center pb-5">
             <ClientOnly>
                 <slot name="loading">
                     <Pagination v-if="!booksPending" :meta="booksMeta" @updatePage="updatePagination($event)"/>
@@ -28,6 +28,7 @@
     import { ref, onMounted } from 'vue';
     
     const runTimeConfig = useRuntimeConfig();
+    const router = useRouter();
     const headers = ref({});
     const page = ref(1);
     const category = ref(1);
@@ -109,6 +110,14 @@
 
     // Fetch categories and books when the component is mounted
     onMounted(async () => {
+        const query = useRoute().query;
+        if(query.searchKey) {
+            console.log('object',query);
+            title.value = query.searchKey
+             router.replace({ path: '/books'})
+        }
+        console.log('object', query);
+        console.log('object', title);
         headers.value = API_HEADER(); // Set headers in the setup context
         try {
             await fetchCategories();

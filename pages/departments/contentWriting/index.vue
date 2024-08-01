@@ -2,8 +2,8 @@
      <div class="row bg-secondary m-0">
         <Title>Content Writing with Rashm</Title>
         <Meta name="description" content="Content Writing with Rashm" />
-        <div class="col-11 mx-auto my-5 text-center rounded-4">
-            <div class="mb-3">
+        <div class="col-11 mx-auto my-5 rounded-4">
+            <div class="mb-3 text-center">
                 <DepartmentsOverlayImg 
                  :imgSrc="'department6'" 
                  :btnColor="'bg-light-blue'"
@@ -21,10 +21,10 @@
                 </div>
             </div>
             <div class="row mx-auto bg-primary justify-content-around rounded-4 p-5 pt-0 mb-3">
-                    <div class="font-x-large ff-meduim text-dark-blue text-center my-5">Types Of Content We Write</div>
+                    <div class="font-x-large ff-meduim text-dark-blue text-center my-5">{{t('departments.contentWriting.types.title')}}</div>
                     <DepartmentsTypesOfContent :contents="contents"/>
             </div>
-            <div id="contacts" class="mx-auto bg-primary text-center rounded-4 py-2">
+            <div id="contacts" class="mx-auto bg-primary rounded-4 py-2">
                 <ContactUsForm 
                 :title="$t('departments.contentWriting.form.title')" 
                 :subTitle="$t('departments.contentWriting.form.subTitle')" 
@@ -62,32 +62,32 @@ export default defineComponent({
     let contents = [
         {
             imgSrc: '1',
-            title: 'Social media content',
-            text: 'Posts on Facebook, Twitter Instagram and other platforms',
+            title: t('departments.contentWriting.types.type1.title'),
+            text: t('departments.contentWriting.types.type1.subTitle'),
             class: 'col-lg-3 my-1 px-1',
         },
         {
             imgSrc: '2',
-            title: 'Social media content',
-            text: 'Posts on Facebook, Twitter Instagram and other platforms',
+            title: t('departments.contentWriting.types.type2.title'),
+            text: t('departments.contentWriting.types.type2.subTitle'),
             class: 'col-lg-6 my-1 px-1',
         },
         {
             imgSrc: '3',
-            title: 'Social media content',
-            text: 'Posts on Facebook, Twitter Instagram and other platforms',
+            title: t('departments.contentWriting.types.type3.title'),
+            text: t('departments.contentWriting.types.type3.subTitle'),
             class: 'col-lg-3 my-1 px-1',
         },
         {
             imgSrc: '4',
-            title: 'Social media content',
-            text: 'Posts on Facebook, Twitter Instagram and other platforms',
+            title: t('departments.contentWriting.types.type4.title'),
+            text: t('departments.contentWriting.types.type4.subTitle'),
             class: 'col-lg-6 my-1 px-1',
         },
         {
             imgSrc: '5',
-            title: 'Social media content',
-            text: 'Posts on Facebook, Twitter Instagram and other platforms',
+            title: t('departments.contentWriting.types.type5.title'),
+            text: t('departments.contentWriting.types.type5.subTitle'),
             class: 'col-lg-6 my-1 px-1',
         },
     ]

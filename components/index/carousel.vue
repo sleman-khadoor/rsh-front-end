@@ -10,7 +10,7 @@
                 <div v-for="(item, i) in props.news" :key="i" :class="i === 0 ? 'carousel-item active' : 'carousel-item'" :style="`background: url(${item.cover_image}); background-size: cover; min-height: 440px;`">
                     <div class="carousel-caption d-block m-4" style="text-align: unset">
                         <span class="font-large ff-medium">{{ item.title }}</span>
-                        <p class="font-small ff-regular">{{ item.content }}</p>
+                        <p class="font-small ff-regular lh-25">{{ item.content }}</p>
                     </div>
                 </div>
                 </figure>

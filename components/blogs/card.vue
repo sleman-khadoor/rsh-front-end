@@ -7,8 +7,8 @@
                         </NuxtLink>
                         <div class="card-body">
                             <div class="row justify-content-between mb-2">
-                                <span class="text-choco font-x-small col text-start">{{blog.writer}}</span>
-                                <span class="text-dark-blue font-x-small col text-end">{{dateTimeFormatter(blog.date)}}</span>
+                                <span class="text-choco font-x-small col w-fc">{{blog.writer}}</span>
+                                <span class="text-dark-blue font-x-small col w-fc">{{dateTimeFormatter(blog.date)}}</span>
                             </div>
                             <div class="d-flex flex-wrap text-start">
                                 <img src="/icon/blog-book.svg" class="mx-1" alt="..." width="15" height="15">

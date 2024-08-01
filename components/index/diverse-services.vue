@@ -1,7 +1,7 @@
 <template>
     <div class="col-12 pt-4 pb-4">
         <div class="bg-primary rounded-4">
-            <div class="font-x-large ff-meduim text-dark-blue text-center pt-5">Discover <span class="text-choco">Rashm's</span> diverse services</div>
+            <div class="font-x-large ff-meduim text-dark-blue text-center pt-5">{{t('index.departmentsTitle1')}} <span class="text-choco">{{t('index.departmentsTitle2')}}</span> {{t('index.departmentsTitle3')}}</div>
             <div class="row p-5 justify-content-center align-align-items-stretch items-center">
                 <div v-for="(department, i) in departments" :key="i" class="col-lg-4 col-md-4 col-sm-6 mb-4">
                     <div class="card bg-secondary border-0 h-100">

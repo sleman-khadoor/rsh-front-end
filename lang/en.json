@@ -11,7 +11,31 @@
         "contactUs": "Contact Us",
         "language": "Arabic"
     },
+    "footer": {
+        "rashm": "Rashm was founded in 2005 as a small company specializing in translation and creative editing services.",
+        "title": "Rashm",
+        "pages": "Pages",
+        "contact": "Contact",
+        "departments": "Departments"
+    },
+    "search": {
+        "label": "Search for a book",
+        "by": {
+            "book": "Book Name",
+            "author": "Author Name"
+        }
+    },
     "index": {
+        "title": "Rashm",
+        "introduction": "With Rashm Cultural, we combine creative translation with careful editing, give life to your texts through linguistic proofreading, and pave the way for authors with literary agency and professional marketing, to connect you to your audience by writing unique content.",
+        "rashmHistory1": "Explore ",
+        "rashmHistory2": "Rashm's ",
+        "rashmHistory3": "history and our vision of providing Exceptional Services",
+        "departmentsTitle1" : "Discover",
+        "departmentsTitle2" : "Rashm's",
+        "departmentsTitle3" : "diverse services",
+        "blogsTitle1" : "Check our latest",
+        "blogsTitle2" : "Blogs",
         "checkoutLatestBooks": "Check out the latest books added by Rashm",
         "history": {
             "history1": "Rashm was founded in 2005 as a small company specializing in translation and creative editing services.",
@@ -21,7 +45,25 @@
     },
     "contactUs": {
         "title": "Contact Us",
-        "subTitle": "Fill out the form and we will respond to you within a maximum of 24 hours"
+        "subTitle": "Fill out the form and we will respond to you within a maximum of 24 hours",
+        "form": {
+            "fullName": "full name",
+            "fullNameValidation": "full name",
+            "mobile": "mobile number",
+            "mobileValidation": "mobile number",
+            "email": "e-mail",
+            "emailValidation": "Please enter a valid e-mail",
+            "description": "description",
+            "descriptionValidation": "Please enter a valid description",
+            "attachment": "upload attachments",
+            "attachmentValidation": "you can upload just 5 files",
+            "send": "Send"
+        },
+        "steps": {
+            "step1": "Fill out the form with the required information and provide us with the material you want to translate",
+            "step2": "We will provide you with information about our services and prices",
+            "step3": "We will deliver the translation to you within the agreed upon time"
+        }
     },
     "departments": {
         "with": "With",
@@ -81,6 +123,7 @@
                 "title": "Literary agency for authors",
                 "text": "We offer literary agency services to help you publish your work. We work with you to develop an effective publishing strategy Submit your work to appropriate publishers."
             },
+            "representedAuthor": "Authors Represented By",
             "request": "Request a Literary agency service for authors now and enjoy the following benefits",
             "departments": {
                 "department1": "Increase the chances of publishing work",
@@ -90,6 +133,9 @@
             "form": {
                 "title": "Contact",
                 "subTitle": "Literary agency service for authors"
+            },
+            "author": {
+                "publications": "Writer's Publications"
             }
         },
         "marketing":{
@@ -119,6 +165,29 @@
                 "department3": "Search engine optimization",
                 "department4": "Save your time"
             },
+            "types": {
+                "title": "Types Of Content We Write",
+                "type1": {
+                    "title": "Social media content",
+                    "subTitle": "Posts on Facebook, Twitter Instagram and other platforms"
+                },
+                "type2": {
+                    "title": "Social media content",
+                    "subTitle": "Posts on Facebook, Twitter Instagram and other platforms"
+                },
+                "type3": {
+                    "title": "Social media content",
+                    "subTitle": "Posts on Facebook, Twitter Instagram and other platforms"
+                },
+                "type4": {
+                    "title": "Social media content",
+                    "subTitle": "Posts on Facebook, Twitter Instagram and other platforms"
+                },
+                "type5": {
+                    "title": "Social media content",
+                    "subTitle": "Posts on Facebook, Twitter Instagram and other platforms"
+                }
+            },
             "form": {
                 "title": "Contact",
                 "subTitle": "Content writer department"
@@ -146,6 +215,11 @@
                 "title": "organizing events & conferences",
                 "text": "We are delighted to announce the launch of a new department within Rashm Cultural Foundation, dedicated to organizing events and conferences. This initiative aims to further enrich the literary community by facilitating meaningful engagements and fostering professional development."
             },
+            "title": "Services of the Events & Conferences Department",
+            "eventTitle": "Organizing Literary Events",
+            "workshopTitle": "Organizing Conferences and Workshops",
+            "networkingTitle": "Cultural Exchange Initiatives",
+            "culturalTitle": "Networking and Professional Development",
             "request": "Request a Book delivery service now and enjoy the following benefits",
             "departments": {
                 "department1": "Professional typesetting of texts",
@@ -164,6 +238,8 @@
                 "title": "Publish with us",
                 "text": "From manuscript to library, an easy journey with our publishing services."
         },
+        "achieveDream": "We are here to help you achieve your dream!",
+        "withServices": "With our services, you will get",
         "services": {
             "service1": {
                 "title": "Free evaluation of your manuscript",
@@ -194,6 +270,7 @@
                 "subTitle": "We provide you with support and guidance throughout the publishing journey, from manuscript preparation to book publication."
             }
         },
+        "whyPublishWithRashm": "Why To Publish With Rashm?",
         "whyRashm": {
             "cause1": {
                 "title": "Extensive experience",
@@ -211,6 +288,18 @@
                 "title": "Personal approach",
                 "subTitle": "We offer each author a personal approach to suit their specific needs."
             }
+        },
+        "requirementTitle": "To publish with us You Should Meet These requirements",
+        "requirements":{
+            "reqirement1": {
+                "title": "Requirement name",
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+            }
+        },
+        "contact": {
+            "AreYouReady": "Are you ready to turn your manuscript into a book?",
+            "forMoreInfo": "Contact us today for a quote or more information",
+            "contactMsg": "Contact us at the following email"
         }
     },
     "aboutUs": {
@@ -219,11 +308,14 @@
             "text": "Dar Rashm for Publishing and Distribution is a leading Saudi publishing house established in 2019 in the city of Arar, Kingdom of Saudi Arabia."
         },
         "aims": {
+            "title": "Rashm aims to",
             "aim1": "Enriching the Arab library with purposeful and diverse publications in various fields, with a focus on Arabic literature. All kinds of books scientific and intellectual books, children’s books, and human development books.",
             "aim2": "Discovering new literary talents and supporting them by publishing their first works and offering them publishing opportunities.",
             "aim3": "Contributing to spreading Arab culture by participating in Arab and international book fairs, and organizing cultural and literary events."
         },
+        "achievements": "Achievements Of Rashm Publishing House",
         "publishingHouses": {
+            "title": "Rasham Publishing House is distinguished by the following",
             "publishingHouse1": "Commitment to the highest quality standards at all stages",
             "publishingHouse2": "Selecting important topics and Modern problems",
             "publishingHouse3": "Diversity of its publications to satisfy readers' needs",
@@ -231,5 +323,36 @@
             "publishingHouse5": "Designing distinctive covers that attract readers",
             "publishingHouse6": "Widely distribution of its books through various sales channels"
         }
+    },
+    "ourPartners": {
+        "title": "Our Partners",
+        "subTitle": "Rashm is an exclusive agent for a number of prestigious publishers in various fields To communicate please fill out the form below",
+        "toRequest": "To Request A service",
+        "contactMsg": "Contact us at the following email"
+    },
+    "blogs": {
+        "similarBlogs": "Similar Blogs"
+    },
+    "books": {
+        "categories": "Categories",
+        "year": "Printing year",
+        "format": "Format",
+        "ISBN": "ISBN",
+        "EISBN": "EISBN",
+        "reviews": {
+            "title": "Reviews"
+        },
+        "awards": {
+            "title": "Awards"
+        }
+    },
+    "days": {
+        "Sunday": "Sunday",
+        "Monday": "Monday",
+        "Tuesday": "Tuesday",
+        "Wednesday": "Wednesday",
+        "Thursday": "Thursday",
+        "Friday": "Friday",
+        "Saturday": "Saturday"
     }
 }
