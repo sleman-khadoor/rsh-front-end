@@ -5,7 +5,7 @@
         <div class="col-11 mx-auto my-5 bg-primary rounded-4 pt-5 px-lg-5 px-md-5 px-sm-4 text-dark-blue">
             <div class="row">
                 <div class="col col-auto px-0 mx-auto justify-content-center font-meduim lh-25 mb-5">
-                    <img :src="book.cover_image" class="d-block mx-auto mb-2" :alt="book.title" height="340" width="280">
+                    <img :src="url + book.cover_image" class="d-block mx-auto mb-2" :alt="book.title" height="340" width="280">
                     <div class="d-flex flex-wrap align-items-center ff-meduim mb-1"  style="width: 280px;">
                         <img src="/icon/categories.svg" class="d-block my-auto mr-2" alt="..." width="20" height="20">&nbsp;
                         {{$t('books.categories')}}: &nbsp;
@@ -68,7 +68,9 @@
     </div>
 </template>
 <script setup>
+import { baseURL } from '@/utils/global';
 const { slug } = useRoute().params;
+const url = ref(baseURL);
 const runTimeConfig = useRuntimeConfig();
 const setI18nParams = useSetI18nParams();
 const switchLocalePath = useSwitchLocalePath();
@@ -92,6 +94,12 @@ const { data: book, pending: bookPending, refresh: bookRefresh} = await useFetch
         onResponseError({ request, response, options }) {
             console.log('response error', response)
         }
+});
+
+onMounted(() => {
+  if (process.client) {
+    url.value = baseURL;
+  }
 });
 </script>
 <style scoped>

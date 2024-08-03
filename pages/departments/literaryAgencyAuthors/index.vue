@@ -30,7 +30,8 @@
                 :subTitle="$t('departments.literaryAgencyAuthors.form.subTitle')" 
                 :color="'bg-choco'" 
                 :circleSrc="'circle-choco'"
-                :steps="true" />
+                :steps="true"
+                :serviceName="'literary_agency_service'" />
             </div>
         </div>
         </div>

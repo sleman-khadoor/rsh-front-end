@@ -30,7 +30,8 @@
                 :subTitle="$t('departments.contentWriting.form.subTitle')" 
                 :color="'bg-light-blue'" 
                 :circleSrc="'circle-light-blue'"
-                :steps="true" />
+                :steps="true"
+                :serviceName="'content_writing_service'" />
             </div>
         </div>
         </div>

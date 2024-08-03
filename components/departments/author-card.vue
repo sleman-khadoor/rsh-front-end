@@ -9,7 +9,7 @@
             <div v-for="(author, subIndex) in chunk" :key="subIndex" style="height: inherit !important" class="carousel-image rounded-4 col-lg-3 col-md-4 col-md-6">
                <NuxtLink :to="localePath(`/departments/literaryAgencyAuthors/${getSlugByLang(author?.slug)}`)" style="text-decoration: unset">
                 <div class="author-card shadow-sm bg-bg-secondary h-100">
-                     <img :src="author.avatar" class="img-border" alt="Author Image" height="100" width="100">
+                     <img :src="url + author.avatar" class="img-border" alt="Author Image" height="100" width="100">
                      <h5 class="mt-2 text-dark-blue font-meduim ff-meduim">{{author.name}}</h5>
                      <p class="m-0 font-x-small ff-regular lh-22">
                          {{author.about}}
@@ -23,10 +23,12 @@
     </div>
 </template>
 <script>
+import { baseURL } from '@/utils/global';
 export default defineComponent({
     props: ['authors'],
     setup(props) {
       const test = ref(0);
+      const url = ref(baseURL);
       const images = ref(props.authors);
       const chunks = ref([]);
       const createChunks = () => {
@@ -51,13 +53,17 @@ export default defineComponent({
         }
       };
       onMounted(() => {
+        if (process.client) {
+          url.value = baseURL;
+        }
         createChunks()
         window.addEventListener('resize', createChunks)
       });
 
       watch(images, createChunks);
       return {
-          chunks
+          chunks,
+          url
       }
     },
 });

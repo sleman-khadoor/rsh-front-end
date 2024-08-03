@@ -2,7 +2,9 @@
     <div id="carouselExampleControls" class="carousel">
     <div class="carousel-inner" ref="carouselInner">
         <div ref="carouselItem" v-for="(book, i) in books" :class="i == 0 ? 'carousel-item active' : 'carousel-item'">
-            <img :src="book.cover_image" width="200" height="280" class="img-shadow d-block" :alt="book.title">
+          <NuxtLink :to="localePath(`/books/${getSlugByLang(book?.slug)}`)">
+            <img :src="url + book.cover_image" width="200" height="280" class="img-shadow d-block" :alt="book.title">
+          </NuxtLink>
         </div>
     </div>
     <button class="carousel-control-prev" @click="castumPrev()" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -17,6 +19,7 @@
 </template>
 <script setup>
 import { ref, onMounted } from 'vue';
+import { baseURL } from '@/utils/global';
 const { locale } = useI18n()
 const props = defineProps({
   books: {
@@ -25,6 +28,7 @@ const props = defineProps({
 });
 const carouselInner = ref(null);
 const carouselItem = ref(null);
+const url = ref(baseURL);
 var carouselWidth = ref(0);
 var cardWidth = ref(0);
 var scrollPosition = ref(0);
@@ -103,6 +107,9 @@ function detectDirection() {
   isRtl.value = locale.value === 'ar';
 }
 onMounted(async () => {
+    if (process.client) {
+      url.value = baseURL;
+    }
     detectDirection()
     scrollPosition.value = 0;
     carouselWidth.value = carouselInner.value.scrollWidth;

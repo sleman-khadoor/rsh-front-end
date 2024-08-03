@@ -26,7 +26,8 @@
                 :subTitle="$t('departments.proofreading.form.subTitle')" 
                 :color="'bg-yellow'"
                 :circleSrc="'circle-yellow'"
-                :steps="true" />
+                :steps="true"
+                :serviceName="'proofreading_service'" />
             </div>
         </div>
         </div>

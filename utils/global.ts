@@ -15,6 +15,8 @@ export function getSlugByLang (slug : any) {
        return slug.ar
     }
 }
+// BaseURL
+export const baseURL = 'http://127.0.0.1:9000/'
 // API HEADER
 export function API_HEADER() {
   try {

@@ -31,7 +31,7 @@
             <div class="row align-items-stretch">
                 <div ref="relativeCol" class="col-lg-8 col-md-6 col-sm-12 mb-3" style="height: fit-content;">
                     <div class="rounded-3 bg-dark-blue text-primary px-lg-5 px-md-2 px-sm-1 py-2 mb-4">
-                        <div class="p-4 font-x-large ff-regular lh-40"> {{t('index.rashmHistory1')}}<span class="text-choco">{{t('index.rashmHistory2')}}</span>{{t('index.rashmHistory3')}}</div>
+                        <div class="p-4 font-x-large ff-regular lh-40"> {{t('index.rashmHistory1')}} <span class="text-choco">{{t('index.rashmHistory2')}}</span>{{t('index.rashmHistory3')}}</div>
                     </div>
                     <IndexHistory :data="history" :bgColor="'bg-secondary'" :withTitle="false" :col="'col-12'"/>
                 </div>

@@ -26,7 +26,8 @@
                 :subTitle="$t('departments.creativeEditing.form.subTitle')" 
                 :color="'bg-purple'" 
                 :circleSrc="'circle-purple'"
-                :steps="true" />
+                :steps="true"
+                :serviceName="'creative_editing_service'" />
             </div>
         </div>
         </div>

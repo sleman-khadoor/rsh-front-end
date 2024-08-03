@@ -8,7 +8,7 @@
                 </div>
                 <div class="text-small ff-regular text-white-gray">{{t('footer.rashm')}}</div>
                 <div class="d-flex my-3">
-                    <a v-for="contact in socialMedia" :key="contact" :href="contact.value">
+                    <a v-for="contact in socialMedia" :key="contact" :href="contact.value" target="_blank">
                         <img  :src="`/icon/${contact.type}.svg`" :alt="`rashm ${contact.type}`" height="21" width="21" class="mx-2">
                     </a>
                 </div>
@@ -132,10 +132,10 @@ const contacts = ref([]);
 const contactsPending = ref(false);
 const contactsError = ref(null);
 const contactInfo = computed(() => {
-  return contacts.value.filter((e) => (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'whatsapp' && e.type !== 'facebook'))
+  return contacts.value.filter((e) => (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'linkedIn' && e.type !== 'facebook' && e.type !== 'en_location' && e.type !== 'ar_location'))
 });
 const socialMedia = computed(() => {
-  return contacts.value.filter((e) => (e.type !== 'phone' && e.type !== 'email'))
+  return contacts.value.filter((e) => (e.type !== 'phone' && e.type !== 'email' && e.type !== 'en_location' && e.type !== 'ar_location'))
 });
 const headers = ref({});
 

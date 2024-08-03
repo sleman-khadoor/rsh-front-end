@@ -57,7 +57,11 @@
             "descriptionValidation": "Please enter a valid description",
             "attachment": "upload attachments",
             "attachmentValidation": "you can upload just 5 files",
-            "send": "Send"
+            "send": "Send",
+            "alert": {
+                "success": "Your service request has been registered successfully",
+                "danger": "Your service request hasn't been registered, somthing went wrong."
+            }
         },
         "steps": {
             "step1": "Fill out the form with the required information and provide us with the material you want to translate",

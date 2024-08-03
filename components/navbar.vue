@@ -20,49 +20,49 @@
                     <div class="dropdown-toggle text-choco ff-regular font-meduim lh-24px" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none !important;">
                             <span class="text-dark-blue">{{t(`navbar.departments`)}}</span>&nbsp;
                         </div>
-                        <ul class="dropdown-menu p-0 bg-snow border-0">
-                            <div class="d-flex flex-column flex-md-row">
+                        <ul class="dropdown-menu p-0 bg-snow border-0 w-fc">
+                            <div class="d-flex flex-column flex-md-row w-fc">
                                 <div class="pl-2">
                                     <li class="p-2 d-flex">
-                                        <img src="/icon/translate-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/translation')"class="dropdown-item px-1 py-0 text-choco">Translation</NuxtLink>
+                                        <img src="/icon/translate-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.translation.overlayImg.title`)" width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/translation')"class="dropdown-item px-1 py-0 text-choco">{{t(`departments.translation.overlayImg.title`)}}</NuxtLink>
                                     </li>
                                     <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
                                     <li class="p-2 d-flex">
-                                        <img src="/icon/history-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/creativeEditing')"class="dropdown-item px-1 py-0 text-choco">Creative editing</NuxtLink>
+                                        <img src="/icon/history-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.creativeEditing.overlayImg.title`)" width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/creativeEditing')"class="dropdown-item px-1 py-0 text-choco">{{t(`departments.creativeEditing.overlayImg.title`)}}</NuxtLink>
                                     </li>
                                     <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
                                     <li class="p-2 d-flex">
-                                        <img src="/icon/marketing-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/marketing')"class="dropdown-item px-1 py-0 text-choco">Marketing service</NuxtLink>
+                                        <img src="/icon/marketing-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.marketing.overlayImg.title`)" width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/marketing')"class="dropdown-item px-1 py-0 text-choco">{{t(`departments.marketing.overlayImg.title`)}}</NuxtLink>
                                     </li>
                                     <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
                                     <li class="p-2 d-flex">
-                                        <img src="/icon/literary-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/literaryAgencyAuthors')"class="dropdown-item px-1 py-0 text-choco">Literary agency authors</NuxtLink>
+                                        <img src="/icon/literary-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.literaryAgencyAuthors.overlayImg.title`)" width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/literaryAgencyAuthors')"class="dropdown-item px-1 py-0 text-choco">{{t(`departments.literaryAgencyAuthors.overlayImg.title`)}}</NuxtLink>
                                     </li>
                                 </div>
                                 <div class="hr bg-dark-snow opacity-1 dynamic-divider"></div>
                                 <div class="pr-2">
                                     <li class="p-2 d-flex">
-                                        <img src="/icon/prof-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/proofreading')" class="dropdown-item px-1 py-0 text-choco">Proofreading</NuxtLink>
+                                        <img src="/icon/prof-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.proofreading.overlayImg.title`)" width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/proofreading')" class="dropdown-item px-1 py-0 text-choco">{{t(`departments.proofreading.overlayImg.title`)}}</NuxtLink>
                                     </li>
                                     <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
                                     <li class="p-2 d-flex">
-                                        <img src="/icon/book-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/bookDelivery')" class="dropdown-item px-1 py-0 text-choco">Book delivery service</NuxtLink>
+                                        <img src="/icon/book-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.bookDelivery.overlayImg.title`)" width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/bookDelivery')" class="dropdown-item px-1 py-0 text-choco">{{t(`departments.bookDelivery.overlayImg.title`)}}</NuxtLink>
                                     </li>
                                     <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
                                     <li class="p-2 d-flex">
-                                        <img src="/icon/editing-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/contentWriting')" class="dropdown-item px-1 py-0 text-choco">Content writing</NuxtLink>
+                                        <img src="/icon/editing-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.contentWriting.overlayImg.title`)" width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/contentWriting')" class="dropdown-item px-1 py-0 text-choco">{{t(`departments.contentWriting.overlayImg.title`)}}</NuxtLink>
                                     </li>
                                     <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
                                     <li class="p-2 d-flex">
-                                        <img src="/icon/event-drop-icon.svg" class="d-block mb-auto mx-1" alt="..." width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/organizingEventsAndConferences')" class="dropdown-item px-1 py-0 text-choco">Organizing events and conferences</NuxtLink>
+                                        <img src="/icon/event-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.organizingEventsandConferences.overlayImg.title`)" width="20" height="20">
+                                        <NuxtLink :to="localePath('/departments/organizingEventsAndConferences')" class="dropdown-item px-1 py-0 text-choco">{{t(`departments.organizingEventsandConferences.overlayImg.title`)}}</NuxtLink>
                                     </li>                    
                                 </div>
                             </div>
@@ -159,7 +159,7 @@
 //     }
 // })
 </script>
-<style >
+<style>
 .dropdown-menu {
     white-space: nowrap;
 }
@@ -170,6 +170,9 @@
 .dropdown-item.active, .dropdown-item:active {
     background-color: unset !important;
 }
+.dropdown-item {
+    text-align: start !important;
+}
 .dynamic-divider {
     width: 1px !important;
     height: unset;
@@ -179,5 +182,8 @@
         height: 1px !important;
         width: unset !important;
     }
+}
+[dir="rtl"] .navbar-expand-lg .navbar-nav .dropdown-menu{
+    left: auto;
 }
 </style>

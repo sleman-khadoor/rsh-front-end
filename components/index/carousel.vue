@@ -7,7 +7,7 @@
             
             <div class="carousel-inner rounded-4 h-100">
                 <figure class="overlay h-100">
-                <div v-for="(item, i) in props.news" :key="i" :class="i === 0 ? 'carousel-item active' : 'carousel-item'" :style="`background: url(${item.cover_image}); background-size: cover; min-height: 440px;`">
+                <div v-for="(item, i) in props.news" :key="i" :class="i === 0 ? 'carousel-item active' : 'carousel-item'" :style="`background: url(${url + item.cover_image}); background-size: cover; min-height: 400px; height: inherit !important`">
                     <div class="carousel-caption d-block m-4" style="text-align: unset">
                         <span class="font-large ff-medium">{{ item.title }}</span>
                         <p class="font-small ff-regular lh-25">{{ item.content }}</p>
@@ -19,10 +19,19 @@
     </div>
 </template>
 
-<script setup lang="ts">
-const props = defineProps<{
-  news: { cover_image: string; title: string; content: string }[];
-}>();
+<script setup>
+import { baseURL } from '@/utils/global';
+const props = defineProps({
+  news: {
+    type: Array
+  }
+});
+const url = ref(baseURL);
+onMounted(() => {
+  if (process.client) {
+    url.value = baseURL;
+  }
+});
 </script>
 
 <style scoped>

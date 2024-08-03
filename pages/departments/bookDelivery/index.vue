@@ -26,7 +26,8 @@
                 :subTitle="$t('departments.bookDelivery.form.subTitle')" 
                 :color="'bg-tial'" 
                 :circleSrc="'circle-tial'"
-                :steps="true" />
+                :steps="true"
+                :serviceName="'book_delivery_service'" />
             </div>
         </div>
         </div>

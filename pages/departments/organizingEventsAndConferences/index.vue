@@ -31,7 +31,8 @@
                 :subTitle="$t('departments.organizingEventsandConferences.form.subTitle')" 
                 :color="'bg-gold'" 
                 :circleSrc="'circle-gold'"
-                :steps="true" />
+                :steps="true"
+                :serviceName="'organizing_events_conferences_service'" />
             </div>
         </div>
         </div>

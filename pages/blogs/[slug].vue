@@ -3,7 +3,7 @@
         <Title>Blog name with Rashm</Title>
         <Meta name="description" content="Blog Name with Rashm" />
         <div class="col-12 mx-auto rounded-4 py-5 px-lg-5 px-md-5 px-sm-4 text-dark-blue">
-            <img :src="blog.cover_image" class="d-block w-100 object-fit-cover mb-3" :alt="blog.title" height="375">
+            <img :src="url + blog.cover_image" class="d-block w-100 object-fit-cover mb-3" :alt="blog.title" height="375">
             <div class="d-flex flex-wrap mb-3">
                 <span v-for="cat in blog.blog_categories" class="badge text-choco bg-dark-snow font-small ff-regular m-1">{{cat.title}}</span>
             </div>
@@ -33,9 +33,10 @@
     </div>
 </template>
 <script setup>
-
+import { baseURL } from '@/utils/global';
 const { slug } = useRoute().params;
 const { t } = useI18n();
+const url = ref(baseURL);
 const runTimeConfig = useRuntimeConfig();
 const setI18nParams = useSetI18nParams();
 const switchLocalePath = useSwitchLocalePath();
@@ -55,6 +56,9 @@ const getBlog = async () => {
 };
 
 onMounted(async () => {
+  if (process.client) {
+    url.value = baseURL;
+  }
   const blog = await getBlog();
 });
 </script>

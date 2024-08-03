@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="d-flex author-description p-0">
-            <img :src="props.author?.avatar" class="p-0 mb-2 img-border" alt="Author Image">
+            <img :src="url + props.author?.avatar" class="p-0 mb-2 img-border" alt="Author Image">
             <span class="font-meduim ff-meduim my-auto px-2">{{props.author?.name}}</span>
         </div>
         <div class="row font-small ff-regular m-0 p-0 lh-25">
@@ -9,10 +9,18 @@
         </div>
     </div>
 </template>
-<script setup lang="ts">
-const props = defineProps<{
-  author: object,
-}>()
+<script setup>
+import { baseURL } from '@/utils/global';
+
+const props = defineProps({
+  author:{type: Object}
+});
+const url = ref(baseURL);
+onMounted(() => {
+  if (process.client) {
+    url.value = baseURL;
+  }
+});
 </script>
 
 <style scoped>

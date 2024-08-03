@@ -1,13 +1,13 @@
 <template>
     <div class="col-12 pb-4">
         <div class="bg-primary rounded-5">
-            <div class="font-x-large ff-meduim text-dark-blue text-center pt-5">{{t('index.blogsTitle1') }}<span class="text-choco">{{t('index.blogsTitle2') }}</span></div>
+            <div class="font-x-large ff-meduim text-dark-blue text-center pt-5">{{t('index.blogsTitle1') }} <span class="text-choco">{{t('index.blogsTitle2') }}</span></div>
             <div class="row p-5 justify-content-center items-center">
                 <div v-for="(blog, i) in props.blogs" :key="i" class="col-lg-4 col-md-4 col-sm-6 mb-3">
                     <div class="card  bg-secondary border-0 ma-1">
                         <NuxtLink :to="localePath(`/blogs/${blog.slug}`)">
                         <figure class="overlay">
-                            <img :src="blog.cover_image" class="card-img-top" :alt="blog.title" width="250" height="280">
+                            <img :src="url + blog.cover_image" class="card-img-top" :alt="blog.title" width="250" height="280">
                         </figure>
                         </NuxtLink>
                         <div class="card-body">
@@ -28,10 +28,18 @@
     </div>
 </template>
 <script setup>
+import { baseURL } from '@/utils/global';
+
 const { t } = useI18n();
 const props = defineProps({
   blogs: {
     type: Object
+  }
+});
+const url = ref(baseURL);
+onMounted(() => {
+  if (process.client) {
+    url.value = baseURL;
   }
 });
 </script>

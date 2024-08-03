@@ -2,7 +2,7 @@
                 <div class="card  bg-primary border-0  mx-auto my-3 w-fc">
                         <NuxtLink :to="localePath(`/blogs/${props.blog.slug}`)">
                           <figure class="overlay">
-                            <img :src="blog.cover_image" class="card-img-top" :alt="blog.title" width="250" height="280">
+                            <img :src="url + blog.cover_image" class="card-img-top" :alt="blog.title" width="250" height="280">
                           </figure>   
                         </NuxtLink>
                         <div class="card-body">
@@ -17,10 +17,18 @@
                         </div>
                     </div>
 </template>
-<script setup lang="ts">
-const props = defineProps<{
-  blog: object;
-}>();
+<script setup>
+import { baseURL } from '@/utils/global';
+
+const props = defineProps({
+  blog:{type: Object}
+});
+const url = ref(baseURL);
+onMounted(() => {
+  if (process.client) {
+    url.value = baseURL;
+  }
+});
 </script>
 <style scoped>
 .overlay::before {

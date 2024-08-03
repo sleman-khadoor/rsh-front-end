@@ -7,23 +7,19 @@
             <div class="font-large ff-meduim mb-4 lh-30">
                 {{props.subTitle}}
             </div>
-            <div class="d-flex justify-content-start text-meduim mb-4">
-                 <div class="d-flex justify-content-center rounded-1 w-auto col-auto">
+            <div v-for="contact in contactInfo" class="d-flex justify-content-start text-meduim mb-4">
+                 <div v-if="contact.type === 'phone'" class="d-flex justify-content-center rounded-1 w-auto col-auto">
                     <img src="/icon/phone.svg" alt="rashm" height="20" width="20">
                 </div>
-                <span class="text-dark-blue px-1 my-auto" dir="ltr">+971 9854 2631 7852</span>
-            </div>
-            <div class="d-flex justify-content-start text-meduim mb-4">
-                 <div class="d-flex justify-content-center rounded-1 w-auto col-auto">
+                <span v-if="contact.type === 'phone'" class="text-dark-blue px-1 my-auto" dir="ltr">{{contact.value}}</span>
+                <div v-else-if="contact.type === 'email'" class="d-flex justify-content-center rounded-1 w-auto col-auto">
                     <img src="/icon/email.svg" alt="rashm" height="20" width="20">
                 </div>
-                <span class="text-dark-blue px-1 my-auto">rasham@gmail.com</span>
-            </div>
-            <div class="d-flex justify-content-start text-meduim mb-4">
-                 <div class="d-flex justify-content-center rounded-1 w-auto col-auto">
+                <span v-else-if="contact.type === 'email'" class="text-dark-blue px-1 my-auto">{{contact.value}}</span>
+                <div v-else-if="contact.type === 'en_location' || contact.type === 'ar_location'" class="d-flex justify-content-center rounded-1 w-auto col-auto">
                     <img src="/icon/location.svg" alt="rashm" height="20" width="20">
                 </div>
-                <span class="text-dark-blue px-1 my-auto">Riyadh</span>
+                <span v-else-if="contact.type === 'en_location' || contact.type === 'ar_location'" class="text-dark-blue px-1 my-auto">{{contact.value}}</span>
             </div>
         </div>
         <div v-else class="col-lg-5 px-5 text-dark-blue">
@@ -63,17 +59,17 @@
         <div class="col-lg-7 px-5">
             <form class="needs-validation"  @submit.prevent="checkValidate($event)" novalidate>
                  <div class="mb-4 d-flex justify-content-between">
-                    <input type="text" class="form-control bg-snow form-control h-50px" v-model="contactUsForm.name" id="name" :placeholder="$t('contactUs.form.fullName')" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" class="form-control bg-snow form-control h-50px" v-model="contactUsForm.mobile" id="mobile" :placeholder="$t('contactUs.form.mobile')" required>
+                    <input type="text" class="form-control bg-snow form-control h-50px" @change="removeAlert()" v-model="contactUsForm.name" id="name" :placeholder="$t('contactUs.form.fullName')" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" class="form-control bg-snow form-control h-50px" @change="removeAlert()" v-model="contactUsForm.mobile" id="mobile" :placeholder="$t('contactUs.form.mobile')" required>
                 </div>
                 <div class="mb-4">
-                    <input type="email" class="form-control bg-snow h-50px" v-model="contactUsForm.email" id="exampleInputEmail1" aria-describedby="emailHelp" :placeholder="t('contactUs.form.email')" required>
+                    <input type="email" class="form-control bg-snow h-50px" @change="removeAlert()" v-model="contactUsForm.email" id="exampleInputEmail1" aria-describedby="emailHelp" :placeholder="t('contactUs.form.email')" required>
                     <div class="invalid-feedback">
                          {{$t('contactUs.form.emailValidation')}}
                     </div>
                 </div>
                 <div class="mb-4">
-                    <textarea class="form-control bg-snow" v-model="contactUsForm.description" id="exampleFormControlTextarea1" rows="5" :placeholder="t('contactUs.form.description')" required></textarea>
+                    <textarea class="form-control bg-snow" @change="removeAlert()" v-model="contactUsForm.description" id="exampleFormControlTextarea1" rows="5" :placeholder="t('contactUs.form.description')" required></textarea>
                     <div class="invalid-feedback">
                          {{$t('contactUs.form.descriptionValidation')}}
                     </div>
@@ -94,15 +90,19 @@
                     </div>
                 </div>
                 <!-- 6LcrNxsqAAAAAIjAUgca8kLJT8-e4vlHbV7Emwvg -->
-                <div class="form-group">
+                <!-- <div class="form-group">
                             <div class="g-recaptcha" data-sitekey="6LcrNxsqAAAAAEc4693eTJKT7ANdpSHAAO-70jeV" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
                             <input class="form-control d-none" data-recaptcha="true" required data-error="Please complete the Captcha">
                             <div class="help-block with-errors"></div>
-                </div>
+                </div> -->
                 <div class="d-grid gap-2">
                     <button type="submit" :disabled="disabledBtn" :class="dynamicClass">{{$t('contactUs.form.send')}}</button>
                 </div>
             </form>
+            <div  v-if="requestMessage" :class="`mt-3 d-flex font-meduim justify-content-between alert `+ requestClass" role="alert">
+                 <span class="m-0">{{$t(`contactUs.form.alert.${requestMessage}`)}}</span>
+                 <button type="button" class="btn-close mt-0" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         </div>
     </div>
 </template>
@@ -110,6 +110,7 @@
 import { ref } from 'vue'
 import { createEmitter } from '~/node_modules/@intlify/shared/dist/shared';
 // export default defineComponent({
+const { locale } = useI18n()
 const props = defineProps({
   title: {
     type: String
@@ -134,39 +135,47 @@ const {t} = useI18n()
 const runTimeConfig = useRuntimeConfig();
 const headers = ref({})
 const files = ref([])
-const uploadedFilesTosend = ref([])
+const requestPending = ref(false)
+const requestError = ref(null)
+const requestSuccess = ref(null)
+const requestMessage = ref(null)
+const requestClass = ref(null)
+const contacts = ref([]);
+const contactsPending = ref(false);
+const contactsError = ref(null);
+// const uploadedFilesTosend = ref([])
 const emit = defineEmits() ;
 const contactUsForm = reactive({
             name: '',
             mobile: '',
             email: '',
             description: '',
-            documents: null,
+            documents: [],
 })
 const handleFileUpload = (event) => {
+            removeAlert()
             if(event?.target?.files?.length < 6) {
                 const uploadedFiles = event.target.files
-                uploadedFilesTosend.value = event.target.files
                 for (let i = 0; i < uploadedFiles.length; i++) {
                     const file = uploadedFiles[i]
+                    contactUsForm.documents.push(file)
                     const url = URL.createObjectURL(file)
                     files.value.push({ file, url })
                 }
             } else {
                 document.getElementById("file").value = '';
             }
-            console.log('files',files.value.length);
-            console.log('files',flag);
 }
 const removeFile = (index) => {
-            // flag = false;
+            removeAlert()
             files.value.splice(index, 1)
+            contactUsForm.documents.splice(index, 1)
 }
 const flag = computed(() => {
             return files?.value?.length > 4 ? true : false
 })
 const disabledBtn = computed(() => {
-            return files?.value?.length > 5 ? true : false
+    return (files?.value?.length > 5) || (requestPending === true)
 })
 
 const dynamicClass = computed(() => {
@@ -190,31 +199,56 @@ const filehandler = () => {
             });
 };
 async function addRequest () {
-    console.log('testttttttttttt', uploadedFilesTosend.value);
-    let documents = [];
-    let i = 0;
-    for(i; i < uploadedFilesTosend.value.length; i++) {
-        documents.push(uploadedFilesTosend.value[i])
-    };
-    console.log('documeeeents', documents);
-    console.log('documeeeents', documents.toArray());
-    console.log('documeeeents', typeof documents);
-    const { data: responseData } = await $fetch(`${runTimeConfig.public.API_URL}/service-requests`, {
-        headers: {...headers.value, 'Content-Type': 'application/x-www-form-urlencoded', },
-        method: 'post',
-        body: new URLSearchParams({
-            'service_name': props.serviceName,
-            'fullname': contactUsForm.name,
-            'email': contactUsForm.email,
-            'mobile': contactUsForm.mobile,
-            'description': contactUsForm.description,
-            'documents': documents,
-        })
-    })
+    try {
+            requestPending.value = true;
+            let endpoint = null;
+            const formData = new FormData();
+            if(props.steps) {
+                formData.append('service_name', props.serviceName);
+                formData.append('fullname', contactUsForm.name);
+                formData.append('email', contactUsForm.email);
+                formData.append('mobile', contactUsForm.mobile);
+                formData.append('description', contactUsForm.description);
+
+                for (let i = 0; i < contactUsForm.documents.length; i++) {
+                    formData.append(`documents[${i}]`, contactUsForm.documents[i]);
+                }
+                endpoint = '/service-requests'
+                console.log('formData entries:', Array.from(formData.entries()));
+            } else {
+                formData.append('fullname', contactUsForm.name);
+                formData.append('email', contactUsForm.email);
+                formData.append('mobile', contactUsForm.mobile);
+                formData.append('message', contactUsForm.description);
+                endpoint = '/contact-requests'
+                console.log('formData entries:', Array.from(formData.entries()));
+            }
+            
+            const data = await $fetch(runTimeConfig.public.API_URL + endpoint, {
+                headers: { ...headers.value },
+                method: 'post',
+                body: formData
+            });
+            requestMessage.value = data.message
+            requestSuccess.value = data.success
+            if(data.success) {
+                requestClass.value = `alert-success`
+                requestMessage.value = `success`
+            } else {
+                requestClass.value = `alert-danger`
+                requestMessage.value = `danger`
+            }
+            console.log('responseData:', data);
+    } catch (error) {
+            requestError.value = error;
+            console.error('Error fetching books:', error);
+    } finally {
+            requestPending.value = false;
+    }
 };
+
 async function checkValidate(event) {
             const forms = document.querySelectorAll('.needs-validation')
-            console.log('contuct us form', Array.from(forms));
             const form = Array.from(forms)[0]
             if (!form.checkValidity()) {
                 event.preventDefault()
@@ -225,8 +259,39 @@ async function checkValidate(event) {
             form.classList.add('was-validated')
 };
 
-onMounted(()=> {
-    headers.value = API_HEADER()
+function removeAlert() {
+    requestMessage.value = null
+};
+// Fetch data function
+const fetchData = async (url, dataRef, pendingRef, errorRef) => {
+  pendingRef.value = true;
+  errorRef.value = null;
+
+  try {
+    const response = await $fetch(`${runTimeConfig.public.API_URL}/${url}`, {
+      headers: headers.value,
+    });
+    dataRef.value = response.data;
+  } catch (error) {
+    errorRef.value = error;
+    console.error(`Error fetching ${url}:`, error);
+  } finally {
+    pendingRef.value = false;
+  }
+};
+const contactInfo = computed(() => {
+    return contacts.value.filter((e) =>
+        locale.value === 'ar' ? (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'linkedIn' && e.type !== 'facebook' && e.type !== 'en_location') :
+        (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'linkedIn' && e.type !== 'facebook'  && e.type !== 'ar_location')
+    )}
+);
+onMounted(async ()=> {
+    headers.value = API_HEADER(); // Set headers in the setup context
+    try {
+        await fetchData('contacts', contacts, contactsPending, contactsError);
+    } catch (error) {
+        console.error('Error during onMounted fetch:', error);
+    }
 })
 
 </script>

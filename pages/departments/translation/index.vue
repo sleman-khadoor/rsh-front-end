@@ -26,7 +26,8 @@
                 :subTitle="$t('departments.translation.form.subTitle')" 
                 :color="'bg-blue'" 
                 :circleSrc="'circle-blue'"
-                :steps="true" />
+                :steps="true"
+                :serviceName="'translation_service'" />
             </div>
         </div>
         </div>
