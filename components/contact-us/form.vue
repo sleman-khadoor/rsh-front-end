@@ -85,7 +85,9 @@
                 </div>
                 <div v-if="steps" class="uploaded-files d-flex justify-content-start py-2 mb-2 flex flex-wrap">
                     <div v-for="(file, index) in files" :key="index" class="uploaded-file position-relative">
-                        <img :src="file.url" class="img-thumbnail" alt="uploaded file">
+                        <img v-if="file.type === 'pdf'" src="/img/pdf.png" class="img-thumbnail" alt="uploaded file">
+                        <img v-else-if="file.type === 'docx' || file.type === 'doc'" src="/img/word.png" class="img-thumbnail" alt="uploaded file">
+                        <img v-else :src="file.url" class="img-thumbnail" alt="uploaded file">
                         <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" @click="removeFile(index)" aria-label="Close"></button>
                     </div>
                 </div>
@@ -158,10 +160,14 @@ const handleFileUpload = (event) => {
                 const uploadedFiles = event.target.files
                 for (let i = 0; i < uploadedFiles.length; i++) {
                     const file = uploadedFiles[i]
+                    const name = file.name
+                    var n = name.lastIndexOf('.');
+                    var type = name.substring(n + 1);
                     contactUsForm.documents.push(file)
                     const url = URL.createObjectURL(file)
-                    files.value.push({ file, url })
+                    files.value.push({ file, url, type })
                 }
+                console.log('my files hereeee:', files.value);
             } else {
                 document.getElementById("file").value = '';
             }

@@ -35,7 +35,7 @@ const props = defineProps({
     type: String,
   }
 })
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const emit = defineEmits()
 const route = useRoute().fullPath
 const searchBy = [
@@ -57,8 +57,11 @@ const search = reactive({
 });
 async function navigateToBooksPage() {
 // ... or as a route object with query parameters
+let path = ''
+console.log('locale index', locale.value === 'ar');
+locale.value === 'ar' ? path = '/books' : path = '/en/books'
 await navigateTo({
-  path: '/books',
+  path: path,
   query: {
     searchKey: search.value
   }

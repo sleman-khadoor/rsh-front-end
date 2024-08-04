@@ -36,9 +36,10 @@ export function buildUrl(url: string, params: any) {
 export function dateTimeFormatter(timeStamp: any) {
 	return timeStamp && timeStamp.substring(0, timeStamp.lastIndexOf(' ')).split('T').join(' ');
 }
-export function dateDayFormatter(timeStamp: any) {
+export function dateDayFormatter(timeStamp: any, lang: string) {
   const d = new Date(timeStamp);
-  const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const weekday_en = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const weekday_ar = ["الأحد","الاثنين","الثلاثاء","الإربعاء","الخميس","الجمعة","السبت"];
   let day = d.getDay();
-	return weekday[day];
+	return lang === 'ar' ? weekday_ar[day] :  weekday_en[day];
 }

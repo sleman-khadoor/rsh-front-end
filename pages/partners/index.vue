@@ -6,7 +6,7 @@
             <div class="text-choco font-xx-large ff-meduim lh-25 pt-5 mb-4">
                 {{t('ourPartners.title')}}
             </div>
-            <div class="text-dark-blue font-large ff-regular lh-22 px-5">
+            <div class="text-dark-blue font-large ff-regular lh-30 px-5">
                 {{t('ourPartners.subTitle')}}
             </div>
             <div class="d-flex flex-wrap p-5 justify-content-center align-items-center">

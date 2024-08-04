@@ -12,7 +12,7 @@
             <CategoriesCarousel v-if="!categoriesPending" :categories="categories" @updateCategory="updateCategory($event)"/>
         </div>
         <div class="row bg-secondary px-5 pb-5 pt-2 justify-content-center">
-            <div v-for="(blog,i) in blogs" :key="i" class="col-lg-3 col-md-4 col-sm-6 w-fc">
+            <div v-for="(blog,i) in blogs" :key="i" class="col-lg-3 col-md-4 col-sm-6">
                 <BlogsCard :blog="blog"/>
             </div>
         </div>
@@ -31,7 +31,7 @@
     const runTimeConfig = useRuntimeConfig();
     const headers = ref({});
     const page = ref(1);
-    const category = ref(1);
+    const selectedCategories = ref([]);
     const title = ref('');
     const author = ref('');
     
@@ -51,7 +51,6 @@
                 headers: headers.value,
             });
             categories.value = response.data;
-            category.value = response.data[0].id;
 
             // Fetch blogs after categories are loaded
             fetchBlogs();
@@ -65,16 +64,19 @@
 
     // Function to fetch blogs
     async function fetchBlogs() {
+        let qp = {
+            page: page.value,
+            include: ['author'],
+            'filter[title]': title.value,
+            'filter[author]': author.value
+        }
+        selectedCategories.value.forEach((element, iter) => {
+            qp[`filter[blog_category][${iter}]`] = element.id
+        });
         try {
             const response = await $fetch(`${runTimeConfig.public.API_URL}/blogs`, {
                 headers: headers.value,
-                query: { 
-                    page: page.value,
-                    include: ['author'],
-                    'filter[blog_category][0]': category.value,
-                    'filter[title]': title.value,
-                    'filter[author]': author.value
-                }
+                query: qp
             });
             blogs.value = response.data;
             blogsMeta.value = response.meta;
@@ -93,7 +95,7 @@
     }
 
     function updateCategory(newCat) {
-        category.value = newCat.id;
+        selectedCategories.value = newCat;
         fetchBlogs();
     }
 

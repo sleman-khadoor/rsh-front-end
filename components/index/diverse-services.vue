@@ -4,6 +4,7 @@
             <div class="font-x-large ff-meduim text-dark-blue text-center pt-5">{{t('index.departmentsTitle1')}} <span class="text-choco">{{t('index.departmentsTitle2')}}</span> {{t('index.departmentsTitle3')}}</div>
             <div class="row p-5 justify-content-center align-align-items-stretch items-center">
                 <div v-for="(department, i) in departments" :key="i" class="col-lg-4 col-md-4 col-sm-6 mb-4">
+                    <NuxtLink :to="localePath(`/departments/${department.icon}`)" class="no-underline">
                     <div class="card bg-secondary border-0 h-100">
                     <div class="card-body my-3">
                         <div class="d-flex justify-content-start mb-3">
@@ -16,6 +17,7 @@
                         </p>
                     </div>
                     </div>
+                    </NuxtLink>
                 </div>
             </div>
         </div>

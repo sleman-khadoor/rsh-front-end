@@ -8,6 +8,9 @@
     .bg-#{$key} {
         background-color: $val !important;
     }
+    .alert-#{$key} {
+        background: $val !important;
+    }
 }
 @each $key, $val in $fonts {
     .font-#{$key} {

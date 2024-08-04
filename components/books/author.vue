@@ -2,9 +2,13 @@
     <div class="row">
         <div class="d-flex author-description p-0">
             <img :src="url + props.author?.avatar" class="p-0 mb-2 img-border" alt="Author Image">
-            <span class="font-meduim ff-meduim my-auto px-2">{{props.author?.name}}</span>
+            <span class="font-meduim ff-meduim my-auto px-2">
+            <NuxtLink :to="localePath(`/books/author/${getSlugByLang(author?.slug)}`)" class="text-dark-blue" style="text-decoration: unset">
+             {{props.author?.name}}
+            </NuxtLink>
+            </span>
         </div>
-        <div class="row font-small ff-regular m-0 p-0 lh-25">
+        <div class="row font-small ff-regular m-0 p-0 lh-25 text-justify">
             {{props.author?.about}}
         </div>
     </div>

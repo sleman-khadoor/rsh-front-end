@@ -14,7 +14,7 @@
             </div>
             <div class="row mx-auto bg-primary justify-content-around rounded-4 py-5 mb-3">
                 <div class="font-x-large ff-meduim text-dark-blue text-center mb-3">{{t('departments.literaryAgencyAuthors.representedAuthor')}} <span class="text-choco">{{t('footer.title')}}</span></div>
-                <DepartmentsAuthorCard :authors="authors"/>
+                <DepartmentsAuthorCard/>
             </div>
             <div class="mb-3">
                 <ColourfullDiv :text="$t('departments.literaryAgencyAuthors.request')" :bgColor="'bg-choco'"/>
@@ -88,28 +88,10 @@ export default defineComponent({
             class: 'col-lg-6 my-1 px-1',
         },
     ]
-    const runTimeConfig = useRuntimeConfig();
-    //get categories
-    const { data: authors, pending, refresh} = await useFetch(`${runTimeConfig.public.API_URL}/represented-authors`, {
-        transform: (_authors) => _authors.data,
-        headers: API_HEADER(),
-        onResponse({ request, response, options }) {
-            // Process the response data
-            console.log('request responsed', response)
-        },
-        onRequestError({ request, options, error }) {
-            // Handle the request errors
-            console.log('request error', response)
-        },
-        onResponseError({ request, response, options }) {
-            console.log('response error', response)
-        }
-    });
     return {
          t,
          departments,
-         contents,
-         authors
+         contents
     }
     },
 });

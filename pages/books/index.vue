@@ -27,11 +27,12 @@
 <script setup>
     import { ref, onMounted } from 'vue';
     
+    const { locale } = useI18n()
     const runTimeConfig = useRuntimeConfig();
     const router = useRouter();
     const headers = ref({});
     const page = ref(1);
-    const category = ref(1);
+    const selectedCategories = ref([]);
     const title = ref('');
     const author = ref('');
     
@@ -51,7 +52,6 @@
                 headers: headers.value,
             });
             categories.value = response.data;
-            category.value = response.data[0].id;
 
             // Fetch books after categories are loaded
             fetchBooks();
@@ -65,16 +65,19 @@
 
     // Function to fetch books
     async function fetchBooks() {
+        let qp = {
+            page: page.value,
+            include: ['author'],
+            'filter[title]': title.value,
+            'filter[author]': author.value
+        }
+        selectedCategories.value.forEach((element, iter) => {
+            qp[`filter[book_category][${iter}]`] = element.id
+        });
         try {
             const response = await $fetch(`${runTimeConfig.public.API_URL}/books`, {
                 headers: headers.value,
-                query: { 
-                    page: page.value,
-                    include: ['author'],
-                    'filter[book_category][0]': category.value,
-                    'filter[title]': title.value,
-                    'filter[author]': author.value
-                }
+                query: qp
             });
             books.value = response.data;
             booksMeta.value = response.meta;
@@ -93,7 +96,8 @@
     }
 
     function updateCategory(newCat) {
-        category.value = newCat.id;
+        console.log('new categories', newCat);
+        selectedCategories.value = newCat;
         fetchBooks();
     }
 
@@ -113,8 +117,10 @@
         const query = useRoute().query;
         if(query.searchKey) {
             console.log('object',query);
+            console.log('locale',locale.value);
+            console.log('locale',locale.value === 'ar');
             title.value = query.searchKey
-             router.replace({ path: '/books'})
+            locale.value === 'ar' ? router.replace({ path: '/books'}) : router.replace({ path: '/en/books'})
         }
         console.log('object', query);
         console.log('object', title);

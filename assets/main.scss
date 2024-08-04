@@ -90,6 +90,12 @@ p {
   width: max-content !important;
   max-width: max-content !important;
 }
+.no-underline {
+  text-decoration: unset !important;
+}
+.text-justify {
+  text-align: justify !important;
+}
 // This CSS will run for large screen
 @media only screen and (max-width: 1150px) {
   .font-meduim {
@@ -101,9 +107,27 @@ p {
     font-size: 1.06875rem !important;
   }
 }
+@media only screen and (max-width: 1073px) {
+  .font-small {
+    font-size: 0.98rem !important;
+  }
+}
 @media only screen and (max-width: 1064px) {
   .font-meduim {
     font-size: 0.99rem !important;
+  }
+  .font-small {
+    font-size: 0.96rem !important;
+  }
+}
+@media only screen and (max-width: 1047px) {
+  .font-small {
+    font-size: 0.93rem !important;
+  }
+}
+@media only screen and (max-width: 1029px) {
+  .font-small {
+    font-size: 0.90rem !important;
   }
 }
 // This CSS will run for meduim screen
@@ -120,8 +144,12 @@ p {
   .font-meduim {
     font-size: 0.99rem !important;
   }
+  .font-small {
+    font-size: 0.95rem !important;
+  }
 }
 // This CSS will run for small screen
+// minus 10%
 @media only screen and (max-width: 700px) {
   .font-xx-large {
     font-size: 2.25rem !important;
@@ -135,8 +163,12 @@ p {
   .font-meduim {
     font-size: 0.99rem !important;
   }
+  .font-small {
+    font-size: 0.9rem !important;
+  }
 }
 // This CSS will run for mobile devices
+// minus 20%
 @media only screen and (max-width: 430px) {
   .font-xx-large {
     font-size: 2rem !important;
@@ -149,5 +181,8 @@ p {
   }
   .font-meduim {
     font-size: 0.9rem !important;
+  }
+  .font-small {
+    font-size: 0.8rem !important;
   }
 }

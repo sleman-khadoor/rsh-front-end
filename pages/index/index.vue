@@ -13,7 +13,7 @@
                     <div class="d-flex mb-auto text-center h-100 rounded-4  bg-img">
                         <div class="p-3">
                             <div class="text-choco font-xx-large ff-bold pb-3 pt-3">{{t('index.title')}}</div>
-                            <div class="text-dark-blue font-large ff-regular py-2 px-lg-5 px-md-4 px-sm-3 lh-30">
+                            <div class="text-dark-blue font-meduim ff-regular py-2 px-lg-5 px-md-4 px-sm-3 lh-30">
                                 {{t('index.introduction')}}
                             </div>
                             <div class="mx-auto pt-2 pb-lg-3 pb-md-3 pb-sm-7">

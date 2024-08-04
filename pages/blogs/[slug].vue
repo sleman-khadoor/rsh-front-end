@@ -4,13 +4,13 @@
         <Meta name="description" content="Blog Name with Rashm" />
         <div class="col-12 mx-auto rounded-4 py-5 px-lg-5 px-md-5 px-sm-4 text-dark-blue">
             <img :src="url + blog.cover_image" class="d-block w-100 object-fit-cover mb-3" :alt="blog.title" height="375">
-            <div class="d-flex flex-wrap mb-3">
+            <div class="d-flex flex-wrap mb-3" :dir="dir">
                 <span v-for="cat in blog.blog_categories" class="badge text-choco bg-dark-snow font-small ff-regular m-1">{{cat.title}}</span>
             </div>
-            <div class="mb-3">
+            <div class="mb-3" :dir="dir">
                 <div class="d-flex justify-content-between mb-2">
                     <span class="font-large ff-meduim">{{blog.title}}</span>
-                    <span class="font-small ff-regular">{{t(`days.${dateDayFormatter(blog.date)}`)}}&nbsp;&nbsp;{{dateTimeFormatter(blog.date)}}</span>
+                    <span class="font-small ff-regular">{{dateDayFormatter(blog.date,blog.lang)}}&nbsp;&nbsp;{{dateTimeFormatter(blog.date)}}</span>
                 </div>
                 <div class="mb-1">
                     <span class="font-meduim ff-regular text-choco">{{blog.writer}}</span>
@@ -42,7 +42,9 @@ const setI18nParams = useSetI18nParams();
 const switchLocalePath = useSwitchLocalePath();
 const blog = ref({});
 const relatedBlogs = ref([]);
-
+const dir = computed(()=> {
+  return blog.value?.lang === 'ar' ? 'rtl' : 'ltr'
+})
 const getBlog = async () => {
   try {
     const response = await $fetch(`${runTimeConfig.public.API_URL}/blogs/${slug}`, {

@@ -36,7 +36,7 @@ const dynamicClass = computed(() => {
 // computed dynamic class
 const dynamicOverlayClass = computed(() => {
   return props.gallery ? 'overlay bg-black bg-opacity-50 text-primary h-100' 
-  : 'd-flex align-items-center overlay bg-opacity-25 text-primary h-100 p-lg-3 p-md-3';
+  : 'd-flex align-items-center dark-blue-overlay text-primary h-100 p-lg-3 p-md-3';
 });
 // computed dynamic title class
 const dynamicTitleClass = computed(() => {
@@ -68,6 +68,15 @@ const dynamicImg = computed(() => {
     height: inherit;
     min-height: inherit;
     background-color: rgba(5, 5, 5, 0.46);
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+
+}
+.dark-blue-overlay {
+    height: inherit;
+    min-height: inherit;
+    background-color: rgba(11, 41, 74, 0.50);
     margin-left: auto;
     margin-right: auto;
     width: 100%;

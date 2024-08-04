@@ -2,10 +2,12 @@
     <div class="row bg-secondary m-0">
         <Title>{{book.title}}</Title>
         <Meta name="description" content="Book name with Rashm" />
-        <div class="col-11 mx-auto my-5 bg-primary rounded-4 pt-5 px-lg-5 px-md-5 px-sm-4 text-dark-blue">
+        <div class="col-11 mx-auto my-5 bg-primary rounded-4 py-5 px-lg-5 px-md-5 px-sm-4 text-dark-blue">
             <div class="row">
                 <div class="col col-auto px-0 mx-auto justify-content-center font-meduim lh-25 mb-5">
-                    <img :src="url + book.cover_image" class="d-block mx-auto mb-2" :alt="book.title" height="340" width="280">
+                <!-- <div class="col col-auto px-0 mx-auto justify-content-center font-meduim lh-25 mb-5"> -->
+                    <div :style="`background: url(${url + book.cover_image})`" class="bg-img my-3"></div>
+                    <!-- <img :src="url + book.cover_image" class="d-block mx-auto mb-2" :alt="book.title" height="340" width="280"> -->
                     <div class="d-flex flex-wrap align-items-center ff-meduim mb-1"  style="width: 280px;">
                         <img src="/icon/categories.svg" class="d-block my-auto mr-2" alt="..." width="20" height="20">&nbsp;
                         {{$t('books.categories')}}: &nbsp;
@@ -18,7 +20,7 @@
                     <div class="d-flex flex-wrap align-items-center ff-meduim mb-1"  style="width: 280px;">
                         <img src="/icon/format.svg" class="d-block my-auto" alt="..." width="20" height="20">&nbsp;
                         {{$t('books.format')}}: &nbsp;
-                        <span class="badge text-dark-blue bg-secondary font-small ff-regular mx-1"> Paperback</span>
+                        <span v-for="format in book.book_formats" class="badge text-dark-blue bg-secondary font-small ff-regular mx-1">{{format.title}}</span>
                     </div>
                     <div class="d-flex flex-wrap align-items-center ff-meduim mb-1"  style="width: 280px;">
                         <img src="/icon/code.svg" class="d-block my-auto" alt="..." width="20" height="20">&nbsp;
@@ -29,25 +31,26 @@
                         {{$t('books.EISBN')}}: &nbsp; <span class="font-small ff-regular" > {{book.EISBN}}</span>
                     </div>
                 </div>
+                <!-- <div class="col px-4"> -->
                 <div class="col px-4">
                     <div class="font-x-large ff-meduim mb-3 mt-3">{{book.title}}</div>
                     <div class="d-flex mb-3">
                         <img src="/icon/author-name.svg" class="d-block my-auto" alt="..." width="20" height="20">
                         <span class="font-meduim ff-regular text-choco mx-1">{{book.author?.name}}</span>
                     </div>
-                    <div class="font-small ff-regular lh-30 mb-4">
+                    <div class="font-small ff-regular lh-30 mb-4 text-justify">
                         {{book.abstract}}
                     </div>
                     <div class="d-flex align-items-center mb-3">
                         <img src="/icon/star.svg" class="d-block my-auto" alt="..." width="30" height="30">
                         <span class="font-large ff-regular text-choco mx-1">{{$t('books.reviews.title')}}</span>
                     </div>
-                    <div v-for="review in book.book_reviews">
-                    <div class="font-small ff-regular text-grey mb-2 lh-25">
-                        {{review.text}}
+                    <div v-for="review in book.book_reviews" class="mb-2">
+                    <div class="font-small ff-regular text-grey mb-2 lh-25 font-italic">
+                        {{review.review}}
                     </div>
-                    <div class="font-meduim ff-bold mb-3">
-                        {{review.user_name}}
+                    <div class="font-small ff-bold mb-3">
+                        <i>{{review.username}}</i>
                     </div>
                     </div>
                     <div class="d-flex align-items-center mb-3 pt-2">
@@ -56,12 +59,14 @@
                     </div>
                     <div>
                         <ul>
-                            <li v-for="award in book.book_awards"> {{award}}</li>
+                            <li v-for="award in book.book_awards" class="font-meduim mb-2">
+                                 {{award.title}}
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="row p-0 pb-5">
+            <div class="row p-0 pb-5 m-0">
                 <BooksAuthor :author="book.author"/>
             </div>
         </div>
@@ -105,5 +110,16 @@ onMounted(() => {
 <style scoped>
 .badge {
     border-radius: 0 !important;
+}
+.bg-img {
+  background-repeat: no-repeat;
+    background-position: top center;
+    min-height: 450px;
+    height: fit-content;
+    min-width: 300px;
+    width: max-content;
+    background-size: cover !important;
+    background-position: center !important;
+    overflow: hidden;
 }
 </style>

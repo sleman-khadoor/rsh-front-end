@@ -1,8 +1,8 @@
 <template>
-                <div class="card  bg-primary border-0  mx-auto my-3 w-fc">
+                <div class="card  bg-primary border-0  mx-auto my-3">
                         <NuxtLink :to="localePath(`/blogs/${props.blog.slug}`)">
                           <figure class="overlay">
-                            <img :src="url + blog.cover_image" class="card-img-top" :alt="blog.title" width="250" height="280">
+                            <img :src="url + blog.cover_image" class="card-img-top" :alt="blog.title" width="250" height="240">
                           </figure>   
                         </NuxtLink>
                         <div class="card-body">
@@ -35,7 +35,7 @@ onMounted(() => {
   content: '';
   z-index: 10;
   width: 100%;
-  height: 280px;
+  height: 240px;
   display: block;
   position: absolute;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%);

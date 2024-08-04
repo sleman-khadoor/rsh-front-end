@@ -1,9 +1,18 @@
 <template>
     <div id="carouselExample" class="carousel">
     <div class="carousel-inner mx-2" ref="carouselInner">
-        <div ref="carouselCategoryItem" v-for="(category, subIndex) in categories" :key="subIndex" :class="subIndex == 0 ? 'carousel-item active' : 'carousel-item'">
-            <input type="radio" class="btn-check" @input="$emit('updateCategory',category)" name="vbtn-radio" :id="`vbtn-radio_${subIndex + 1}`" autocomplete="off" :checked="(subIndex === 0)">
-            <label class="btn btn-outline-choco" :for="`vbtn-radio_${subIndex + 1}`" style="min-width:80%;">{{category.title}}</label>
+        <div ref="carouselCategoryItem" v-for="(category, index) in categories" :key="index" :class="checkedValues.includes(category) ? 'carousel-item active' : 'carousel-item'">
+            <input 
+             type="checkbox"
+             class="btn-check"
+             :class="{'bg-dark-blue': checkedValues.includes(category)}"
+             @input="updateCheckedValues(category)"
+             v-model="checkedValues"
+             name="vbtn-radio" 
+             :id="`vbtn-radio_${index + 1}`" 
+             autocomplete="off">
+            <label :class="checkedValues.includes(category) ? `btn btn-outline-choco bg-choco text-white` : `btn btn-outline-choco`"
+            :for="`vbtn-radio_${index + 1}`" style="min-width:80%;">{{category.title}}</label>
         </div>
     </div>
     <button class="carousel-control-prev" @click="castumPrev()" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -19,6 +28,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 const { locale } = useI18n()
+const emit = defineEmits()
 const props = defineProps({
   categories: {
     type: Array
@@ -31,6 +41,19 @@ var cardWidth = ref(0);
 var scrollPosition = ref(0);
 var fivePercentWidth = ref(0);
 const isRtl = ref(false);
+const checkedValues = ref([]);
+
+const updateCheckedValues = (category) => {
+  // Emit the checked values when a checkbox is checked/unchecked
+  const index = checkedValues.value.indexOf(category);
+  if (index > -1) {
+    checkedValues.value.splice(index, 1); // Remove if unchecked
+  } else {
+    checkedValues.value.push(category); // Add if checked
+  }
+  console.log('updateCategory', checkedValues.value);
+  emit('updateCategory', checkedValues.value);
+};
 
 function showNext() {
   if (scrollPosition.value < (carouselWidth.value - cardWidth.value * 4)) { //check if you can go any further

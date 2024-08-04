@@ -11,13 +11,13 @@
             <div class="collapse navbar-collapse w-100" id="navbarNavDropdown">
                 <ul class="navbar-nav w-100 justify-content-evenly nav-underline h-100">
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/')" class="nav-link text-choco ff-regular h-100 align-content-center font-meduim lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.home`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/')" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.home`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/about-us')" class="nav-link text-choco ff-regular h-100 align-content-center font-meduim lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.aboutUs`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/about-us')" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.aboutUs`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item h-100 dropdown align-content-center">
-                    <div class="dropdown-toggle text-choco ff-regular font-meduim lh-24px" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none !important;">
+                    <div class="dropdown-toggle text-choco ff-regular font-small lh-24px" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none !important;">
                             <span class="text-dark-blue">{{t(`navbar.departments`)}}</span>&nbsp;
                         </div>
                         <ul class="dropdown-menu p-0 bg-snow border-0 w-fc">
@@ -69,22 +69,22 @@
                         </ul>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/blogs')" class="nav-link text-choco ff-regular h-100 align-content-center font-meduim lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.blogs`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/blogs')" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.blogs`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/books')" class="nav-link text-choco ff-regular h-100 align-content-center font-meduim lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.books`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/books')" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.books`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/partners')" class="nav-link text-choco ff-regular h-100 align-content-center font-meduim lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.ourPartners`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/partners')" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.ourPartners`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/publish-with-us')" class="nav-link text-choco ff-regular h-100 align-content-center font-meduim lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.publishWithUs`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/publish-with-us')" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.publishWithUs`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/contact-us')" class="nav-link text-choco ff-regular h-100 align-content-center font-meduim lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.contactUs`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/contact-us')" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.contactUs`) }}</span></NuxtLink>
                 </li>
                 <li class="justify-content-center">
-                    <NuxtLink class="nav-link text-choco h-100 align-content-center ff-regular font-meduim lh-24px line-h d-flex flex-wrap align-items-center w-mc"
+                    <NuxtLink class="nav-link text-choco h-100 align-content-center ff-regular font-small lh-24px line-h d-flex flex-wrap align-items-center w-mc"
                     v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">
                         <!-- <div> -->
                             <img src="/icon/global.svg" class="d-block w-fc mx-1" alt="lang" height="20" width="20">

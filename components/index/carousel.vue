@@ -50,6 +50,7 @@ onMounted(() => {
     bottom: 20px; /* Adjust as needed */
     left: 20px; /* Adjust as needed */
     right: 20px; /* Adjust as needed */
+    z-index: 2;
 }
 
 .carousel-item img {
@@ -66,7 +67,7 @@ onMounted(() => {
   display: block;
   position: absolute;
   margin: 0 !important;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 50%);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%);
 }
 figure {
     margin: unset !important;
