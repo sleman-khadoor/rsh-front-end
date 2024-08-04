@@ -3,7 +3,7 @@
         <div class="bg-primary rounded-5">
             <div class="font-x-large ff-meduim text-dark-blue text-center pt-5">{{t('index.blogsTitle1') }} <span class="text-choco">{{t('index.blogsTitle2') }}</span></div>
             <div class="row p-5 justify-content-center align-content-stretch items-center">
-                <div v-for="(blog, i) in props.blogs" :key="i" class="col-lg-4 col-md-4 col-sm-6 mb-3">
+                <div v-for="(blog, i) in props.blogs" :key="i" class="col-lg-4 col-md-6 col-sm-6 mb-3">
                     <div class="card  bg-secondary border-0 ma-1 h-100">
                         <NuxtLink :to="localePath(`/blogs/${blog.slug}`)">
                         <figure class="overlay">

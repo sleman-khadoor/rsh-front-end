@@ -1,6 +1,6 @@
 <template>
     <div id="carouselExampleControls" class="carousel">
-    <div class="carousel-inner" ref="carouselInner">
+    <div class="carousel-inner w-95 mx-auto" ref="carouselInner">
         <div ref="carouselItem" v-for="(book, i) in books" :class="i == 0 ? 'carousel-item active' : 'carousel-item'">
           <NuxtLink :to="localePath(`/books/${getSlugByLang(book?.slug)}`)">
             <img :src="url + book.cover_image" width="200" height="280" class="img-shadow d-block" :alt="book.title">
@@ -36,57 +36,40 @@ var fivePercentWidth = ref(0);
 const isRtl = ref(false);
 
 function showNext() {
-  if (scrollPosition.value < (carouselWidth.value - cardWidth.value * 4)) { //check if you can go any further
-    console.log('scrollPosition', scrollPosition.value);
-    console.log('scrollPosition', cardWidth.value);
+  if (scrollPosition.value < (carouselWidth.value - cardWidth.value * 4)) {
     scrollPosition.value += cardWidth.value;  //update scroll position
     carouselInner.value.scrollTo({
       left: scrollPosition.value,
-      behavior: 'smooth' // This provides smooth scrolling animation
+      behavior: 'smooth'
     });
   }
 }
 function showPrevAr() {
-  if (Math.abs(scrollPosition.value) < (carouselWidth.value - cardWidth.value * 4)) { //check if you can go any further
-    console.log('scrollPosition', scrollPosition.value);
-    console.log('scrollPosition', (carouselWidth.value - cardWidth.value * 4));
-    console.log('scrollPosition', carouselInner.value.offsetWidth);
-    console.log('scrollPosition', cardWidth.value);
+  if (Math.abs(scrollPosition.value) < (carouselWidth.value - cardWidth.value * 4)) {
     scrollPosition.value -= cardWidth.value;  //update scroll position
     carouselInner.value.scrollTo({
       left: scrollPosition.value,
-      behavior: 'smooth' // This provides smooth scrolling animation
+      behavior: 'smooth'
     });
   }
 }
 function showPrev() {
-    console.log('object', 0);
-    // console.log('object', window.innerWidth * 0.005);
-    console.log('object', scrollPosition.value);
-  if (scrollPosition.value > 0) { //check if you can go any further
-  console.log('object test prev');
+  if (scrollPosition.value > 0) {
     scrollPosition.value -= cardWidth.value;  //update scroll position
     carouselInner.value.scrollTo({
       left: scrollPosition.value,
-      behavior: 'smooth' // This provides smooth scrolling animation
+      behavior: 'smooth'
     });
   }
-  console.log('object test prev');
 }
 function showNextAr() {
-    console.log('object', 0);
-    console.log('object', scrollPosition.value);
-  if (Math.abs(scrollPosition.value) > 0) { //check if you can go any further
-    console.log('object test prev', cardWidth.value);
-    console.log('object test prev', Math.abs(scrollPosition.value) + cardWidth.value);
+  if (Math.abs(scrollPosition.value) > 0) {
     scrollPosition.value = scrollPosition.value + cardWidth.value;  //update scroll position
-    console.log('object test prev', scrollPosition.value);
     carouselInner.value.scrollTo({
       left: scrollPosition.value,
-      behavior: 'smooth' // This provides smooth scrolling animation
+      behavior: 'smooth'
     });
   }
-  console.log('object test prev');
 }
 function castumNext() {
      if (isRtl.value) {
@@ -114,11 +97,7 @@ onMounted(async () => {
     scrollPosition.value = 0;
     carouselWidth.value = carouselInner.value.scrollWidth;
     cardWidth.value = await carouselItem.value?.[0].offsetWidth;
-    console.log('carouselItem',carouselItem.value?.[0]);
-    console.log('carouselWidth',carouselWidth.value);
-    console.log('cardWidth',cardWidth.value);
     let carousel_control_next = document.getElementsByClassName('carousel-control-next');
-    console.log('carousel_control_next',carousel_control_next);
     if (isRtl.value) {
         showPrevAr()
         showPrevAr()
@@ -132,12 +111,14 @@ onMounted(async () => {
 <style scoped>
 .carousel-inner {
     display: flex;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
   .carousel-item {
     justify-content: center;
     margin-right: auto;
     margin-left: auto;
-    flex: 0 0 20.04%;
+    flex: 0 0 19.9%;
     display: block;
   }
 @media only screen and (max-width: 1120px) {

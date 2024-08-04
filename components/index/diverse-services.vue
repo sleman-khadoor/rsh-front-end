@@ -2,8 +2,8 @@
     <div class="col-12 pt-4 pb-4">
         <div class="bg-primary rounded-4">
             <div class="font-x-large ff-meduim text-dark-blue text-center pt-5">{{t('index.departmentsTitle1')}} <span class="text-choco">{{t('index.departmentsTitle2')}}</span> {{t('index.departmentsTitle3')}}</div>
-            <div class="row p-5 justify-content-center align-align-items-stretch items-center">
-                <div v-for="(department, i) in departments" :key="i" class="col-lg-4 col-md-4 col-sm-6 mb-4">
+            <div class="row p-5 justify-content-center align-items-stretch items-center">
+                <div v-for="(department, i) in departments" :key="i" class="col-lg-4 col-md-6 col-sm-6 mb-4">
                     <NuxtLink :to="localePath(`/departments/${department.icon}`)" class="no-underline">
                     <div class="card bg-secondary border-0 h-100">
                     <div class="card-body my-3">
@@ -65,7 +65,7 @@ export default defineComponent({
                 text: t('departments.bookDelivery.overlayImg.text'),
             },
             {
-                icon: 'events',
+                icon: 'organizingEventsAndConferences',
                 title: t('departments.organizingEventsandConferences.overlayImg.title'),
                 text: t('departments.organizingEventsandConferences.overlayImg.text'),
             },
