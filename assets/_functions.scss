@@ -8,14 +8,15 @@
     .bg-#{$key} {
         background-color: $val !important;
     }
-    .alert-#{$key} {
-        background: $val !important;
-    }
+    // .alert-#{$key} {
+    //     background: $val !important;
+    // }
 }
 @each $key, $val in $fonts {
     .font-#{$key} {
         font-size: $val !important;
         line-height: $val !important;
+        white-space: pre-line;
         font-family: 'Roboto' !important;
     }
 }
@@ -32,6 +33,7 @@
 @each $key, $val in $weight-ar{
     [dir="rtl"] .ff-#{$key} {
         font-family: $val !important;
+        white-space: pre-line;
     }  
 }
 // Function to get color by name

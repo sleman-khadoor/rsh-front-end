@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="row rounded-3 border-0 align-content-stretch justify-content-end text-start">
+  <div class="row rounded-3 border-0 align-content-stretch justify-content-end">
         <div v-for="(content, i) in props.contents" :key="i" :class="content.class">
             <DepartmentsOverlayImg
                     :imgSrc="content.imgSrc"

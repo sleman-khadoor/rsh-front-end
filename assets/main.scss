@@ -99,6 +99,27 @@ p {
 .text-justify {
   text-align: justify !important;
 }
+.iti {
+  width: 100% !important;
+}
+.vti__input{
+  background: #F9F9F9 !important;
+}
+.vue-tel-input{
+  border: var(--bs-border-width) solid var(--bs-border-color) !important;
+  border-radius: var(--bs-border-radius) !important;
+}
+.vue-tel-input:focus-within {
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+  border-color: #66afe9;
+}
+.was-validated .form-control:invalid, .form-control.is-invalid {
+  border-color: var(--bs-form-invalid-border-color) !important;
+}
+.was-validated .form-control:valid, .form-control.is-valid {
+  border-color: var(--bs-form-valid-border-color) !important;
+}
 // This CSS will run for large screen
 @media only screen and (max-width: 1150px) {
   .font-meduim {

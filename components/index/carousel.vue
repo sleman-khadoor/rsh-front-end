@@ -1,6 +1,10 @@
 <template>
     <div class="h-100">
-        <div id="carouselExampleAutoplaying" class="carousel slide p-0 h-100 overflow-hidden" data-bs-ride="carousel">
+        <div id="carouselExampleAutoplaying" class="carousel slide p-0 h-100 overflow-hidden" 
+        data-bs-ride="carousel"
+        :data-bs-touch="true"
+        data-bs-pause="hover"
+        data-bs-interval="5000">
             <div class="carousel-indicators">
                 <button type="button" v-for="(item, i) in props.news" :key="i" :class="i === 0 ? 'active' : ''" data-bs-target="#carouselExampleAutoplaying" :data-bs-slide-to="i" :aria-current="i === 0 ? 'true' : 'false'" :aria-label="`Slide ${i}`"></button>
             </div>
@@ -20,20 +24,52 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onBeforeUnmount, inject } from 'vue';
 import { baseURL } from '@/utils/global';
+
 const props = defineProps({
   news: {
-    type: Array
+    type: Array,
+    required: true,
   }
 });
+
 const url = ref(baseURL);
-onMounted(() => {
+const { $bootstrap } = useNuxtApp();
+console.log('Bootstrap injection:', $bootstrap);
+const restartCarousel = () => {
+  if ($bootstrap) {
+    const carouselElement = document.getElementById('carouselExampleAutoplaying');
+    if (carouselElement) {
+      const carousel = new $bootstrap.Carousel(carouselElement, {
+        interval: 5000,
+        ride: 'carousel'
+      });
+      carousel.cycle();
+    }
+  } else {
+    console.error('Bootstrap instance is undefined');
+  }
+};
+
+onMounted(async() => {
   if (process.client) {
     url.value = baseURL;
+
+    // Initial start
+    await restartCarousel();
+    
+    // Listen for the language-switched event
+    window.addEventListener('language-switched', restartCarousel);
+  }
+});
+
+onBeforeUnmount(() => {
+  if (process.client) {
+    window.removeEventListener('language-switched', restartCarousel);
   }
 });
 </script>
-
 <style scoped>
 .carousel-item {
     position: relative;
@@ -67,7 +103,7 @@ onMounted(() => {
   display: block;
   position: absolute;
   margin: 0 !important;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 70%);
 }
 figure {
     margin: unset !important;

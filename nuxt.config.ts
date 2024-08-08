@@ -19,10 +19,9 @@ export default defineNuxtConfig({
     }
   },
   ssr: true,
-  css: ['bootstrap/dist/css/bootstrap.min.css','bootstrap/dist/css/bootstrap.css','~/assets/main.scss'],
+  css: ['bootstrap/dist/css/bootstrap.css','bootstrap/dist/css/bootstrap.min.css','~/assets/main.scss'],
   devtools: { enabled: true },
 
-  // buildModules: ['@nuxt/typescript-build'],
   devServer: {
     port: 8000, // default: 3000     
     host: '0.0.0.0', // default: localhost 
@@ -63,8 +62,10 @@ export default defineNuxtConfig({
     langDir: 'lang/',
   },
   plugins: [
+    { src: '~/plugins/bootstrap.client.ts', mode: 'client' },
     '~/plugins/i18n-plugin.ts',
-    '~/plugins/ltr-rtl.js'
+    '~/plugins/ltr-rtl.js',
+    '~/plugins/vue3-tel-input.js'
   ],
 
   compatibilityDate: "2024-07-14"

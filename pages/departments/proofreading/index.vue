@@ -27,6 +27,7 @@
                 :color="'bg-yellow'"
                 :circleSrc="'circle-yellow'"
                 :steps="true"
+                :stepsData="stepsData"
                 :serviceName="'proofreading_service'" />
             </div>
         </div>
@@ -56,9 +57,16 @@ export default defineComponent({
             iconSrc: 'proofreading-s4'
         }
     ];
+    let stepsData = [
+        t('departments.proofreading.form.steps.step1'),
+        t('departments.proofreading.form.steps.step2'),
+        t('departments.proofreading.form.steps.step3'),
+        t('departments.proofreading.form.steps.step4'),
+    ];
     return {
          t,
-         departments
+         departments,
+         stepsData
     }
     },
 });

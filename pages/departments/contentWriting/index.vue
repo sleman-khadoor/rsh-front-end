@@ -31,6 +31,7 @@
                 :color="'bg-light-blue'" 
                 :circleSrc="'circle-light-blue'"
                 :steps="true"
+                :stepsData="stepsData"
                 :serviceName="'content_writing_service'" />
             </div>
         </div>
@@ -62,13 +63,13 @@ export default defineComponent({
     ];
     let contents = [
         {
-            imgSrc: '1',
+            imgSrc: '5',
             title: t('departments.contentWriting.types.type1.title'),
             text: t('departments.contentWriting.types.type1.subTitle'),
             class: 'col-lg-3 my-1 px-1',
         },
         {
-            imgSrc: '2',
+            imgSrc: '4',
             title: t('departments.contentWriting.types.type2.title'),
             text: t('departments.contentWriting.types.type2.subTitle'),
             class: 'col-lg-6 my-1 px-1',
@@ -80,22 +81,29 @@ export default defineComponent({
             class: 'col-lg-3 my-1 px-1',
         },
         {
-            imgSrc: '4',
+            imgSrc: '2',
             title: t('departments.contentWriting.types.type4.title'),
             text: t('departments.contentWriting.types.type4.subTitle'),
             class: 'col-lg-6 my-1 px-1',
         },
         {
-            imgSrc: '5',
+            imgSrc: '1',
             title: t('departments.contentWriting.types.type5.title'),
             text: t('departments.contentWriting.types.type5.subTitle'),
             class: 'col-lg-6 my-1 px-1',
         },
     ]
+    let stepsData = [
+        t('departments.contentWriting.form.steps.step1'),
+        t('departments.contentWriting.form.steps.step2'),
+        t('departments.contentWriting.form.steps.step3'),
+        t('departments.contentWriting.form.steps.step4'),
+    ]
     return {
          t,
          departments,
-         contents
+         contents,
+         stepsData
     }
     },
 });

@@ -24,7 +24,7 @@
                         <img :src="`/icon/circle-choco.svg`" alt="rashm" height="25" width="25">
                         <div v-if="i !== (achievements.length-1)" class="hr bg-light-choco h-100 mx-auto" style="width:2px;"></div>
                     </div>
-                    <div class="col-lg-11 col-md-10 col-sm-10 col mb-4 text-dark-blue font-meduim ff-regular lh-25 text-justify">{{achievment.content}}</div>
+                    <div class="col-lg-11 col-md-10 col-sm-10 col mb-4 text-dark-blue font-meduim ff-regular lh-25">{{achievment.content}}</div>
                 </div>
             </div>
              <div class="mb-4 bg-white rounded-3 py-5 px-lg-5 px-md-3 px-sm-2">

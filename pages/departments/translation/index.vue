@@ -27,6 +27,7 @@
                 :color="'bg-blue'" 
                 :circleSrc="'circle-blue'"
                 :steps="true"
+                :stepsData="stepsData"
                 :serviceName="'translation_service'" />
             </div>
         </div>
@@ -56,9 +57,15 @@ export default defineComponent({
             iconSrc: 'translation-s4'
         }
     ];
+    let stepsData = [
+        t('departments.translation.form.steps.step1'),
+        t('departments.translation.form.steps.step2'),
+        t('departments.translation.form.steps.step3'),
+    ]
     return {
          t,
-         departments
+         departments,
+         stepsData
     }
     },
 });

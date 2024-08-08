@@ -16,7 +16,7 @@
                 <div class="font-x-large ff-meduim text-dark-blue mb-3 text-center">{{$t('publishWithUs.achieveDream')}}</div>
                 <div class="font-large ff-meduim text-choco mb-5 text-center">{{$t('publishWithUs.withServices')}}</div>
                 <div class="px-5 text-dark-blue">
-                    <div v-for="(service, i) in services" :key="i" class="d-flex justify-content-start mb-3 lh-25 text-justify">
+                    <div v-for="(service, i) in services" :key="i" class="d-flex justify-content-start mb-3 lh-25">
                         <img src="/icon/circle-choco.svg" class="col-auto mt-1 mx-2" width="20" :alt="service.title" height="20"/>
                         <div class="mb-2 lh-25">
                             <span class="font-meduim ff-semiBold">{{service.title}}: </span>
@@ -39,7 +39,7 @@
                 <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center">
                     {{$t('publishWithUs.requirementTitle')}}
                 </div>
-                <div class="row text-justify">
+                <div class="row">
                     <div v-for="i in 6" :key="i" class="col-lg-6 col-md-6 py-4 px-lg-4 px-md-3 px-sm-2">
                             <div class="d-flex justify-content-start">
                                 <span class="text-choco font-x-large ff-meduim mx-1">0{{i}}</span>&nbsp;

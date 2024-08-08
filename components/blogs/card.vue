@@ -1,8 +1,8 @@
 <template>
-                <div class="card  bg-primary border-0  mx-auto my-3">
+                <div class="card  bg-primary border-0  mx-auto my-3 rounded-3">
                         <NuxtLink :to="localePath(`/blogs/${props.blog.slug}`)">
-                          <figure class="overlay">
-                            <img :src="url + blog.cover_image" class="card-img-top" :alt="blog.title" width="250" height="240">
+                          <figure class="overlay rounded-top-3">
+                            <img :src="url + blog.cover_image" class="card-img-top rounded-top-3" :alt="blog.title" width="250" height="240">
                           </figure>   
                         </NuxtLink>
                         <div class="card-body">

@@ -5,7 +5,7 @@
             <div class="row p-5 justify-content-center align-items-stretch items-center">
                 <div v-for="(department, i) in departments" :key="i" class="col-lg-4 col-md-6 col-sm-6 mb-4">
                     <NuxtLink :to="localePath(`/departments/${department.icon}`)" class="no-underline">
-                    <div class="card bg-secondary border-0 h-100">
+                    <div class="card bg-secondary border-0 h-100 rounded-3">
                     <div class="card-body my-3">
                         <div class="d-flex justify-content-start mb-3">
                                 <img :src="`/icon/${department.icon}.svg`" alt="rashm" height="41" width="41"/>
@@ -31,43 +31,43 @@ export default defineComponent({
         let departments = [
             {
                 icon: 'translation',
-                title: t('departments.translation.overlayImg.title'),
-                text: t('departments.translation.overlayImg.text'),
+                title: t('index.departments.department1.title'),
+                text: t('index.departments.department1.text'),
             },
             {
                 icon: 'proofreading',
-                title: t('departments.proofreading.overlayImg.title'),
-                text: t('departments.proofreading.overlayImg.text'),
+                title: t('index.departments.department2.title'),
+                text: t('index.departments.department2.text'),
             },
             {
                 icon: 'creativeEditing',
-                title: t('departments.creativeEditing.overlayImg.title'),
-                text: t('departments.creativeEditing.overlayImg.text'),
+                title: t('index.departments.department3.title'),
+                text: t('index.departments.department3.text'),
             },
             {
                 icon: 'literaryAgencyAuthors',
-                title: t('departments.literaryAgencyAuthors.overlayImg.title'),
-                text: t('departments.literaryAgencyAuthors.overlayImg.text'),
+                title: t('index.departments.department4.title'),
+                text: t('index.departments.department4.text'),
             },
             {
                 icon: 'marketing',
-                title: t('departments.marketing.overlayImg.title'),
-                text: t('departments.marketing.overlayImg.text'),
+                title: t('index.departments.department5.title'),
+                text: t('index.departments.department5.text'),
             },
             {
                 icon: 'contentWriting',
-                title: t('departments.contentWriting.overlayImg.title'),
-                text: t('departments.contentWriting.overlayImg.text'),
+                title: t('index.departments.department6.title'),
+                text: t('index.departments.department6.text'),
             },
             {
                 icon: 'bookDelivery',
-                title: t('departments.bookDelivery.overlayImg.title'),
-                text: t('departments.bookDelivery.overlayImg.text'),
+                title: t('index.departments.department7.title'),
+                text: t('index.departments.department7.text'),
             },
             {
                 icon: 'organizingEventsAndConferences',
-                title: t('departments.organizingEventsandConferences.overlayImg.title'),
-                text: t('departments.organizingEventsandConferences.overlayImg.text'),
+                title: t('index.departments.department8.title'),
+                text: t('index.departments.department8.text'),
             },
         ]
         return {

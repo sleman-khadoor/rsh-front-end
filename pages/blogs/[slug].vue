@@ -16,7 +16,7 @@
                     <span class="font-meduim ff-regular text-choco">{{blog.writer}}</span>
                 </div>
                 <div>
-                    <p class="text-grey font-meduim ff-regular lh-30">
+                    <p class="text-grey font-meduim ff-regular lh-30 text-justify">
                     {{blog.content}}
                     </p>
                 </div>

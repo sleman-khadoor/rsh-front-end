@@ -32,6 +32,7 @@
                 :color="'bg-gold'" 
                 :circleSrc="'circle-gold'"
                 :steps="true"
+                :stepsData="stepsData"
                 :serviceName="'organizing_events_conferences_service'" />
             </div>
         </div>
@@ -91,51 +92,57 @@ export default defineComponent({
     ]
     let organaizingEvents = [
             {
-                title: t('aboutUs.publishingHouses.publishingHouse1'),
-                text: t('aboutUs.publishingHouses.publishingHouse1')
+                title: t('departments.organizingEventsandConferences.eventbody.event1.title'),
+                text: t('departments.organizingEventsandConferences.eventbody.event1.subTitle')
             },
             {
-                title: t('aboutUs.publishingHouses.publishingHouse2'),
-                text: t('aboutUs.publishingHouses.publishingHouse2')
+                title: t('departments.organizingEventsandConferences.eventbody.event2.title'),
+                text: t('departments.organizingEventsandConferences.eventbody.event2.subTitle')
             },
             {
-                title: t('aboutUs.publishingHouses.publishingHouse3'),
-                text: t('aboutUs.publishingHouses.publishingHouse3')
+                title: t('departments.organizingEventsandConferences.eventbody.event3.title'),
+                text: t('departments.organizingEventsandConferences.eventbody.event3.subTitle')
             }
     ]
     let organaizingWorkShop = [
             {
-                title: t('aboutUs.publishingHouses.publishingHouse1'),
-                text: t('aboutUs.publishingHouses.publishingHouse1')
+                title: t('departments.organizingEventsandConferences.workshopbody.workshop1.title'),
+                text: t('departments.organizingEventsandConferences.workshopbody.workshop1.subTitle')
             },
             {
-                title: t('aboutUs.publishingHouses.publishingHouse2'),
-                text: t('aboutUs.publishingHouses.publishingHouse2')
+                title: t('departments.organizingEventsandConferences.workshopbody.workshop2.title'),
+                text: t('departments.organizingEventsandConferences.workshopbody.workshop2.subTitle')
             },
             {
-                title: t('aboutUs.publishingHouses.publishingHouse3'),
-                text: t('aboutUs.publishingHouses.publishingHouse3')
+                title: t('departments.organizingEventsandConferences.workshopbody.workshop3.title'),
+                text: t('departments.organizingEventsandConferences.workshopbody.workshop3.subTitle')
             }
     ]
     let cultur = [
             {
-                title: t('aboutUs.publishingHouses.publishingHouse1'),
-                text: t('aboutUs.publishingHouses.publishingHouse1')
+                title: t('departments.organizingEventsandConferences.culturalbody.cultural1.title'),
+                text: t('departments.organizingEventsandConferences.culturalbody.cultural1.subTitle')
             },
             {
-                title: t('aboutUs.publishingHouses.publishingHouse2'),
-                text: t('aboutUs.publishingHouses.publishingHouse2')
+                title: t('departments.organizingEventsandConferences.culturalbody.cultural2.title'),
+                text: t('departments.organizingEventsandConferences.culturalbody.cultural2.subTitle')
             }
     ]
     let networking = [
             {
-                title: t('aboutUs.publishingHouses.publishingHouse1'),
-                text: t('aboutUs.publishingHouses.publishingHouse1')
+                title: t('departments.organizingEventsandConferences.networkingbody.networking1.title'),
+                text: t('departments.organizingEventsandConferences.networkingbody.networking1.subTitle')
             },
             {
-                title: t('aboutUs.publishingHouses.publishingHouse2'),
-                text: t('aboutUs.publishingHouses.publishingHouse2')
+                title: t('departments.organizingEventsandConferences.networkingbody.networking2.title'),
+                text: t('departments.organizingEventsandConferences.networkingbody.networking2.subTitle')
             }
+    ]
+    let stepsData = [
+        t('departments.organizingEventsandConferences.form.steps.step1'),
+        t('departments.organizingEventsandConferences.form.steps.step2'),
+        t('departments.organizingEventsandConferences.form.steps.step3'),
+        t('departments.organizingEventsandConferences.form.steps.step4'),
     ]
     return {
          t,
@@ -144,7 +151,8 @@ export default defineComponent({
          organaizingEvents,
          organaizingWorkShop,
          networking,
-         cultur
+         cultur,
+         stepsData
     }
     },
 });

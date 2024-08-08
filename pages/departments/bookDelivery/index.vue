@@ -27,6 +27,7 @@
                 :color="'bg-tial'" 
                 :circleSrc="'circle-tial'"
                 :steps="true"
+                :stepsData="stepsData"
                 :serviceName="'book_delivery_service'" />
             </div>
         </div>
@@ -52,13 +53,20 @@ export default defineComponent({
             iconSrc: 'bookDelivery-s3'
         },
         {
-            title: t('departments.bookDelivery.departments.department3'),
+            title: t('departments.bookDelivery.departments.department4'),
             iconSrc: 'bookDelivery-s4'
         }
     ];
+    let stepsData = [
+        t('departments.bookDelivery.form.steps.step1'),
+        t('departments.bookDelivery.form.steps.step2'),
+        t('departments.bookDelivery.form.steps.step3'),
+        t('departments.bookDelivery.form.steps.step4'),
+    ]
     return {
          t,
-         departments
+         departments,
+         stepsData
     }
     },
 });

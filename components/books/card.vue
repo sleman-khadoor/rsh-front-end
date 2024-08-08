@@ -1,7 +1,7 @@
 <template>
-    <div class="text-center mx-auto my-3 w-fc">
+    <div class="text-center mx-auto my-3 w-fc rounded-3">
         <NuxtLink rel="canonical" :to="localePath(`/books/${getSlugByLang(props.book?.slug)}`)">
-            <img :src="url + book.cover_image" class="d-block mx-auto mb-2 img-shadow" alt="..." height="206" width="159">
+            <img :src="url + book.cover_image" class="d-block mx-auto mb-2 img-shadow rounded-3" alt="..." height="206" width="159">
         </NuxtLink>
         <div class="text-dark-blue">
             {{book.title}}

@@ -4,10 +4,10 @@
             <div class="font-x-large ff-meduim text-dark-blue text-center pt-5">{{t('index.blogsTitle1') }} <span class="text-choco">{{t('index.blogsTitle2') }}</span></div>
             <div class="row p-5 justify-content-center align-content-stretch items-center">
                 <div v-for="(blog, i) in props.blogs" :key="i" class="col-lg-4 col-md-6 col-sm-6 mb-3">
-                    <div class="card  bg-secondary border-0 ma-1 h-100">
+                    <div class="card  bg-secondary border-0 ma-1 h-100 rounded-3">
                         <NuxtLink :to="localePath(`/blogs/${blog.slug}`)">
-                        <figure class="overlay">
-                            <img :src="url + blog.cover_image" class="card-img-top" :alt="blog.title" width="250" height="280">
+                        <figure class="overlay rounded-top-3">
+                            <img :src="url + blog.cover_image" class="card-img-top rounded-top-3" :alt="blog.title" width="250" height="280">
                         </figure>
                         </NuxtLink>
                         <div class="card-body">

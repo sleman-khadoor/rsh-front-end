@@ -27,6 +27,7 @@
                 :color="'bg-purple'" 
                 :circleSrc="'circle-purple'"
                 :steps="true"
+                :stepsData="stepsData"
                 :serviceName="'creative_editing_service'" />
             </div>
         </div>
@@ -52,9 +53,16 @@ export default defineComponent({
             iconSrc: 'creativeEditing-s3'
         }
     ];
+    let stepsData = [
+        t('departments.creativeEditing.form.steps.step1'),
+        t('departments.creativeEditing.form.steps.step2'),
+        t('departments.creativeEditing.form.steps.step3'),
+        t('departments.creativeEditing.form.steps.step4'),
+    ]
     return {
          t,
-         departments
+         departments,
+         stepsData
     }
     },
 });

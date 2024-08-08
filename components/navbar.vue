@@ -85,7 +85,8 @@
                 </li>
                 <li class="justify-content-center">
                     <NuxtLink class="nav-link text-choco h-100 align-content-center ff-regular font-small lh-24px line-h d-flex flex-wrap align-items-center w-mc"
-                    v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)">
+                    v-for="locale in availableLocales" :key="locale.code" :to="switchLocalePath(locale.code)" :replace="true"
+                    @click="onLanguageSwitch">
                         <!-- <div> -->
                             <img src="/icon/global.svg" class="d-block w-fc mx-1" alt="lang" height="20" width="20">
                             <span class="text-dark-blue w-fc">{{ t('navbar.language') }}</span>
@@ -100,9 +101,11 @@
     </div>
 </template>
 <script setup>
-// export default defineComponent({
-//     setup() {
         const { locale, locales, t } = useI18n()
+        const router = useRouter()
+        const currentRoute = computed(()=> {
+            return useRoute().path
+        }) 
         const switchLocalePath = useSwitchLocalePath()
         const pages = ref([
         {
@@ -150,14 +153,11 @@
         const availableLocales = computed(() => {
             return locales.value.filter(i => i.code !== locale.value)
         });
-
-//         return {
-//             switchLocalePath,
-//             availableLocales,
-//             pages
-//         }
-//     }
-// })
+        const onLanguageSwitch = () => {
+            // Emit the event globally
+            const event = new Event('language-switched');
+            window.dispatchEvent(event);
+        };
 </script>
 <style>
 .dropdown-menu {

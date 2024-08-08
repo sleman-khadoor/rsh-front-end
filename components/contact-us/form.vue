@@ -1,5 +1,5 @@
 <template>
-    <div class="row py-5">
+    <div class="row py-5" ref="contactsRef">
         <div v-if="!steps"  class="col-lg-5 px-5 text-dark-blue justify-content-start">
             <div class="font-xx-large fw-semibold mb-3">
                 {{props.title}}
@@ -23,44 +23,40 @@
             </div>
         </div>
         <div v-else class="col-lg-5 px-5 text-dark-blue">
-            <div class="d-flex text-large">
+            <div class="d-flex text-large mb-2">
                 <span class="font-xx-large fw-semibold">
                     {{props.title}}
                 </span><span class="mx-2 font-large ff-meduim mt-auto">{{$t('departments.with')}}</span>
             </div>                        
             <div class="mb-3 font-large ff-meduim mb-5">{{props.subTitle}}</div>
-            <div class="row mt-0 mb-4 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
-                <div class="col-1 p-0 justify-content-center text-center">
+            <div v-for="(step, index) in props.stepsData" :key="step" class="row mt-0 mb-4 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
+                <div class="col-1 p-0 justify-content-center text-center"  style="margin-top: -2px">
                     <img :src="`/icon/${props.circleSrc}.svg`" alt="rashm" height="22" width="22">
-                    <div class="hr bg-grey h-100 mx-auto" style="width:3px;"></div>
+                    <div v-if="index !== (props.stepsData.length - 1)" class="hr bg-grey h-100 mx-auto" style="width:3px;"></div>
                 </div>
                 <div class="col-11 mb-4 lh-25">
-                    {{t('contactUs.steps.step1')}}
-                </div>
-            </div>
-            <div class="row mt-0 mb-4 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
-                <div class="col-1 p-0 justify-content-center text-center">
-                    <img :src="`/icon/${props.circleSrc}.svg`" alt="rashm" height="22" width="22">
-                    <div class="hr bg-grey h-100 mx-auto" style="width:3px;"></div>
-                </div>
-                <div class="col-11 mb-4 lh-25">
-                    {{t('contactUs.steps.step2')}}
-                </div>
-            </div>
-            <div class="row mt-0 mb-4 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
-                <div class="col-1 p-0 justify-content-center text-center">
-                    <img :src="`/icon/${props.circleSrc}.svg`" alt="rashm" height="22" width="22">
-                </div>
-                <div class="col-11 mb-4 lh-25">
-                    {{t('contactUs.steps.step3')}}
+                    {{step}}
                 </div>
             </div>
         </div>
         <div class="col-lg-7 px-5">
+            <div  v-if="requestMessage" :class="`mt-3 d-flex font-meduim justify-content-between alert `+ requestClass" role="alert">
+                 <span class="m-0">{{$t(`contactUs.form.alert.${requestMessage}`)}}</span>
+                 <button type="button" class="btn-close mt-0" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
             <form class="needs-validation"  @submit.prevent="checkValidate($event)" novalidate>
                  <div class="mb-4 d-flex justify-content-between">
                     <input type="text" class="form-control bg-snow form-control h-50px" @change="removeAlert()" v-model="contactUsForm.name" id="name" :placeholder="$t('contactUs.form.fullName')" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" class="form-control bg-snow form-control h-50px" @change="removeAlert()" v-model="contactUsForm.mobile" id="mobile" :placeholder="$t('contactUs.form.mobile')" required>
+                    <vue-tel-input 
+                        class="form-control bg-snow h-50px"
+                        :input-options="inputOptions"
+                        @input="onInput"
+                        @country-changed="onCountryChanged"
+                        :default-country="'SA'" 
+                        ref="phoneInput"
+                        :class="phoneClass"
+                        :options="telInputOptions" 
+                        required/>
                 </div>
                 <div class="mb-4">
                     <input type="email" class="form-control bg-snow h-50px" @change="removeAlert()" v-model="contactUsForm.email" id="exampleInputEmail1" aria-describedby="emailHelp" :placeholder="t('contactUs.form.email')" required>
@@ -83,12 +79,12 @@
                     </div>
                     <div v-if="flag" class="text-danger mt-2">{{t('contactUs.form.attachmentValidation')}}</div>
                 </div>
-                <div v-if="steps" class="uploaded-files d-flex justify-content-start py-2 mb-2 flex flex-wrap">
-                    <div v-for="(file, index) in files" :key="index" class="uploaded-file position-relative">
+                <div v-if="steps" class="uploaded-files row justify-content-start py-2 mb-2">
+                    <div v-for="(file, index) in files" :key="index" class="uploaded-file position-relative col w-20 p-1">
                         <img v-if="file.type === 'pdf'" src="/img/pdf.png" class="img-thumbnail" alt="uploaded file">
                         <img v-else-if="file.type === 'docx' || file.type === 'doc'" src="/img/word.png" class="img-thumbnail" alt="uploaded file">
                         <img v-else :src="file.url" class="img-thumbnail" alt="uploaded file">
-                        <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle" @click="removeFile(index)" aria-label="Close"></button>
+                        <button type="button" class="btn-close position-absolute top-0 start-100 translate-effect" @click="removeFile(index)" aria-label="Close"></button>
                     </div>
                 </div>
                 <!-- 6LcrNxsqAAAAAIjAUgca8kLJT8-e4vlHbV7Emwvg -->
@@ -101,18 +97,22 @@
                     <button type="submit" :disabled="disabledBtn" :class="dynamicClass">{{$t('contactUs.form.send')}}</button>
                 </div>
             </form>
-            <div  v-if="requestMessage" :class="`mt-3 d-flex font-meduim justify-content-between alert `+ requestClass" role="alert">
-                 <span class="m-0">{{$t(`contactUs.form.alert.${requestMessage}`)}}</span>
-                 <button type="button" class="btn-close mt-0" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
         </div>
     </div>
 </template>
 <script setup>
 import { ref } from 'vue'
 import { createEmitter } from '~/node_modules/@intlify/shared/dist/shared';
+
+const phoneClass = ref('');
+const phoneNumber = ref('');
+const phoneInput = ref(null);
+const preventInputEvent = ref(false);
+const countryCode = ref('');
+const isSubmitted = ref(false);
 // export default defineComponent({
 const { locale } = useI18n()
+const { $intlTelInput } = useNuxtApp()
 const props = defineProps({
   title: {
     type: String
@@ -132,10 +132,14 @@ const props = defineProps({
   steps: {
     type: Boolean
   },
+  stepsData: {
+    type: Array
+  },
 });
 const {t} = useI18n()
 const runTimeConfig = useRuntimeConfig();
 const headers = ref({})
+const contactsRef = ref(null)
 const files = ref([])
 const requestPending = ref(false)
 const requestError = ref(null)
@@ -147,6 +151,13 @@ const contactsPending = ref(false);
 const contactsError = ref(null);
 // const uploadedFilesTosend = ref([])
 const emit = defineEmits() ;
+const getInitialContactUsForm = () => ({
+            name: '',
+            mobile: '',
+            email: '',
+            description: '',
+            documents: [],
+})
 const contactUsForm = reactive({
             name: '',
             mobile: '',
@@ -177,16 +188,65 @@ const removeFile = (index) => {
             files.value.splice(index, 1)
             contactUsForm.documents.splice(index, 1)
 }
+const validateTelInput = () => {
+        if(isSubmitted.value && !isValidPhoneNumber.value) {
+            phoneClass.value = 'is-invalid'
+            console.log('class', phoneClass.value);
+        } else if (isSubmitted.value && isValidPhoneNumber.value) {
+            console.log('validdd');
+            phoneClass.value = 'is-valid'
+            console.log('class', phoneClass.value);
+        }
+}
+
+function resetValidateTelInput() {
+    preventInputEvent.value = true;
+    phoneClass.value = ''
+    const inputElement = document.getElementsByClassName('vue-tel-input')    
+    inputElement[0].classList.remove('is-invalid')
+    inputElement[0].classList.remove('is-valid')
+    setTimeout(() => {
+    preventInputEvent.value = false;
+  }, 0);
+}
+
+const onInput = (value) => {
+    if(!preventInputEvent.value) {
+        phoneNumber.value = value.data
+        validateTelInput()
+    }    
+};
+// Function to handle country change events
+const onCountryChanged = (country) => {
+  countryCode.value = country.dialCode;
+  console.log('Country changed:', country);
+  console.log('Country changed:', countryCode.value);
+};
+const isValidPhoneNumber = computed(() => {
+  return phoneInput?.value?.$?.data?.phone; // You can add more complex validation here
+});
+
+const inputOptions = {
+  placeholder: t('contactUs.form.mobile'),
+  autocomplete: 'off'
+};
+const telInputOptions = {
+  initialCountry: 'auto', // This might auto-detect the user's country
+  utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js' // Ensure this is the correct URL
+};
+
 const flag = computed(() => {
             return files?.value?.length > 4 ? true : false
 })
+
 const disabledBtn = computed(() => {
     return (files?.value?.length > 5) || (requestPending === true)
 })
 
 const dynamicClass = computed(() => {
-        return `btn btn-primary p-2 border-0 font-x-large ff-regular h-50px ${props.color}`;
+        return `btn btn-primary p-2 border-0 font-large ff-regular h-50px ${props.color}`;
 });
+
 const filehandler = () => {
             const fileInput = document.getElementById('file-input');
             const label = document.querySelector('.file-label .label-text');
@@ -204,6 +264,13 @@ const filehandler = () => {
                 }
             });
 };
+
+const resetContactUsForm = () => Object.assign(contactUsForm, getInitialContactUsForm());
+function resetPhoneFieldValue() {
+    phoneInput.value.$.data.phone = ''
+    phoneInput.value = null
+    countryCode.value = 1
+}
 async function addRequest () {
     try {
             requestPending.value = true;
@@ -238,7 +305,7 @@ async function addRequest () {
             requestMessage.value = data.message
             requestSuccess.value = data.success
             if(data.success) {
-                requestClass.value = `alert-success`
+                requestClass.value = `alert-info`
                 requestMessage.value = `success`
             } else {
                 requestClass.value = `alert-danger`
@@ -250,22 +317,35 @@ async function addRequest () {
             console.error('Error fetching books:', error);
     } finally {
             requestPending.value = false;
+            resetContactUsForm()
+            resetPhoneFieldValue()
+            const forms = document.querySelectorAll('.needs-validation')
+            const form = Array.from(forms)[0]
+            form.classList.remove('was-validated')
+            isSubmitted.value = false
+            resetValidateTelInput()
+            const route = useRoute().path
+            const router = useRouter()
+            router.push(`${route}#contacts`)
     }
 };
 
 async function checkValidate(event) {
-            const forms = document.querySelectorAll('.needs-validation')
-            const form = Array.from(forms)[0]
-            if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-            } else {
-                addRequest()
-            }
-            form.classList.add('was-validated')
+    isSubmitted.value = true
+    validateTelInput()
+    const forms = document.querySelectorAll('.needs-validation')
+    const form = Array.from(forms)[0]
+    if (!form.checkValidity() || !isValidPhoneNumber.value) {
+        event.preventDefault()
+        event.stopPropagation()
+    } else {
+        contactUsForm.mobile = `00${countryCode.value}` + `${phoneInput.value.$.data.phone}`;
+        addRequest()
+    }
+    form.classList.add('was-validated')
 };
 
-function removeAlert() {
+function removeAlert(e) {
     requestMessage.value = null
 };
 // Fetch data function
@@ -285,12 +365,16 @@ const fetchData = async (url, dataRef, pendingRef, errorRef) => {
     pendingRef.value = false;
   }
 };
+
 const contactInfo = computed(() => {
     return contacts.value.filter((e) =>
         locale.value === 'ar' ? (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'linkedIn' && e.type !== 'facebook' && e.type !== 'en_location') :
         (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'linkedIn' && e.type !== 'facebook'  && e.type !== 'ar_location')
     )}
 );
+
+watchEffect(phoneInput, phoneClass, countryCode)
+
 onMounted(async ()=> {
     headers.value = API_HEADER(); // Set headers in the setup context
     try {
@@ -310,13 +394,12 @@ onMounted(async ()=> {
   flex-wrap: nowrap;
 }
 
-.uploaded-file {
-  margin-right: 10px;
-}
-
 .uploaded-file img {
   height: 100px;
-  width: auto;
+  width: 100%;
+}
+.w-20 {
+    width: 20%;
 }
 .btn-close{
     background-image: url('/icon/close-circle.svg');
@@ -352,7 +435,9 @@ input[type="file"]
     cursor: pointer;
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-
+.translate-effect {
+    transform: translate(-85%, -30%) !important;
+}
 .file-label:hover {
     background-color: #e9e9e9;
     border-color: #bbb;
@@ -373,4 +458,5 @@ input[type="file"]
 .h-50px {
         height: 50px;
 }
+
 </style>

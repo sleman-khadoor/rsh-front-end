@@ -60,12 +60,16 @@ async function navigateToBooksPage() {
 let path = ''
 console.log('locale index', locale.value === 'ar');
 locale.value === 'ar' ? path = '/books' : path = '/en/books'
-await navigateTo({
-  path: path,
-  query: {
-    searchKey: search.value
+const routePath = useRoute().fullPath
+console.log('route', routePath);
+  if(routePath === '/en' || routePath === '/'){
+    await navigateTo({
+      path: path,
+      query: {
+        searchKey: search.value
+      }
+    })
   }
-})
 }
 function selectSearchType(item) {
   search.key = item.key;
