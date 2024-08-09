@@ -78,6 +78,10 @@
         }
     },
     "contactUs": {
+        "overlayImg": {
+            "title": "Get in Touch",
+            "text": "Have any Questions? Reach Out To Us From Our Contact Form And We Will Get Back To You Shortly."
+        },
         "title": "Contact Us",
         "subTitle": "Fill out the form and we will respond to you within a maximum of 24 hours",
         "form": {

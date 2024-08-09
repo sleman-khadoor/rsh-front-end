@@ -7,7 +7,7 @@
                     <div class="card  bg-secondary border-0 ma-1 h-100 rounded-3">
                         <NuxtLink :to="localePath(`/blogs/${blog.slug}`)">
                         <figure class="overlay rounded-top-3">
-                            <img :src="url + blog.cover_image" class="card-img-top rounded-top-3" :alt="blog.title" width="250" height="280">
+                            <img :src="url + blog.cover_image" class="card-img-top rounded-top-3 object-fit-fill" :alt="blog.title" width="250" height="280">
                         </figure>
                         </NuxtLink>
                         <div class="card-body">

@@ -3,11 +3,11 @@
         <Title>{{book.title}}</Title>
         <Meta name="description" content="Book name with Rashm" />
         <div class="col-11 mx-auto my-5 bg-primary rounded-4 py-5 px-lg-5 px-md-5 px-sm-4 text-dark-blue">
-            <div class="row">
+            <div class="row px-3">
                 <div class="col col-auto px-0 mx-auto justify-content-center font-meduim lh-25 mb-5">
                 <!-- <div class="col col-auto px-0 mx-auto justify-content-center font-meduim lh-25 mb-5"> -->
-                    <div :style="`background: url(${url + book.cover_image})`" class="bg-img my-3"></div>
-                    <!-- <img :src="url + book.cover_image" class="d-block mx-auto mb-2" :alt="book.title" height="340" width="280"> -->
+                    <!-- <div :style="`background: url(${url + book.cover_image})`" class="bg-img my-3"></div> -->
+                    <img :src="url + book.cover_image" class="d-block mx-auto mb-2 bg-img object-fit-fill" :alt="book.title">
                     <div class="d-flex flex-wrap align-items-center ff-meduim mb-1"  style="width: 280px;">
                         <img src="/icon/categories.svg" class="d-block my-auto mr-2" alt="..." width="20" height="20">&nbsp;
                         {{$t('books.categories')}}: &nbsp;
@@ -115,9 +115,9 @@ onMounted(() => {
   background-repeat: no-repeat;
     background-position: top center;
     min-height: 450px;
-    height: fit-content;
+    height: 450px;
     min-width: 300px;
-    width: max-content;
+    width: 300px;
     background-size: cover !important;
     background-position: center !important;
     overflow: hidden;

@@ -1,8 +1,7 @@
 <template>
-    <div class="h-100">
-        <div id="carouselExampleAutoplaying" class="carousel slide p-0 h-100 overflow-hidden" 
+    <div class="h-100" style="min-height: 400px">
+        <div id="carouselExampleAutoplaying" class="carousel slide p-0 h-100" 
         data-bs-ride="carousel"
-        :data-bs-touch="true"
         data-bs-pause="hover"
         data-bs-interval="5000">
             <div class="carousel-indicators">
@@ -11,7 +10,7 @@
             
             <div class="carousel-inner rounded-4 h-100">
                 <figure class="overlay h-100">
-                <div v-for="(item, i) in props.news" :key="i" :class="i === 0 ? 'carousel-item active' : 'carousel-item'" :style="`background: url(${url + item.cover_image}); background-size: cover; min-height: 400px; height: inherit !important`">
+                <div v-for="(item, i) in props.news" :key="i" :class="i === 0 ? 'carousel-item active bg-img' : 'carousel-item bg-img'" :style="`background: url(${url + item.cover_image});`">
                     <div class="carousel-caption d-block m-4" style="text-align: unset">
                         <span class="font-large ff-medium">{{ item.title }}</span>
                         <p class="font-small ff-regular lh-25">{{ item.content }}</p>
@@ -107,5 +106,16 @@ onBeforeUnmount(() => {
 }
 figure {
     margin: unset !important;
+}
+.bg-img {
+  background-repeat: no-repeat;
+    background-position: top center;
+    min-height: 100%;
+    height: fit-content;
+    min-width: 100%;
+    width: max-content;
+    background-size: cover !important;
+    background-position: center !important;
+    overflow: hidden;
 }
 </style>
