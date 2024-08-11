@@ -57,7 +57,6 @@ export default defineComponent({
         t('departments.creativeEditing.form.steps.step1'),
         t('departments.creativeEditing.form.steps.step2'),
         t('departments.creativeEditing.form.steps.step3'),
-        t('departments.creativeEditing.form.steps.step4'),
     ]
     return {
          t,

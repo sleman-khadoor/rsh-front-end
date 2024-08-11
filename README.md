@@ -56,6 +56,8 @@ bun run dev
 
 ## Production
 
+Make sure you added your API URL in (nuxt.config.ts) file and the baseURL in (utils/global.ts)
+
 Build the application for production:
 
 ```bash

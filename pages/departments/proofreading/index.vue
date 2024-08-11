@@ -61,7 +61,6 @@ export default defineComponent({
         t('departments.proofreading.form.steps.step1'),
         t('departments.proofreading.form.steps.step2'),
         t('departments.proofreading.form.steps.step3'),
-        t('departments.proofreading.form.steps.step4'),
     ];
     return {
          t,

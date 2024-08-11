@@ -97,7 +97,6 @@ export default defineComponent({
         t('departments.contentWriting.form.steps.step1'),
         t('departments.contentWriting.form.steps.step2'),
         t('departments.contentWriting.form.steps.step3'),
-        t('departments.contentWriting.form.steps.step4'),
     ]
     return {
          t,

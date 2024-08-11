@@ -66,7 +66,6 @@ export default defineComponent({
         t('departments.marketing.form.steps.step1'),
         t('departments.marketing.form.steps.step2'),
         t('departments.marketing.form.steps.step3'),
-        t('departments.marketing.form.steps.step4'),
     ]
     return {
          t,

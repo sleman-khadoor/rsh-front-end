@@ -4,7 +4,7 @@
         "home": "Home",
         "aboutUs": "About Us",
         "departments": "Departments",
-        "blogs": "Blogs",
+        "blogs": "Blog",
         "books": "Books",
         "ourPartners": "Our Partners",
         "publishWithUs": "Publish With Us",
@@ -33,9 +33,9 @@
         "rashmHistory3": "history and our vision of providing Exceptional Services",
         "departmentsTitle1" : "Discover",
         "departmentsTitle2" : "Rashm's",
-        "departmentsTitle3" : "diverse services",
-        "blogsTitle1" : "Check our latest",
-        "blogsTitle2" : "Blogs",
+        "departmentsTitle3" : "Diverse Departments",
+        "blogsTitle1" : "Check Our Latest",
+        "blogsTitle2" : "Blog Posts",
         "checkoutLatestBooks": "Check out the latest books added by Rashm",
         "history": {
             "history1": "Dar Rashm Publishing House has been a shining star in the Saudi Arabian literary sky since 2019.",
@@ -131,15 +131,15 @@
                 "title": "Contact",
                 "subTitle": "Translation Department",
                 "steps": {
-                    "step1": "{'For inquiries and to obtain translation services visit our website: rashm.com.sa'}",
-                    "step2": "{'Contact us via email: translation@rashm.com.sa'}",
-                    "step3": "Call us on 00966547094709"
+                    "step1": "{'Please fill out the form or contact us via email translation@rashm.com.sa.'}",
+                    "step2": "We will provide you with information and prices after submitting your material.",
+                    "step3": "We will deliver the translation material to you within the agreed time."
                 }
             }
         },
         "proofreading":{
             "overlayImg": {
-                "title": "Linguistic Editing",
+                "title": "Proofreading Service",
                 "text": "We elevate your writing to a new level of professionalism. Our team of expert linguistic editors ensures that your texts are free from grammatical, spelling, and stylistic errors, making your writing clear, compelling, and effective."
             },
             "request": "Benefits",
@@ -151,12 +151,11 @@
             },
             "form": {
                 "title": "Contact",
-                "subTitle": "Linguistic proofreading department",
+                "subTitle": "Poofreading department",
                 "steps": {
-                    "step1": "Please visit our website rashm.com.sa ",
-                    "step2": "{'Or contact us via email proofreading@rashm.com.sa.'}",
-                    "step3": "We will provide you with information and prices after submitting your material.",
-                    "step4": "We will deliver the proofread material to you within the agreed time."
+                    "step1": "{'Please fill out the form or contact us via email proofreading@rashm.com.sa.'}",
+                    "step2": "We will provide you with information and prices after submitting your material.",
+                    "step3": "We will deliver the proofread material to you within the agreed time."
                 }
             }
         },
@@ -175,10 +174,9 @@
                 "title": "Contact",
                 "subTitle": "Creative Editing department",
                 "steps": {
-                    "step1": "Please visit our website rashm.com.sa ",
-                    "step2": "{'Or contact us via email creative.editing@rashm.com.sa '}",
-                    "step3": "We will provide you with information about our services and prices.",
-                    "step4": "You will provide us with the material you want edited then we will deliver the edited material to you within the agreed timeframe."
+                    "step1": "{'Please fill out the form or contact us via email creative.editing@rashm.com.sa '}",
+                    "step2": "We will provide you with information about our services and prices.",
+                    "step3": "You will provide us with the material you want edited then we will deliver the edited material to you within the agreed timeframe."
                 }
             }
         },
@@ -198,7 +196,7 @@
                 "title": "Contact",
                 "subTitle": "Literary agency service for authors",
                 "steps": {
-                    "step1": "{'Please visit our website rashm.com.sa Or contact us via email literary.agency@rashm.com.sa.'}",
+                    "step1": "{'Please fill out the form or contact us via email literary.agency@rashm.com.sa.'}",
                     "step2": "Provide you with information about our services and prices.",
                     "step3": "You will provide us with the texts and a sample of your book and We will work with you to evaluate your work better for the publishing path.",
                     "step4": "We will develop a well-thought-out marketing plan for your work and We will communicate with the media and cultural forums to introduce your work."
@@ -226,10 +224,9 @@
                 "title": "Contact",
                 "subTitle": "Marketing department",
                 "steps": {
-                    "step1": "Please visit our website rashm.com.sa ",
-                    "step2": "{'Or contact us via email marketing@rashm.com.sa'}",
-                    "step3": "We will provide you with information about our services and prices.",
-                    "step4": "We will deliver to you a marketing plan within the agreed upon period."
+                    "step1": "{'Please fill out the form or contact us via email marketing@rashm.com.sa'}",
+                    "step2": "We will provide you with information about our services and prices.",
+                    "step3": "We will deliver to you a marketing plan within the agreed upon period."
                 }
             }
         },
@@ -272,10 +269,9 @@
                 "title": "Contact",
                 "subTitle": "Content writer department",
                 "steps": {
-                    "step1": "Please visit our website rashm.com.sa ",
-                    "step2": "{'Or contact us via email content@rashm.com.sa'}",
-                    "step3": "We will provide you with information about our services and prices.",
-                    "step4": "We need to know more about your needs and goals to create customized content for you then We will deliver the content to you within the agreed timeframe."
+                    "step1": "{'Please fill out the form or contact us via email content@rashm.com.sa'}",
+                    "step2": "We will provide you with information about our services and prices.",
+                    "step3": "We need to know more about your needs and goals to create customized content for you then We will deliver the content to you within the agreed timeframe."
                 }
             }
         },
@@ -295,10 +291,10 @@
                 "title": "Contact",
                 "subTitle": "Content Book Delivery department",
                 "steps": {
-                    "step1": "Are you ready to turn your dream into reality?",
-                    "step2": "Contact us now for a free quote and a free consultation on your project.",
-                    "step3": "Visit our website: rashm.com.sa ",
-                    "step4": "{'Or contact us via email: production@rashm.com.sa Or call us at 00966547094709.'}"
+                    "step1": "{'Please fill out the form or contact us via email production@rashm.com.sa.'}",
+                    "step2": "Provide you with information about our services and prices.",
+                    "step3": "Are you ready to turn your dream into reality?",
+                    "step4": "Contact us now for a free quote and a free consultation on your project."
                 }
             }
         },
@@ -364,7 +360,7 @@
                 "title": "Contact",
                 "subTitle": "Organizing Events and Conferences department",
                 "steps": {
-                    "step1": "{'Please visit our website rashm.com.sa Or contact us via email events@rashm.com.sa.'}",
+                    "step1": "{'Please fill out the form or contact us via email events@rashm.com.sa.'}",
                     "step2": "Provide you with information about our services and prices.",
                     "step3": "You will provide us with the details about the event you wish to organize.",
                     "step4": "We will provide you with all the necessary tips and ideas to organize the event and then implement it on the ground in the best possible way."
@@ -447,14 +443,14 @@
             "text": "Rashm is a leading Saudi publishing house founded in 2019 in Arar, North Borders, Saudi Arabia."
         },
         "aims": {
-            "title": "Our mission is to",
+            "title": "Our Mission",
             "aim1": "Enrich the Arabic library with purposeful and diverse publications in various fields, focusing on Arabic literature in its various forms, scientific and intellectual books, children's books, and personal development books",
             "aim2": "Discover and support new literary talents by publishing their first works and providing them with publishing opportunities.",
             "aim3": "Contribute to the spread of Arab culture by participating in Arab and international book fairs, and organizing cultural and literary events."
         },
         "achievements": "Some of Rashm Achievements",
         "publishingHouses": {
-            "title": "Rashm Publishing and Distribution House is distinguished by",
+            "title": "Rashm Publishing and Distribution House is Distinguished by",
             "publishingHouse1": "Its commitment to the highest quality standards in all its stages.",
             "publishingHouse2": "Its interest in choosing important topics and contemporary issues.",
             "publishingHouse3": "Its keenness to diversify its publications to meet the needs of different readers.",

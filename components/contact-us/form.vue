@@ -356,6 +356,8 @@ async function addRequest () {
             const route = useRoute().path
             const router = useRouter()
             router.push(`${route}#contacts`)
+            files.value = []
+            errorMessages.value = []
     }
 };
 
