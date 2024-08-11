@@ -132,10 +132,10 @@ const contacts = ref([]);
 const contactsPending = ref(false);
 const contactsError = ref(null);
 const contactInfo = computed(() => {
-  return contacts.value.filter((e) => (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'linkedIn' && e.type !== 'facebook' && e.type !== 'en_location' && e.type !== 'ar_location'))
+  return contacts.value.filter((e) => (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'linkedIn' && e.type !== 'facebook' && e.type !== 'en_location' && e.type !== 'ar_location' && e.type !== 'shop_url'))
 });
 const socialMedia = computed(() => {
-  return contacts.value.filter((e) => (e.type !== 'phone' && e.type !== 'email' && e.type !== 'en_location' && e.type !== 'ar_location'))
+  return contacts.value.filter((e) => (e.type !== 'phone' && e.type !== 'email' && e.type !== 'en_location' && e.type !== 'ar_location' && e.type !== 'shop_url'))
 });
 const headers = ref({});
 

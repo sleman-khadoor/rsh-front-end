@@ -72,18 +72,24 @@
                 </div>
                 <div v-if="steps" class="mb-2">
                     <div class="file-upload-container">
-                        <input type="file" id="file-input" class="file-input" multiple @change="handleFileUpload" v-bind:disabled="flag">
+                        <input type="file" accept=".jpg, .jpeg, .png, .pdf, .doc, .docx" id="file-input" class="file-input" multiple @change="handleFileUpload" v-bind:disabled="disabledBtn">
                         <label for="file-input" class="file-label bg-snow text-light-grey h-50px">
                             <img src="/icon/link.svg" alt="Upload Icon" class="upload-icon"> <span class="label-text">&nbsp;{{t('contactUs.form.attachment')}}&nbsp;</span>
                         </label>
                     </div>
                     <div v-if="flag" class="text-danger mt-2">{{t('contactUs.form.attachmentValidation')}}</div>
+                    <!-- Error Message Display -->
+                    <div v-if="errorMessages.length" class="alert alert-danger mt-2">
+                        <ul>
+                        <li v-for="(error, index) in errorMessages" :key="index">{{ error.msg }}</li>
+                        </ul>
+                    </div>
                 </div>
                 <div v-if="steps" class="uploaded-files row justify-content-start py-2 mb-2">
-                    <div v-for="(file, index) in files" :key="index" class="uploaded-file position-relative col w-20 p-1">
-                        <img v-if="file.type === 'pdf'" src="/img/pdf.png" class="img-thumbnail" alt="uploaded file">
-                        <img v-else-if="file.type === 'docx' || file.type === 'doc'" src="/img/word.png" class="img-thumbnail" alt="uploaded file">
-                        <img v-else :src="file.url" class="img-thumbnail" alt="uploaded file">
+                    <div v-for="(file, index) in files" :key="index" class="uploaded-file position-relative col attach-files p-1">
+                        <img v-if="file.type === 'pdf'" src="/img/pdf.png" class="object-fit-contain" alt="uploaded file">
+                        <img v-else-if="file.type === 'docx' || file.type === 'doc'" src="/img/word.png" class="object-fit-contain" alt="uploaded file">
+                        <img v-else :src="file.url" class="object-fit-contain" alt="uploaded file">
                         <button type="button" class="btn-close position-absolute top-0 start-100 translate-effect" @click="removeFile(index)" aria-label="Close"></button>
                     </div>
                 </div>
@@ -110,7 +116,6 @@ const phoneInput = ref(null);
 const preventInputEvent = ref(false);
 const countryCode = ref('');
 const isSubmitted = ref(false);
-// export default defineComponent({
 const { locale } = useI18n()
 const { $intlTelInput } = useNuxtApp()
 const props = defineProps({
@@ -149,7 +154,11 @@ const requestClass = ref(null)
 const contacts = ref([]);
 const contactsPending = ref(false);
 const contactsError = ref(null);
-// const uploadedFilesTosend = ref([])
+const errorMessages = ref([]) // Holds error messages to display to the user
+const filesLimit = ref(false)
+const MAX_FILE_SIZE = 10 * 1024 * 1024 // 2MB in bytes
+const ALLOWED_FORMATS = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf', 'application/msword',
+  'application/vnd.openxmlformats-officedocument.wordprocessingml.document']
 const emit = defineEmits() ;
 const getInitialContactUsForm = () => ({
             name: '',
@@ -167,20 +176,48 @@ const contactUsForm = reactive({
 })
 const handleFileUpload = (event) => {
             removeAlert()
+             filesLimit.value = false // Reset error messages
+             errorMessages.value = [] // Reset error messages
             if(event?.target?.files?.length < 6) {
                 const uploadedFiles = event.target.files
+                const invalidFiles = []
                 for (let i = 0; i < uploadedFiles.length; i++) {
                     const file = uploadedFiles[i]
-                    const name = file.name
-                    var n = name.lastIndexOf('.');
-                    var type = name.substring(n + 1);
-                    contactUsForm.documents.push(file)
-                    const url = URL.createObjectURL(file)
-                    files.value.push({ file, url, type })
+                    // Validate File Size
+                    if (file.size > MAX_FILE_SIZE) {
+                        invalidFiles.push(
+                            {
+                                msg: t('contactUs.form.errorMsg.file') + ' ' + file.name + ' ' +  t('contactUs.form.errorMsg.limit'),
+                                index: i
+                            }
+                        )
+                    }
+                    // Validate File Type
+                    if (!ALLOWED_FORMATS.includes(file.type)) {
+                        invalidFiles.push(
+                           {
+                                msg: t('contactUs.form.errorMsg.file') + ' ' +  file.name + ' ' +  t('contactUs.form.errorMsg.format'),
+                                index: i
+                           }
+                        )
+                    }
+                    
+                    if ((file.size <= MAX_FILE_SIZE) && ALLOWED_FORMATS.includes(file.type)) {
+                        const name = file.name
+                        var n = name.lastIndexOf('.');
+                        var type = name.substring(n + 1);
+                        contactUsForm.documents.push(file)
+                        const url = URL.createObjectURL(file)
+                        files.value.push({ file, url, type })   
+                    }
                 }
-                console.log('my files hereeee:', files.value);
+                if (invalidFiles.length) {
+                        errorMessages.value = invalidFiles
+                        event.target.value = '' // Clear the input to prevent accidental uploads
+                        return
+                }
             } else {
-                document.getElementById("file").value = '';
+                filesLimit.value = true;
             }
 }
 const removeFile = (index) => {
@@ -191,11 +228,8 @@ const removeFile = (index) => {
 const validateTelInput = () => {
         if(isSubmitted.value && !isValidPhoneNumber.value) {
             phoneClass.value = 'is-invalid'
-            console.log('class', phoneClass.value);
         } else if (isSubmitted.value && isValidPhoneNumber.value) {
-            console.log('validdd');
             phoneClass.value = 'is-valid'
-            console.log('class', phoneClass.value);
         }
 }
 
@@ -219,8 +253,6 @@ const onInput = (value) => {
 // Function to handle country change events
 const onCountryChanged = (country) => {
   countryCode.value = country.dialCode;
-  console.log('Country changed:', country);
-  console.log('Country changed:', countryCode.value);
 };
 const isValidPhoneNumber = computed(() => {
   return phoneInput?.value?.$?.data?.phone; // You can add more complex validation here
@@ -236,7 +268,7 @@ const telInputOptions = {
 };
 
 const flag = computed(() => {
-            return files?.value?.length > 4 ? true : false
+            return ((files?.value?.length > 4) || filesLimit.value) ? true : false
 })
 
 const disabledBtn = computed(() => {
@@ -287,14 +319,12 @@ async function addRequest () {
                     formData.append(`documents[${i}]`, contactUsForm.documents[i]);
                 }
                 endpoint = '/service-requests'
-                console.log('formData entries:', Array.from(formData.entries()));
             } else {
                 formData.append('fullname', contactUsForm.name);
                 formData.append('email', contactUsForm.email);
                 formData.append('mobile', contactUsForm.mobile);
                 formData.append('message', contactUsForm.description);
                 endpoint = '/contact-requests'
-                console.log('formData entries:', Array.from(formData.entries()));
             }
             
             const data = await $fetch(runTimeConfig.public.API_URL + endpoint, {
@@ -311,7 +341,6 @@ async function addRequest () {
                 requestClass.value = `alert-danger`
                 requestMessage.value = `danger`
             }
-            console.log('responseData:', data);
     } catch (error) {
             requestError.value = error;
             console.error('Error fetching books:', error);
@@ -368,8 +397,8 @@ const fetchData = async (url, dataRef, pendingRef, errorRef) => {
 
 const contactInfo = computed(() => {
     return contacts.value.filter((e) =>
-        locale.value === 'ar' ? (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'linkedIn' && e.type !== 'facebook' && e.type !== 'en_location') :
-        (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'linkedIn' && e.type !== 'facebook'  && e.type !== 'ar_location')
+        locale.value === 'ar' ? (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'linkedIn' && e.type !== 'facebook' && e.type !== 'en_location' && e.type !== 'shop_url') :
+        (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'linkedIn' && e.type !== 'facebook'  && e.type !== 'ar_location' && e.type !== 'shop_url')
     )}
 );
 
@@ -458,5 +487,9 @@ input[type="file"]
 .h-50px {
         height: 50px;
 }
-
+.attach-files {
+    max-width: 20%;
+    width: auto;
+    margin: auto;
+}
 </style>

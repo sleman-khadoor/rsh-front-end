@@ -45,11 +45,8 @@
             <div class="row mb-2 pb-1 m-0" id="latestBooks">
                 <ColourfullDiv :text="$t('index.checkoutLatestBooks')" :bgColor="'bg-choco'"/>
             </div>
-            <!-- <div v-if="!booksPending" class="row mb-4 m-0">
+            <div v-if="!booksPending" class="row mb-4 m-0">
                 <IndexMultiCarousel :books="books"/>
-            </div> -->
-            <div v-if="!booksPending" class="row mb-2 m-0">
-                <IndexTest :books="books"/>
             </div>
             <div v-if="!blogsPending && !blogsError" class="row mb-4">
                 <IndexBlogs :blogs="blogs"/>

@@ -31,6 +31,7 @@
                 :color="'bg-choco'" 
                 :circleSrc="'circle-choco'"
                 :steps="true"
+                :stepsData="stepsData"
                 :serviceName="'literary_agency_service'" />
             </div>
         </div>
@@ -88,10 +89,17 @@ export default defineComponent({
             class: 'col-lg-6 my-1 px-1',
         },
     ]
+    let stepsData = [
+        t('departments.literaryAgencyAuthors.form.steps.step1'),
+        t('departments.literaryAgencyAuthors.form.steps.step2'),
+        t('departments.literaryAgencyAuthors.form.steps.step3'),
+        t('departments.literaryAgencyAuthors.form.steps.step4'),
+    ]
     return {
          t,
          departments,
-         contents
+         contents,
+         stepsData
     }
     },
 });

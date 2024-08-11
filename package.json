@@ -19,7 +19,6 @@
     "@vue/runtime-dom": "^3.4.30",
     "bootstrap": "^5.3.3",
     "compression": "^1.7.4",
-    "intl-tel-input": "^23.8.0",
     "nuxt": "^3.12.2",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",

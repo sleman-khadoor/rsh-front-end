@@ -30,6 +30,17 @@
                         <img src="/icon/code.svg" class="d-block my-auto" alt="..." width="20" height="20">&nbsp;
                         {{$t('books.EISBN')}}: &nbsp; <span class="font-small ff-regular" > {{book.EISBN}}</span>
                     </div>
+                    <div class="d-flex flex-wrap align-items-center ff-meduim my-3"  style="width: 280px;">
+                        <a target="_blank" :href="store" style="text-decoration: none !important;">
+                        <button class="btn btn-primary p-2 border-0 font-meduim ff-regular h-50px bg-choco w-100 d-flex flex-wrap justify-content-center px-4">
+                            <img src="/icon/shop-add.svg" class="d-block my-auto" alt="..." width="27" height="27">
+                            <span class="m-auto">{{$t('books.store')}}</span>
+                            <img v-if="locale == 'ar'" src="/icon/shop-arrows.svg" class="d-block my-auto" alt="..." width="27" height="27" style="transform: rotate(180deg)">
+                            <img v-else src="/icon/shop-arrows.svg" class="d-block my-auto" alt="..." width="27" height="27" >
+                        </button>
+                        </a>
+                    </div>
+
                 </div>
                 <!-- <div class="col px-4"> -->
                 <div class="col px-4">
@@ -75,6 +86,7 @@
 <script setup>
 import { baseURL } from '@/utils/global';
 const { slug } = useRoute().params;
+const { locale } = useI18n();
 const url = ref(baseURL);
 const runTimeConfig = useRuntimeConfig();
 const setI18nParams = useSetI18nParams();
@@ -84,7 +96,6 @@ const { data: book, pending: bookPending, refresh: bookRefresh} = await useFetch
         headers: API_HEADER(),
         onResponse({ request, response, options }) {
             // Process the response data
-            console.log('request', response._data)
             setI18nParams({
                 en:  { slug: response._data.data.slug.en} , // slug: 'red-mug'
                 ar:  { slug: response._data.data.slug.ar}  // slug: 'rode-mok'
@@ -92,13 +103,23 @@ const { data: book, pending: bookPending, refresh: bookRefresh} = await useFetch
             switchLocalePath('en') // /products/red-mug
             switchLocalePath('ar') // /nl/products/rode-mok
         },
-        onRequestError({ request, options, error }) {
-            // Handle the request errors
-            console.log('request error', response)
+});
+
+const { data: store } = await useFetch(`${runTimeConfig.public.API_URL}/contacts`, {
+        transform: (_store) => _store.data?.[0].value,
+        headers: API_HEADER(),
+        onResponse({ request, response, options }) {
+            // Process the response data
+           
         },
-        onResponseError({ request, response, options }) {
-            console.log('response error', response)
-        }
+});
+
+const computedStyle = computed(() => {
+    let style = ''
+    if(locale.value == 'ar') {
+        style = 'transform: rotate(180deg)';
+    }
+    return style
 });
 
 onMounted(() => {

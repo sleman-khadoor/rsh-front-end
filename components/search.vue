@@ -58,10 +58,8 @@ const search = reactive({
 async function navigateToBooksPage() {
 // ... or as a route object with query parameters
 let path = ''
-console.log('locale index', locale.value === 'ar');
 locale.value === 'ar' ? path = '/books' : path = '/en/books'
 const routePath = useRoute().fullPath
-console.log('route', routePath);
   if(routePath === '/en' || routePath === '/'){
     await navigateTo({
       path: path,
@@ -77,7 +75,6 @@ function selectSearchType(item) {
   emit('search', {key: search.key, value: search.value})
 }
 onMounted(async () => {
-  console.log(props.value);
   const query = useRoute().query;
   if(query) {
     search.value = query.searchKey

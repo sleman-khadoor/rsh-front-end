@@ -8,7 +8,6 @@ export function decodeProxy (response : any) {
 // It will be available as decodeProxy()
 export function getSlugByLang (slug : any) {
     const locale = getCurrentLocale();
-    console.log('local value', getCurrentLocale());
     if (locale === 'en') {
         return slug.en
     } else {

@@ -96,7 +96,6 @@
     }
 
     function updateCategory(newCat) {
-        console.log('new categories', newCat);
         selectedCategories.value = newCat;
         fetchBooks();
     }
@@ -116,14 +115,9 @@
     onMounted(async () => {
         const query = useRoute().query;
         if(query.searchKey) {
-            console.log('object',query);
-            console.log('locale',locale.value);
-            console.log('locale',locale.value === 'ar');
             title.value = query.searchKey
             locale.value === 'ar' ? router.replace({ path: '/books'}) : router.replace({ path: '/en/books'})
         }
-        console.log('object', query);
-        console.log('object', title);
         headers.value = API_HEADER(); // Set headers in the setup context
         try {
             await fetchCategories();

@@ -16,11 +16,11 @@
         </div>
     </div>
     <button class="carousel-control-prev" @click="castumPrev()" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-       <img src="../../icon/cat-prev.svg" class="d-block" alt="rashm category" width="32" height="32" style=" transform: rotate(180deg); ">
+       <img src="/icon/cat-prev.svg" class="d-block" alt="rashm category" width="32" height="32" style=" transform: rotate(180deg); ">
         <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" @click="castumNext()" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <img src="../../icon/cat-next.svg" class="d-block" alt="rashm category" width="32" height="32">
+        <img src="/icon/cat-next.svg" class="d-block" alt="rashm category" width="32" height="32">
         <span class="visually-hidden">Next</span>
     </button>
     </div>
@@ -51,14 +51,11 @@ const updateCheckedValues = (category) => {
   } else {
     checkedValues.value.push(category); // Add if checked
   }
-  console.log('updateCategory', checkedValues.value);
   emit('updateCategory', checkedValues.value);
 };
 
 function showNext() {
   if (scrollPosition.value < (carouselWidth.value - cardWidth.value * 4)) { //check if you can go any further
-    console.log('scrollPosition', scrollPosition.value);
-    console.log('scrollPosition', cardWidth.value);
     scrollPosition.value += cardWidth.value;  //update scroll position
     carouselInner.value.scrollTo({
       left: scrollPosition.value,
@@ -68,10 +65,6 @@ function showNext() {
 }
 function showPrevAr() {
   if (Math.abs(scrollPosition.value) < (carouselWidth.value - cardWidth.value * 4)) { //check if you can go any further
-    console.log('scrollPosition', scrollPosition.value);
-    console.log('scrollPosition', (carouselWidth.value - cardWidth.value * 4));
-    console.log('scrollPosition', carouselInner.value.offsetWidth);
-    console.log('scrollPosition', cardWidth.value);
     scrollPosition.value -= cardWidth.value;  //update scroll position
     carouselInner.value.scrollTo({
       left: scrollPosition.value,
@@ -80,33 +73,22 @@ function showPrevAr() {
   }
 }
 function showPrev() {
-    console.log('object', 0);
-    // console.log('object', window.innerWidth * 0.005);
-    console.log('object', scrollPosition.value);
   if (scrollPosition.value > 0) { //check if you can go any further
-  console.log('object test prev');
     scrollPosition.value -= cardWidth.value;  //update scroll position
     carouselInner.value.scrollTo({
       left: scrollPosition.value,
       behavior: 'smooth' // This provides smooth scrolling animation
     });
   }
-  console.log('object test prev');
 }
 function showNextAr() {
-    console.log('object', 0);
-    console.log('object', scrollPosition.value);
   if (Math.abs(scrollPosition.value) > 0) { //check if you can go any further
-    console.log('object test prev', cardWidth.value);
-    console.log('object test prev', Math.abs(scrollPosition.value) + cardWidth.value);
     scrollPosition.value = scrollPosition.value + cardWidth.value;  //update scroll position
-    console.log('object test prev', scrollPosition.value);
     carouselInner.value.scrollTo({
       left: scrollPosition.value,
       behavior: 'smooth' // This provides smooth scrolling animation
     });
   }
-  console.log('object test prev');
 }
 function castumNext() {
      if (isRtl.value) {
@@ -131,18 +113,7 @@ onMounted(async () => {
     scrollPosition.value = 0;
     carouselWidth.value = carouselInner.value.scrollWidth;
     cardWidth.value = await carouselCategoryItem.value?.[0].offsetWidth;
-    console.log('carouselCategoryItem',carouselCategoryItem.value?.[0]);
-    console.log('carouselWidth',carouselWidth.value);
-    console.log('cardWidth',cardWidth.value);
     let carousel_control_next = document.getElementsByClassName('carousel-control-next');
-    console.log('carousel_control_next',carousel_control_next);
-    // if (isRtl.value) {
-    //     showPrevAr()
-    //     showPrevAr()
-    //  } else {
-    //     showNext()
-    //     showNext()
-    //  }
 })
 </script>
 

@@ -23,12 +23,15 @@ const runTimeConfig = useRuntimeConfig();
 const setI18nParams = useSetI18nParams();
 const switchLocalePath = useSwitchLocalePath();
 const authorName = ref('');
-const { data: author, pending: authorPending, refresh: authorRefresh} = await useFetch(`${runTimeConfig.public.API_URL}/represented-authors/${slug}`, {
+const books = ref([]);
+const { data: author, pending: authorPending, refresh: authorRefresh} = await useFetch(`${runTimeConfig.public.API_URL}/authors/${slug}`, {
         transform: (_author) => _author.data,
         headers: API_HEADER(),
+        query: {
+            include: ['books']
+        },
         onResponse({ request, response, options }) {
             // Process the response data
-            console.log('request', response._data.data.name)
             setI18nParams({
                 en:  { slug: response._data.data.slug.en} , // slug: 'red-mug'
                 ar:  { slug: response._data.data.slug.ar}  // slug: 'rode-mok'
@@ -36,33 +39,7 @@ const { data: author, pending: authorPending, refresh: authorRefresh} = await us
             switchLocalePath('en') // /products/red-mug
             switchLocalePath('ar') // /nl/products/rode-mok
             authorName.value = response._data.data.name;
+            books.value = response._data.data.books;
         },
-        onRequestError({ request, options, error }) {
-            // Handle the request errors
-            console.log('request error', response)
-        },
-        onResponseError({ request, response, options }) {
-            console.log('response error', response)
-        }
-});
-//get books
-const { data: books, pending: booksPending, refresh: booksRefresh} = await useFetch(`${runTimeConfig.public.API_URL}/books`, {
-        headers: API_HEADER(),
-        transform: (_books) => _books.data,
-        query: {
-            include: ['author'],
-            'filter[author]': authorName
-        },
-        onResponse({ request, response, options }) {
-            // Process the response data
-            console.log('request', response)
-        },
-        onRequestError({ request, options, error }) {
-            // Handle the request errors
-            console.log('request error', response)
-        },
-        onResponseError({ request, response, options }) {
-            console.log('response error', response)
-        }
 });
 </script>

@@ -72,8 +72,8 @@
                 "text": "We offer comprehensive book production services that meet all your needs, from typesetting and layout of text to designing distinctive covers that will attract readers."
             },
             "department8": {
-                "title": "",
-                "text": ""
+                "title": "Organizing Events & Conferences",
+                "text": "A dedicated service aims to organizing events and conferences. This initiative aims to further enrich the literary community by facilitating meaningful engagements and fostering professional development."
             }
         }
     },
@@ -99,6 +99,11 @@
             "alert": {
                 "success": "Your service request has been registered successfully",
                 "danger": "Your service request hasn't been registered, somthing went wrong."
+            },
+            "errorMsg": {
+                "file": "File",
+                "limit": "exceeds the 10MB size limit (10 MB).",
+                "format": "is not an allowed format (.jpg, .jpeg, .png, .pdf, .doc, .docx)."
             }
         },
         "steps": {
@@ -191,7 +196,13 @@
             },
             "form": {
                 "title": "Contact",
-                "subTitle": "Literary agency service for authors"
+                "subTitle": "Literary agency service for authors",
+                "steps": {
+                    "step1": "{'Please visit our website rashm.com.sa Or contact us via email literary.agency@rashm.com.sa.'}",
+                    "step2": "Provide you with information about our services and prices.",
+                    "step3": "You will provide us with the texts and a sample of your book and We will work with you to evaluate your work better for the publishing path.",
+                    "step4": "We will develop a well-thought-out marketing plan for your work and We will communicate with the media and cultural forums to introduce your work."
+                }
             },
             "author": {
                 "publications": "Writer's Publications"
@@ -204,12 +215,22 @@
             },
             "request": "Request a Marketing service now and enjoy the following benefits",
             "departments": {
-                "department1": "Increase awareness of your writing",
-                "department2": "Increase sales of writings"
+                "department1": "Increase awareness of your writing through a customized marketing strategy",
+                "department2": "Increase sales of writings",
+                "department3": "Build a loyal fanbase",
+                "department4": "Improve rankings in search engines",
+                "department5": "Designing innovative advertising campaigns"
+
             },
             "form": {
                 "title": "Contact",
-                "subTitle": "Marketing department"
+                "subTitle": "Marketing department",
+                "steps": {
+                    "step1": "Please visit our website rashm.com.sa ",
+                    "step2": "{'Or contact us via email marketing@rashm.com.sa'}",
+                    "step3": "We will provide you with information about our services and prices.",
+                    "step4": "We will deliver to you a marketing plan within the agreed upon period."
+                }
             }
         },
         "contentWriting":{
@@ -252,7 +273,7 @@
                 "subTitle": "Content writer department",
                 "steps": {
                     "step1": "Please visit our website rashm.com.sa ",
-                    "step2": "{'Or contact us via email content@rashm.com.sa or phone - - - -'}",
+                    "step2": "{'Or contact us via email content@rashm.com.sa'}",
                     "step3": "We will provide you with information about our services and prices.",
                     "step4": "We need to know more about your needs and goals to create customized content for you then We will deliver the content to you within the agreed timeframe."
                 }
@@ -343,10 +364,10 @@
                 "title": "Contact",
                 "subTitle": "Organizing Events and Conferences department",
                 "steps": {
-                    "step1": "Please visit our website or contact us via email or phone to request event and conference organization services.",
-                    "step2": "We will provide you with information about our services and pricing.",
-                    "step3": "You will need to provide us with details about the event you would like to organize.",
-                    "step4": "We will provide you with all the necessary advice and ideas for organizing the event and then implementing it on the ground in the best possible way."
+                    "step1": "{'Please visit our website rashm.com.sa Or contact us via email events@rashm.com.sa.'}",
+                    "step2": "Provide you with information about our services and prices.",
+                    "step3": "You will provide us with the details about the event you wish to organize.",
+                    "step4": "We will provide you with all the necessary tips and ideas to organize the event and then implement it on the ground in the best possible way."
                 }
             }
         }
@@ -457,6 +478,7 @@
         "format": "Format",
         "ISBN": "ISBN",
         "EISBN": "EISBN",
+        "store": "Get it from our store",
         "reviews": {
             "title": "Reviews"
         },

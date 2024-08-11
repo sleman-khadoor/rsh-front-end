@@ -58,13 +58,6 @@ export default defineComponent({
           perPage.value = 1
         }
         chunks.value = []
-        // fetchAuthors()
-        // for (let i = 0; i < authors.value.length; i += imagesPerSlide) {
-        //   console.log('test carousel : ', authors.value);
-        //   console.log('test carousel 2 : ', authors.value.slice(i, i + imagesPerSlide));
-        //   chunks.value.push(authors.value.slice(i, i + imagesPerSlide));
-        //   console.log('test carousel 3 : ', chunks);
-        // }
       };
       const runTimeConfig = useRuntimeConfig();
       // Function to fetch authors
@@ -77,7 +70,6 @@ export default defineComponent({
                     perPage: perPage.value
                   }
               });
-              console.log('object authors', response);
               authors.value = response.data;
               total.value = response.meta.total;
           } catch (error) {

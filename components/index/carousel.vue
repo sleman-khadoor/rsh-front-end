@@ -35,7 +35,6 @@ const props = defineProps({
 
 const url = ref(baseURL);
 const { $bootstrap } = useNuxtApp();
-console.log('Bootstrap injection:', $bootstrap);
 const restartCarousel = () => {
   if ($bootstrap) {
     const carouselElement = document.getElementById('carouselExampleAutoplaying');
