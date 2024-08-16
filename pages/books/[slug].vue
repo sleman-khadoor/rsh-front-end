@@ -20,7 +20,7 @@
                     <div class="d-flex flex-wrap align-items-center ff-meduim mb-1"  style="width: 280px;">
                         <img src="/icon/format.svg" class="d-block my-auto" alt="..." width="20" height="20">&nbsp;
                         {{$t('books.format')}}: &nbsp;
-                        <span v-for="format in book.book_formats" class="badge text-dark-blue bg-secondary font-small ff-regular mx-1">{{format.title}}</span>
+                        <span v-for="format in book.book_formats" class="badge text-dark-blue bg-secondary font-small ff-regular m-1">{{format.title}}</span>
                     </div>
                     <div class="d-flex flex-wrap align-items-center ff-meduim mb-1"  style="width: 280px;">
                         <img src="/icon/code.svg" class="d-block my-auto" alt="..." width="20" height="20">&nbsp;
@@ -30,12 +30,12 @@
                         <img src="/icon/code.svg" class="d-block my-auto" alt="..." width="20" height="20">&nbsp;
                         {{$t('books.EISBN')}}: &nbsp; <span class="font-small ff-regular" > {{book.EISBN}}</span>
                     </div>
-                    <div class="d-flex flex-wrap align-items-center ff-meduim my-3"  style="width: 280px;">
+                    <div class="d-flex flex-wrap align-items-center ff-meduim my-4"  style="width: 280px;">
                         <a target="_blank" :href="store" style="text-decoration: none !important;">
-                        <button class="btn btn-primary p-2 border-0 font-meduim ff-regular h-50px bg-choco w-100 d-flex flex-wrap justify-content-center px-4">
-                            <img src="/icon/shop-add.svg" class="d-block my-auto" alt="..." width="27" height="27">
+                        <button class="btn btn-primary p-2 border-0 font-meduim ff-regular h-50px bg-choco w-100 d-flex flex-wrap justify-content-center px-2">
+                            <img src="/icon/shop-add.svg" class="d-block my-auto mx-2" alt="..." width="27" height="27">
                             <span class="m-auto">{{$t('books.store')}}</span>
-                            <img v-if="locale == 'ar'" src="/icon/shop-arrows.svg" class="d-block my-auto" alt="..." width="27" height="27" style="transform: rotate(180deg)">
+                            <img v-if="locale == 'ar'" src="/icon/shop-arrows.svg" class="d-block my-auto mx-2" alt="..." width="27" height="27" style="transform: rotate(180deg)">
                             <img v-else src="/icon/shop-arrows.svg" class="d-block my-auto" alt="..." width="27" height="27" >
                         </button>
                         </a>
@@ -130,7 +130,7 @@ onMounted(() => {
 </script>
 <style scoped>
 .badge {
-    border-radius: 0 !important;
+    border-radius: 7px !important;
 }
 .bg-img {
   background-repeat: no-repeat;
