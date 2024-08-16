@@ -1,34 +1,62 @@
 <template>
-                <div class="card  bg-primary border-0  mx-auto my-3 rounded-3">
-                        <NuxtLink :to="localePath(`/blogs/${props.blog.slug}`)">
+              <div v-for="(blog,i) in props.blogs" :key="i" class="col-lg-3 col-md-4 col-sm-6 my-3">
+                <div ref="relativeCard" class="card  bg-primary border-0 card-100  mx-auto rounded-3">
+                        <NuxtLink :to="localePath(`/blogs/${blog.slug}`)" style="height: 240px">
                           <figure class="overlay rounded-top-3">
                             <img :src="url + blog.cover_image" class="card-img-top rounded-top-3 object-fit-fill" :alt="blog.title" width="250" height="240">
                           </figure>   
                         </NuxtLink>
-                        <div class="card-body">
+                        <div class="card-body" :dir="getDir(blog)">
                             <div class="row justify-content-between mb-2">
                                 <span class="text-choco font-x-small col w-fc">{{blog.writer}}</span>
                                 <span class="text-dark-blue font-x-small col w-fc">{{dateTimeFormatter(blog.date)}}</span>
                             </div>
-                            <div class="d-flex flex-wrap text-start">
+                            <div class="d-flex text-dark-blue font-x-small">
                                 <img src="/icon/blog-book.svg" class="mx-1" alt="..." width="15" height="15">
-                                <p class="text-dark-blue font-x-small">{{blog.title}}</p>
+                                {{blog.title}}
                             </div>
                         </div>
                     </div>
+                  </div>
 </template>
 <script setup>
 import { baseURL } from '@/utils/global';
 
 const props = defineProps({
-  blog:{type: Object}
+  blogs:{type: Array}
 });
 const url = ref(baseURL);
-onMounted(() => {
+const relativeCard = ref(null);
+const cardHeight = ref('auto');
+function getDir(blog) {
+  return blog.lang === 'ar' ? 'rtl' : 'ltr'
+}
+onMounted(async() => {
   if (process.client) {
     url.value = baseURL;
+    // await setMaxCardHeight();
+                
+    window.addEventListener('resize', setMaxCardHeight)
+    // setInterval(setMaxCardHeight, 1000);
   }
 });
+ function setMaxCardHeight() {
+            relativeCard.value.forEach(card => {
+                card.style.minHeight = `unset`;
+            });
+            const heights = relativeCard.value.map(card => card.offsetHeight);
+            console.log('object', relativeCard.value);
+            cardHeight.value = Math.max(...heights);
+            relativeCard.value.forEach(card => {
+                card.style.minHeight = `${cardHeight.value}px`;
+            });
+};
+onUpdated(()=> {
+  console.log('update');
+  if(props.blogs && props.blogs.length) {
+     setInterval(setMaxCardHeight(), 5000)
+  } 
+})
 </script>
 <style scoped>
 .overlay::before {
@@ -39,5 +67,8 @@ onMounted(() => {
   display: block;
   position: absolute;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%);
+}
+.card-100{
+    height: 100%;
 }
 </style>

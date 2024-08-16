@@ -24,7 +24,7 @@
                 </div>
             </div>
              <div class="d-flex m-0 justify-content-center">
-                <a href="#latestBooks">
+                <a href="#latestDepartments">
                     <button class="bg-btn-img m-1 rounded-5 border-0 float my-auto"></button>
                 </a>
             </div>
@@ -39,13 +39,13 @@
                     <img src="/img/printer.webp" class="d-block w-100" alt="rashm printer" :height="imgHeight" width="400">
                 </div>
             </div>
-            <div class="row mb-2">
+            <div id="latestDepartments" class="row mb-2">
                 <IndexDiverseServices/>
             </div>
-            <div class="row mb-2 pb-1 m-0" id="latestBooks">
+            <div v-if="!booksPending && !booksError"  class="row mb-2 pb-1 m-0">
                 <ColourfullDiv :text="$t('index.checkoutLatestBooks')" :bgColor="'bg-choco'"/>
             </div>
-            <div v-if="!booksPending" class="row mb-4 m-0">
+            <div v-if="!booksPending && !booksError" class="row mb-4 m-0">
                 <IndexMultiCarousel :books="books"/>
             </div>
             <div v-if="!blogsPending && !blogsError" class="row mb-4">
@@ -79,7 +79,7 @@ const booksPending = ref(false);
 const booksError = ref(null);
 const title = ref('');
 const relativeCol = ref(null);
-const imgHeight = ref(200);
+const imgHeight = ref(300);
 
 const headers = ref({});
 

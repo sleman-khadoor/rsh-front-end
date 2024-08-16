@@ -12,16 +12,18 @@
                  :text="$t('publishWithUs.overlayImg.text')"
                  :title="$t('publishWithUs.overlayImg.title')"/>
             </div>
-            <div class="mb-3 bg-white rounded-3 py-5 px-lg-5 px-md-3 px-sm-2">
+            <div class="mb-3 bg-white rounded-3 p-5">
                 <div class="font-x-large ff-meduim text-dark-blue mb-3 text-center">{{$t('publishWithUs.achieveDream')}}</div>
                 <div class="font-large ff-meduim text-choco mb-5 text-center">{{$t('publishWithUs.withServices')}}</div>
-                <div class="px-5 text-dark-blue">
-                    <div v-for="(service, i) in services" :key="i" class="d-flex justify-content-start mb-3 lh-25">
-                        <img src="/icon/circle-choco.svg" class="col-auto mt-1 mx-2" width="20" :alt="service.title" height="20"/>
-                        <div class="mb-2 lh-25">
-                            <span class="font-meduim ff-semiBold">{{service.title}}: </span>
-                            <span class="font-meduim ff-regular"> {{service.subTitle}}</span>
-                        </div>
+                <div class="row">
+                    <div v-for="(service, i) in services" :key="i" class="col-lg-6 col-md-6 py-4 px-lg-4 px-md-3 px-sm-2 card-100">
+                            <div class="d-flex justify-content-start">
+                                <span class="text-choco font-x-large ff-meduim mx-1">0{{i+1}}</span>&nbsp;
+                                <span class="text-dark-blue font-large ff-meduim mb-2 text-justify">{{service.title}}</span>
+                            </div>
+                            <div class="font-meduim ff-regular lh-25">
+                                {{service.subTitle}}
+                            </div>
                     </div>
                 </div>
             </div>
@@ -30,23 +32,21 @@
                    {{$t('publishWithUs.whyPublishWithRashm')}}
                 </div>
                 <div class="row mx-auto bg-primary text-center justify-content-around rounded-4 mb-3">
-                    <div v-for="(cause,i) in whyRashm" :key="i" class="col-lg-3 col-md-4 col-sm-6 text-dark-blue mb-4">
-                        <DepartmentsCard :title="cause.title" :subTitle="cause.subTitle" :iconSrc="cause.iconSrc"/>
-                    </div>
+                    <DepartmentsCard :departments="whyRashm" :class="'col-lg-3 col-md-4 col-sm-6 text-dark-blue mb-4'"/>
                 </div>
             </div>
             <div class="mb-3 bg-white rounded-3 p-5">
                 <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center">
                     {{$t('publishWithUs.requirementTitle')}}
                 </div>
-                <div class="row">
+                <div class="row text-justify">
                     <div v-for="i in 6" :key="i" class="col-lg-6 col-md-6 py-4 px-lg-4 px-md-3 px-sm-2">
                             <div class="d-flex justify-content-start">
                                 <span class="text-choco font-x-large ff-meduim mx-1">0{{i}}</span>&nbsp;
-                                <span class="text-dark-blue font-large ff-meduim mb-2">{{$t('publishWithUs.requirements.reqirement1.title')}}</span>
+                                <span class="text-dark-blue font-large ff-meduim mb-2">{{$t(`publishWithUs.requirements.reqirement${i}.title`)}}</span>
                             </div>
                             <div class="font-meduim ff-regular lh-25">
-                                {{$t('publishWithUs.requirements.reqirement1.text')}}
+                                {{$t(`publishWithUs.requirements.reqirement${i}.text`)}}
                             </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                     <span class="font-meduim ff-regular lh-25 mb-2">{{$t('publishWithUs.contact.contactMsg')}}</span>
                     <div class="d-flex align-items-center w-auto mx-auto text-choco font-meduim ff-regular mb-2">
                         <img src="/icon/email-fill.svg" class="d-block my-auto mx-1" alt="..." width="20" height="20">
-                        rasham@gmail.com
+                        publishing@rashm.com.sa
                     </div>
                 </div>
              </div>
@@ -72,6 +72,10 @@ import { useI18n } from 'vue-i18n';
 export default defineComponent({
     setup() {
     const { t } = useI18n();
+    const relativeCol = ref(null);
+    const colHeight = ref('auto');
+    const relativeService = ref(null);
+    const serviceHeight = ref('auto');
     const whyRashm = ref([
         {
             title: t('publishWithUs.whyRashm.cause1.title'),
@@ -124,10 +128,49 @@ export default defineComponent({
             subTitle: t('publishWithUs.services.service7.subTitle')
         },
     ])
+    function setMaxCardHeight() {
+        if(relativeCol.value && relativeService.value) {
+            relativeCol.value.forEach(card => {
+                card.style.minHeight = `unset`;
+            });
+            relativeService.value.forEach(card => {
+                card.style.minHeight = `unset`;
+            });
+            const col_heights = relativeCol.value.map(card => card.offsetHeight);
+            const services_heights = relativeService.value.map(card => card.offsetHeight);
+            colHeight.value = Math.max(...col_heights);
+            serviceHeight.value = Math.max(...services_heights);
+            relativeCol.value.forEach(card => {
+                card.style.minHeight = `${colHeight.value}px`;
+            });
+            relativeService.value.forEach(card => {
+                card.style.minHeight = `${serviceHeight.value}px`;
+            });
+        }
+        };
+        onMounted(async() => {
+            
+            if (process.client) {
+
+                // Initial start
+                await setMaxCardHeight();
+                
+                window.addEventListener('resize', setMaxCardHeight)
+                setInterval(setMaxCardHeight, 1000);
+            }            
+            
+        });
     return {
         whyRashm,
-        services
+        services,
+        relativeCol,
+        relativeService
     }
     }
 })
 </script>
+<style scoped>
+.card-100{
+    height: 100%;
+}
+</style>

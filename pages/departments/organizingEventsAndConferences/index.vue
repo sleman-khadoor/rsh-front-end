@@ -17,13 +17,13 @@
                     <p class="font-large">{{t('departments.organizingEventsandConferences.title')}}</p>
                 </div>
                 <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">{{t('departments.organizingEventsandConferences.eventTitle')}}</div>
-                <IndexHistory class="row m-0 text-start" :col="`col-lg-12 col-md-12 col-sm-12`" :data="organaizingEvents" :bgColor="'bg-light-choco'" :withTitle="true"/>
+                <IndexHistory class="row m-0" :col="`col-lg-12 col-md-12 col-sm-12`" :data="organaizingEvents" :bgColor="'bg-light-choco'" :withTitle="true"/>
                 <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">{{t('departments.organizingEventsandConferences.workshopTitle')}}</div>
-                <IndexHistory class="row m-0 text-start" :col="`col-lg-12 col-md-12 col-sm-12`" :data="organaizingWorkShop" :bgColor="'bg-light-choco'" :withTitle="true"/>
+                <IndexHistory class="row m-0" :col="`col-lg-12 col-md-12 col-sm-12`" :data="organaizingWorkShop" :bgColor="'bg-light-choco'" :withTitle="true"/>
                 <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">{{t('departments.organizingEventsandConferences.networkingTitle')}}</div>
-                <IndexHistory class="row m-0 text-start" :col="`col-lg-12 col-md-12 col-sm-12`" :data="networking" :bgColor="'bg-light-choco'" :withTitle="true"/>
+                <IndexHistory class="row m-0" :col="`col-lg-12 col-md-12 col-sm-12`" :data="networking" :bgColor="'bg-light-choco'" :withTitle="true"/>
                 <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">{{t('departments.organizingEventsandConferences.culturalTitle')}}</div>
-                <IndexHistory class="row m-0 text-start" :col="`col-lg-12 col-md-12 col-sm-12`" :data="cultur" :bgColor="'bg-light-choco'" :withTitle="true"/>
+                <IndexHistory class="row m-0" :col="`col-lg-12 col-md-12 col-sm-12`" :data="cultur" :bgColor="'bg-light-choco'" :withTitle="true"/>
             </div>
             <div id="contacts" class="mx-auto bg-primary rounded-4 py-2">
                 <ContactUsForm 

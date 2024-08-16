@@ -7,7 +7,7 @@
                 <BooksAuthor :author="author"/>
             </div>
         </div>
-        <div class="col-11 mx-auto my-4 bg-primary text-start rounded-4 pt-5 px-lg-5 px-md-5 px-sm-4 text-dark-blue">
+        <div v-if="books && books.length" class="col-11 mx-auto my-4 bg-primary text-start rounded-4 pt-5 px-lg-5 px-md-5 px-sm-4 text-dark-blue">
             <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center px-4">{{$t('departments.literaryAgencyAuthors.author.publications')}}</div>
             <div class="row p-0 pb-5 px-4 justify-content-center">
                 <div v-for="(book,i) in books" :key="i" class="col mx-1 w-fc">

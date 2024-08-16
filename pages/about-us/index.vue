@@ -16,10 +16,9 @@
                 <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center px-4">{{t('aboutUs.aims.title')}}</div>
                 <IndexHistory :data="aims" :col="'col-12'" :bgColor="'bg-secondary'" :withTitle="false"/>
             </div>
-            <div class="mb-4 bg-white rounded-3 py-5 px-lg-4 px-md-2 px-sm-1">
+            <div v-if="!achievementsPending && !achievementsError" class="mb-4 bg-white rounded-3 py-5 px-lg-4 px-md-2 px-sm-1">
                 <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center px-4">{{t('aboutUs.achievements')}}</div>
-                <div v-if="achievementsPending"></div>
-                <div v-else v-for="(achievment, i) in achievements" class="row m-3 mt-0 mb-3 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
+                <div v-for="(achievment, i) in achievements" class="row m-3 mt-0 mb-3 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
                     <div class="col-lg-1 col-md-2 col-sm-2 col-auto justify-content-center text-center">
                         <img :src="`/icon/circle-choco.svg`" alt="rashm" height="25" width="25">
                         <div v-if="i !== (achievements.length-1)" class="hr bg-light-choco h-100 mx-auto" style="width:2px;"></div>
@@ -29,7 +28,7 @@
             </div>
              <div class="mb-4 bg-white rounded-3 py-5 px-lg-5 px-md-3 px-sm-2">
                 <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center px-4">{{t('aboutUs.publishingHouses.title')}}</div>
-                <IndexHistory class="row m-0" :col="`col-lg-6 col-md-6 col-sm-12`" :data="publishingHouses" :bgColor="'bg-light-choco'" :withTitle="false"/>
+                <IndexHistory class="row m-0" :col="`col-lg-6 col-md-6 col-sm-12 text-justify`" :data="publishingHouses" :bgColor="'bg-light-choco'" :mb="true" :withTitle="false"/>
             </div>
         </div>
     </div>

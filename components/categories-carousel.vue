@@ -15,11 +15,11 @@
             :for="`vbtn-radio_${index + 1}`" style="min-width:80%;">{{category.title}}</label>
         </div>
     </div>
-    <button class="carousel-control-prev" @click="castumPrev()" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <button :hidden="hiddenPrev" class="carousel-control-prev" @click="castumPrev()" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
        <img src="/icon/cat-prev.svg" class="d-block" alt="rashm category" width="32" height="32" style=" transform: rotate(180deg); ">
         <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" @click="castumNext()" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <button :hidden="hiddenNext" class="carousel-control-next" @click="castumNext()" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
         <img src="/icon/cat-next.svg" class="d-block" alt="rashm category" width="32" height="32">
         <span class="visually-hidden">Next</span>
     </button>
@@ -65,6 +65,8 @@ function showNext() {
 }
 function showPrevAr() {
   if (Math.abs(scrollPosition.value) < (carouselWidth.value - cardWidth.value * 4)) { //check if you can go any further
+    console.log('object',Math.abs(scrollPosition.value) < (carouselWidth.value - cardWidth.value * 4) );
+    console.log('object',Math.abs(scrollPosition.value) >= (carouselWidth.value - cardWidth.value * 4) );
     scrollPosition.value -= cardWidth.value;  //update scroll position
     carouselInner.value.scrollTo({
       left: scrollPosition.value,
@@ -104,6 +106,20 @@ function castumPrev() {
         showPrev()
      }
 }
+const hiddenNext = computed(()=> {
+  if(locale.value == 'ar') {
+    return Math.abs(scrollPosition.value) <= 0
+  } else {
+    return scrollPosition.value >= (carouselWidth.value - cardWidth.value * 8)
+  }
+})
+const hiddenPrev = computed(()=> {
+  if(locale.value == 'ar') {
+    return Math.abs(scrollPosition.value) >= (carouselWidth.value - cardWidth.value * 8)
+  } else {
+    return scrollPosition.value <= 0
+  }
+})
 function detectDirection() {
   // Check the document direction (rtl or ltr)
   isRtl.value = locale.value === 'ar';

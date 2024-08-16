@@ -16,9 +16,7 @@
                 <ColourfullDiv :text="$t('departments.contentWriting.request')" :bgColor="'bg-light-blue'"/>
             </div>
             <div class="row mx-auto bg-primary text-center justify-content-around rounded-4 pt-2 pb-3 px-4 mb-3">
-                <div v-for="(department,i) in departments" :key="i" class="col-lg-3 col-md-4 col-sm-6 text-dark-blue mb-4">
-                    <DepartmentsCard :title="department.title" :iconSrc="department.iconSrc" :subTitle="''"/>
-                </div>
+                <DepartmentsCard :departments="departments" :class="'col-lg-3 col-md-4 col-sm-6 text-dark-blue mb-4'"/>
             </div>
             <div class="row mx-auto bg-primary justify-content-around rounded-4 p-5 pt-0 mb-3">
                     <div class="font-x-large ff-meduim text-dark-blue text-center my-5">{{t('departments.contentWriting.types.title')}}</div>

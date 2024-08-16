@@ -16,9 +16,7 @@
                 <ColourfullDiv :text="$t('departments.proofreading.request')" :bgColor="'bg-yellow'"/>
             </div>
             <div class="row mx-auto bg-primary text-center justify-content-around rounded-4 pt-2 pb-3 px-4 mb-3">
-                <div v-for="(department,i) in departments" :key="i" class="col-lg-3 col-md-4 col-sm-6 text-dark-blue mb-4">
-                    <DepartmentsCard :title="department.title" :iconSrc="department.iconSrc" :subTitle="''"/>
-                </div>
+                <DepartmentsCard :departments="departments" :class="'col-lg-3 col-md-4 col-sm-6 text-dark-blue mb-4'"/>
             </div>
             <div id="contacts" class="mx-auto bg-primary rounded-4 py-2">
                 <ContactUsForm 

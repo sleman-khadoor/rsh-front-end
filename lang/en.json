@@ -12,7 +12,7 @@
         "language": "Arabic"
     },
     "footer": {
-        "rashm": "Rashm was founded in 2005 as a small company specializing in translation and creative editing services.",
+        "rashm": "Rashm is a leading Saudi publishing house founded in 2019.",
         "title": "Rashm",
         "pages": "Pages",
         "contact": "Contact",
@@ -83,7 +83,7 @@
             "text": "Have any Questions? Reach Out To Us From Our Contact Form And We Will Get Back To You Shortly."
         },
         "title": "Contact Us",
-        "subTitle": "Fill out the form and we will respond to you within a maximum of 24 hours",
+        "subTitle": "Please fill out the form or contact us via email and we will respond within 24 hours",
         "form": {
             "fullName": "full name",
             "fullNameValidation": "full name",
@@ -131,9 +131,9 @@
                 "title": "Contact",
                 "subTitle": "Translation Department",
                 "steps": {
-                    "step1": "{'Please fill out the form or contact us via email translation@rashm.com.sa.'}",
-                    "step2": "We will provide you with information and prices after submitting your material.",
-                    "step3": "We will deliver the translation material to you within the agreed time."
+                    "step1": "{'Please fill out the form or contact us via email translation@rashm.com.sa'}",
+                    "step2": "We will provide you with information and prices after submitting your material",
+                    "step3": "We will deliver the translation material to you within the agreed time"
                 }
             }
         },
@@ -153,7 +153,7 @@
                 "title": "Contact",
                 "subTitle": "Poofreading department",
                 "steps": {
-                    "step1": "{'Please fill out the form or contact us via email proofreading@rashm.com.sa.'}",
+                    "step1": "{'Please fill out the form or contact us via email proofreading@rashm.com.sa'}",
                     "step2": "We will provide you with information and prices after submitting your material.",
                     "step3": "We will deliver the proofread material to you within the agreed time."
                 }
@@ -174,7 +174,7 @@
                 "title": "Contact",
                 "subTitle": "Creative Editing department",
                 "steps": {
-                    "step1": "{'Please fill out the form or contact us via email creative.editing@rashm.com.sa '}",
+                    "step1": "{'Please fill out the form or contact us via email creative.editing@rashm.com.sa'}",
                     "step2": "We will provide you with information about our services and prices.",
                     "step3": "You will provide us with the material you want edited then we will deliver the edited material to you within the agreed timeframe."
                 }
@@ -196,7 +196,7 @@
                 "title": "Contact",
                 "subTitle": "Literary agency service for authors",
                 "steps": {
-                    "step1": "{'Please fill out the form or contact us via email literary.agency@rashm.com.sa.'}",
+                    "step1": "{'Please fill out the form or contact us via email literary.agency@rashm.com.sa'}",
                     "step2": "Provide you with information about our services and prices.",
                     "step3": "You will provide us with the texts and a sample of your book and We will work with you to evaluate your work better for the publishing path.",
                     "step4": "We will develop a well-thought-out marketing plan for your work and We will communicate with the media and cultural forums to introduce your work."
@@ -237,7 +237,7 @@
             },
             "request": "Request a Content Writing service now and enjoy the following benefits",
             "departments": {
-                "department1": "Creative, engaging and Informative content.",
+                "department1": "Creative, engaging and Informative content",
                 "department2": "Increased sales",
                 "department3": "Search engine optimization",
                 "department4": "Save your time"
@@ -291,7 +291,7 @@
                 "title": "Contact",
                 "subTitle": "Content Book Delivery department",
                 "steps": {
-                    "step1": "{'Please fill out the form or contact us via email production@rashm.com.sa.'}",
+                    "step1": "{'Please fill out the form or contact us via email production@rashm.com.sa'}",
                     "step2": "Provide you with information about our services and prices.",
                     "step3": "Are you ready to turn your dream into reality?",
                     "step4": "Contact us now for a free quote and a free consultation on your project."
@@ -360,7 +360,7 @@
                 "title": "Contact",
                 "subTitle": "Organizing Events and Conferences department",
                 "steps": {
-                    "step1": "{'Please fill out the form or contact us via email events@rashm.com.sa.'}",
+                    "step1": "{'Please fill out the form or contact us via email events@rashm.com.sa'}",
                     "step2": "Provide you with information about our services and prices.",
                     "step3": "You will provide us with the details about the event you wish to organize.",
                     "step4": "We will provide you with all the necessary tips and ideas to organize the event and then implement it on the ground in the best possible way."
@@ -413,22 +413,42 @@
             },
             "cause2": {
                 "title": "Commitment to quality",
-                "subTitle": "We are committed to providing high quality services at reasonable prices."
+                "subTitle": "We are committed to providing high quality services at reasonable prices"
             },
             "cause3": {
                 "title": "Passion for books",
-                "subTitle": "We are passionate about books and love working with authors to help them realize their dreams."
+                "subTitle": "We are passionate about books and love working with authors to help them realize their dreams"
             },
             "cause4": {
                 "title": "Personal approach",
-                "subTitle": "We offer each author a personal approach to suit their specific needs."
+                "subTitle": "We offer each author a personal approach to suit their specific needs"
             }
         },
         "requirementTitle": "To publish with us You Should Meet These requirements",
         "requirements":{
             "reqirement1": {
-                "title": "Requirement name",
-                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                "title": "Submission Method",
+                "text": "Works should be submitted via the publishing official email address. Submissions sent through other means will not be considered."
+            },
+            "reqirement2": {
+                "title": "Format",
+                "text": "Please submit your complete, formatted work in a Word document."
+            },
+            "reqirement3": {
+                "title": "Synopsis",
+                "text": "A synopsis of no less than 800 words and no more than 1500 words should be attached, providing a concise overview of the work's concept and narrative."
+            },
+            "reqirement4": {
+                "title": "Author Bio",
+                "text": "Please attach your CV, emphasizing your literary and cultural output. Links to your personal social media accounts should also be included."
+            },
+            "reqirement5": {
+                "title": "Publication Status",
+                "text": "A document stating the publication status of the work (e.g., first publication, reprint) must be attached. Additionally, please provide a statement confirming that the work has not been submitted to any other publisher during the evaluation period, which typically ranges from two to four months."
+            },
+            "reqirement6": {
+                "title": "Incomplete Submissions",
+                "text": "Works that do not meet the aforementioned requirements will not be considered."
             }
         },
         "contact": {
@@ -461,7 +481,7 @@
     },
     "ourPartners": {
         "title": "Our Partners",
-        "subTitle": "Rashm is an exclusive agent for a number of prestigious publishers in various fields To communicate please fill out the form below",
+        "subTitle": "Rashm is an exclusive agent for a number of prestigious publishers in various fields.",
         "toRequest": "To Request A service",
         "contactMsg": "Contact us at the following email"
     },

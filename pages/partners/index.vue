@@ -19,7 +19,7 @@
                 <span class="font-meduim ff-regular lh-22 mb-2">{{t('ourPartners.contactMsg')}}</span>
                 <div class="d-flex align-items-center w-auto mx-auto text-choco font-meduim ff-regular mb-2">
                     <img src="/icon/email-fill.svg" class="d-block my-auto mx-1" alt="..." width="20" height="20">
-                    rasham@gmail.com
+                    literary.agency@rashm.com.sa
                 </div>
 
             </div>

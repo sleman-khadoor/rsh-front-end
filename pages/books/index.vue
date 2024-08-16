@@ -7,8 +7,8 @@
                 <Search :dropdown="true" @search="updateSearch($event)"/>
             </div>
         </div>
-        <div class="row m-0 bg-secondary p-1">
-            <CategoriesCarousel v-if="!categoriesPending" :categories="categories" @updateCategory="updateCategory($event)"/>
+        <div v-if="!categoriesPending && !categoriesError" class="row m-0 bg-secondary p-1">
+            <CategoriesCarousel :categories="categories" @updateCategory="updateCategory($event)"/>
         </div>
         <div class="row m-0 bg-secondary px-5 pb-5 pt-2 justify-content-center">
             <div v-for="(book,i) in books" :key="i" class="col mx-1 w-fc">

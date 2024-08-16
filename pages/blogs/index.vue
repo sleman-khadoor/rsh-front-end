@@ -8,15 +8,13 @@
                 <Search @search="updateSearch($event)"/>
             </div>
         </div> -->
-        <div class="row bg-secondary p-1">
-            <CategoriesCarousel v-if="!categoriesPending" :categories="categories" @updateCategory="updateCategory($event)"/>
+        <div v-if="!categoriesPending && !categoriesError" class="row bg-secondary p-1 m-0">
+            <CategoriesCarousel :categories="categories" @updateCategory="updateCategory($event)"/>
         </div>
-        <div class="row bg-secondary px-5 pb-5 pt-2 justify-content-center">
-            <div v-for="(blog,i) in blogs" :key="i" class="col-lg-3 col-md-4 col-sm-6">
-                <BlogsCard :blog="blog"/>
-            </div>
+        <div class="row bg-secondary px-5 pb-5 pt-2 justify-content-center m-0">
+                <BlogsCard :blogs="blogs"/>
         </div>
-        <div class="row bg-secondary justify-content-center pb-5">
+        <div class="row bg-secondary justify-content-center pb-5 m-0">
             <ClientOnly>
                 <slot name="loading">
                     <Pagination v-if="!blogsPending" :meta="blogsMeta" @updatePage="updatePagination($event)"/>

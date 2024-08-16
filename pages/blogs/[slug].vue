@@ -24,9 +24,7 @@
             <div>
                 <span class="font-large ff-meduim">{{t('blogs.similarBlogs')}}</span>
                 <div class="row justify-content-center">
-                    <div v-for="(blog,i) in relatedBlogs" :key="i" class="col-lg-3 col-md-4 col-sm-6">
-                        <BlogsCard :blog="blog"/>
-                    </div>
+                        <BlogsCard :blogs="relatedBlogs"/>
                 </div>
             </div>
         </div>

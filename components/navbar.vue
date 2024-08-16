@@ -11,13 +11,13 @@
             <div class="collapse navbar-collapse w-100" id="navbarNavDropdown">
                 <ul class="navbar-nav w-100 justify-content-evenly nav-underline h-100">
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/')" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.home`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/')" @click="setActive('/')" :class="{ 'active-nav-item': isActive('/') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.home`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/about-us')" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.aboutUs`) }}</span></NuxtLink>
+                    <NuxtLink @click="setActive('/about-us')" :to="localePath('/about-us')" :class="{ 'active-nav-item': isActive('/about-us') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.aboutUs`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item h-100 dropdown align-content-center">
-                    <div class="dropdown-toggle text-choco ff-regular font-small lh-24px" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none !important;">
+                    <div @click="setActive('/departments')" class="dropdown-toggle text-choco ff-regular font-small lh-24px" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none !important;">
                             <span class="text-dark-blue">{{t(`navbar.departments`)}}</span>&nbsp;
                         </div>
                         <ul class="dropdown-menu p-0 bg-snow border-0 w-fc">
@@ -69,19 +69,19 @@
                         </ul>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/blogs')" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.blogs`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/blogs')" @click="setActive('/blogs')" :class="{ 'active-nav-item': isActive('/blogs') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.blogs`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/books')" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.books`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/books')" @click="setActive('/books')" :class="{ 'active-nav-item': isActive('/books') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.books`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/partners')" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.ourPartners`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/partners')" @click="setActive('/partners')" :class="{ 'active-nav-item': isActive('/partners') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.ourPartners`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/publish-with-us')" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.publishWithUs`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/publish-with-us')" @click="setActive('/publish-with-us')" :class="{ 'active-nav-item': isActive('/publish-with-us') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.publishWithUs`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/contact-us')" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.contactUs`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/contact-us')" @click="setActive('/contact-us')" :class="{ 'active-nav-item': isActive('/contact-us') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.contactUs`) }}</span></NuxtLink>
                 </li>
                 <li class="justify-content-center">
                     <NuxtLink class="nav-link text-choco h-100 align-content-center ff-regular font-small lh-24px line-h d-flex flex-wrap align-items-center w-mc"
@@ -153,6 +153,23 @@
         const availableLocales = computed(() => {
             return locales.value.filter(i => i.code !== locale.value)
         });
+        // State to track the active link
+        const activeLink = ref(currentRoute.value);
+
+        // Function to set the active link
+        const setActive = (link) => {
+        activeLink.value = link;
+        };
+
+        // Function to check if the link is active
+        const isActive = (link) => {
+        return activeLink.value === link;
+        };
+
+        // Watch for route changes to update the active link automatically
+        // watch(currentRoute, (newRoute) => {
+        // activeLink.value = newRoute;
+        // });
         const onLanguageSwitch = () => {
             // Emit the event globally
             const event = new Event('language-switched');
@@ -185,5 +202,11 @@
 }
 [dir="rtl"] .navbar-expand-lg .navbar-nav .dropdown-menu{
     left: auto;
+}
+.nav-link.active-nav-item {
+      border-bottom-color: currentcolor;
+}
+.nav-underline .nav-link.active-nav-item {
+     border-bottom-color: currentcolor;
 }
 </style>

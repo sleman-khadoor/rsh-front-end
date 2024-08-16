@@ -14,13 +14,13 @@ export default defineNuxtConfig({
         lang: 'ar',
       },
       // script: [
-      //   {src: 'https://www.google.com/recaptcha/api.js?render=6LcrNxsqAAAAAEc4693eTJKT7ANdpSHAAO-70jeV'}
+      //   {src: 'https://www.google.com/recaptcha/api.js?render=6LdyXSgqAAAAAEFIPnkdzxUV9H6dvp3x13KPkST8'}
       // ]
     }
   },
-  ssr: true,
+  ssr: false,
   css: ['bootstrap/dist/css/bootstrap.css','bootstrap/dist/css/bootstrap.min.css','~/assets/main.scss'],
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
   devServer: {
     port: 8000, // default: 3000     

@@ -1,10 +1,10 @@
 <template>
     <div class="row py-5" ref="contactsRef">
         <div v-if="!steps"  class="col-lg-5 px-5 text-dark-blue justify-content-start">
-            <div class="font-xx-large fw-semibold mb-3">
+            <div class="font-xx-large text-choco fw-semibold mb-3">
                 {{props.title}}
             </div>
-            <div class="font-large ff-meduim mb-4 lh-30">
+            <div class="font-meduim ff-regular mb-4 lh-30 text-justify">
                 {{props.subTitle}}
             </div>
             <div v-for="contact in contactInfo" class="d-flex justify-content-start text-meduim mb-4">
@@ -12,14 +12,14 @@
                     <img src="/icon/phone.svg" alt="rashm" height="20" width="20">
                 </div>
                 <span v-if="contact.type === 'phone'" class="text-dark-blue px-1 my-auto" dir="ltr">{{contact.value}}</span>
-                <div v-else-if="contact.type === 'email'" class="d-flex justify-content-center rounded-1 w-auto col-auto">
+                <div v-if="contact.type === 'email'" class="d-flex justify-content-center rounded-1 w-auto col-auto">
                     <img src="/icon/email.svg" alt="rashm" height="20" width="20">
                 </div>
-                <span v-else-if="contact.type === 'email'" class="text-dark-blue px-1 my-auto">{{contact.value}}</span>
-                <div v-else-if="contact.type === 'en_location' || contact.type === 'ar_location'" class="d-flex justify-content-center rounded-1 w-auto col-auto">
+                <span v-if="contact.type === 'email'" class="text-dark-blue px-1 my-auto">{{contact.value}}</span>
+                <div v-if="contact.type === 'en_location' || contact.type === 'ar_location'" class="d-flex justify-content-center rounded-1 w-auto col-auto">
                     <img src="/icon/location.svg" alt="rashm" height="20" width="20">
                 </div>
-                <span v-else-if="contact.type === 'en_location' || contact.type === 'ar_location'" class="text-dark-blue px-1 my-auto">{{contact.value}}</span>
+                <span v-if="contact.type === 'en_location' || contact.type === 'ar_location'" class="text-dark-blue px-1 my-auto">{{contact.value}}</span>
             </div>
         </div>
         <div v-else class="col-lg-5 px-5 text-dark-blue">
@@ -95,9 +95,9 @@
                 </div>
                 <!-- 6LcrNxsqAAAAAIjAUgca8kLJT8-e4vlHbV7Emwvg -->
                 <!-- <div class="form-group">
-                            <div class="g-recaptcha" data-sitekey="6LcrNxsqAAAAAEc4693eTJKT7ANdpSHAAO-70jeV" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
-                            <input class="form-control d-none" data-recaptcha="true" required data-error="Please complete the Captcha">
-                            <div class="help-block with-errors"></div>
+                    <div class="g-recaptcha" data-sitekey="6LdyXSgqAAAAAEFIPnkdzxUV9H6dvp3x13KPkST8" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
+                    <input class="form-control d-none" data-recaptcha="true" required data-error="Please complete the Captcha">
+                    <div class="help-block with-errors"></div>
                 </div> -->
                 <div class="d-grid gap-2">
                     <button type="submit" :disabled="disabledBtn" :class="dynamicClass">{{$t('contactUs.form.send')}}</button>
