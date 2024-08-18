@@ -3,7 +3,8 @@ export default defineNuxtConfig({
   runtimeConfig:{
     API_URL: "http://127.0.0.1:9000/api",
     public: {
-      API_URL: "http://127.0.0.1:9000/api"
+      API_URL: "http://127.0.0.1:9000/api",
+      RECAPTCHA_SITE_KEY: "6LdyXSgqAAAAAEFIPnkdzxUV9H6dvp3x13KPkST8"
     }
   },
   app: {
@@ -63,6 +64,7 @@ export default defineNuxtConfig({
   },
   plugins: [
     { src: '~/plugins/bootstrap.client.ts', mode: 'client' },
+    {src: '~/plugins/recaptcha.js'},
     '~/plugins/i18n-plugin.ts',
     '~/plugins/ltr-rtl.js',
     '~/plugins/vue3-tel-input.js'

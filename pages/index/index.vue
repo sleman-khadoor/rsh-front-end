@@ -42,13 +42,13 @@
             <div id="latestDepartments" class="row mb-2">
                 <IndexDiverseServices/>
             </div>
-            <div v-if="!booksPending && !booksError"  class="row mb-2 pb-1 m-0">
+            <div v-if="!booksPending && !booksError && (books && books.length)"  class="row mb-2 pb-1 m-0">
                 <ColourfullDiv :text="$t('index.checkoutLatestBooks')" :bgColor="'bg-choco'"/>
             </div>
-            <div v-if="!booksPending && !booksError" class="row mb-4 m-0">
+            <div v-if="!booksPending && !booksError && (books && books.length)" class="row mb-4 m-0">
                 <IndexMultiCarousel :books="books"/>
             </div>
-            <div v-if="!blogsPending && !blogsError" class="row mb-4">
+            <div v-if="!blogsPending && !blogsError && (blogs && blogs.length)" class="row mb-4">
                 <IndexBlogs :blogs="blogs"/>
             </div>
         </div>

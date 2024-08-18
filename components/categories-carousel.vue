@@ -1,6 +1,6 @@
 <template>
     <div id="carouselExample" class="carousel">
-    <div class="carousel-inner mx-2" ref="carouselInner">
+    <div class="carousel-inner mx-2 w-93per mx-auto" ref="carouselInner">
         <div ref="carouselCategoryItem" v-for="(category, index) in categories" :key="index" :class="checkedValues.includes(category) ? 'carousel-item active' : 'carousel-item'">
             <input 
              type="checkbox"
@@ -12,7 +12,7 @@
              :id="`vbtn-radio_${index + 1}`" 
              autocomplete="off">
             <label :class="checkedValues.includes(category) ? `btn btn-outline-choco bg-choco text-white` : `btn btn-outline-choco`"
-            :for="`vbtn-radio_${index + 1}`" style="min-width:80%;">{{category.title}}</label>
+            :for="`vbtn-radio_${index + 1}`" style="min-width:80%; width: max-content;">{{category.title}}</label>
         </div>
     </div>
     <button :hidden="hiddenPrev" class="carousel-control-prev" @click="castumPrev()" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -263,5 +263,10 @@ onMounted(async () => {
     --bs-btn-disabled-bg: transparent;
     --bs-btn-disabled-border-color: #82704A;
     --bs-gradient: none;
+}
+.w-93per{
+    width: 93%;
+    margin-left: auto !important;
+    margin-right: auto !important;
 }
 </style>

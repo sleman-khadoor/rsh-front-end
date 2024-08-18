@@ -71,4 +71,20 @@ onUpdated(()=> {
 .card-100{
     height: 100%;
 }
+.w-30per{
+    width: 30%;
+    max-width: 30%;
+}
+@media only screen and (max-width: 828px) {
+    .w-30per{
+        width: 45%;
+        max-width: 45%;
+    }
+}
+@media only screen and (max-width: 549px) {
+    .w-30per{
+        width: 70%;
+        max-width: 70%;
+    }
+}
 </style>

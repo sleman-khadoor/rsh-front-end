@@ -8,13 +8,13 @@
                 <Search @search="updateSearch($event)"/>
             </div>
         </div> -->
-        <div v-if="!categoriesPending && !categoriesError" class="row bg-secondary p-1 m-0">
+        <div v-if="!categoriesPending && !categoriesError && (categories && categories.length)" class="row bg-secondary p-1 m-0">
             <CategoriesCarousel :categories="categories" @updateCategory="updateCategory($event)"/>
         </div>
         <div class="row bg-secondary px-5 pb-5 pt-2 justify-content-center m-0">
                 <BlogsCard :blogs="blogs"/>
         </div>
-        <div class="row bg-secondary justify-content-center pb-5 m-0">
+        <div v-if="!blogsPending && ! blogsError && (blogs && blogs.length)" class="row bg-secondary justify-content-center pb-5 m-0">
             <ClientOnly>
                 <slot name="loading">
                     <Pagination v-if="!blogsPending" :meta="blogsMeta" @updatePage="updatePagination($event)"/>
@@ -64,6 +64,7 @@
     async function fetchBlogs() {
         let qp = {
             page: page.value,
+            perPage: 12,
             include: ['author'],
             'filter[title]': title.value,
             'filter[author]': author.value

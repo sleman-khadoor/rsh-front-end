@@ -9,8 +9,8 @@
             <div class="text-dark-blue font-large ff-regular lh-30 px-5">
                 {{t('ourPartners.subTitle')}}
             </div>
-            <div class="d-flex flex-wrap p-5 justify-content-center align-items-center">
-            <div v-for="(partner,i) in partners" :key="i" class="col w-fc">
+            <div class="row p-5 justify-content-center align-items-center">
+            <div v-for="(partner,i) in partners" :key="i" class="col">
                 <PartnersCard :partner="partner"/>
             </div>
             </div>

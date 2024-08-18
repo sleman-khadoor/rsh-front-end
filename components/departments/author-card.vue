@@ -1,4 +1,6 @@
 <template>
+  <div v-if="!authorsPending && !authorsError && (authors && authors.length)" class="row mx-auto bg-primary justify-content-around rounded-4 py-5 mb-3">
+    <div class="font-x-large ff-meduim text-dark-blue text-center mb-3">{{$t('departments.literaryAgencyAuthors.representedAuthor')}} <span class="text-choco">{{$t('footer.title')}}</span></div>
     <div id="authorsCarouselExample" class="carousel author-slider px-5" data-bs-ride="carousel">
     <div class="carousel-inner w-90 m-auto" ref="carouselInner">
         <!-- <div v-for="(chunk, index) in chunks" :key="index" :class="['carousel-item', { active: index === 0 }]"> -->
@@ -24,13 +26,16 @@
         <span class="visually-hidden">Next</span>
     </button>
     </div>
+  </div>
 </template>
 <script>
 import { baseURL } from '@/utils/global';
 export default defineComponent({
     setup() {
+       const { t } = useI18n();
       const test = ref(0);
       const page = ref(1);
+      const next = ref(null);
       const perPage = ref(0);
       const total = ref(1);
       const url = ref(baseURL);
@@ -72,6 +77,7 @@ export default defineComponent({
               });
               authors.value = response.data;
               total.value = response.meta.total;
+              next.value = response.links.next;
           } catch (error) {
               authorsError.value = error;
               console.error('Error fetching authors:', error);
@@ -80,10 +86,10 @@ export default defineComponent({
           }
       };
       const nextFlag = computed(() => {
-        return page.value === (total.value/4)
+        return next.value === null
       })
       function getPage(type) {
-        if(type === 'next' && page.value !== (total.value/4)) {
+        if(type === 'next' && next.value) {
           page.value += 1
           fetchAuthors()
         } else if(type === 'prev' && page.value !== 1) {
@@ -115,8 +121,10 @@ export default defineComponent({
           url,
           getPage,
           nextFlag,
+          next,
           page,
-          authors
+          authors,
+          t
       }
     },
 });

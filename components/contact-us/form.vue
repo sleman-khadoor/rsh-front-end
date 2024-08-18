@@ -44,11 +44,14 @@
                  <span class="m-0">{{$t(`contactUs.form.alert.${requestMessage}`)}}</span>
                  <button type="button" class="btn-close mt-0" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <form class="needs-validation"  @submit.prevent="checkValidate($event)" novalidate>
-                 <div class="mb-4 d-flex justify-content-between">
-                    <input type="text" class="form-control bg-snow form-control h-50px" @change="removeAlert()" v-model="contactUsForm.name" id="name" :placeholder="$t('contactUs.form.fullName')" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <form class="needs-validation px-2"  @submit.prevent="checkValidate($event)" novalidate>
+                 <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                        <input type="text" class="form-control bg-snow form-control h-50px" @change="removeAlert()" v-model="contactUsForm.name" id="name" :placeholder="$t('contactUs.form.fullName')" required>
+                    </div>
+                    <div class=" col-lg-6 col-md-6 col-sm-12 mb-4">
                     <vue-tel-input 
-                        class="form-control bg-snow h-50px"
+                        class="form-control bg-snow h-50px col-lg-6 col-md-6"
                         :input-options="inputOptions"
                         @input="onInput"
                         @country-changed="onCountryChanged"
@@ -57,6 +60,7 @@
                         :class="phoneClass"
                         :options="telInputOptions" 
                         required/>
+                    </div>
                 </div>
                 <div class="mb-4">
                     <input type="email" class="form-control bg-snow h-50px" @change="removeAlert()" v-model="contactUsForm.email" id="exampleInputEmail1" aria-describedby="emailHelp" :placeholder="t('contactUs.form.email')" required>
@@ -303,6 +307,9 @@ function resetPhoneFieldValue() {
     phoneInput.value = null
     countryCode.value = 1
 }
+// adding Recaptcha
+const { executeRecaptcha } = useGoogleRecaptcha()
+
 async function addRequest () {
     try {
             requestPending.value = true;
@@ -326,11 +333,16 @@ async function addRequest () {
                 formData.append('message', contactUsForm.description);
                 endpoint = '/contact-requests'
             }
-            
+            const { token } = await executeRecaptcha('submit')
+            const bodyData = {
+                ...Object.fromEntries(formData),
+                'recaptcha': token
+            }
+            console.log('bodyData', bodyData);
             const data = await $fetch(runTimeConfig.public.API_URL + endpoint, {
                 headers: { ...headers.value },
                 method: 'post',
-                body: formData
+                body: bodyData
             });
             requestMessage.value = data.message
             requestSuccess.value = data.success

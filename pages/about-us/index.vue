@@ -16,7 +16,7 @@
                 <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center px-4">{{t('aboutUs.aims.title')}}</div>
                 <IndexHistory :data="aims" :col="'col-12'" :bgColor="'bg-secondary'" :withTitle="false"/>
             </div>
-            <div v-if="!achievementsPending && !achievementsError" class="mb-4 bg-white rounded-3 py-5 px-lg-4 px-md-2 px-sm-1">
+            <div v-if="!achievementsPending && !achievementsError && (achievements && achievements.length)" class="mb-4 bg-white rounded-3 py-5 px-lg-4 px-md-2 px-sm-1">
                 <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center px-4">{{t('aboutUs.achievements')}}</div>
                 <div v-for="(achievment, i) in achievements" class="row m-3 mt-0 mb-3 align-content-center align-content-stretch align-items-stretch font-meduim ff-regular">
                     <div class="col-lg-1 col-md-2 col-sm-2 col-auto justify-content-center text-center">

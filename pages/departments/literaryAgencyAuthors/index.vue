@@ -12,8 +12,7 @@
                  :text="$t('departments.literaryAgencyAuthors.overlayImg.text')"
                  :title="$t('departments.literaryAgencyAuthors.overlayImg.title')"/>
             </div>
-            <div class="row mx-auto bg-primary justify-content-around rounded-4 py-5 mb-3">
-                <div class="font-x-large ff-meduim text-dark-blue text-center mb-3">{{t('departments.literaryAgencyAuthors.representedAuthor')}} <span class="text-choco">{{t('footer.title')}}</span></div>
+            <div>
                 <DepartmentsAuthorCard/>
             </div>
             <div class="mb-3">

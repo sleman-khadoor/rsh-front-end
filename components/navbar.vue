@@ -2,7 +2,7 @@
     <div>
         <nav class="navbar navbar-expand-lg bg-primary py-0">
             <div class="container-fluid px-5 align-items-stretch">
-            <a class="navbar-brand m-0" href="#">
+            <a class="navbar-brand m-0" href="/">
                 <img src="/svg/logo.svg" class="d-block w-100" alt="rashm" height="70" width="70">
             </a>
             <button class="navbar-toggler h-40 my-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,13 +11,13 @@
             <div class="collapse navbar-collapse w-100" id="navbarNavDropdown">
                 <ul class="navbar-nav w-100 justify-content-evenly nav-underline h-100">
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/')" @click="setActive('/')" :class="{ 'active-nav-item': isActive('/') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.home`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/')" @click="setActive('/',true)" :class="{ 'active-nav-item': isActive('/') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.home`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink @click="setActive('/about-us')" :to="localePath('/about-us')" :class="{ 'active-nav-item': isActive('/about-us') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.aboutUs`) }}</span></NuxtLink>
+                    <NuxtLink @click="setActive('/about-us',true)" :to="localePath('/about-us')" :class="{ 'active-nav-item': isActive('/about-us') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.aboutUs`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item h-100 dropdown align-content-center">
-                    <div @click="setActive('/departments')" class="dropdown-toggle text-choco ff-regular font-small lh-24px" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none !important;">
+                    <div @click="setActive('/departments', false)" class="dropdown-toggle text-choco ff-regular font-small lh-24px" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none !important;">
                             <span class="text-dark-blue">{{t(`navbar.departments`)}}</span>&nbsp;
                         </div>
                         <ul class="dropdown-menu p-0 bg-snow border-0 w-fc">
@@ -25,63 +25,63 @@
                                 <div class="pl-2">
                                     <li class="p-2 d-flex">
                                         <img src="/icon/translate-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.translation.overlayImg.title`)" width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/translation')"class="dropdown-item px-1 py-0 text-choco">{{t(`departments.translation.overlayImg.title`)}}</NuxtLink>
+                                        <NuxtLink @click="closeNav()" :to="localePath('/departments/translation')"class="dropdown-item px-1 py-0 text-choco">{{t(`departments.translation.overlayImg.title`)}}</NuxtLink>
                                     </li>
                                     <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
                                     <li class="p-2 d-flex">
                                         <img src="/icon/history-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.creativeEditing.overlayImg.title`)" width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/creativeEditing')"class="dropdown-item px-1 py-0 text-choco">{{t(`departments.creativeEditing.overlayImg.title`)}}</NuxtLink>
+                                        <NuxtLink @click="closeNav()" :to="localePath('/departments/creativeEditing')"class="dropdown-item px-1 py-0 text-choco">{{t(`departments.creativeEditing.overlayImg.title`)}}</NuxtLink>
                                     </li>
                                     <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
                                     <li class="p-2 d-flex">
                                         <img src="/icon/marketing-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.marketing.overlayImg.title`)" width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/marketing')"class="dropdown-item px-1 py-0 text-choco">{{t(`departments.marketing.overlayImg.title`)}}</NuxtLink>
+                                        <NuxtLink @click="closeNav()" :to="localePath('/departments/marketing')"class="dropdown-item px-1 py-0 text-choco">{{t(`departments.marketing.overlayImg.title`)}}</NuxtLink>
                                     </li>
                                     <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
                                     <li class="p-2 d-flex">
                                         <img src="/icon/literary-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.literaryAgencyAuthors.overlayImg.title`)" width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/literaryAgencyAuthors')"class="dropdown-item px-1 py-0 text-choco">{{t(`departments.literaryAgencyAuthors.overlayImg.title`)}}</NuxtLink>
+                                        <NuxtLink @click="closeNav()" :to="localePath('/departments/literaryAgencyAuthors')"class="dropdown-item px-1 py-0 text-choco">{{t(`departments.literaryAgencyAuthors.overlayImg.title`)}}</NuxtLink>
                                     </li>
                                 </div>
                                 <div class="hr bg-dark-snow opacity-1 dynamic-divider"></div>
                                 <div class="pr-2">
                                     <li class="p-2 d-flex">
                                         <img src="/icon/prof-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.proofreading.overlayImg.title`)" width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/proofreading')" class="dropdown-item px-1 py-0 text-choco">{{t(`departments.proofreading.overlayImg.title`)}}</NuxtLink>
+                                        <NuxtLink @click="closeNav()" :to="localePath('/departments/proofreading')" class="dropdown-item px-1 py-0 text-choco">{{t(`departments.proofreading.overlayImg.title`)}}</NuxtLink>
                                     </li>
                                     <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
                                     <li class="p-2 d-flex">
                                         <img src="/icon/book-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.bookDelivery.overlayImg.title`)" width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/bookDelivery')" class="dropdown-item px-1 py-0 text-choco">{{t(`departments.bookDelivery.overlayImg.title`)}}</NuxtLink>
+                                        <NuxtLink @click="closeNav()" :to="localePath('/departments/bookDelivery')" class="dropdown-item px-1 py-0 text-choco">{{t(`departments.bookDelivery.overlayImg.title`)}}</NuxtLink>
                                     </li>
                                     <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
                                     <li class="p-2 d-flex">
                                         <img src="/icon/editing-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.contentWriting.overlayImg.title`)" width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/contentWriting')" class="dropdown-item px-1 py-0 text-choco">{{t(`departments.contentWriting.overlayImg.title`)}}</NuxtLink>
+                                        <NuxtLink @click="closeNav()" :to="localePath('/departments/contentWriting')" class="dropdown-item px-1 py-0 text-choco">{{t(`departments.contentWriting.overlayImg.title`)}}</NuxtLink>
                                     </li>
                                     <div class="hr bg-dark-snow opacity-1" style="height: 1px;"></div>
                                     <li class="p-2 d-flex">
                                         <img src="/icon/event-drop-icon.svg" class="d-block mb-auto mx-1" :alt="t(`departments.organizingEventsandConferences.overlayImg.title`)" width="20" height="20">
-                                        <NuxtLink :to="localePath('/departments/organizingEventsAndConferences')" class="dropdown-item px-1 py-0 text-choco">{{t(`departments.organizingEventsandConferences.overlayImg.title`)}}</NuxtLink>
+                                        <NuxtLink @click="closeNav()" :to="localePath('/departments/organizingEventsAndConferences')" class="dropdown-item px-1 py-0 text-choco">{{t(`departments.organizingEventsandConferences.overlayImg.title`)}}</NuxtLink>
                                     </li>                    
                                 </div>
                             </div>
                         </ul>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/blogs')" @click="setActive('/blogs')" :class="{ 'active-nav-item': isActive('/blogs') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.blogs`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/blogs')" @click="setActive('/blogs',true)" :class="{ 'active-nav-item': isActive('/blogs') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.blogs`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/books')" @click="setActive('/books')" :class="{ 'active-nav-item': isActive('/books') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.books`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/books')" @click="setActive('/books',true)" :class="{ 'active-nav-item': isActive('/books') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.books`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/partners')" @click="setActive('/partners')" :class="{ 'active-nav-item': isActive('/partners') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.ourPartners`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/partners')" @click="setActive('/partners',true)" :class="{ 'active-nav-item': isActive('/partners') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.ourPartners`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/publish-with-us')" @click="setActive('/publish-with-us')" :class="{ 'active-nav-item': isActive('/publish-with-us') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.publishWithUs`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/publish-with-us')" @click="setActive('/publish-with-us',true)" :class="{ 'active-nav-item': isActive('/publish-with-us') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.publishWithUs`) }}</span></NuxtLink>
                 </li>
                 <li class="nav-item">
-                    <NuxtLink :to="localePath('/contact-us')" @click="setActive('/contact-us')" :class="{ 'active-nav-item': isActive('/contact-us') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.contactUs`) }}</span></NuxtLink>
+                    <NuxtLink :to="localePath('/contact-us')" @click="setActive('/contact-us',true)" :class="{ 'active-nav-item': isActive('/contact-us') }" class="nav-link text-choco ff-regular h-100 align-content-center font-small lh-24px" aria-current="page"><span class="text-dark-blue">{{ t(`navbar.contactUs`) }}</span></NuxtLink>
                 </li>
                 <li class="justify-content-center">
                     <NuxtLink class="nav-link text-choco h-100 align-content-center ff-regular font-small lh-24px line-h d-flex flex-wrap align-items-center w-mc"
@@ -103,6 +103,7 @@
 <script setup>
         const { locale, locales, t } = useI18n()
         const router = useRouter()
+        const { $bootstrap } = useNuxtApp();
         const currentRoute = computed(()=> {
             return useRoute().path
         }) 
@@ -157,8 +158,18 @@
         const activeLink = ref(currentRoute.value);
 
         // Function to set the active link
-        const setActive = (link) => {
-        activeLink.value = link;
+        function closeNav () {
+            const navbarCollapse = document.querySelector('.navbar-collapse')
+            if (navbarCollapse.classList.contains('show')) {
+                const bsCollapse = new $bootstrap.Collapse(navbarCollapse, { toggle: false })
+                bsCollapse.hide()
+            }
+        }
+        const setActive = (link, toggle) => {
+            activeLink.value = link;
+            if(toggle) {
+                closeNav()
+            }
         };
 
         // Function to check if the link is active

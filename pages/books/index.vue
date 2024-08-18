@@ -7,15 +7,15 @@
                 <Search :dropdown="true" @search="updateSearch($event)"/>
             </div>
         </div>
-        <div v-if="!categoriesPending && !categoriesError" class="row m-0 bg-secondary p-1">
+        <div v-if="!categoriesPending && !categoriesError && (categories && categories.length)" class="row m-0 bg-secondary p-1">
             <CategoriesCarousel :categories="categories" @updateCategory="updateCategory($event)"/>
         </div>
         <div class="row m-0 bg-secondary px-5 pb-5 pt-2 justify-content-center">
-            <div v-for="(book,i) in books" :key="i" class="col mx-1 w-fc">
+            <div v-for="(book,i) in books" :key="i" class="col-lg-3 col-md-4 col-sm-6 my-3">
                 <BooksCard :book="book"/>
             </div>
         </div>
-        <div class="row m-0 bg-secondary justify-content-center pb-5">
+        <div v-if="!booksPending && ! booksError && (books && books.length)" class="row m-0 bg-secondary justify-content-center pb-5">
             <ClientOnly>
                 <slot name="loading">
                     <Pagination v-if="!booksPending" :meta="booksMeta" @updatePage="updatePagination($event)"/>
@@ -67,6 +67,7 @@
     async function fetchBooks() {
         let qp = {
             page: page.value,
+            perPage: 12,
             include: ['author'],
             'filter[title]': title.value,
             'filter[author]': author.value
@@ -126,3 +127,21 @@
         }
     });
 </script>
+<style scoped>
+.w-20per{
+    width: 18%;
+    max-width: 18%;
+}
+@media only screen and (max-width: 828px) {
+    .w-20per{
+        width: 30%;
+        max-width: 30%;
+    }
+}
+@media only screen and (max-width: 549px) {
+    .w-20per{
+        width: 70%;
+        max-width: 70%;
+    }
+}
+</style>
