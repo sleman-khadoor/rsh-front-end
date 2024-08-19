@@ -1,7 +1,5 @@
 <template>
     <div class="row bg-secondary m-0">
-        <Title>Blog name with Rashm</Title>
-        <Meta name="description" content="Blog Name with Rashm" />
         <div class="col-12 mx-auto rounded-4 py-5 px-lg-5 px-md-5 px-sm-4 text-dark-blue">
             <img :src="url + blog.cover_image" class="d-block w-100 object-fit-cover mb-3" :alt="blog.title" height="375">
             <div class="d-flex flex-wrap mb-3" :dir="dir">
@@ -54,6 +52,56 @@ const getBlog = async () => {
     console.error('Fetch error:', error);
   }
 };
+
+useHead({
+  title: computed(() => {
+    return blog.value?.lang === 'ar'
+      ? `مدونة ${blog.value.title} مع رشم`
+      : `Blog ${blog.value.title} with Rashm`;
+  }),
+  meta: [
+    { 
+      name: 'description', 
+      content: computed(() => {
+        return blog.value?.lang === 'ar'
+          ? `اقرأ مدونة ${blog.value.title} مع رشم. تعرف على أحدث المقالات وأحدث المواضيع في هذه المدونة.` 
+          : `Read the blog ${blog.value.title} with Rashm. Discover the latest articles and topics in this blog.`;
+      })
+    },
+    { 
+      name: 'keywords', 
+      content: computed(() => {
+        return blog.value?.lang === 'ar'
+          ? `مدونة, رشم, مقالات, محتوى, ${blog.value.title}` 
+          : `blog, Rashm, articles, content, ${blog.value.title}`;
+      })
+    },
+    { 
+      property: 'og:title', 
+      content: computed(() => {
+        return blog.value?.lang === 'ar'
+          ? `مدونة ${blog.value.title} مع رشم`
+          : `Blog ${blog.value.title} with Rashm`;
+      })
+    },
+    { 
+      property: 'og:description', 
+      content: computed(() => {
+        return blog.value?.lang === 'ar'
+          ? `اقرأ مدونة ${blog.value.title} مع رشم. تعرف على أحدث المقالات وأحدث المواضيع في هذه المدونة.` 
+          : `Read the blog ${blog.value.title} with Rashm. Discover the latest articles and topics in this blog.`;
+      })
+    },
+    { 
+      property: 'og:image', 
+      content: computed(() => blog.value.cover_image ? url.value + blog.value.cover_image : '') 
+    },
+    { 
+      property: 'og:url', 
+      content: computed(() => `https://rashm.com.sa/blog/${slug}`) 
+    }
+  ]
+});
 
 onMounted(async () => {
   if (process.client) {

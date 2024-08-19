@@ -1,7 +1,5 @@
 <template>
     <div class="row bg-secondary m-0">
-        <Title>Publish with Rashm</Title>
-        <Meta name="description" content="Publish with Rashm" />
         <div class="col-11 mx-auto my-5 rounded-4">
             <div class="mb-3 text-center">
                 <DepartmentsOverlayImg 
@@ -19,9 +17,9 @@
                     <div v-for="(service, i) in services" :key="i" class="col-lg-6 col-md-6 py-4 px-lg-4 px-md-3 px-sm-2 card-100">
                             <div class="d-flex justify-content-start">
                                 <span class="text-choco font-x-large ff-meduim mx-1">0{{i+1}}</span>&nbsp;
-                                <span class="text-dark-blue font-large ff-meduim mb-2 text-justify">{{service.title}}</span>
+                                <span class="text-dark-blue font-large ff-meduim mb-2">{{service.title}}</span>
                             </div>
-                            <div class="font-meduim ff-regular lh-25">
+                            <div class="font-meduim ff-regular lh-25 text-justify">
                                 {{service.subTitle}}
                             </div>
                     </div>
@@ -39,13 +37,13 @@
                 <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center">
                     {{$t('publishWithUs.requirementTitle')}}
                 </div>
-                <div class="row text-justify">
+                <div class="row">
                     <div v-for="i in 6" :key="i" class="col-lg-6 col-md-6 py-4 px-lg-4 px-md-3 px-sm-2">
                             <div class="d-flex justify-content-start">
                                 <span class="text-choco font-x-large ff-meduim mx-1">0{{i}}</span>&nbsp;
                                 <span class="text-dark-blue font-large ff-meduim mb-2">{{$t(`publishWithUs.requirements.reqirement${i}.title`)}}</span>
                             </div>
-                            <div class="font-meduim ff-regular lh-25">
+                            <div class="font-meduim ff-regular lh-25 text-justify">
                                 {{$t(`publishWithUs.requirements.reqirement${i}.text`)}}
                             </div>
                     </div>
@@ -71,7 +69,7 @@ import { useI18n } from 'vue-i18n';
 
 export default defineComponent({
     setup() {
-    const { t } = useI18n();
+    const { t, locale } = useI18n();
     const relativeCol = ref(null);
     const colHeight = ref('auto');
     const relativeService = ref(null);
@@ -128,6 +126,38 @@ export default defineComponent({
             subTitle: t('publishWithUs.services.service7.subTitle')
         },
     ])
+    
+    // Define meta tags content based on the current locale
+    const pageTitle = computed(() => {
+        return locale.value === 'ar'
+            ? 'انشر مع رشم'
+            : 'Publish with Rashm';
+    });
+
+    const pageDescription = computed(() => {
+        return locale.value === 'ar'
+            ? 'تعرف على كيفية النشر مع رشم والخدمات المتاحة لتحقيق أحلامك. استكشف الأسباب والاحتياجات وكيفية التواصل معنا.'
+            : 'Learn how to publish with Rashm and the services available to achieve your dreams. Explore reasons, requirements, and how to contact us.';
+    });
+
+    const pageKeywords = computed(() => {
+        return locale.value === 'ar'
+            ? 'نشر مع رشم, خدمات النشر, متطلبات النشر'
+            : 'Publish with Rashm, Publishing Services, Publishing Requirements';
+    });
+
+    // Use useHead to update meta tags dynamically
+    useHead({
+        title: pageTitle.value,
+        meta: [
+            { name: 'description', content: pageDescription.value },
+            { name: 'keywords', content: pageKeywords.value }
+        ],
+        link: [
+            { rel: 'canonical', href: 'https://rashm.com.sa/publish-with-us' }
+        ]
+    });
+    
     function setMaxCardHeight() {
         if(relativeCol.value && relativeService.value) {
             relativeCol.value.forEach(card => {

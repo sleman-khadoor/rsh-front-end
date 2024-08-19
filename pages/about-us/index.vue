@@ -1,7 +1,5 @@
 <template>
     <div class="row bg-secondary m-0">
-        <Title>About Rashm</Title>
-        <Meta name="description" content="About Rashm" />
         <div class="col-11 mx-auto my-5 rounded-4">
             <div class="mb-4 text-center">
                 <DepartmentsOverlayImg 
@@ -14,7 +12,7 @@
             </div>
             <div class="mb-4 bg-white rounded-3 py-5 px-lg-5 px-md-3 px-sm-2">
                 <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center px-4">{{t('aboutUs.aims.title')}}</div>
-                <IndexHistory :data="aims" :col="'col-12'" :bgColor="'bg-secondary'" :withTitle="false"/>
+                <IndexHistory :data="aims" :col="'col-12'" :bgColor="'bg-secondary'" :mb="false" :withTitle="false"/>
             </div>
             <div v-if="!achievementsPending && !achievementsError && (achievements && achievements.length)" class="mb-4 bg-white rounded-3 py-5 px-lg-4 px-md-2 px-sm-1">
                 <div class="font-x-large ff-meduim text-dark-blue mb-5 text-center px-4">{{t('aboutUs.achievements')}}</div>
@@ -40,7 +38,7 @@ import { useI18n } from 'vue-i18n';
 definePageMeta({
   lazy: true
 })
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const runTimeConfig = useRuntimeConfig();
 const aims = ref([
             {
@@ -97,4 +95,26 @@ const fetchAchievements = async () => {
 
 // Fetch data on component mount
 onMounted(fetchAchievements);
+useHead({
+  title: locale.value === 'ar'
+    ? 'عن رشم | مكتبة رشم'
+    : 'About Rashm | Rashm Library',
+  meta: [
+    {
+      name: 'description',
+      content: locale.value === 'ar'
+        ? 'اكتشف المزيد عن مكتبة رشم، أهدافها، إنجازاتها، ودور النشر التي تتعاون معها.'
+        : 'Learn more about Rashm Library, its goals, achievements, and the publishing houses it collaborates with.'
+    },
+    {
+      name: 'keywords',
+      content: locale.value === 'ar'
+        ? 'عن رشم, مكتبة, أهداف, إنجازات, دور نشر'
+        : 'About Rashm, Library, Goals, Achievements, Publishing Houses'
+    }
+  ],
+  link: [
+     { rel: 'canonical', href: 'https://rashm.com.sa/about-us' }
+  ]
+})
 </script>

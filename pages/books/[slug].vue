@@ -1,7 +1,5 @@
 <template>
     <div class="row bg-secondary m-0">
-        <Title>{{book.title}}</Title>
-        <Meta name="description" content="Book name with Rashm" />
         <div class="col-11 mx-auto my-5 bg-primary rounded-4 py-5 px-4 text-dark-blue">
             <div class="row px-3">
                 <div class="col col-auto px-0 mx-auto justify-content-center font-meduim lh-25 mb-5 mx-2 w-35per">
@@ -91,12 +89,18 @@
 </template>
 <script setup>
 import { baseURL } from '@/utils/global';
+import { useHead } from '@unhead/vue'
 const { slug } = useRoute().params;
 const { locale } = useI18n();
 const url = ref(baseURL);
 const runTimeConfig = useRuntimeConfig();
 const setI18nParams = useSetI18nParams();
 const switchLocalePath = useSwitchLocalePath();
+
+definePageMeta({
+  lazy: true
+})
+
 const { data: book, pending: bookPending, refresh: bookRefresh} = await useFetch(`${runTimeConfig.public.API_URL}/books/${slug}`, {
         transform: (_book) => _book.data,
         headers: API_HEADER(),
@@ -120,6 +124,33 @@ const { data: store } = await useFetch(`${runTimeConfig.public.API_URL}/contacts
         },
 });
 
+
+watch(() => book.value, (newBook) => {
+  if (newBook && newBook.title) {
+    useHead({
+      title: locale.value === 'ar' 
+        ? `${newBook.title} | مكتبة رشم`
+        : `${newBook.title} | Rashm Library`,
+      meta: [
+        { 
+          name: 'description', 
+          content: locale.value === 'ar' 
+            ? `اكتشف تفاصيل كتاب ${newBook.title} في مكتبة رشم. ${newBook.abstract}`
+            : `Discover details about the book ${newBook.title} at Rashm Library. ${newBook.abstract}`
+        },
+        { 
+          name: 'keywords', 
+          content: locale.value === 'ar' 
+            ? `${newBook.title}, كتب, مكتبة, مؤلفات, كتب عربية, كتب إنجليزية, رشم`
+            : `${newBook.title}, books, library, literature, Arabic books, English books, Rashm`
+        }
+      ],
+      link: [
+            { rel: 'canonical', href: computed(() => `https://rashm.com.sa/books/${slug}`)  }
+      ]
+    });
+  }
+}, { immediate: true });
 const computedStyle = computed(() => {
     let style = ''
     if(locale.value == 'ar') {

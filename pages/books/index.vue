@@ -1,7 +1,5 @@
 <template>
     <div>
-        <Title>Books with Rashm</Title>
-        <Meta name="description" content="Books with Rashm" />
         <div class="row m-0 bg-dark-blue pb-3">
             <div class="col-lg-7 h-25 mx-auto">
                 <Search :dropdown="true" @search="updateSearch($event)"/>
@@ -26,8 +24,33 @@
 </template>
 <script setup>
     import { ref, onMounted } from 'vue';
-    
+    import { useHead } from '@unhead/vue';
+
     const { locale } = useI18n()
+
+    useHead({
+        title: locale.value === 'ar' 
+            ? 'استعرض كتب متنوعة في مكتبة رشم | أحدث الكتب والروائع الأدبية'
+            : 'Explore a Variety of Books at Rashm Library | Latest Titles and Literary Masterpieces',
+        meta: [
+            { 
+            name: 'description', 
+            content: locale.value === 'ar' 
+                ? 'اكتشف مجموعة واسعة من الكتب المتنوعة في مكتبة رشم. تصفح أحدث العناوين والروائع الأدبية من مؤلفين مشهورين وابدأ رحلتك القرائية اليوم.' 
+                : 'Discover a wide range of books at Rashm Library. Browse the latest titles and literary masterpieces from renowned authors and start your reading journey today.'
+            },
+            { 
+            name: 'keywords', 
+            content: locale.value === 'ar' 
+                ? 'كتب, مكتبة, مؤلفات, كتب عربية, كتب إنجليزية, رشم, روايات, أدب' 
+                : 'books, library, literature, Arabic books, English books, Rashm, novels, literature'
+            }
+        ],
+        link: [
+            { rel: 'canonical', href: 'https://rashm.com.sa/books' }
+        ]
+    })
+    
     const runTimeConfig = useRuntimeConfig();
     const router = useRouter();
     const headers = ref({});

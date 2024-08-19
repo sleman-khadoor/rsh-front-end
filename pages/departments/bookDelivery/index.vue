@@ -1,7 +1,5 @@
 <template>
      <div class="row bg-secondary m-0">
-        <Title>Book Delivery with Rashm</Title>
-        <Meta name="description" content="Book Delivery with Rashm" />
         <div class="col-11 mx-auto my-5 rounded-4">
             <div class="mb-3 text-center">
                 <DepartmentsOverlayImg 
@@ -31,41 +29,51 @@
         </div>
         </div>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 
-export default defineComponent({
-    setup() {
-    const { t } = useI18n();
-    let departments = [
-        {
-            title: t('departments.bookDelivery.departments.department1'),
-            iconSrc: 'bookDelivery-s1'
-        },
-        {
-            title: t('departments.bookDelivery.departments.department2'),
-            iconSrc: 'bookDelivery-s2'
-        },
-        {
-            title: t('departments.bookDelivery.departments.department3'),
-            iconSrc: 'bookDelivery-s3'
-        },
-        {
-            title: t('departments.bookDelivery.departments.department4'),
-            iconSrc: 'bookDelivery-s4'
-        }
-    ];
-    let stepsData = [
-        t('departments.bookDelivery.form.steps.step1'),
-        t('departments.bookDelivery.form.steps.step2'),
-        t('departments.bookDelivery.form.steps.step3'),
-        t('departments.bookDelivery.form.steps.step4'),
-    ]
-    return {
-         t,
-         departments,
-         stepsData
-    }
+const { t, locale } = useI18n();
+
+// Define dynamic metadata
+useHead({
+  title: t('departments.bookDelivery.overlayImg.title'), // Dynamic page title
+  meta: [
+    {
+      name: 'description',
+      content: t('departments.bookDelivery.overlayImg.text') // Dynamic meta description
     },
+    {
+        name: 'keywords',
+        content: locale.value === 'ar'
+            ? 'إخراج الكتب, خدمة توصيل الكتب, خدمات الشحن, توصيل سريع للكتب, خدمة الكتب, إخراج كتب احترافي, شحن كتب, خدمات التوصيل, توصيل كتب بجودة عالية, خدمة إخراج الكتب'
+            : 'book delivery, book shipping services, fast book delivery, professional book delivery, book shipping, delivery services, high-quality book delivery, book service, reliable book delivery, book courier services'
+    }
+  ]
 });
+
+const departments = [
+  {
+    title: t('departments.bookDelivery.departments.department1'),
+    iconSrc: 'bookDelivery-s1'
+  },
+  {
+    title: t('departments.bookDelivery.departments.department2'),
+    iconSrc: 'bookDelivery-s2'
+  },
+  {
+    title: t('departments.bookDelivery.departments.department3'),
+    iconSrc: 'bookDelivery-s3'
+  },
+  {
+    title: t('departments.bookDelivery.departments.department4'),
+    iconSrc: 'bookDelivery-s4'
+  }
+];
+
+const stepsData = [
+  t('departments.bookDelivery.form.steps.step1'),
+  t('departments.bookDelivery.form.steps.step2'),
+  t('departments.bookDelivery.form.steps.step3'),
+  t('departments.bookDelivery.form.steps.step4'),
+];
 </script>

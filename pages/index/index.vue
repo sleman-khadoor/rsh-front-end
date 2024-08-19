@@ -1,9 +1,5 @@
 <template>
     <div id="home" class="bg-secondary">
-        <Head>
-            <Title>Rashm</Title>
-            <Meta name="description" content="Rasham" />
-        </Head>
             <div class="row mt-2 px-2">
                 <div class="col-lg-6 col-md-6 col-sm-12 mb-4" style="padding-right: 0.4%;padding-left: 0.4%;">
                     <IndexCarousel :news="news"/>
@@ -33,7 +29,7 @@
                     <div class="rounded-3 bg-dark-blue text-primary px-lg-5 px-md-2 px-sm-1 py-2 mb-4">
                         <div class="p-4 font-x-large ff-regular lh-40"> {{t('index.rashmHistory1')}} <span class="text-choco">{{t('index.rashmHistory2')}}</span>{{t('index.rashmHistory3')}}</div>
                     </div>
-                    <IndexHistory :data="history" :bgColor="'bg-secondary'" :withTitle="false" :col="'col-12'"/>
+                    <IndexHistory :data="history" :bgColor="'bg-secondary'" :mb="false" :withTitle="false" :col="'col-12'"/>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-1">
                     <img src="/img/printer.webp" class="d-block w-100" alt="rashm printer" :height="imgHeight" width="400">
@@ -60,7 +56,7 @@ import { API_HEADER } from '@/utils/global';
 
 // Get runtime configuration
 const runTimeConfig = useRuntimeConfig();
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const history = ref([
   { text: t('index.history.history1') },
@@ -82,6 +78,24 @@ const relativeCol = ref(null);
 const imgHeight = ref(300);
 
 const headers = ref({});
+// Define meta tags content based on the current locale
+const pageTitle = computed(() => {
+  return locale.value === 'ar'
+    ? 'رشم | استكشف أحدث الأخبار والخدمات والكتب والمدونات'
+    : 'Rashm | Explore the Latest News, Services, Books, and Blogs';
+});
+
+const pageDescription = computed(() => {
+  return locale.value === 'ar'
+    ? 'استكشف أحدث الأخبار والخدمات والكتب والمدونات على موقع رشم. اكتشف كل ما هو جديد في عالم الكتب والخدمات معنا.'
+    : 'Explore the latest news, services, books, and blogs on Rashm. Discover what’s new in the world of books and services with us.';
+});
+
+const pageKeywords = computed(() => {
+  return locale.value === 'ar'
+    ? 'رشم, أخبار, خدمات, كتب, مدونات'
+    : 'Rashm, News, Services, Books, Blogs';
+});
 
 // Fetch data function
 const fetchData = async (url, dataRef, pendingRef, errorRef, queryParams) => {
@@ -124,6 +138,17 @@ onMounted(async () => {
     console.error('Error during onMounted fetch:', error);
   }
   window.addEventListener('resize', updateImgValue)
+});
+
+useHead({
+  title: pageTitle.value,
+  meta: [
+    { name: 'description', content: pageDescription.value },
+    { name: 'keywords', content: pageKeywords.value }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://rashm.com.sa/' }
+  ]
 });
 </script>
 <style scoped>

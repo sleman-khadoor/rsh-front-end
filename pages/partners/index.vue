@@ -1,7 +1,5 @@
 <template>
     <div class="row bg-secondary m-0">
-        <Title>Rashm Partners</Title>
-        <Meta name="description" content="Rasham Partners" />
         <div class="col-11 mx-auto my-5 bg-primary text-center rounded-4">
             <div class="text-choco font-xx-large ff-meduim lh-25 pt-5 mb-4">
                 {{t('ourPartners.title')}}
@@ -28,10 +26,30 @@
 </template>
 <script setup>
 const runTimeConfig = useRuntimeConfig();
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const partners = ref([]);
 const partnersPending = ref(false);
 const partnersError = ref(null);
+
+// Define meta tags content based on the current locale
+const pageTitle = computed(() => {
+  return locale.value === 'ar'
+    ? 'شركاء رشم'
+    : 'Rashm Partners';
+});
+
+const pageDescription = computed(() => {
+  return locale.value === 'ar'
+    ? 'تعرف على شركاء رشم وكيفية التواصل معهم. استكشف مجموعة من الشركات والمنظمات التي تتعاون مع رشم.'
+    : 'Learn about Rashm partners and how to contact them. Explore a range of companies and organizations collaborating with Rashm.';
+});
+
+const pageKeywords = computed(() => {
+  return locale.value === 'ar'
+    ? 'شركاء رشم, تعاون, الشركات, المنظمات'
+    : 'Rashm Partners, Collaboration, Companies, Organizations';
+});
+
 
 // Fetch data function
 const fetchData = async (url, dataRef, pendingRef, errorRef) => {
@@ -57,5 +75,16 @@ onMounted(async () => {
   } catch (error) {
     console.error('Error during onMounted fetch:', error);
   }
+});
+
+useHead({
+  title: pageTitle.value,
+  meta: [
+    { name: 'description', content: pageDescription.value },
+    { name: 'keywords', content: pageKeywords.value }
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://rashm.com.sa/partners' }
+  ]
 });
 </script>

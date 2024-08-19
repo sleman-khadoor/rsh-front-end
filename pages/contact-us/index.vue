@@ -1,7 +1,5 @@
 <template>
     <div>
-        <Title>Contact with Rashm</Title>
-        <Meta name="description" content="Contact with Rashm" />
         <div class="row bg-secondary m-0">
             <div class="col-11 mx-auto my-5 rounded-4">
                 <div class="mb-3 text-center">
@@ -20,3 +18,34 @@
         </div>
     </div>
 </template>
+<script setup>
+import { useI18n } from 'vue-i18n';
+import { useHead } from '@unhead/vue';
+
+// Set up i18n for localization
+const { t, locale } = useI18n();
+
+// Set head elements based on locale
+useHead({
+  title: locale.value === 'ar'
+    ? 'اتصل بنا مع رشم | تواصل معنا واستفسر عن خدماتنا'
+    : 'Contact with Rashm | Get in Touch and Inquire About Our Services',
+  meta: [
+    { 
+      name: 'description', 
+      content: locale.value === 'ar'
+        ? 'اتصل بنا من خلال موقع رشم. نحن هنا لمساعدتك والإجابة على استفساراتك بشأن خدماتنا ومنتجاتنا.'
+        : 'Contact us through Rashm. We are here to assist you and answer your inquiries about our services and products.'
+    },
+    { 
+      name: 'keywords', 
+      content: locale.value === 'ar'
+        ? 'اتصل بنا, رشم, استفسار, خدمات, منتجات'
+        : 'contact, Rashm, inquiry, services, products'
+    }
+  ],
+   link: [
+     { rel: 'canonical', href: 'https://rashm.com.sa/contact-us' }
+  ]
+});
+</script>

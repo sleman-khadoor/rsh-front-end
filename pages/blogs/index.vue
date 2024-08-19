@@ -1,13 +1,6 @@
 <template>
     <div>
         <NuxtLoadingIndicator/>
-        <Title>Blogs with Rashm</Title>
-        <Meta name="description" content="Blogs with Rashm" />
-        <!-- <div class="row bg-dark-blue pb-3">
-            <div class="col-lg-7 h-25 mx-auto">
-                <Search @search="updateSearch($event)"/>
-            </div>
-        </div> -->
         <div v-if="!categoriesPending && !categoriesError && (categories && categories.length)" class="row bg-secondary p-1 m-0">
             <CategoriesCarousel :categories="categories" @updateCategory="updateCategory($event)"/>
         </div>
@@ -32,7 +25,7 @@
     const selectedCategories = ref([]);
     const title = ref('');
     const author = ref('');
-    
+    const { locale } = useI18n()
     // State to manage fetch pending and errors
     const categories = ref([]);
     const categoriesPending = ref(true);
@@ -117,5 +110,28 @@
         } catch (error) {
             console.error('Error during onMounted fetch:', error);
         }
+    });
+
+    useHead({
+      title: locale.value === 'ar'
+          ? 'مدونات مع رشم | أحدث المقالات والمدونات'
+          : 'Blogs with Rashm | Latest Articles and Blogs',
+      meta: [
+        { 
+          name: 'description', 
+          content: locale.value === 'ar'
+              ? 'اكتشف أحدث المقالات والمدونات في موقع رشم. تصفح مواضيع متنوعة وابقَ على اطلاع بأحدث الأخبار والمحتويات.'
+              : 'Discover the latest articles and blogs on Rashm. Browse through various topics and stay updated with the latest news and content.'
+        },
+        { 
+          name: 'keywords', 
+          content: locale.value === 'ar'
+              ? 'مدونات, رشم, مقالات, أخبار, محتوى, تصفح, مدونات جديدة'
+              : 'blogs, Rashm, articles, news, content, browse, latest blogs, post'
+        }
+      ],
+      link: [
+        { rel: 'canonical', href: 'https://rashm.com.sa/blogs' }
+      ]
     });
 </script>
