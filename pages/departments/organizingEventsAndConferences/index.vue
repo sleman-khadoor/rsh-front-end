@@ -10,18 +10,60 @@
                     :text="$t('departments.organizingEventsandConferences.overlayImg.text')"
                     :title="$t('departments.organizingEventsandConferences.overlayImg.title')"/>
             </div>
-            <div class="mb-4 bg-white rounded-3 pb-5 px-lg-5 px-md-3 px-sm-2">
+            <div class="row m-0 mb-4 bg-white rounded-3 pb-3 px-md-3 px-sm-2">
                 <div class="w-75 mx-auto rounded-rectang bg-dark-blue text-white justify-content-center text-center">
                     <p class="font-large">{{t('departments.organizingEventsandConferences.title')}}</p>
                 </div>
-                <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">{{t('departments.organizingEventsandConferences.eventTitle')}}</div>
-                <IndexHistory class="row m-0" :col="`col-lg-12 col-md-12 col-sm-12`" :data="organaizingEvents" :bgColor="'bg-light-choco'" :mb="false" :withTitle="true"/>
-                <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">{{t('departments.organizingEventsandConferences.workshopTitle')}}</div>
-                <IndexHistory class="row m-0" :col="`col-lg-12 col-md-12 col-sm-12`" :data="organaizingWorkShop" :bgColor="'bg-light-choco'" :mb="false" :withTitle="true"/>
-                <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">{{t('departments.organizingEventsandConferences.networkingTitle')}}</div>
-                <IndexHistory class="row m-0" :col="`col-lg-12 col-md-12 col-sm-12`" :data="networking" :bgColor="'bg-light-choco'" :mb="false" :withTitle="true"/>
-                <div class="font-x-large ff-meduim text-choco mb-3 mt-4 text-center px-4">{{t('departments.organizingEventsandConferences.culturalTitle')}}</div>
-                <IndexHistory class="row m-0" :col="`col-lg-12 col-md-12 col-sm-12`" :data="cultur" :bgColor="'bg-light-choco'" :mb="false" :withTitle="true"/>
+                <div class="row mt-5 mx-0">
+                    <div class="mb-5 col-lg-6 col-md-12 col-sm-12 m-0 px-lg-5 px-md-3 px-sm-4">
+                        <div class="px-0 mb-4 font-x-large ff-meduim text-choco">{{t('departments.organizingEventsandConferences.eventTitle')}}</div>
+                        <div v-for="(service, i) in organaizingEvents" :key="i" class="col-lg-12 mb-4 px-0 card-100">
+                                <div class="d-flex justify-content-start">
+                                    <span class="text-choco font-x-large ff-meduim mx-1">0{{i+1}}</span>&nbsp;
+                                    <span class="text-dark-blue font-large ff-meduim mb-2">{{service.title}}</span>
+                                </div>
+                                <div class="font-meduim ff-regular lh-25 text-justify">
+                                    {{service.text}}
+                                </div>
+                        </div>
+                    </div>
+                    <div class="mb-5 col-lg-6 col-md-12 col-sm-12 m-0 px-lg-5 px-md-3 px-sm-4">
+                        <div class="px-0 mb-4 font-x-large ff-meduim text-choco">{{t('departments.organizingEventsandConferences.workshopTitle')}}</div>
+                        <div v-for="(service, i) in organaizingWorkShop" :key="i" class="col-lg-12 mb-4 px-0 card-100">
+                                <div class="d-flex justify-content-start">
+                                    <span class="text-choco font-x-large ff-meduim mx-1">0{{i+1}}</span>&nbsp;
+                                    <span class="text-dark-blue font-large ff-meduim mb-2">{{service.title}}</span>
+                                </div>
+                                <div class="font-meduim ff-regular lh-25 text-justify">
+                                    {{service.text}}
+                                </div>
+                        </div>
+                    </div>
+                    <div class="mb-5 col-lg-6 col-md-12 col-sm-12 m-0 px-lg-5 px-md-3 px-sm-4">
+                        <div class="px-0 mb-4 font-x-large ff-meduim text-choco">{{t('departments.organizingEventsandConferences.culturalTitle')}}</div>
+                        <div v-for="(service, i) in cultur" :key="i" class="col-lg-12 mb-4 px-0 card-100">
+                                <div class="d-flex justify-content-start">
+                                    <span class="text-choco font-x-large ff-meduim mx-1">0{{i+1}}</span>&nbsp;
+                                    <span class="text-dark-blue font-large ff-meduim mb-2">{{service.title}}</span>
+                                </div>
+                                <div class="font-meduim ff-regular lh-25 text-justify">
+                                    {{service.text}}
+                                </div>
+                        </div>
+                    </div>
+                    <div class="mb-5 col-lg-6 col-md-12 col-sm-12 m-0 px-lg-5 px-md-3 px-sm-4">
+                        <div class="px-0 mb-4 font-x-large ff-meduim text-choco">{{t('departments.organizingEventsandConferences.networkingTitle')}}</div>
+                        <div v-for="(service, i) in networking" :key="i" class="col-lg-12 mb-4 px-0 card-100">
+                                <div class="d-flex justify-content-start">
+                                    <span class="text-choco font-x-large ff-meduim mx-1">0{{i+1}}</span>&nbsp;
+                                    <span class="text-dark-blue font-large ff-meduim mb-2">{{service.title}}</span>
+                                </div>
+                                <div class="font-meduim ff-regular lh-25 text-justify">
+                                    {{service.text}}
+                                </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id="contacts" class="mx-auto bg-primary rounded-4 py-2">
                 <ContactUsForm 
@@ -60,21 +102,6 @@ useHead({
     }
   ]
 });
-
-const departments = [
-    {
-        title: t('departments.organizingEventsandConferences.departments.department1'),
-        iconSrc: 'phone'
-    },
-    {
-        title: t('departments.organizingEventsandConferences.departments.department2'),
-        iconSrc: 'phone'
-    },
-    {
-        title: t('departments.organizingEventsandConferences.departments.department3'),
-        iconSrc: 'phone'
-    }
-];
 
 const organaizingEvents = [
     {

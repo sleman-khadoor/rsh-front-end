@@ -2,17 +2,14 @@
 import { fetchBooks } from './services/booksService';
 import { fetchBlogs } from './services/blogsService';
 import { fetchAuthors } from './services/authorsService';
-interface SitemapConfig {
-  hostname: string;
-  routes: () => Promise<string[]>;
-}
 
 export default defineNuxtConfig({
   runtimeConfig:{
     API_URL: "http://127.0.0.1:9000/api",
     public: {
       API_URL: "http://127.0.0.1:9000/api",
-      RECAPTCHA_SITE_KEY: "6LdyXSgqAAAAAEFIPnkdzxUV9H6dvp3x13KPkST8"
+      RECAPTCHA_SITE_KEY: "6LdyXSgqAAAAAEFIPnkdzxUV9H6dvp3x13KPkST8",
+      SITE_URL: process.env.NUXT_PUBLIC_SITE_URL
     }
   },
   app: {
@@ -48,7 +45,7 @@ export default defineNuxtConfig({
 
   modules: ["@nuxtjs/i18n", "@nuxt/image", '@nuxtjs/sitemap'],
   sitemap: {
-    hostname: 'https://www.rashm.com.sa',
+    siteUrl: process.env.NUXT_PUBLIC_SITE_URL,
     routes: async () => {
       const { data: books } = await fetchBooks();
       const { data: blogs } = await fetchBlogs();
@@ -62,6 +59,14 @@ export default defineNuxtConfig({
         '/publish-with-us',
         '/books',
         '/blogs',
+        '/departments/translation',
+        '/departments/creativeEditing',
+        '/departments/marketing',
+        '/departments/literaryAgencyAuthors',
+        '/departments/proofreading',
+        '/departments/bookDelivery',
+        '/departments/contentWriting',
+        '/departments/organizingEventsAndConferences',
         books.map(book => `/books/${book.slug.en}`),
         books.map(book => `/books/${book.slug.ar}`),
         blogs.map(blog => `/blogs/${blog.slug}`),
