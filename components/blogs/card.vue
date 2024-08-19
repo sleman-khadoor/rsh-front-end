@@ -1,9 +1,9 @@
 <template>
-              <div v-for="(blog,i) in props.blogs" :key="i" class="col-lg-3 col-md-4 col-sm-6 my-3">
+              <div v-for="(blog,i) in props.blogs" :key="i" class="col my-3">
                 <div ref="relativeCard" class="card  bg-primary border-0 card-100  mx-auto rounded-3">
-                        <NuxtLink :to="localePath(`/blogs/${blog.slug}`)" style="height: 240px">
+                        <NuxtLink :to="localePath(`/blogs/${blog.slug}`)" style="height: 220px; width: 270px">
                           <figure class="overlay rounded-top-3">
-                            <img :src="url + blog.cover_image" class="card-img-top rounded-top-3 object-fit-fill" :alt="blog.title" width="250" height="240">
+                            <img :src="url + blog.cover_image" class="card-img-top rounded-top-3 object-fit-fill" :alt="blog.title" width="270" height="220">
                           </figure>   
                         </NuxtLink>
                         <div class="card-body" :dir="getDir(blog)">
@@ -62,14 +62,15 @@ onUpdated(()=> {
 .overlay::before {
   content: '';
   z-index: 10;
-  width: 100%;
-  height: 240px;
+  width: 270px;
+  height: 220px;
   display: block;
   position: absolute;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%);
 }
 .card-100{
     height: 100%;
+    width: max-content;
 }
 .w-30per{
     width: 30%;

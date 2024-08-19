@@ -12,14 +12,14 @@
              :id="`vbtn-radio_${index + 1}`" 
              autocomplete="off">
             <label :class="checkedValues.includes(category) ? `btn btn-outline-choco bg-choco text-white` : `btn btn-outline-choco`"
-            :for="`vbtn-radio_${index + 1}`" style="min-width:80%; width: max-content;">{{category.title}}</label>
+            :for="`vbtn-radio_${index + 1}`" style="min-width:100%; width: max-content;">{{category.title}}</label>
         </div>
     </div>
-    <button :hidden="hiddenPrev" class="carousel-control-prev" @click="castumPrev()" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <button class="carousel-control-prev" @click="castumPrev()" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
        <img src="/icon/cat-prev.svg" class="d-block" alt="rashm category" width="32" height="32" style=" transform: rotate(180deg); ">
         <span class="visually-hidden">Previous</span>
     </button>
-    <button :hidden="hiddenNext" class="carousel-control-next" @click="castumNext()" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <button class="carousel-control-next" @click="castumNext()" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
         <img src="/icon/cat-next.svg" class="d-block" alt="rashm category" width="32" height="32">
         <span class="visually-hidden">Next</span>
     </button>
@@ -140,8 +140,8 @@ onMounted(async () => {
   }
   .carousel-item {
     text-align: center;
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 0.5%;
+    margin-left:  0.5%;
     flex: 0 0 12.5%;
     display: block;
   }
@@ -152,8 +152,8 @@ onMounted(async () => {
   }
   .carousel-item {
     text-align: center;
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 0.5%;
+    margin-left:  0.5%;
     flex: 0 0 14.2%;
     display: block;
   }
@@ -164,8 +164,8 @@ onMounted(async () => {
   }
   .carousel-item {
     text-align: center;
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 0.5%;
+    margin-left:  0.5%;
     flex: 0 0 16.6666667%;
     display: block;
   }
@@ -176,8 +176,8 @@ onMounted(async () => {
   }
   .carousel-item {
     text-align: center;
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 0.5%;
+    margin-left:  0.5%;
     flex: 0 0 20%;
     display: block;
   }
@@ -188,8 +188,8 @@ onMounted(async () => {
   }
   .carousel-item {
     text-align: center;
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 0.5%;
+    margin-left:  0.5%;
     flex: 0 0 25%;
     display: block;
   }
@@ -200,8 +200,8 @@ onMounted(async () => {
   }
   .carousel-item {
     text-align: center;
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 0.5%;
+    margin-left:  0.5%;
     flex: 0 0 33.33333%;
     display: block;
   }
@@ -212,8 +212,8 @@ onMounted(async () => {
   }
   .carousel-item {
     text-align: center;
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 0.5%;
+    margin-left:  0.5%;
     flex: 0 0 50%;
     display: block;
   }
@@ -224,8 +224,8 @@ onMounted(async () => {
   }
   .carousel-item {
     text-align: center;
-    margin-right: auto;
-    margin-left: auto;
+    margin-right: 0.5%;
+    margin-left:  0.5%;
     flex: 0 0 100%;
     display: block;
   }

@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row p-0 pb-5 m-0">
+            <div class="row p-0 pb-5 m-0 px-lg-0 px-md-5">
                 <BooksAuthor :author="book.author"/>
             </div>
         </div>
@@ -181,10 +181,38 @@ onMounted(() => {
     overflow: hidden;
 }
 .w-65per {
-    width: 65%;
+    width: 70%;
 }
 .w-35per {
-    width: 35%;
+    width: 30%;
+}
+@media only screen and (max-width: 1100px) {
+    .w-65per {
+        width: 60%;
+    }
+    .w-35per {
+        width: 40%;
+    }
+    .bg-img {
+        width: 90%;
+    }
+    .details-box {
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .w-65per {
+        width: 55%;
+    }
+    .w-35per {
+        width: 45%;
+    }
+    .bg-img {
+        width: 95%;
+    }
+    .details-box {
+        width: 95%;
+    }
 }
 @media only screen and (max-width: 828px) {
     .w-65per {
