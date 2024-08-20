@@ -269,4 +269,19 @@ onMounted(async () => {
     margin-left: auto !important;
     margin-right: auto !important;
 }
+@media only screen and (max-width: 900px) {
+    .w-93per{
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .w-93per{
+        width: 86%;
+    }
+}
+@media only screen and (max-width: 650px) {
+    .w-93per{
+        width: 80%;
+    }
+}
 </style>
