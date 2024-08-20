@@ -5,9 +5,9 @@
             <div class="row p-5 justify-content-center align-content-stretch items-center">
                 <div v-for="(blog, i) in props.blogs" :key="i" class="col-lg-4 col-md-6 col-sm-6 mb-3">
                     <div ref="relativeCard" class="card  bg-secondary border-0 ma-1 h-100 rounded-3">
-                        <NuxtLink :to="localePath(`/blogs/${blog.slug}`)" style="height: 280px">
+                        <NuxtLink :to="localePath(`/blogs/${blog.slug}`)" style="height: 260px">
                         <figure class="overlay rounded-top-3">
-                            <img :src="url + blog.cover_image" class="card-img-top rounded-top-3 object-fit-fill" :alt="blog.title" width="250" height="280">
+                            <img :src="url + blog.cover_image" class="card-img-top rounded-top-3 object-fit-fill" :alt="blog.title" width="250" height="260">
                         </figure>
                         </NuxtLink>
                         <div class="card-body" :dir="getDir(blog)">
@@ -74,7 +74,7 @@ onMounted(async() => {
   content: '';
   z-index: 10;
   width: 100%;
-  height: 280px;
+  height: 260px;
   display: block;
   position: absolute;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%);

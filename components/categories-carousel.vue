@@ -2,6 +2,7 @@
     <div id="carouselExample" class="carousel">
     <div class="carousel-inner mx-2 w-93per mx-auto" ref="carouselInner">
         <div ref="carouselCategoryItem" v-for="(category, index) in categories" :key="index" :class="checkedValues.includes(category) ? 'carousel-item active' : 'carousel-item'">
+            <div ref="relativeCard">
             <input 
              type="checkbox"
              class="btn-check"
@@ -11,8 +12,9 @@
              name="vbtn-radio" 
              :id="`vbtn-radio_${index + 1}`" 
              autocomplete="off">
-            <label :class="checkedValues.includes(category) ? `btn btn-outline-choco bg-choco text-white` : `btn btn-outline-choco`"
-            :for="`vbtn-radio_${index + 1}`" style="min-width:100%; width: max-content;">{{category.title}}</label>
+            <label  style="width: max-content; min-width: 100%" :class="checkedValues.includes(category) ? `btn btn-outline-choco bg-choco text-white` : `btn btn-outline-choco`"
+            :for="`vbtn-radio_${index + 1}`" >{{category.title}}</label>
+            </div>
         </div>
     </div>
     <button class="carousel-control-prev" @click="castumPrev()" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -40,8 +42,10 @@ var carouselWidth = ref(0);
 var cardWidth = ref(0);
 var scrollPosition = ref(0);
 var fivePercentWidth = ref(0);
+var counter = ref(1);
 const isRtl = ref(false);
 const checkedValues = ref([]);
+const relativeCard = ref(null);
 
 const updateCheckedValues = (category) => {
   // Emit the checked values when a checkbox is checked/unchecked
@@ -55,8 +59,9 @@ const updateCheckedValues = (category) => {
 };
 
 function showNext() {
-  if (scrollPosition.value < (carouselWidth.value - cardWidth.value * 4)) { //check if you can go any further
-    scrollPosition.value += cardWidth.value;  //update scroll position
+  if (scrollPosition.value < (carouselWidth.value + cardWidth.value * (props.categories?.length/2.6))) { //check if you can go any further
+   counter.value += 1
+   scrollPosition.value += cardWidth.value;  //update scroll position
     carouselInner.value.scrollTo({
       left: scrollPosition.value,
       behavior: 'smooth' // This provides smooth scrolling animation
@@ -65,6 +70,7 @@ function showNext() {
 }
 function showPrevAr() {
   if (Math.abs(scrollPosition.value) < (carouselWidth.value - cardWidth.value * 4)) { //check if you can go any further
+    counter.value -= 1
     console.log('object',Math.abs(scrollPosition.value) < (carouselWidth.value - cardWidth.value * 4) );
     console.log('object',Math.abs(scrollPosition.value) >= (carouselWidth.value - cardWidth.value * 4) );
     scrollPosition.value -= cardWidth.value;  //update scroll position
@@ -76,6 +82,7 @@ function showPrevAr() {
 }
 function showPrev() {
   if (scrollPosition.value > 0) { //check if you can go any further
+    counter.value -= 1
     scrollPosition.value -= cardWidth.value;  //update scroll position
     carouselInner.value.scrollTo({
       left: scrollPosition.value,
@@ -85,7 +92,8 @@ function showPrev() {
 }
 function showNextAr() {
   if (Math.abs(scrollPosition.value) > 0) { //check if you can go any further
-    scrollPosition.value = scrollPosition.value + cardWidth.value;  //update scroll position
+   counter.value += 1
+   scrollPosition.value = scrollPosition.value + cardWidth.value;  //update scroll position
     carouselInner.value.scrollTo({
       left: scrollPosition.value,
       behavior: 'smooth' // This provides smooth scrolling animation
@@ -128,9 +136,23 @@ onMounted(async () => {
     detectDirection()
     scrollPosition.value = 0;
     carouselWidth.value = carouselInner.value.scrollWidth;
-    cardWidth.value = await carouselCategoryItem.value?.[0].offsetWidth;
+    await setMaxCardWidth()
+    // cardWidth.value = await carouselCategoryItem.value?.[0].offsetWidth;
     let carousel_control_next = document.getElementsByClassName('carousel-control-next');
 })
+function setMaxCardWidth() {
+  if(relativeCard.value){
+            relativeCard.value.forEach(card => {
+                card.style.width = `unset`;
+            });
+            const widths = relativeCard.value.map(card => card.offsetWidth);
+            console.log('object', relativeCard.value);
+            cardWidth.value = Math.max(...widths);
+            relativeCard.value.forEach(card => {
+                card.style.width = `${cardWidth.value}px`;
+            });
+  }
+};
 </script>
 
 <style scoped>
@@ -188,8 +210,8 @@ onMounted(async () => {
   }
   .carousel-item {
     text-align: center;
-    margin-right: 0.5%;
-    margin-left:  0.5%;
+    /* margin-right: 0.5%;
+    margin-left:  0.5%; */
     flex: 0 0 25%;
     display: block;
   }
@@ -212,9 +234,9 @@ onMounted(async () => {
   }
   .carousel-item {
     text-align: center;
-    margin-right: 0.5%;
-    margin-left:  0.5%;
-    flex: 0 0 50%;
+    margin-right: 2%;
+    margin-left:  2%;
+    flex: 0 0 100%;
     display: block;
   }
 }
@@ -224,8 +246,8 @@ onMounted(async () => {
   }
   .carousel-item {
     text-align: center;
-    margin-right: 0.5%;
-    margin-left:  0.5%;
+    margin-right: 2%;
+    margin-left:  2%;
     flex: 0 0 100%;
     display: block;
   }

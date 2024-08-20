@@ -10,7 +10,7 @@
         </div>
         <div class="row m-0 bg-secondary px-5 pb-5 pt-2 justify-content-center">
             <div v-for="(book,i) in books" :key="i" class="col-lg-3 col-md-4 col-sm-6">
-                <BooksCard :book="book"/>
+                <BooksCard class="mx-3" :book="book"/>
             </div>
         </div>
         <div v-if="!booksPending && ! booksError && (books && books.length)" class="row m-0 bg-secondary justify-content-center pb-5">

@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="d-flex author-description p-0">
-            <img :src="url + props.author?.avatar" class="p-0 mb-2 img-border" alt="Author Image">
+            <img :src="props.author?.avatar ? url + props.author?.avatar : '/img/user.png'" class="p-0 mb-2 img-border" alt="Author Image">
             <span class="font-meduim ff-meduim my-auto px-2">
             <NuxtLink :to="localePath(`/books/author/${getSlugByLang(author?.slug)}`)" class="text-dark-blue" style="text-decoration: unset">
              {{props.author?.name}}
