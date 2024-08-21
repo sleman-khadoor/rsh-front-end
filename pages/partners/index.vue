@@ -34,8 +34,8 @@ const partnersError = ref(null);
 // Define meta tags content based on the current locale
 const pageTitle = computed(() => {
   return locale.value === 'ar'
-    ? 'شركاء رشم'
-    : 'Rashm Partners';
+    ? 'رشم | شركائنا'
+    : 'Rashm | Our Partners';
 });
 
 const pageDescription = computed(() => {

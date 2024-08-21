@@ -97,8 +97,8 @@ const fetchAchievements = async () => {
 onMounted(fetchAchievements);
 useHead({
   title: locale.value === 'ar'
-    ? 'عن رشم | مكتبة رشم'
-    : 'About Rashm | Rashm Library',
+    ? 'رشم | من نحن'
+    : 'Rashm | About Us',
   meta: [
     {
       name: 'description',

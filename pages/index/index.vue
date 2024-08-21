@@ -81,8 +81,8 @@ const headers = ref({});
 // Define meta tags content based on the current locale
 const pageTitle = computed(() => {
   return locale.value === 'ar'
-    ? 'رشم | استكشف أحدث الأخبار والخدمات والكتب والمدونات'
-    : 'Rashm | Explore the Latest News, Services, Books, and Blogs';
+    ? 'رشم'
+    : 'Rashm';
 });
 
 const pageDescription = computed(() => {

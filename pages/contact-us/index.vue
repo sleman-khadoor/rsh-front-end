@@ -28,8 +28,8 @@ const { t, locale } = useI18n();
 // Set head elements based on locale
 useHead({
   title: locale.value === 'ar'
-    ? 'اتصل بنا مع رشم | تواصل معنا واستفسر عن خدماتنا'
-    : 'Contact with Rashm | Get in Touch and Inquire About Our Services',
+    ? 'رشم | تواصل معنا'
+    : 'Rashm | Contact Us',
   meta: [
     { 
       name: 'description', 

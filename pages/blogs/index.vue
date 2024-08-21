@@ -113,8 +113,8 @@
 
     useHead({
       title: locale.value === 'ar'
-          ? 'مدونات مع رشم | أحدث المقالات والمدونات'
-          : 'Blogs with Rashm | Latest Articles and Blogs',
+          ? ' رشم | المدونة'
+          : 'Rashm | Blog',
       meta: [
         { 
           name: 'description', 

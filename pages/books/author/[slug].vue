@@ -43,8 +43,8 @@ const { data: author, pending: authorPending, refresh: authorRefresh} = await us
 });
 useHead({
   title: locale.value === 'ar' 
-    ? `المؤلف ${authorName.value} | مكتبة رشم`
-    : `Author ${authorName.value} | Rashm Library`,
+    ? `المؤلف ${authorName.value} | رشم`
+    : `Author ${authorName.value} | Rashm`,
   meta: [
     { 
       name: 'description', 

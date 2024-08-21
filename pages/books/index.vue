@@ -30,8 +30,8 @@
 
     useHead({
         title: locale.value === 'ar' 
-            ? 'استعرض كتب متنوعة في مكتبة رشم | أحدث الكتب والروائع الأدبية'
-            : 'Explore a Variety of Books at Rashm Library | Latest Titles and Literary Masterpieces',
+            ? 'رشم | الكتب '
+            : 'Rashm | Books',
         meta: [
             { 
             name: 'description', 

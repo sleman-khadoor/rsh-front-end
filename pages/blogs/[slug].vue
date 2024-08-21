@@ -57,9 +57,9 @@ const getBlog = async () => {
 
 useHead({
   title: computed(() => {
-    return blog.value?.lang === 'ar'
-      ? `مدونة ${blog.value.title} مع رشم`
-      : `Blog ${blog.value.title} with Rashm`;
+    return blog.value?.lang === 'ar' 
+        ? `${blog.value.title} | رشم`
+        : `${blog.value.title} | Rashm`;
   }),
   meta: [
     { 

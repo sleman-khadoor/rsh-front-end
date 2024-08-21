@@ -129,8 +129,8 @@ watch(() => book.value, (newBook) => {
   if (newBook && newBook.title) {
     useHead({
       title: locale.value === 'ar' 
-        ? `${newBook.title} | مكتبة رشم`
-        : `${newBook.title} | Rashm Library`,
+        ? `${newBook.title} | رشم`
+        : `${newBook.title} | Rashm`,
       meta: [
         { 
           name: 'description', 

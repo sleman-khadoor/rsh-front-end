@@ -25,6 +25,10 @@ export default defineNuxtConfig({
         { name: 'keywords', content: 'كتب، أدب، مؤلفين، مدونات، مقالات، نشر، قراءة، مجموعة كتب، مجتمع الأدب، اكتب معنا، نشر رسم', key: 'ar' },
         { name: 'description', content: 'Discover a world of literature with our vast collection of books and insightful blogs. Explore works by renowned authors and find the perfect book to inspire your next reading adventure. Join our publishing community and share your stories with the world.', key: 'en' },
         { name: 'keywords', content: 'books, literature, authors, blogs, publishing, reading, book collection, literature community, write with us, Rashm Publishing', key: 'en' },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ]
     }
   },

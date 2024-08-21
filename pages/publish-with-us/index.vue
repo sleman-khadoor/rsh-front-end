@@ -130,8 +130,8 @@ export default defineComponent({
     // Define meta tags content based on the current locale
     const pageTitle = computed(() => {
         return locale.value === 'ar'
-            ? 'انشر مع رشم'
-            : 'Publish with Rashm';
+            ? 'رشم | انشر معنا'
+            : 'Rashm | Publish with Us';
     });
 
     const pageDescription = computed(() => {
