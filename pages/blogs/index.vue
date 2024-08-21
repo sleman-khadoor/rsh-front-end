@@ -1,6 +1,5 @@
 <template>
     <div>
-        <NuxtLoadingIndicator/>
         <div v-if="!categoriesPending && !categoriesError && (categories && categories.length)" class="row bg-secondary p-1 m-0">
             <CategoriesCarousel :categories="categories" @updateCategory="updateCategory($event)"/>
         </div>

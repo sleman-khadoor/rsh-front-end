@@ -1,273 +1,156 @@
 <template>
-    <div id="carouselExample" class="carousel">
-    <div class="carousel-inner mx-2 w-93per mx-auto" ref="carouselInner">
-        <div ref="carouselCategoryItem" v-for="(category, index) in categories" :key="index" :class="checkedValues.includes(category) ? 'carousel-item active' : 'carousel-item'">
-            <div ref="relativeCard">
-            <input 
-             type="checkbox"
-             class="btn-check"
-             :class="{'bg-dark-blue': checkedValues.includes(category)}"
-             @input="updateCheckedValues(category)"
-             v-model="checkedValues"
-             name="vbtn-radio" 
-             :id="`vbtn-radio_${index + 1}`" 
-             autocomplete="off">
-            <label  style="width: max-content; min-width: 100%" :class="checkedValues.includes(category) ? `btn btn-outline-choco bg-choco text-white` : `btn btn-outline-choco`"
-            :for="`vbtn-radio_${index + 1}`" >{{category.title}}</label>
+    <div id="carouselExample" class="carousel p-3" dir="ltr">
+    <div class="carousel-inner w-100 m-auto btn-group" ref="carouselInner" role="group" aria-label="d-flex radio toggle button group">
+        <div v-for="(chunk, index) in chunks" :key="index" :class="['carousel-item', { active: index === 0 }]">
+        <div class="d-flex justify-content-center">
+            <!-- <div > -->
+            <div v-for="(category, subIndex) in chunk" :key="subIndex" class="carousel-category">
+                 <input 
+                    type="checkbox"
+                    class="btn-check"
+                    :class="{'bg-dark-blue': checkedValues?.includes(category)}"
+                    @input="updateCheckedValues(category)"
+                    v-model="checkedValues"
+                    name="vbtn-radio" 
+                    :id="`vbtn-radio${index}_${subIndex + 1}`" 
+                    autocomplete="off">
+                 <label :class="checkedValues?.includes(category) ? `btn btn-outline-choco bg-choco text-white w-100` : `btn btn-outline-choco w-100`" :for="`vbtn-radio${index}_${subIndex + 1}`">{{category.title}}</label>
             </div>
+            <!-- </div> -->
+        </div>
         </div>
     </div>
-    <button class="carousel-control-prev" @click="castumPrev()" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-       <img src="/icon/cat-prev.svg" class="d-block" alt="rashm category" width="32" height="32" style=" transform: rotate(180deg); ">
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <img src="/icon/cat-prev.svg" class="d-block" alt="..." width="32" height="32" style=" transform: rotate(180deg); ">
         <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" @click="castumNext()" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <img src="/icon/cat-next.svg" class="d-block" alt="rashm category" width="32" height="32">
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <img src="/icon/cat-next.svg" class="d-block" alt="..." width="32" height="32">
         <span class="visually-hidden">Next</span>
     </button>
     </div>
 </template>
-<script setup>
-import { ref, onMounted } from 'vue';
-const { locale } = useI18n()
-const emit = defineEmits()
-const props = defineProps({
-  categories: {
-    type: Array
-  }
+<script>
+
+export default defineComponent({
+    props: ['categories'],
+    emits: ['updateCategory'],
+    setup(props, {emit}) {
+      const categories = ref(props.categories);
+      const chunks = ref([]);
+      const checkedValues = ref([]);
+      const createChunks = () => {
+        const width = window.innerWidth
+        let imagesPerSlide
+
+        if (width > 1335) {
+          imagesPerSlide = 5
+        } else if (width <= 1335 && width > 1100) {
+          imagesPerSlide = 4
+        } else if (width <= 1100 && width > 845) {
+          imagesPerSlide = 3
+        } else if (width <= 845 && width > 625) {
+          imagesPerSlide = 2
+        } else {
+          imagesPerSlide = 1
+        }
+        chunks.value = []
+        for (let i = 0; i < categories.value.length; i += imagesPerSlide) {
+          chunks.value.push(categories.value.slice(i, i + imagesPerSlide));
+        }
+      };
+      const updateCheckedValues = (category) => {
+        // Emit the checked values when a checkbox is checked/unchecked
+        const index = checkedValues.value.indexOf(category);
+        if (index > -1) {
+            checkedValues.value.splice(index, 1); // Remove if unchecked
+        } else {
+            checkedValues.value.push(category); // Add if checked
+        }
+        emit('updateCategory', checkedValues.value);
+      };
+      onMounted(() => {
+        createChunks()
+        window.addEventListener('resize', createChunks)
+      });
+
+      watch(categories, createChunks);
+      return {
+          chunks,
+          updateCheckedValues,
+      }
+    },
 });
-const carouselInner = ref(null);
-const carouselCategoryItem = ref(null);
-var carouselWidth = ref(0);
-var cardWidth = ref(0);
-var scrollPosition = ref(0);
-var fivePercentWidth = ref(0);
-var counter = ref(1);
-const isRtl = ref(false);
-const checkedValues = ref([]);
-const relativeCard = ref(null);
-
-const updateCheckedValues = (category) => {
-  // Emit the checked values when a checkbox is checked/unchecked
-  const index = checkedValues.value.indexOf(category);
-  if (index > -1) {
-    checkedValues.value.splice(index, 1); // Remove if unchecked
-  } else {
-    checkedValues.value.push(category); // Add if checked
-  }
-  emit('updateCategory', checkedValues.value);
-};
-
-function showNext() {
-  if (scrollPosition.value < (carouselWidth.value + cardWidth.value * (props.categories?.length/2.6))) { //check if you can go any further
-   counter.value += 1
-   scrollPosition.value += cardWidth.value;  //update scroll position
-    carouselInner.value.scrollTo({
-      left: scrollPosition.value,
-      behavior: 'smooth' // This provides smooth scrolling animation
-    });
-  }
-}
-function showPrevAr() {
-  if (Math.abs(scrollPosition.value) < (carouselWidth.value - cardWidth.value * 4)) { //check if you can go any further
-    counter.value -= 1
-    console.log('object',Math.abs(scrollPosition.value) < (carouselWidth.value - cardWidth.value * 4) );
-    console.log('object',Math.abs(scrollPosition.value) >= (carouselWidth.value - cardWidth.value * 4) );
-    scrollPosition.value -= cardWidth.value;  //update scroll position
-    carouselInner.value.scrollTo({
-      left: scrollPosition.value,
-      behavior: 'smooth' // This provides smooth scrolling animation
-    });
-  }
-}
-function showPrev() {
-  if (scrollPosition.value > 0) { //check if you can go any further
-    counter.value -= 1
-    scrollPosition.value -= cardWidth.value;  //update scroll position
-    carouselInner.value.scrollTo({
-      left: scrollPosition.value,
-      behavior: 'smooth' // This provides smooth scrolling animation
-    });
-  }
-}
-function showNextAr() {
-  if (Math.abs(scrollPosition.value) > 0) { //check if you can go any further
-   counter.value += 1
-   scrollPosition.value = scrollPosition.value + cardWidth.value;  //update scroll position
-    carouselInner.value.scrollTo({
-      left: scrollPosition.value,
-      behavior: 'smooth' // This provides smooth scrolling animation
-    });
-  }
-}
-function castumNext() {
-     if (isRtl.value) {
-        showNextAr()
-     } else {
-        showNext()
-     }
-}
-function castumPrev() {
-     if (isRtl.value) {
-        showPrevAr()
-     } else {
-        showPrev()
-     }
-}
-const hiddenNext = computed(()=> {
-  if(locale.value == 'ar') {
-    return Math.abs(scrollPosition.value) <= 0
-  } else {
-    return scrollPosition.value >= (carouselWidth.value - cardWidth.value * 8)
-  }
-})
-const hiddenPrev = computed(()=> {
-  if(locale.value == 'ar') {
-    return Math.abs(scrollPosition.value) >= (carouselWidth.value - cardWidth.value * 8)
-  } else {
-    return scrollPosition.value <= 0
-  }
-})
-function detectDirection() {
-  // Check the document direction (rtl or ltr)
-  isRtl.value = locale.value === 'ar';
-}
-onMounted(async () => {
-    detectDirection()
-    scrollPosition.value = 0;
-    carouselWidth.value = carouselInner.value.scrollWidth;
-    await setMaxCardWidth()
-    // cardWidth.value = await carouselCategoryItem.value?.[0].offsetWidth;
-    let carousel_control_next = document.getElementsByClassName('carousel-control-next');
-})
-function setMaxCardWidth() {
-  if(relativeCard.value){
-            relativeCard.value.forEach(card => {
-                card.style.width = `unset`;
-            });
-            const widths = relativeCard.value.map(card => card.offsetWidth);
-            console.log('object', relativeCard.value);
-            cardWidth.value = Math.max(...widths);
-            relativeCard.value.forEach(card => {
-                card.style.width = `${cardWidth.value}px`;
-            });
-  }
-};
 </script>
 
 <style scoped>
-@media only screen and (min-width: 1120px) {
 .carousel-inner {
-    display: flex;
-  }
-  .carousel-item {
+      display: flex;
+    }
+
+    .carousel-item {
+      width: 100%; /* Ensure each slide takes full width */
+    }
+
+    .carousel-category {
+      flex: 0 0 18%; /* Adjust the width of each image container as needed */
+      margin-right: 5px; /* Add space between images */
+      margin-left: 5px; /* Add space between images */
+      text-align: center;
+    }
+
+    .carousel-category img {
+      /* width: 100%; */
+      /* height: auto; */
+      border-radius: 5px; /* Optional: Add border-radius to images */
+    }
+    .carousel-control-prev, .carousel-control-next {
+        width: 8% !important;
+    }
+@media only screen and (min-width: 1335px) {
+
+  .carousel-category {
+    flex: 0 0 17.9%; /* Adjust the width of each image container as needed */
+    margin-right: 5px; /* Add space between images */
+    margin-left: 5px; /* Add space between images */
     text-align: center;
-    margin-right: 0.5%;
-    margin-left:  0.5%;
-    flex: 0 0 12.5%;
-    display: block;
   }
 }
-@media only screen and (max-width: 1120px) {
-  .carousel-inner {
-    display: flex;
-  }
-  .carousel-item {
+@media only screen and (max-width: 1335px) {
+
+  .carousel-category{
+    flex: 0 0 22%; /* Adjust the width of each image container as needed */
+    margin-right: 5px; /* Add space between images */
+    margin-left: 5px; /* Add space between images */
     text-align: center;
-    margin-right: 0.5%;
-    margin-left:  0.5%;
-    flex: 0 0 14.2%;
-    display: block;
   }
 }
-@media only screen and (max-width: 992px) {
-  .carousel-inner {
-    display: flex;
-  }
-  .carousel-item {
+@media only screen and (max-width: 1100px) {
+
+  .carousel-category{
+    flex: 0 0 29%; /* Adjust the width of each image container as needed */
+    margin-right: 5px; /* Add space between images */
+    margin-left: 5px; /* Add space between images */
     text-align: center;
-    margin-right: 0.5%;
-    margin-left:  0.5%;
-    flex: 0 0 16.6666667%;
-    display: block;
   }
 }
-@media only screen and (max-width: 840px) {
-  .carousel-inner {
-    display: flex;
-  }
-  .carousel-item {
+@media only screen and (max-width: 845px) {
+
+  .carousel-category{
+    flex: 0 0 40%; /* Adjust the width of each image container as needed */
+    margin-right: 5px; /* Add space between images */
+    margin-left: 5px; /* Add space between images */
     text-align: center;
-    margin-right: 0.5%;
-    margin-left:  0.5%;
-    flex: 0 0 20%;
-    display: block;
   }
 }
-@media only screen and (max-width: 745px) {
-  .carousel-inner {
-    display: flex;
-  }
-  .carousel-item {
+@media only screen and (max-width: 625px) {
+
+  .carousel-category{
+    flex: 0 0 70%; /* Adjust the width of each image container as needed */
+    margin-right: 5px; /* Add space between images */
+    margin-left: 5px; /* Add space between images */
     text-align: center;
-    /* margin-right: 0.5%;
-    margin-left:  0.5%; */
-    flex: 0 0 25%;
-    display: block;
   }
-}
-@media only screen and (max-width: 610px) {
-  .carousel-inner {
-    display: flex;
-  }
-  .carousel-item {
-    text-align: center;
-    margin-right: 0.5%;
-    margin-left:  0.5%;
-    flex: 0 0 33.33333%;
-    display: block;
-  }
-}
-@media only screen and (max-width: 480px) {
-  .carousel-inner {
-    display: flex;
-  }
-  .carousel-item {
-    text-align: center;
-    margin-right: 2%;
-    margin-left:  2%;
-    flex: 0 0 100%;
-    display: block;
-  }
-}
-@media only screen and (max-width: 340px) {
-  .carousel-inner {
-    display: flex;
-  }
-  .carousel-item {
-    text-align: center;
-    margin-right: 2%;
-    margin-left:  2%;
-    flex: 0 0 100%;
-    display: block;
-  }
-}
-.carousel-inner{
-    padding: 1em;
-}
-.img-shadow{
-    /* margin: 0 .5em; */
-    margin: auto;
-    box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
-    border: none;
-}
-.carousel-control-prev, .carousel-control-next{
-    /* background-color: #e1e1e1; */
-    width: 6vh;
-    height: 6vh;
-    border-radius: 50%;
-    top: 50%;
-    transform: translateY(-50%);
 }
 .btn-outline-choco {
     --bs-btn-color: #82704A;
@@ -285,25 +168,5 @@ function setMaxCardWidth() {
     --bs-btn-disabled-bg: transparent;
     --bs-btn-disabled-border-color: #82704A;
     --bs-gradient: none;
-}
-.w-93per{
-    width: 93%;
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-@media only screen and (max-width: 900px) {
-    .w-93per{
-        width: 90%;
-    }
-}
-@media only screen and (max-width: 800px) {
-    .w-93per{
-        width: 86%;
-    }
-}
-@media only screen and (max-width: 650px) {
-    .w-93per{
-        width: 80%;
-    }
 }
 </style>

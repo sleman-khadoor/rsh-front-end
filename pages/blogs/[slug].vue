@@ -6,9 +6,11 @@
                 <span v-for="cat in blog.blog_categories" class="badge text-choco bg-dark-snow font-small ff-regular m-1">{{cat.title}}</span>
             </div>
             <div class="mb-3" :dir="dir">
-                <div class="d-flex justify-content-between mb-2">
-                    <span class="font-large ff-meduim">{{blog.title}}</span>
-                    <span class="font-small ff-regular">{{dateDayFormatter(blog.date,blog.lang)}}&nbsp;&nbsp;{{dateTimeFormatter(blog.date)}}</span>
+                <div class="row justify-content-between m-0">
+                    <span class="col-auto font-large ff-meduim px-0 mb-2">{{blog.title}}</span>
+                    <span class="col-auto row font-small ff-regular">
+                      {{dateDayFormatter(blog.date,blog.lang)}}&nbsp;&nbsp;{{dateTimeFormatter(blog.date)}}
+                    </span>
                 </div>
                 <div class="mb-1">
                     <span class="font-meduim ff-regular text-choco">{{blog.writer}}</span>

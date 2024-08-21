@@ -45,14 +45,12 @@ onMounted(async() => {
                 card.style.minHeight = `unset`;
             });
             const heights = relativeCard.value.map(card => card.offsetHeight);
-            console.log('object', relativeCard.value);
             cardHeight.value = Math.max(...heights);
             relativeCard.value.forEach(card => {
                 card.style.minHeight = `${cardHeight.value}px`;
             });
 };
 onUpdated(()=> {
-  console.log('update');
   if(props.blogs && props.blogs.length) {
      setInterval(setMaxCardHeight(), 5000)
   } 
