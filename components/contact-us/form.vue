@@ -314,9 +314,6 @@ function resetPhoneFieldValue() {
     phoneInput.value = null
     countryCode.value = 1
 }
-// adding Recaptcha
-const { executeRecaptcha } = useGoogleRecaptcha()
-
 async function addRequest () {
     try {
             requestPending.value = true;
@@ -340,16 +337,14 @@ async function addRequest () {
                 formData.append('message', contactUsForm.description);
                 endpoint = '/contact-requests'
             }
-            const { token } = await executeRecaptcha('submit')
-            const bodyData = {
-                ...Object.fromEntries(formData),
-                'recaptcha': recaptchaToken.value
-            }
-            // console.log('bodyData', bodyData);
+            // const bodyData = {
+            //     ...Object.fromEntries(formData),
+            //     'recaptcha': recaptchaToken.value
+            // }
             const data = await $fetch(runTimeConfig.public.API_URL + endpoint, {
                 headers: { ...headers.value },
                 method: 'post',
-                body: bodyData
+                body: formData
             });
             requestMessage.value = data.message
             requestSuccess.value = data.success
@@ -390,23 +385,19 @@ async function checkValidate(event) {
         event.stopPropagation()
     } else {
         contactUsForm.mobile = `00${countryCode.value}` + `${phoneInput.value.$.data.phone}`;
-        triggerRecaptcha(event)
+        addRequest()
     }
     form.classList.add('was-validated')
 };
-// function onSubmit() {
-//   // Attach the token to the form data or handle it as needed
-//   checkValidate();
+// function triggerRecaptcha(e) {
+//   e.preventDefault();
+//         grecaptcha.ready(function() {
+//           grecaptcha.execute(runTimeConfig.public.RECAPTCHA_SITE_KEY, {action: 'submit'}).then(function(token) {
+//             recaptchaToken.value = token
+//             addRequest()
+//           });
+//         });
 // }
-function triggerRecaptcha(e) {
-  e.preventDefault();
-        grecaptcha.ready(function() {
-          grecaptcha.execute(runTimeConfig.public.RECAPTCHA_SITE_KEY, {action: 'submit'}).then(function(token) {
-            recaptchaToken.value = token
-            addRequest()
-          });
-        });
-}
 function removeAlert(e) {
     requestMessage.value = null
 };
