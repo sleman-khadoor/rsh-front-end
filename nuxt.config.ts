@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     API_URL: "http://127.0.0.1:9000/api",
     public: {
       API_URL: "http://127.0.0.1:9000/api",
-      RECAPTCHA_SITE_KEY: "6LdyXSgqAAAAAEFIPnkdzxUV9H6dvp3x13KPkST8",
+      RECAPTCHA_SITE_KEY: process.env.RECAPTCHA_SITE_KEY,
       SITE_URL: process.env.NUXT_PUBLIC_SITE_URL
     }
   },
@@ -29,6 +29,9 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      ],
+      script: [
+        {src: 'https://www.google.com/recaptcha/api.js?render=6Lf5TiwqAAAAACAUsZcyFTZBAK6RXlQmIvpxGZ-4', async: true, defer: true}
       ]
     }
   },

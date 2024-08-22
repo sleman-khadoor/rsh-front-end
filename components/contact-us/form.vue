@@ -104,7 +104,13 @@
                     <div class="help-block with-errors"></div>
                 </div> -->
                 <div class="d-grid gap-2">
-                    <button type="submit" :disabled="disabledBtn" :class="dynamicClass">{{$t('contactUs.form.send')}}</button>
+                    <button
+                        type="submit" 
+                        :disabled="disabledBtn" 
+                        :class="dynamicClass"
+                        class="btn btn-primary">
+                        {{$t('contactUs.form.send')}}
+                    </button>
                 </div>
             </form>
         </div>
@@ -148,6 +154,7 @@ const props = defineProps({
 const {t} = useI18n()
 const runTimeConfig = useRuntimeConfig();
 const headers = ref({})
+const recaptchaToken = ref(null)
 const contactsRef = ref(null)
 const files = ref([])
 const requestPending = ref(false)
@@ -336,9 +343,9 @@ async function addRequest () {
             const { token } = await executeRecaptcha('submit')
             const bodyData = {
                 ...Object.fromEntries(formData),
-                'recaptcha': token
+                'recaptcha': recaptchaToken.value
             }
-            console.log('bodyData', bodyData);
+            // console.log('bodyData', bodyData);
             const data = await $fetch(runTimeConfig.public.API_URL + endpoint, {
                 headers: { ...headers.value },
                 method: 'post',
@@ -383,11 +390,23 @@ async function checkValidate(event) {
         event.stopPropagation()
     } else {
         contactUsForm.mobile = `00${countryCode.value}` + `${phoneInput.value.$.data.phone}`;
-        addRequest()
+        triggerRecaptcha(event)
     }
     form.classList.add('was-validated')
 };
-
+// function onSubmit() {
+//   // Attach the token to the form data or handle it as needed
+//   checkValidate();
+// }
+function triggerRecaptcha(e) {
+  e.preventDefault();
+        grecaptcha.ready(function() {
+          grecaptcha.execute(runTimeConfig.public.RECAPTCHA_SITE_KEY, {action: 'submit'}).then(function(token) {
+            recaptchaToken.value = token
+            addRequest()
+          });
+        });
+}
 function removeAlert(e) {
     requestMessage.value = null
 };

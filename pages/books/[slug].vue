@@ -2,11 +2,11 @@
     <div class="row bg-secondary m-0">
         <div class="col-11 mx-auto my-5 bg-primary rounded-4 py-5 px-4 text-dark-blue">
             <div class="row px-3">
-                <div class="col col-auto px-0 mx-auto justify-content-center font-meduim lh-25 mb-5 mx-2 w-35per">
+                <div class="col-lg-4 col-md-12 px-0 mx-auto justify-content-center font-meduim lh-25 mb-5 mx-2 w-fit-img" style="height: fit-content;">
                 <!-- <div class="col col-auto px-0 mx-auto justify-content-center font-meduim lh-25 mb-5"> -->
                     <!-- <div :style="`background: url(${url + book.cover_image})`" class="bg-img my-3"></div> -->
-                    <img :src="url + book.cover_image" class="d-block mx-auto mb-2 bg-img object-fit-fill" :alt="book.title">
-                    <div class="details-box mx-auto">
+                    <img :src="url + book.cover_image" class="d-block mb-3 mx-auto object-fit-fill px-2" :alt="book.title" width="300" height="390">
+                    <div class="row m-0 mx-auto">
                     <div class="d-flex flex-wrap align-items-center ff-meduim mb-1">
                         <img src="/icon/categories.svg" class="d-block my-auto mr-2" alt="..." width="20" height="20">&nbsp;
                         {{$t('books.categories')}}: &nbsp;
@@ -43,7 +43,7 @@
 
                 </div>
                 <!-- <div class="col px-4"> -->
-                <div class="col mx-4 w-65per">
+                <div class="col p-auto"  style="height: fit-content;">
                     <div class="font-x-large ff-meduim mb-3 mt-3">{{book.title}}</div>
                     <div class="d-flex mb-3">
                         <img src="/icon/author-name.svg" class="d-block my-auto" alt="..." width="20" height="20">
@@ -81,7 +81,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row p-0 pb-5 m-0 px-lg-0 px-md-5">
+            <div class="row p-0 pb-5 m-0 px-3">
                 <BooksAuthor :author="book.author"/>
             </div>
         </div>
@@ -185,6 +185,22 @@ onMounted(() => {
 }
 .w-35per {
     width: 30%;
+}
+.w-fit-img{
+    width: 300px;
+}
+.p-auto{
+    padding-left: 3%;
+    padding-right: 3%;
+}
+@media only screen and (max-width: 991px) {
+    .w-fit-img{
+        width: 100%;
+    }
+    .p-auto{
+        padding-left: 1%;
+        padding-right: 1%;
+    }
 }
 @media only screen and (max-width: 1100px) {
     .w-65per {

@@ -8,7 +8,7 @@
             </NuxtLink>
             </span>
         </div>
-        <div class="row font-small ff-regular m-0 p-0 lh-25">
+        <div class="row font-small ff-regular m-0 p-0 lh-25 text-justify">
             {{props.author?.about}}
         </div>
     </div>
