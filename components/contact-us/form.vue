@@ -337,14 +337,14 @@ async function addRequest () {
                 formData.append('message', contactUsForm.description);
                 endpoint = '/contact-requests'
             }
-            // const bodyData = {
-            //     ...Object.fromEntries(formData),
-            //     'recaptcha': recaptchaToken.value
-            // }
+            const bodyData = {
+                ...Object.fromEntries(formData),
+                'recaptcha': recaptchaToken.value
+            }
             const data = await $fetch(runTimeConfig.public.API_URL + endpoint, {
                 headers: { ...headers.value },
                 method: 'post',
-                body: formData
+                body: bodyData
             });
             requestMessage.value = data.message
             requestSuccess.value = data.success
@@ -385,19 +385,19 @@ async function checkValidate(event) {
         event.stopPropagation()
     } else {
         contactUsForm.mobile = `00${countryCode.value}` + `${phoneInput.value.$.data.phone}`;
-        addRequest()
+        triggerRecaptcha(event)
     }
     form.classList.add('was-validated')
 };
-// function triggerRecaptcha(e) {
-//   e.preventDefault();
-//         grecaptcha.ready(function() {
-//           grecaptcha.execute(runTimeConfig.public.RECAPTCHA_SITE_KEY, {action: 'submit'}).then(function(token) {
-//             recaptchaToken.value = token
-//             addRequest()
-//           });
-//         });
-// }
+function triggerRecaptcha(e) {
+  e.preventDefault();
+        grecaptcha.ready(function() {
+          grecaptcha.execute(runTimeConfig.public.RECAPTCHA_SITE_KEY, {action: 'submit'}).then(function(token) {
+            recaptchaToken.value = token
+            addRequest()
+          });
+        });
+}
 function removeAlert(e) {
     requestMessage.value = null
 };
