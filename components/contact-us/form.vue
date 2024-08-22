@@ -97,12 +97,6 @@
                         <button type="button" class="btn-close position-absolute top-0 start-100 translate-effect" @click="removeFile(index)" aria-label="Close"></button>
                     </div>
                 </div>
-                <!-- 6LcrNxsqAAAAAIjAUgca8kLJT8-e4vlHbV7Emwvg -->
-                <!-- <div class="form-group">
-                    <div class="g-recaptcha" data-sitekey="6LdyXSgqAAAAAEFIPnkdzxUV9H6dvp3x13KPkST8" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
-                    <input class="form-control d-none" data-recaptcha="true" required data-error="Please complete the Captcha">
-                    <div class="help-block with-errors"></div>
-                </div> -->
                 <div class="d-grid gap-2">
                     <button
                         type="submit" 
@@ -154,7 +148,6 @@ const props = defineProps({
 const {t} = useI18n()
 const runTimeConfig = useRuntimeConfig();
 const headers = ref({})
-const recaptchaToken = ref(null)
 const contactsRef = ref(null)
 const files = ref([])
 const requestPending = ref(false)
@@ -337,10 +330,6 @@ async function addRequest () {
                 formData.append('message', contactUsForm.description);
                 endpoint = '/contact-requests'
             }
-            // const bodyData = {
-            //     ...Object.fromEntries(formData),
-            //     'recaptcha': recaptchaToken.value
-            // }
             const data = await $fetch(runTimeConfig.public.API_URL + endpoint, {
                 headers: { ...headers.value },
                 method: 'post',
@@ -389,15 +378,6 @@ async function checkValidate(event) {
     }
     form.classList.add('was-validated')
 };
-// function triggerRecaptcha(e) {
-//   e.preventDefault();
-//         grecaptcha.ready(function() {
-//           grecaptcha.execute(runTimeConfig.public.RECAPTCHA_SITE_KEY, {action: 'submit'}).then(function(token) {
-//             recaptchaToken.value = token
-//             addRequest()
-//           });
-//         });
-// }
 function removeAlert(e) {
     requestMessage.value = null
 };
