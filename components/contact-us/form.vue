@@ -149,6 +149,7 @@ const {t} = useI18n()
 const runTimeConfig = useRuntimeConfig();
 const headers = ref({})
 const contactsRef = ref(null)
+const recaptchaToken = ref(null)
 const files = ref([])
 const requestPending = ref(false)
 const requestError = ref(null)
