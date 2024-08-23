@@ -283,7 +283,7 @@ const flag = computed(() => {
 })
 
 const disabledBtn = computed(() => {
-    return (files?.value?.length > 5) || (requestPending === true)
+    return (files?.value?.length > 5) || (requestPending.value === true)
 })
 
 const dynamicClass = computed(() => {
@@ -325,6 +325,7 @@ async function addRequest () {
                 formData.append('email', contactUsForm.email);
                 formData.append('mobile', contactUsForm.mobile);
                 formData.append('description', contactUsForm.description);
+                formData.append('recaptcha', recaptchaToken.value);
 
                 for (let i = 0; i < contactUsForm.documents.length; i++) {
                     formData.append(`documents[${i}]`, contactUsForm.documents[i]);
@@ -335,16 +336,13 @@ async function addRequest () {
                 formData.append('email', contactUsForm.email);
                 formData.append('mobile', contactUsForm.mobile);
                 formData.append('message', contactUsForm.description);
+                formData.append('recaptcha', recaptchaToken.value);
                 endpoint = '/contact-requests'
-            }
-            const bodyData = {
-                ...Object.fromEntries(formData),
-                'recaptcha': recaptchaToken.value
             }
             const data = await $fetch(runTimeConfig.public.API_URL + endpoint, {
                 headers: { ...headers.value },
                 method: 'post',
-                body: bodyData
+                body: formData
             });
             requestMessage.value = data.message
             requestSuccess.value = data.success

@@ -5,9 +5,9 @@ import { fetchAuthors } from './services/authorsService';
 
 export default defineNuxtConfig({
   runtimeConfig:{
-    API_URL: "http://127.0.0.1:9000/api",
+    API_URL: "http://127.0.0.1:8000/api",
     public: {
-      API_URL: "http://127.0.0.1:9000/api",
+      API_URL: "http://127.0.0.1:8000/api",
       RECAPTCHA_SITE_KEY: process.env.RECAPTCHA_SITE_KEY,
       SITE_URL: process.env.NUXT_PUBLIC_SITE_URL
     }
@@ -31,7 +31,7 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
       script: [
-        {src: 'https://www.google.com/recaptcha/api.js?render=6Lf5TiwqAAAAACAUsZcyFTZBAK6RXlQmIvpxGZ-4', async: true, defer: true}
+        {src: `https://www.google.com/recaptcha/api.js?render=${process.env.RECAPTCHA_SITE_KEY}`, async: true, defer: true}
       ]
     }
   },
@@ -40,7 +40,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
 
   devServer: {
-    port: 8000, // default: 3000     
+    port: 3000, // default: 3000     
     host: '0.0.0.0', // default: localhost 
   },
 
