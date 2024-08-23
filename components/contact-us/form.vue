@@ -413,8 +413,8 @@ const fetchData = async (url, dataRef, pendingRef, errorRef) => {
 
 const contactInfo = computed(() => {
     return contacts.value.filter((e) =>
-        locale.value === 'ar' ? (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'linkedIn' && e.type !== 'facebook' && e.type !== 'en_location' && e.type !== 'shop_url') :
-        (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'linkedIn' && e.type !== 'facebook'  && e.type !== 'ar_location' && e.type !== 'shop_url')
+        locale.value === 'ar' ? (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'linkedin' && e.type !== 'facebook' && e.type !== 'en_location' && e.type !== 'shop_url') :
+        (e.type !== 'twitter' && e.type !== 'instagram' && e.type !== 'linkedin' && e.type !== 'facebook'  && e.type !== 'ar_location' && e.type !== 'shop_url')
     )}
 );
 
