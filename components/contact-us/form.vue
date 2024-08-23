@@ -276,7 +276,7 @@ const flag = computed(() => {
 })
 
 const disabledBtn = computed(() => {
-    return (files?.value?.length > 5) || (requestPending === true)
+    return (files?.value?.length > 5) || (requestPending.value === true)
 })
 
 const dynamicClass = computed(() => {
@@ -318,6 +318,7 @@ async function addRequest () {
                 formData.append('email', contactUsForm.email);
                 formData.append('mobile', contactUsForm.mobile);
                 formData.append('description', contactUsForm.description);
+                formData.append('recaptcha', recaptchaToken.value);
 
                 for (let i = 0; i < contactUsForm.documents.length; i++) {
                     formData.append(`documents[${i}]`, contactUsForm.documents[i]);
@@ -328,6 +329,7 @@ async function addRequest () {
                 formData.append('email', contactUsForm.email);
                 formData.append('mobile', contactUsForm.mobile);
                 formData.append('message', contactUsForm.description);
+                formData.append('recaptcha', recaptchaToken.value);
                 endpoint = '/contact-requests'
             }
             const data = await $fetch(runTimeConfig.public.API_URL + endpoint, {
@@ -374,10 +376,19 @@ async function checkValidate(event) {
         event.stopPropagation()
     } else {
         contactUsForm.mobile = `00${countryCode.value}` + `${phoneInput.value.$.data.phone}`;
-        addRequest()
+        triggerRecaptcha(event)
     }
     form.classList.add('was-validated')
 };
+function triggerRecaptcha(e) {
+  e.preventDefault();
+        grecaptcha.ready(function() {
+          grecaptcha.execute(runTimeConfig.public.RECAPTCHA_SITE_KEY, {action: 'submit'}).then(function(token) {
+            recaptchaToken.value = token
+            addRequest()
+          });
+        });
+}
 function removeAlert(e) {
     requestMessage.value = null
 };
