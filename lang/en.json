@@ -151,7 +151,7 @@
             },
             "form": {
                 "title": "Contact",
-                "subTitle": "Poofreading department",
+                "subTitle": "Poofreading Department",
                 "steps": {
                     "step1": "{'Please fill out the form or contact us via email proofreading@rashm.com.sa'}",
                     "step2": "We will provide you with information and prices after submitting your material.",
@@ -172,7 +172,7 @@
             },
             "form": {
                 "title": "Contact",
-                "subTitle": "Creative Editing department",
+                "subTitle": "Creative Editing Department",
                 "steps": {
                     "step1": "{'Please fill out the form or contact us via email creative.editing@rashm.com.sa'}",
                     "step2": "We will provide you with information about our services and prices.",
@@ -194,7 +194,7 @@
             },
             "form": {
                 "title": "Contact",
-                "subTitle": "Literary agency service for authors",
+                "subTitle": "Literary Agency Department for Authors",
                 "steps": {
                     "step1": "{'Please fill out the form or contact us via email literary.agency@rashm.com.sa'}",
                     "step2": "Provide you with information about our services and prices.",
@@ -222,7 +222,7 @@
             },
             "form": {
                 "title": "Contact",
-                "subTitle": "Marketing department",
+                "subTitle": "Marketing Department",
                 "steps": {
                     "step1": "{'Please fill out the form or contact us via email marketing@rashm.com.sa'}",
                     "step2": "We will provide you with information about our services and prices.",
@@ -267,7 +267,7 @@
             },
             "form": {
                 "title": "Contact",
-                "subTitle": "Content writer department",
+                "subTitle": "Content Writer Department",
                 "steps": {
                     "step1": "{'Please fill out the form or contact us via email content@rashm.com.sa'}",
                     "step2": "We will provide you with information about our services and prices.",
@@ -289,7 +289,7 @@
             },
             "form": {
                 "title": "Contact",
-                "subTitle": "Content Book Delivery department",
+                "subTitle": "Content Book Delivery Department",
                 "steps": {
                     "step1": "{'Please fill out the form or contact us via email production@rashm.com.sa'}",
                     "step2": "Provide you with information about our services and prices.",
@@ -358,7 +358,7 @@
             },
             "form": {
                 "title": "Contact",
-                "subTitle": "Organizing Events and Conferences department",
+                "subTitle": "Organizing Events and Conferences Department",
                 "steps": {
                     "step1": "{'Please fill out the form or contact us via email events@rashm.com.sa'}",
                     "step2": "Provide you with information about our services and prices.",
@@ -460,7 +460,7 @@
     "aboutUs": {
         "overlayImg": {
             "title": "About Rashm",
-            "text": "Rashm is a leading Saudi publishing house founded in 2019 in Arar, North Borders, Saudi Arabia."
+            "text": "Rashm is a leading Saudi publishing house founded in 2019."
         },
         "aims": {
             "title": "Our Mission",
